@@ -13,6 +13,19 @@ namespace BetAPI.Data
 
         public DbSet<BetEntity> BetEntities { get; set; }
         public DbSet<User> users { get; set; }
+
+      
+        
+        /*
+        
+        //to avoid getting primary key error
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BetEntity>().ToTable("entity_table");
+            base.OnModelCreating(modelBuilder);
+        }
+        */
+        
     }
    
 }

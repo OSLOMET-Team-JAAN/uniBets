@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -17,7 +16,7 @@ namespace BetAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Player_no = table.Column<int>(type: "int", nullable: false),
                     PLAYER_BET_NUMBER = table.Column<int>(type: "int", nullable: false),
-                    BET_PLACED_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BET_PLACED_DATE = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OVER_1000_SEK = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EVENT_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LEAGUE = table.Column<string>(type: "nvarchar(max)", nullable: true),
