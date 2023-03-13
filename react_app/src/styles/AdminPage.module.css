@@ -1,0 +1,51 @@
+.dragAndDropArea {
+    display: block;
+    padding: 24px;
+    margin: 8px auto 8px auto;
+    height: 100px;
+    line-height: 1rem;
+    width: 300px;
+    border: 2px dotted #013434;
+    color: #013434;
+    background: transparent;
+}
+.dragHover {
+    border-color: #013434;
+    background: #75f581;
+}
+.dragFree {
+    border-color: grey;
+}
+
+.listOfSelectedFiles {
+    padding: 10px 25px;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid teal;
+    display: block;
+    text-align: left;
+    justify-items: left;
+    width: 525px;
+}
+
+.buttons {
+    padding: 5px 15px;
+    margin: 10px;
+    color: teal;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+.csvImport {
+    text-align: center;
+    color: teal;
+}
+
+.searchBar {
+    padding: 5px 15px;
+    margin: 10px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid teal;
+}

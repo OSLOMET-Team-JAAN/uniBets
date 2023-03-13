@@ -1,0 +1,10 @@
+.myDangerBtn {
+    padding: 5px 15px;
+    margin: 10px;
+    color: whitesmoke;
+    font-size: 17px;
+    background: red;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+

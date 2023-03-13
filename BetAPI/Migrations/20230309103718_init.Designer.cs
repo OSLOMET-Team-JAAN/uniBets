@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230217090004_init")]
+    [Migration("20230309103718_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,7 +83,13 @@ namespace BetAPI.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("roles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

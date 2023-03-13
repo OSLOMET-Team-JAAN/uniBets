@@ -1,0 +1,17 @@
+.wrapper {
+    display: block;
+    text-align: center;
+}
+
+.notFound {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 50px;
+}

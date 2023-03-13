@@ -81,7 +81,13 @@ namespace BetAPI.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("roles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

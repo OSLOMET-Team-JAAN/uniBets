@@ -1,0 +1,13 @@
+.container{
+    margin: auto;
+    width: 50vw;
+    background: #b0d4ea;
+    aspect-ratio: 100 / 30;
+}
+
+.profileImg {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}

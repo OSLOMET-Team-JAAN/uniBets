@@ -12,7 +12,9 @@ namespace BetAPI.repositories.Contracts
 
         List<BetEntity> GetAll_July_25();
        Task saveBetEntity_4(List<BetEntity> betList);
-      
+        List<BetEntity> getSavedBetEntities();
+
+
 
 
 

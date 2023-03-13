@@ -1,11 +1,13 @@
+using BetAPI;
 using BetAPI.Data;
 using BetAPI.repositories;
 using BetAPI.repositories.Contracts;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NuGet.Protocol.Core.Types;
+
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +23,18 @@ builder.Services.AddDbContextPool<Context>(options => options.
 UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAPIConeectionString")));
 
 
+//connecting the frontend
+
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().
+     AllowAnyHeader());
+});
+
 builder.Services.AddScoped<Irepo, betRepo>();
+
+
+
 
 //Authentication
 
@@ -50,11 +63,19 @@ builder.Services.AddAuthentication(opts =>
 });
 
 
+
+
+
+
 //authorization
 
 builder.Services.AddAuthorization(opts =>
 {
+    opts.AddPolicy(roles.MustBeTheOwner, policy =>
+    {
+        policy.RequireClaim("Username", "ADMIN");
 
+    });
 
     opts.FallbackPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
@@ -63,6 +84,24 @@ builder.Services.AddAuthorization(opts =>
 
 
 var app = builder.Build();
+
+
+
+//seeding the data
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+try
+{
+    var context = services.GetRequiredService<Context>();
+    await seed.SeedData(context);
+
+}
+catch (Exception e)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(e, "error accored during seeding");
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -73,10 +112,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+
 app.UseAuthentication();
+app.UseCors("AllowOrigin");
+
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+
 
 app.Run();

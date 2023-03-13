@@ -30,8 +30,9 @@ namespace BetAPI.Controllers
 
 
     [HttpGet ("july_4")]
-        
-    public ActionResult<List<BetEntity>> GetAll_july4()
+
+      
+        public ActionResult<List<BetEntity>> GetAll_july4()
         {
             try
             {
@@ -155,7 +156,7 @@ namespace BetAPI.Controllers
         
 
         [HttpPost]
-
+        [Authorize(Policy = roles.MustBeTheOwner)]
         public ActionResult saveTable(List<BetEntity> betList)
         {
             try
@@ -184,7 +185,33 @@ namespace BetAPI.Controllers
         }
 
 
-   
+
+        [HttpGet]
+
+        public ActionResult<List<BetEntity>> GetAll()
+        {
+            try
+            {
+
+                var result = _repository.getSavedBetEntities();
+                if (result == null)
+                {
+                    _logger.LogError("the GET call to /api/getSavedEntities fieled");
+                    return NotFound();
+
+                }
+
+                _logger.LogInformation("Get: api/Bets");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "the GET call to /api/getSavedEntities fieled");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                     "Error getting data from the database"
+                     );
+            }
+        }
     }
 }
 

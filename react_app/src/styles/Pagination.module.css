@@ -1,0 +1,48 @@
+.pagination {
+  padding: 0.5em 0;
+  display: flex;
+  justify-content: center;
+}
+.dots {
+  width: 1rem;
+  margin: 1rem 0.25rem;
+}
+.pageItem {
+  background: transparent;
+  float: left;
+  padding: 8px 16px;
+  margin: 3px;
+  text-decoration: none;
+  color: #003d3d;
+  border: none;
+  cursor: pointer;
+}
+.pageItem:hover:not(.active){
+  background: #76a9a2;
+}
+.pageItem:focus {
+  outline: 0;
+}
+.active {
+  background-color: #367588;
+  color: white;
+}
+.sides {
+  box-shadow:
+          transparent 0 0 0 1px,
+          transparent 0 0 0 4px,
+          rgba(0, 0, 0, 0.3) 0 4px 6px;
+}
+.sides:hover {
+  text-decoration: none;
+  box-shadow:
+          transparent 0 0 0 1px,
+          transparent 0 0 0 4px,
+          rgba(0, 0, 0, 0.15) 0 8px 18px;
+}
+
+/*
+https://www.w3schools.com/Css/css3_pagination.asp
+https://www.w3schools.com/css/css3_shadows_box.asp
+https://getcssscan.com/css-box-shadow-examples
+*/

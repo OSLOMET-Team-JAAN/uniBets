@@ -16,15 +16,7 @@ namespace BetAPI.Data
 
       
         
-        /*
         
-        //to avoid getting primary key error
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<BetEntity>().ToTable("entity_table");
-            base.OnModelCreating(modelBuilder);
-        }
-        */
         
     }
    

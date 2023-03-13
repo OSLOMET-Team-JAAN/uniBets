@@ -27,4 +27,12 @@
     <ProjectReference Include="..\UniBets\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <SourceGeneratorInput Remove="roles.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SourceGeneratorInput Remove="Data\seed.cs" />
+  </ItemGroup>
+
 </Project>

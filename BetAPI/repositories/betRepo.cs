@@ -1,5 +1,5 @@
 ﻿using BetAPI.Data;
-using BetAPI.Migrations;
+
 using BetAPI.repositories.Contracts;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json.Converters;
 using NuGet.Protocol.Plugins;
-using System.Collections.Generic;
+
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Windows.UI;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
 using SqlConnection = Microsoft.Data.SqlClient.SqlConnection;
 using SqlDataAdapter = Microsoft.Data.SqlClient.SqlDataAdapter;
@@ -208,6 +203,7 @@ namespace BetAPI.repositories
 
 
 
+        //just for the admin
         public async Task saveBetEntity_4(List<BetEntity> betList)
         {
 
@@ -293,8 +289,54 @@ END;
 
         }
 
+
+
+        public List<BetEntity> getSavedBetEntities()
+        {
+            string connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+            SqlConnection con = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BetEntities", con);
+            string selectQuery = "SELECT *  FROM BetEntities";
+
+            SqlDataAdapter da = new SqlDataAdapter(selectQuery, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+
+            //create a list of data from the table
+            List<BetEntity> list = new List<BetEntity>();
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    BetEntity bet = new BetEntity();
+                    bet.Player_no = Convert.ToInt32(dt.Rows[i]["Player_no"]);
+                    bet.PLAYER_BET_NUMBER = Convert.ToInt32(dt.Rows[i]["PLAYER_BET_NUMBER"]);
+                    bet.BET_PLACED_DATE = dt.Rows[i]["BET_PLACED_DATE"].ToString();
+                    bet.OVER_1000_SEK = dt.Rows[i]["OVER_1000_SEK"].ToString();
+                    bet.EVENT_NAME = dt.Rows[i]["EVENT_NAME"].ToString();
+                    bet.LEAGUE = dt.Rows[i]["LEAGUE"].ToString();
+                    bet.BET_OFFER_TYPE = dt.Rows[i]["BET_OFFER_TYPE"].ToString();
+                    bet.CRITERIA_NAME = dt.Rows[i]["CRITERIA_NAME"].ToString();
+                    bet.IS_LIVE = dt.Rows[i]["IS_LIVE"].ToString();
+                    bet.BET_LABEL = dt.Rows[i]["BET_LABEL"].ToString();
+                    bet.ODDS = Convert.ToDecimal(dt.Rows[i]["ODDS"]);
+                    bet.BET_OUTCOME = dt.Rows[i]["BET_OUTCOME"].ToString();
+
+                    list.Add(bet);
+                }
+                if (list.Count > 0)
+                {
+                    return list;
+                }
+
+            }
+            return null;
+
+
+        }
     }
-}
+    }
 
 
 
