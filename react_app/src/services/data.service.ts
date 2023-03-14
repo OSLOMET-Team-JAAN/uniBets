@@ -6,3 +6,7 @@ export const upload = (data: Array<IPlayer>) => {
     return axios.post('/saveTable', {data},
     );
 };
+
+export const getAll = () => {
+    return axios.get('/getAll');
+};

@@ -9,7 +9,7 @@ import AdminPage from "../pages/AdminPage";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
-import MyWorkingSpace from "../pages/MyWorkingSpace";
+import Dashboard from "../pages/Dashboard";
 
 const AppRouter = () => {
 
@@ -31,7 +31,7 @@ const AppRouter = () => {
 
                 {/* Administrator */}
                 <Route path="/admin" element={<AdminPage/>}/>
-                <Route path="/workspace" element={<MyWorkingSpace/>}/>
+                <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 {/* catch all */}
                 <Route path="/*" element={<NotFound/>}/>
