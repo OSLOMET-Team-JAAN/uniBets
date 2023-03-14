@@ -1,8 +1,8 @@
 import React from 'react';
-import GetAllBetWon from "../../../UniBets/react_app/src/components/dashboard_components/GetAllBetWon";
-import GetTop10Winners from "../../../UniBets/react_app/src/components/dashboard_components/GetTop10Winners";
-import GetTopWinner from "../../../UniBets/react_app/src/components/dashboard_components/GetTopWinner";
-import GetOddsOutliers from "../../../UniBets/react_app/src/components/dashboard_components/GetOddsOutliers";
+import GetTop10Winners from "../components/dashboard_components/GetTop10Winners";
+import GetTopWinner from "../components/dashboard_components/GetTopWinner";
+import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
+import GetAllBetWon from "../components/dashboard_components/GetAllBetWon";
 
 const Dashboard = () => {
 

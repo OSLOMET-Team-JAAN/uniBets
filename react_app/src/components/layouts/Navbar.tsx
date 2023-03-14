@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import * as AuthService from "../../services/auth.service";
 import IUser from "../../models/IUser";
 import EventBus from "../../common/EventBus";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
@@ -12,6 +12,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
+        console.log(user)
         if (user) {
             console.log(user.role)
             setCurrentUser(user);
@@ -61,8 +62,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={"/workspace"} className="nav-link">
-                                Workspace
+                            <Link to={"/dashboard"} className="nav-link">
+                                Dashboard
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -74,7 +75,7 @@ const Navbar = () => {
 
                 )}
             </div>
-            <div style={{ marginLeft: "auto" }}>
+            <div style={{marginLeft: "auto"}}>
                 {currentUser ? (
                     <div className="navbar-nav ml-auto">
                         <li className="nav-item">
