@@ -115,6 +115,23 @@ export function paginateTable(sortedRows: any, currentPage: number, rowsPerPage:
     return [...sortedRows].slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
 }
 
+//------ DASH BOARD FUNCTIONS -------------------
+// Get only Won bets rows
+export function getBetWon (data: any): ICSVdata[] {
+    return data.filter((rows: any) =>
+        rows.BET_OUTCOME === 'Bet Won'
+    )
+}
+
+// Get Top data
+export function getTop(data: any, top: number): ICSVdata[] {
+    return data.slice(0, top).map((item: any) =>
+        item
+    )
+}
+
+
+
 
 // https://bobbyhadz.com/blog/typescript-element-implicitly-has-any-type-expression
 
