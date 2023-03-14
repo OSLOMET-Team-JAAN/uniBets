@@ -152,10 +152,7 @@ namespace BetAPI.Controllers
         }
 
 
-
-        
-
-        [HttpPost]
+        [HttpPost("saveTable")]
         [Authorize(Policy = roles.MustBeTheOwner)]
         public ActionResult saveTable(List<BetEntity> betList)
         {
@@ -186,7 +183,7 @@ namespace BetAPI.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet ("getAll")]
 
         public ActionResult<List<BetEntity>> GetAll()
         {

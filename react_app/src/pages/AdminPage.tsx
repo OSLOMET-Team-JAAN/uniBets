@@ -256,7 +256,7 @@ const AdminPage = () => {
                     <MyButton
                         onClick={handleGetData}
                     >
-                        "Fetch from DB"
+                        Fetch from DB
                     </MyButton>
                     {showButton ?
                         <div style={{display: "block"}}>

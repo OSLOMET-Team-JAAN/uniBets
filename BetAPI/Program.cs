@@ -24,7 +24,6 @@ UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAPIConeectionS
 
 
 //connecting the frontend
-
 builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().

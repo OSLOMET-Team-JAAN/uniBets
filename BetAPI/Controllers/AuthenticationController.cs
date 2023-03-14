@@ -77,7 +77,7 @@ namespace BetAPI.Controllers
 
 
    //logginn 
-   [HttpPost("logginn")]
+   [HttpPost("login")]
     [AllowAnonymous]
 
     public async Task<ActionResult> logginn(logginnUser request)

@@ -31,11 +31,11 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(username, password).then((response) => {
-                const _accessToken = response?.data?.accessToken;
+                const _token = response?.data?.token;
                 const _email = response?.data?.email;
-                const _roles = response?.data?.roles;
-                if (_accessToken) {
-                    setAuth({username, _email, password, _roles, _accessToken});
+                const _role = response?.data?.role;
+                if (_token) {
+                    setAuth({username, _email, password, _role, _token});
                     setUsername('');
                     setPassword('');
                     navigate(from, {replace: true});
@@ -106,7 +106,7 @@ const Login = () => {
             <p>
                 Need an Account?<br/>
                 <span className={st.line}>
-                    <Link to="/signup"> <span>Sign Up</span> </Link>
+                    <Link to="/register"> <span>Sign Up</span> </Link>
                 </span>
             </p>
         </section>
