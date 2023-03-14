@@ -1,8 +1,7 @@
 import IPlayer from "./IPlayer";
 
 export interface ICSVdata {
-    data: IData[],
-    setData: () => void
+    data: IData[]
 }
 
 type IData = keyof IPlayer
