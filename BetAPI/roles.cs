@@ -1,6 +1,6 @@
 ﻿namespace BetAPI
 {
-    public class roles
+    public class Roles
     {
         public const string MustBeTheOwner = "MustBeTheOwner";
     }

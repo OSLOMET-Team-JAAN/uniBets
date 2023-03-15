@@ -138,7 +138,7 @@ const MyTable = ({columns, rows}: Props) => {
                             return (
                                 <th key={index} className={styles.sortButton}
                                     onClick={() => handleSort(column)}
-                                >                                        {sortButton(column)}
+                                >{sortButton(column)}
                                 </th>
                             )
                         })}

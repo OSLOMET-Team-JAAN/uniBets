@@ -12,7 +12,6 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\build</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\components\charts\" />
     <Folder Include="src\components\UI\buttons\NewFolder\" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,6 @@
-﻿using Domain;
-
-namespace BetAPI.repositories.Contracts
+﻿namespace BetAPI.repositories.Contracts
 {
-    public interface authenticationIrepo
+    public interface IAuthenticationIrepo
     {
        // Task<User> Register(userDTO Request);
     }

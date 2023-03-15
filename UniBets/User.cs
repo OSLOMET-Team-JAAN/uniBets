@@ -10,11 +10,11 @@ namespace Domain
     public class User
     {
         public int Id { get; set; }
-        public string username { get; set; } = string.Empty;
-        public string email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
     
         public string Password { get; set; } = string.Empty;
-        public string roles { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
     }
 }

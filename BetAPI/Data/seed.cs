@@ -1,40 +1,33 @@
 ﻿using Domain;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace BetAPI.Data
 {
-    public class seed
+    public class Seed
     {
         public static async Task SeedData(Context context)
         {
-            if (context.users.Any()) return;
+            if (context.Users.Any()) return;
 
-      
-
-            var Seeddata = new List<User>
+            var seedData = new List<User>
             {
-                new User
+                new()
                 {
-                  username="ADMIN",
-                  email="ADMIN@ADMIN.com",
+                  Username="ADMIN",
+                  Email="ADMIN@ADMIN.com",
                  Password=tools.PasswordHashing("ADMIN"),
-                 roles ="ADMIN"
-                     
+                 Role ="ADMIN"
                 },
-                new User
+                new()
                 {
-                   
-                     username="USER",
-                     email="USER@hotmail.com",
-                      Password=tools.PasswordHashing("USER"),
-                     roles ="USER"
+                    Username="USER",
+                    Email="USER@hotmail.com",
+                    Password=tools.PasswordHashing("USER"),
+                    Role ="USER"
                 }
-
             };
               
 
-            await context.users.AddRangeAsync(Seeddata);
+            await context.Users.AddRangeAsync(seedData);
             await context.SaveChangesAsync();
         }
     }

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Papa from "papaparse";
+import Papa, {UNIT_SEP} from "papaparse";
 import MyInput from "../components/UI/input/MyInput";
 import ErrorModal from "../components/UI/modals/ErrorModal";
 import MyTable from "../components/table/MyTable";
@@ -10,6 +10,8 @@ import DangerButton from "../components/UI/buttons/DangerButton";
 import useCSV from "../hooks/useCSV";
 import useCSVHeaders from "../hooks/useCSVHeaders";
 import {getAll, upload} from "../services/data.service";
+import {ICSVdata} from "../models/ICSVdata";
+import {AxiosResponse} from "axios";
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -19,7 +21,8 @@ const AdminPage = () => {
         //State 1_ This state to represent style change of drag area
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
-        const {data, setData}: any = useCSV();
+        // const {data, setData}: any = useCSV();
+        const [data, setData] = useState<Array<ICSVdata>>([])
         //State 4_ Used context to hold headers (keys) from data (objects) received from csv files.
         const {csvHeaders, setCsvHeaders}: any = useCSVHeaders();
         //This state will control errors
@@ -113,10 +116,15 @@ const AdminPage = () => {
         };
 
         const handleUpload = async () => {
-            try {
+            try {                
+                
                 await upload(data).then(
-                    () => {
-                        // window.location.reload();
+                    (response) => {
+                        console.log(response.data)
+                        if (response.status === 200) {
+                            alert("File data uploaded Successfully");
+                        }
+                        window.location.reload();
                     },
                     (error) => {
                         const resMessage =
@@ -143,12 +151,12 @@ const AdminPage = () => {
             try {
                 setIsFetchingData(true)
                 await getAll().then(
-                    (response) => {
+                    (response: AxiosResponse<Array<ICSVdata>>) => {
+                        console.log(response.data)
                         setData(response.data)
                         setShowContent(true)
                         setShowButton(true)
                         setIsFetchingData(false)
-                        window.location.reload();
                     },
                     (error) => {
                         const resMessage =

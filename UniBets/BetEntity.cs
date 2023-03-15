@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data;
-
-namespace Domain
+﻿namespace Domain
 {
     public class BetEntity
     {

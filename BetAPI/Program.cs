@@ -13,8 +13,8 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(opt => opt.JsonSerializerOptions.PropertyNamingPolicy = null);
+    
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,24 +30,20 @@ builder.Services.AddCors(c =>
      AllowAnyHeader());
 });
 
-builder.Services.AddScoped<Irepo, betRepo>();
-
-
-
+builder.Services.AddScoped<IRepo, BetRepo>();
 
 //Authentication
-
-
 //adding the configuration and authentication and JWTBearer
 
 ConfigurationManager conf = builder.Configuration;
+
 builder.Services.AddAuthentication(opts =>
 {
     opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     opts.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
-}).AddJwtBearer(opts =>
+}).AddJwtBearer("Bearer", opts =>
 {
     opts.SaveToken = true;
     opts.RequireHttpsMetadata = false;
@@ -61,16 +57,10 @@ builder.Services.AddAuthentication(opts =>
     };
 });
 
-
-
-
-
-
 //authorization
-
 builder.Services.AddAuthorization(opts =>
 {
-    opts.AddPolicy(roles.MustBeTheOwner, policy =>
+    opts.AddPolicy(Roles.MustBeTheOwner, policy =>
     {
         policy.RequireClaim("Username", "ADMIN");
 
@@ -85,43 +75,41 @@ builder.Services.AddAuthorization(opts =>
 var app = builder.Build();
 
 
-
 //seeding the data
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<Context>();
-    await seed.SeedData(context);
+    await Seed.SeedData(context);
 
 }
 catch (Exception e)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(e, "error accored during seeding");
+    logger.LogError(e, "error occured during seeding");
 }
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(options =>
+    {
+        options.SerializeAsV2 = true;
+    });
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-
-
-app.UseAuthentication();
 app.UseCors("AllowOrigin");
 
+app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapControllers();
-
-
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();
