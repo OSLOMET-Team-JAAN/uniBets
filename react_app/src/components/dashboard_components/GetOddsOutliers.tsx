@@ -13,27 +13,31 @@ import {
 const GetOddsOutliers = () => {
     const {data}: any = useCSV();
 
-    const [sortSettings, setSortSettings] =
+    const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
 
     const isGreaterThreshold = (array: any, value: number) => array.filter((v: any) => v.ODDS > value)
     const getOutliers = isGreaterThreshold(sortedData, 2);
+    //-- Find max ODDS value for property domain of LineChart (to change default high limit)
     const getTopValue = () => {
-        getTop(getOutliers, 1).map((item: any) => (
-            <span>{item.ODDS}</span>))
-
+        let val;
+        let obj = getTop(getOutliers, 1);
+        obj.map((key: any) => {
+            val = key["ODDS"]
+           }           
+       ) 
+       return val;
     }
 
 
     return (
         <div>
             <h4>ODDS OUTLIERS CHART</h4>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer height={300} >
                 <LineChart
-                    width={500}
-                    height={300}
+                    width={500}                    
                     data={getOutliers}
                     margin={{
                         top: 5,
@@ -45,7 +49,7 @@ const GetOddsOutliers = () => {
                     <XAxis dataKey="Player_no"/>
                     <YAxis
                         type="number"
-                        domain={[0, 20]}
+                        domain={[0, getTopValue]}
                     />
                     <Tooltip/>
                     <Legend/>
