@@ -14,6 +14,7 @@ import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
 import {log} from "util";
+import IPlayer from "../models/IPlayer";
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -120,8 +121,8 @@ const AdminPage = () => {
         const handleUpload = async () => {
             try {
                 if(data.length !== 0){
-                    const promises = data.map(async (obj: any) => {
-                        const array = [];
+                    const promises = data.map(async (obj: ICSVdata) => {
+                        const array: Array<ICSVdata> = [];
                         array.push(obj)
                         return await upload(array).then((response) => {
                             console.log(response.data)
@@ -131,9 +132,11 @@ const AdminPage = () => {
                     Promise.allSettled(promises)
                         .then((response) => {
                             console.log("Here is POST response " + JSON.stringify(response))})
-                        .catch((error) => setMyError(error))
-                }
-                alert("Data is saved successfully to database!")
+                        .catch((error) => setMyError(error)).finally(() =>
+                        alert("Data is saved successfully to database!")
+                    )
+                    
+                }                
             } catch (err: any) {
                 if (!err?.response) {
                     setMyError(err?.response);

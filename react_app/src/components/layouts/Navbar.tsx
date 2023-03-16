@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import * as AuthService from "../../services/auth.service";
 import IUser from "../../models/IUser";
 import EventBus from "../../common/EventBus";
 import {Link} from "react-router-dom";
+import {getCurrentUser, logout} from "../../services/auth.service";
 
 const Navbar = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
@@ -11,13 +11,13 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        console.log(user)
-        if (user) {
-            console.log(user.role)
-            setCurrentUser(user);
-            setShowUserBoard(user.role === "USER")
-            setShowAdminBoard(user.role === "ADMIN");
+        const auth = getCurrentUser();
+        console.log(auth)
+        if (auth) {
+            console.log(auth.role)
+            setCurrentUser(auth);
+            setShowUserBoard(auth.role === "USER")
+            setShowAdminBoard(auth.role === "ADMIN");
         }
 
         EventBus.on("logout", logOut);
@@ -28,7 +28,7 @@ const Navbar = () => {
     }, []);
 
     const logOut = () => {
-        AuthService.logout();
+        logout();
         setShowUserBoard(false)
         setShowAdminBoard(false);
         setCurrentUser(undefined);

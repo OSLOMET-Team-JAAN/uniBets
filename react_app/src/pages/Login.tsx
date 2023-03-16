@@ -6,7 +6,7 @@ import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 
 const Login = () => {
-    const {setAuth}: any = useAuth();
+    const {auth, setAuth}: any = useAuth();
 
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
@@ -31,11 +31,11 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(username, password).then((response) => {
-                const _token = response?.data?.token;
-                const _email = response?.data?.email;
-                const _role = response?.data?.role;
+                const _token = response?.token;
+                const _email = response?.token;
+                const _role = response?.role;
                 if (_token) {
-                    setAuth({username, _email, password, _role, _token});
+                    setAuth({username,_role, _email, password, _token});
                     setUsername('');
                     setPassword('');
                     navigate(from, {replace: true});

@@ -2,7 +2,7 @@ import axios from "../common/axiosAPI";
 import {ICSVdata} from "../models/ICSVdata";
 
 const TABLE_URL = "/Bets"
-export const upload = (data: any) => {    
+export const upload = (data: Array<ICSVdata>) => {    
     const userStr = localStorage.getItem("user");
     let user = null;
     if (userStr)
