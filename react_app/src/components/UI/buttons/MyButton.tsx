@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/MyButton.module.css';
+
 // classes gives us to receive styles as object properties
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
     abbr?: string
 }
 
-const MyButton: React.FC<Props> = ({ children, addStyles, ...props}) => {
+const MyButton: React.FC<Props> = ({children, addStyles, ...props}) => {
     return (
         <button
             {...props}

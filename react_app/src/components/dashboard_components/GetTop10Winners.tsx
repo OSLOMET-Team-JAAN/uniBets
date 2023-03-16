@@ -40,9 +40,9 @@ const GetTop10Winners = () => {
                     >
                         <Label
                             value="Player_no"
-                            offset={-5} position="insideBottom" />
+                            offset={-5} position="insideBottom"/>
                     </XAxis>
-                    <Tooltip />
+                    <Tooltip/>
                     <Bar
                         dataKey="ODDS"
                         stackId="a"

@@ -1,7 +1,6 @@
-﻿namespace BetAPI.repositories.Contracts
+﻿namespace BetAPI.repositories.Contracts;
+
+public interface IAuthenticationIrepo
 {
-    public interface IAuthenticationIrepo
-    {
-       // Task<User> Register(userDTO Request);
-    }
+    // Task<User> Register(userDTO Request);
 }

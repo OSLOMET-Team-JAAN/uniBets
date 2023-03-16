@@ -6,7 +6,8 @@ const CSVContext = createContext({});
 interface Props {
     children?: any
 }
-export const DataProvider = ({children}:Props) => {
+
+export const DataProvider = ({children}: Props) => {
     const [data, setData] = useState<Array<ICSVdata>>([]);
     return (
         <CSVContext.Provider

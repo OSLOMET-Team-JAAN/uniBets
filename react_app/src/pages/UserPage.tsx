@@ -2,9 +2,10 @@ import React from "react";
 import MyTable from "../components/table/MyTable";
 import useCSV from '../hooks/useCSV';
 import useCSVHeaders from "../hooks/useCSVHeaders";
+
 const UserPage = () => {
-    const { data }: any = useCSV();
-    const { csvHeaders }: any = useCSVHeaders();
+    const {data}: any = useCSV();
+    const {csvHeaders}: any = useCSVHeaders();
 
     return (
         <div>

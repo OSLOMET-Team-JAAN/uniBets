@@ -1,5 +1,5 @@
 import React from "react";
-import { getCurrentUser } from "../services/auth.service";
+import {getCurrentUser} from "../services/auth.service";
 import {Link} from "react-router-dom";
 import st from '../styles/Profile.module.css';
 
@@ -11,10 +11,10 @@ const Profile: React.FC = () => {
 
             <header>
 
-                <h1> Welcome <strong>{currentUser.username}</strong> </h1>
+                <h1> Welcome <strong>{currentUser.username}</strong></h1>
 
 
-                <img className={st.profileImg} alt="bob" src={require('../../src/styles/images/bob.jpg')} />
+                <img className={st.profileImg} alt="bob" src={require('../../src/styles/images/bob.jpg')}/>
 
             </header>
             <p>
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
                 <Link to="/home">Back to Home Page</Link>
             </div>
         </div>
-       
+
     );
 };
 

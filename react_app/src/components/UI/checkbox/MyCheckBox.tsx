@@ -5,7 +5,7 @@ interface Props {
     id?: string;
     type: string;
     value: string;
-    onChange?: (e:any) => void;
+    onChange?: (e: any) => void;
     onClick?: () => void;
     checked: boolean,
     label?: string

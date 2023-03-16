@@ -9,13 +9,13 @@ const Dashboard = () => {
     return (
         <>
             <h3>HERE IS ADMIN DASHBOARD</h3>
-            <div style={{display: "flex",margin: 20}}>
-                <GetTop10Winners />
-                <GetTopWinner />
+            <div style={{display: "flex", margin: 20}}>
+                <GetTop10Winners/>
+                <GetTopWinner/>
             </div>
             <div style={{display: "block", margin: 20}}>
-                <GetOddsOutliers />
-                <GetAllBetWon />
+                <GetOddsOutliers/>
+                <GetAllBetWon/>
             </div>
         </>
     );

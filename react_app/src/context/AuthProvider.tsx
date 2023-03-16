@@ -5,7 +5,8 @@ const AuthContext = createContext({});
 interface Props {
     children?: any
 }
-export const AuthProvider = ({children}:Props) => {
+
+export const AuthProvider = ({children}: Props) => {
     const [auth, setAuth] = useState({});
 
     return (

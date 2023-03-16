@@ -9,10 +9,10 @@ function App() {
 
     return (
         <div>
-            <Navbar />
-            <AppRouter />
+            <Navbar/>
+            <AppRouter/>
         </div>
-    )    
+    )
 }
 
 export default App;

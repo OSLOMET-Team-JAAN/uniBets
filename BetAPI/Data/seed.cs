@@ -1,35 +1,33 @@
 ﻿using Domain;
 
-namespace BetAPI.Data
+namespace BetAPI.Data;
+
+public class Seed
 {
-    public class Seed
+    public static async Task SeedData(Context context)
     {
-        public static async Task SeedData(Context context)
+        if (context.Users.Any()) return;
+
+        var seedData = new List<User>
         {
-            if (context.Users.Any()) return;
-
-            var seedData = new List<User>
+            new()
             {
-                new()
-                {
-                  Username="ADMIN",
-                  Email="ADMIN@ADMIN.com",
-                 Password=tools.PasswordHashing("ADMIN"),
-                 Role ="ADMIN"
-                },
-                new()
-                {
-                    Username="USER",
-                    Email="USER@hotmail.com",
-                    Password=tools.PasswordHashing("USER"),
-                    Role ="USER"
-                }
-            };
-              
+                Username = "ADMIN",
+                Email = "ADMIN@ADMIN.com",
+                Password = tools.PasswordHashing("ADMIN"),
+                Role = "ADMIN"
+            },
+            new()
+            {
+                Username = "USER",
+                Email = "USER@hotmail.com",
+                Password = tools.PasswordHashing("USER"),
+                Role = "USER"
+            }
+        };
 
-            await context.Users.AddRangeAsync(seedData);
-            await context.SaveChangesAsync();
-        }
+
+        await context.Users.AddRangeAsync(seedData);
+        await context.SaveChangesAsync();
     }
 }
-

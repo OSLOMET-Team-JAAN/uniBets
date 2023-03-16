@@ -9,10 +9,12 @@
     color: #013434;
     background: transparent;
 }
+
 .dragHover {
     border-color: #013434;
     background: #75f581;
 }
+
 .dragFree {
     border-color: grey;
 }
@@ -37,6 +39,7 @@
     border: 1px solid teal;
     cursor: pointer;
 }
+
 .csvImport {
     text-align: center;
     color: teal;

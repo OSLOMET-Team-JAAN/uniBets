@@ -12,7 +12,7 @@ const ErrorModal = ({visible, setVisible, children}: Props) => {
         <div className={visible ? [cl.myModal, cl.active].join(' ') : cl.myModal} onClick={() => setVisible(false)}>
             <div
                 className={visible ? [cl.modal__content, cl.active].join(' ') : cl.modal__content}
-                 onClick={e => e.stopPropagation()}>
+                onClick={e => e.stopPropagation()}>
                 <img alt="modal_pic" src={require('../../../styles/images/modal_attention.jpeg')}/>
                 {children}
             </div>

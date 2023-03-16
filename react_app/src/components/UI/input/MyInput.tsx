@@ -1,5 +1,6 @@
 import React, {FC, MutableRefObject, ReactNode} from 'react';
 import st from '../../../styles/MyInput.module.css';
+
 // classes gives us to receive styles as object properties
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
     placeholder?: string;
     type?: string;
     value?: string | number;
-    onChange?: (e:any) => void;
+    onChange?: (e: any) => void;
     children?: ReactNode;
     onClick?: () => void;
     className?: string;
@@ -18,18 +19,19 @@ interface Props {
 }
 
 const MyInput: FC<Props> =
-    ({children, ...props
-}) => {
+    ({
+         children, ...props
+     }) => {
 
-    return (
-        <input
-            {...props}
-            className={st.myInput}
-        >
-            {children}
-        </input>
-    );
-}
+        return (
+            <input
+                {...props}
+                className={st.myInput}
+            >
+                {children}
+            </input>
+        );
+    }
 
 export default MyInput;
 

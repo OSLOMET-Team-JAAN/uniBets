@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
 import styles from '../../../styles/Loader.module.css';
+
 type Props = {
     children?: ReactNode,
 }

@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain
-{
-    public class logginnUser
-    {
-        [Required]
-        public string Username { get; set; }
+namespace Domain;
 
-        [Required]
-        public string Password { get; set; }
-    }
+public class logginnUser
+{
+    [Required] public string Username { get; set; }
+
+    [Required] public string Password { get; set; }
 }

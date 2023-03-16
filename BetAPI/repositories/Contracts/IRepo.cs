@@ -1,16 +1,9 @@
 ﻿using Domain;
 
-namespace BetAPI.repositories.Contracts
+namespace BetAPI.repositories.Contracts;
+
+public interface IRepo
 {
-    public interface IRepo
-    {
-        Task SaveTable(List<BetEntity> betList);
-        List<BetEntity> GetAll();
-
-
-
-
-
-
-    }
+    Task SaveTable(List<BetEntity> betList);
+    List<BetEntity> GetAll();
 }

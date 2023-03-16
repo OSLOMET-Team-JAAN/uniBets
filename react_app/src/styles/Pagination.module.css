@@ -1,44 +1,49 @@
 .pagination {
-  padding: 0.5em 0;
-  display: flex;
-  justify-content: center;
+    padding: 0.5em 0;
+    display: flex;
+    justify-content: center;
 }
+
 .dots {
-  width: 1rem;
-  margin: 1rem 0.25rem;
+    width: 1rem;
+    margin: 1rem 0.25rem;
 }
+
 .pageItem {
-  background: transparent;
-  float: left;
-  padding: 8px 16px;
-  margin: 3px;
-  text-decoration: none;
-  color: #003d3d;
-  border: none;
-  cursor: pointer;
+    background: transparent;
+    float: left;
+    padding: 8px 16px;
+    margin: 3px;
+    text-decoration: none;
+    color: #003d3d;
+    border: none;
+    cursor: pointer;
 }
-.pageItem:hover:not(.active){
-  background: #76a9a2;
+
+.pageItem:hover:not(.active) {
+    background: #76a9a2;
 }
+
 .pageItem:focus {
-  outline: 0;
+    outline: 0;
 }
+
 .active {
-  background-color: #367588;
-  color: white;
+    background-color: #367588;
+    color: white;
 }
+
 .sides {
-  box-shadow:
-          transparent 0 0 0 1px,
-          transparent 0 0 0 4px,
-          rgba(0, 0, 0, 0.3) 0 4px 6px;
+    box-shadow: transparent 0 0 0 1px,
+    transparent 0 0 0 4px,
+    rgba(0, 0, 0, 0.3) 0 4px 6px;
 }
+
 .sides:hover {
-  text-decoration: none;
-  box-shadow:
-          transparent 0 0 0 1px,
-          transparent 0 0 0 4px,
-          rgba(0, 0, 0, 0.15) 0 8px 18px;
+    text-decoration: none;
+    box-shadow: transparent 0 0 0 1px,
+    transparent 0 0 0 4px,
+    rgba(0, 0, 0, 0.15) 0 8px 18px;
 }
 
 /*

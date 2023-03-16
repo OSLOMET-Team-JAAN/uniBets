@@ -3,9 +3,15 @@
 */
 
 import {ICSVdata} from "../models/ICSVdata";
+import {ParseResult} from "papaparse";
 
 export const getPageCount = (totalRows: number, limit: number) => {
     return Math.ceil(totalRows / limit)
+}
+
+export const getHeaders = (response: any) => {
+    const head = JSON.parse(JSON.stringify(response))
+    return Object.keys(head[0])
 }
 
 /*
@@ -66,7 +72,7 @@ export function filterRows(rows: Array<ICSVdata>, filters: any) {
 
     return rows.filter((row: any) => {
         return Object.keys(filters).every((key) => {
-            const value: {[key: string]: any} = row[key]
+            const value: { [key: string]: any } = row[key]
             const searchQuery = filters[key]
 
             if (isString(value)) {
@@ -83,7 +89,7 @@ export function filterRows(rows: Array<ICSVdata>, filters: any) {
 
 export function sortRows(rows: Array<ICSVdata>, sort: { order: string; orderBy: string }) {
     return rows.sort((a, b) => {
-        const { order, orderBy } = sort
+        const {order, orderBy} = sort
         //-- Checking for undefined and null
         //--We used a type assertion to indicate to TypeScript that the string variable is a
         // union type containing only the keys of the object. Now TypeScript lets us access the specific property
@@ -96,15 +102,15 @@ export function sortRows(rows: Array<ICSVdata>, sort: { order: string; orderBy: 
         const value2 = convertType(b[orderBy as keyof typeof a])
 
         if (order === 'asc') {
-            return value1.localeCompare(value2, undefined, { numeric: true })
+            return value1.localeCompare(value2, undefined, {numeric: true})
         } else {
-            return value2.localeCompare(value1, undefined, { numeric: true })
+            return value2.localeCompare(value1, undefined, {numeric: true})
         }
     })
 }
 
 export const reformatColumnTitles = (columnTitle: string) => {
-    if(isString(columnTitle))
+    if (isString(columnTitle))
         return columnTitle
             .toLowerCase()
             .replace(/_/g, ' ')
@@ -117,7 +123,7 @@ export function paginateTable(sortedRows: any, currentPage: number, rowsPerPage:
 
 //------ DASH BOARD FUNCTIONS -------------------
 // Get only Won bets rows
-export function getBetWon (data: any): ICSVdata[] {
+export function getBetWon(data: any): ICSVdata[] {
     return data.filter((rows: any) =>
         rows.BET_OUTCOME === 'Bet Won'
     )
@@ -129,8 +135,6 @@ export function getTop(data: any, top: number): ICSVdata[] {
         item
     )
 }
-
-
 
 
 // https://bobbyhadz.com/blog/typescript-element-implicitly-has-any-type-expression

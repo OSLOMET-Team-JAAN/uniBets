@@ -1,16 +1,14 @@
 ﻿using BetAPI.Data;
 using BetAPI.repositories.Contracts;
 
-namespace BetAPI.repositories
+namespace BetAPI.repositories;
+
+public class AuthenticationRepo : IAuthenticationIrepo
 {
-    public class AuthenticationRepo : IAuthenticationIrepo
+    private readonly Context _context;
+
+    public AuthenticationRepo(Context context)
     {
-        private readonly Context _context;
-        public AuthenticationRepo(Context context)
-        {
-            _context = context;
-
-
-        }
+        _context = context;
     }
 }
