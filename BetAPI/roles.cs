@@ -2,6 +2,6 @@
 {
     public class Roles
     {
-        public const string MustBeTheOwner = "MustBeTheOwner";
+        public const string ADMIN = "ADMIN";
     }
 }

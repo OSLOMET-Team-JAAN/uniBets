@@ -10,7 +10,6 @@ export const register = (username: string, email: string, password: string) => {
 export const login = (username: string, password: string) => {
     return axios.post(AUTH_URL + 'login', {username, password}
     ).then((response) => {
-        console.log(response);
         if (response.data.token) {
             localStorage.setItem("user", JSON.stringify(response.data));
         }

@@ -12,9 +12,7 @@ function App() {
             <Navbar />
             <AppRouter />
         </div>
-
-    )
-    
-};
+    )    
+}
 
 export default App;

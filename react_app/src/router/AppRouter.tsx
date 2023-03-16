@@ -1,15 +1,21 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Layout from "../components/layouts/Layout";
-import Login from "../pages/Login";
-import Unauthorized from "../pages/Unauthorized";
-import RegistrationPage from "../pages/RegistrationPage";
-import UserPage from "../pages/UserPage";
-import AdminPage from "../pages/AdminPage";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
+import RegistrationPage from "../pages/RegistrationPage";
+import Unauthorized from "../pages/Unauthorized";
+import UserPage from "../pages/UserPage";
 import Profile from "../pages/Profile";
+import AdminPage from "../pages/AdminPage";
 import Dashboard from "../pages/Dashboard";
+import AuthIsRequire from "../services/AuthIsRequire";
+
+const ROLES = {
+    'User': 'USER',
+    'Admin': 'ADMIN'
+}
 
 const AppRouter = () => {
 
@@ -17,27 +23,32 @@ const AppRouter = () => {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 {/* public routes */}
-                <Route path="/home" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/home" element={<Home/>}/>               
                 <Route path="/register" element={<RegistrationPage/>}/>
                 <Route path="/unauthorized" element={<Unauthorized/>}/>
 
                 {/*    Protected routes */}
                 {/* Registered User */}
 
-                <Route path="/user" element={<UserPage/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                <Route element={<AuthIsRequire allowedRoles={[ROLES.User, ROLES.Admin]} />}>
+                    <Route path="/user" element={<UserPage/>}/>
+                    <Route path="/profile" element={<Profile />} />
+                </Route>
 
 
                 {/* Administrator */}
-                <Route path="/admin" element={<AdminPage/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-                <Route path="/profile" element={<Profile/>}/>
-                {/* catch all */}
+                <Route element={<AuthIsRequire allowedRoles={[ROLES.Admin]} />}>
+                    <Route path="/admin" element={<AdminPage/>}/>
+                    <Route path="/user" element={<UserPage/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                </Route>
+                
+                {/* catch all routes */}
                 <Route path="/*" element={<NotFound/>}/>
             </Route>
         </Routes>
-
     );
 };
 

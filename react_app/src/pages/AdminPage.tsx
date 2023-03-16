@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import Papa, {UNIT_SEP} from "papaparse";
+import React, { useRef, useState} from 'react';
+import Papa from "papaparse";
 import MyInput from "../components/UI/input/MyInput";
 import ErrorModal from "../components/UI/modals/ErrorModal";
 import MyTable from "../components/table/MyTable";
@@ -7,12 +7,10 @@ import MyButton from "../components/UI/buttons/MyButton";
 import Loader from "../components/UI/loader/Loader";
 import styles from "../styles/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
-import useCSV from "../hooks/useCSV";
 import useCSVHeaders from "../hooks/useCSVHeaders";
 import {getAll, upload} from "../services/data.service";
 import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
-
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
 
@@ -41,7 +39,6 @@ const AdminPage = () => {
         const [showButton, setShowButton] = useState(false);
         //State 10_ to show fetching data process
         const [isFetchingData, setIsFetchingData] = useState(false);
-
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
         const resetAll = () => {

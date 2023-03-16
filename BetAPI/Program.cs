@@ -60,9 +60,9 @@ builder.Services.AddAuthentication(opts =>
 //authorization
 builder.Services.AddAuthorization(opts =>
 {
-    opts.AddPolicy(Roles.MustBeTheOwner, policy =>
+    opts.AddPolicy("ADMIN", policy =>
     {
-        policy.RequireClaim("Username", "ADMIN");
+        policy.RequireRole("ADMIN");
 
     });
 

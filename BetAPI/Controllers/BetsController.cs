@@ -23,7 +23,7 @@ namespace BetAPI.Controllers
         }
 
         [HttpPost("saveTable")]
-        [Authorize(Policy = Roles.MustBeTheOwner)]
+        [Authorize(Policy = "ADMIN")]
         public ActionResult SaveTable(List<BetEntity> betList)
         {
             try
