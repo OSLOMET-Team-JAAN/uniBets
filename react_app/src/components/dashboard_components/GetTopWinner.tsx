@@ -5,7 +5,7 @@ import useCSV from "../../hooks/useCSV";
 const GetTopWinner = () => {
     const {data}: any = useCSV()
 
-    const [sortSettings, setSortSettings] =
+    const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])

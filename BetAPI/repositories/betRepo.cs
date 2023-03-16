@@ -25,6 +25,7 @@ public class BetRepo : IRepo
     {
         if (betList == null) return;
 
+        //-- Checking for data existence
         var insertQuery = @"IF NOT EXISTS
                 (
                     SELECT *

@@ -23,8 +23,7 @@ const GetOddsOutliers = () => {
     //-- Find max ODDS value for property domain of LineChart (to change default high limit)
     const getTopValue = () => {
         let val;
-        let obj = getTop(getOutliers, 1);
-        obj.map((key: any) => {
+        getTop(getOutliers, 1).map((key: any) => {
             val = key["ODDS"]
            }           
        ) 
@@ -34,7 +33,7 @@ const GetOddsOutliers = () => {
 
     return (
         <div>
-            <h4>ODDS OUTLIERS CHART</h4>
+            <h4>WON ODDS OUTLIERS CHART</h4>
             <ResponsiveContainer height={300} >
                 <LineChart
                     width={500}                    
