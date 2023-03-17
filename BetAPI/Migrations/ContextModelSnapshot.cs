@@ -67,7 +67,7 @@ namespace BetAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BetEntities");
+                    b.ToTable("BetEntity");
                 });
 
             modelBuilder.Entity("Domain.User", b =>

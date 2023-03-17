@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230315191250_init")]
+    [Migration("20230317123233_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,7 +69,7 @@ namespace BetAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BetEntities");
+                    b.ToTable("BetEntity");
                 });
 
             modelBuilder.Entity("Domain.User", b =>
