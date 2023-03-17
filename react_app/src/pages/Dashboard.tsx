@@ -3,9 +3,10 @@ import GetTop10Winners from "../components/dashboard_components/GetTop10Winners"
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
 import GetAllBetWon from "../components/dashboard_components/GetAllBetWon";
-import GetWinRateTopWinner from "../components/dashboard_components/GetWinRateTopWinner";
 import useCSV from "../hooks/useCSV";
 import {getBetWon, getTop, sortRows} from "../utils/assistFunctions";
+import GetTopWinnerBetStatus from "../components/dashboard_components/GetTopWinnerBetStatus";
+import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinnerWinRate";
 
 const Dashboard = () => {
     const {data}: any = useCSV()
@@ -27,7 +28,8 @@ const Dashboard = () => {
             <div style={{display: "flex", margin: 20}}>
                 <GetTop10Winners/>
                 <GetTopWinner/>
-                <GetWinRateTopWinner  topWinner={val}/>
+                <GetTopWinnerBetStatus topWinner={val} />
+                <GetTopWinnerWinRate topWinner={val} />
             </div>
             <div style={{display: "block", margin: 20}}>
                 <GetOddsOutliers/>
