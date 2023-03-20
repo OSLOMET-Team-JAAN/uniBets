@@ -19,6 +19,8 @@ export default function Example() {
     };
 
     return (
+        <section className={styles.section}>
+        <div className={styles["container"]}>
         <Fragment>
             <Accordion open={open === 1} animate={customAnimation}>
                 <div className={styles["accordion-wrapper"]}>
@@ -177,7 +179,9 @@ export default function Example() {
 
             
 
-        </Fragment>
+            </Fragment>
+            </div>
+            </section>
 
     );
 
