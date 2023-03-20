@@ -13,8 +13,6 @@ import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
-import {log} from "util";
-import IPlayer from "../models/IPlayer";
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -105,7 +103,7 @@ const AdminPage = () => {
             Papa.parse(file, {
                 delimiter: ',',
                 header: true,
-                dynamicTyping: true, //numbers, boolean will not become strings
+                //dynamicTyping: true, //numbers, boolean will not become strings
                 complete: function (results: any) {
                     setData(results.data)                    
                     const headers = getHeaders(results.data)
@@ -222,7 +220,7 @@ const AdminPage = () => {
                             Papa.parse(text, {
                                 delimiter: ',',
                                 header: true,
-                                dynamicTyping: true, //numbers, boolean will not become strings
+                                //dynamicTyping: true, //numbers, boolean will not become strings
                                 complete: function (csvData) {
                                     setData(csvData.data)
                                     // Extracting headers from all objects in a List and

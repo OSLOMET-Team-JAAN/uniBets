@@ -10,22 +10,23 @@ import {
     Tooltip,
     XAxis,
 } from "recharts";
+import {ICSVdata} from "../../models/ICSVdata";
 
+type Props = {
+    sortedData: ICSVdata[]
+}
 
-const GetTop10Winners = () => {
-    const {data}: any = useCSV();
-
-    const [sortSettings, setSortSettings] =
-        useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
-    const sortedData = useMemo(() =>
-        sortRows(getBetWon(data), sortSettings), [data, sortSettings])
+const GetTop10Winners = ({sortedData}: Props) => {
+    const {data}: any = useCSV();    
     const getTop10 = getTop(sortedData, 10)
 
     return (
         <div>
             <h4>TOP 10 WINNERS</h4>
-            <ResponsiveContainer height={200} minWidth={400}>
+                        
                 <BarChart
+                    height={200}
+                    width={400}
                     data={getTop10}
                     margin={{
                         top: 20,
@@ -40,7 +41,7 @@ const GetTop10Winners = () => {
                     >
                         <Label
                             value="Player_no"
-                            offset={-5} position="insideBottom"/>
+                            offset={5} position="insideBottom"/>
                     </XAxis>
                     <Tooltip/>
                     <Bar
@@ -52,7 +53,6 @@ const GetTop10Winners = () => {
                         />
                     </Bar>
                 </BarChart>
-            </ResponsiveContainer>
         </div>
 
     );

@@ -44,15 +44,6 @@ const Login = () => {
                 () => {
                     navigate("/profile");
                     window.location.reload();
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                    setErrMsg(resMessage)
                 }
             );
         } catch (err: any) {

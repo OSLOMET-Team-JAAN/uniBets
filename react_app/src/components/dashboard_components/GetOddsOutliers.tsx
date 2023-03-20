@@ -34,7 +34,9 @@ const GetOddsOutliers = () => {
     return (
         <div>
             <h4>WON ODDS OUTLIERS CHART</h4>
-            <ResponsiveContainer height={300} >
+            <ResponsiveContainer
+                height={300}
+            >
                 <LineChart
                     width={500}                    
                     data={getOutliers}

@@ -12,16 +12,16 @@ const GetTopWinner = () => {
     const topWinner = getTop(sortedData, 1)
 
     return (
-        <div style={{display: "block", maxWidth: 60, margin: 5, padding: 5}}>
+        <div style={{display: "block", maxWidth: 60, margin: 20, padding: 5}}>
             <h4>TOP WINNER</h4>
-            <>
+            <div>
                 {topWinner.map((key: any, i: number) =>
                     <div key={i}
                          style={{border: "1px solid teal", background: "peachpuff"}}>
                         {key.Player_no}
                     </div>
                 )}
-            </>
+            </div>
         </div>
     );
 };

@@ -75,9 +75,12 @@ const GetTopWinnerWinRate = ({topWinner}: Props) => {
     return (
         <div style={{display: "block", margin: 5, padding: 5}}>
             <h4>PLAYER <strong>{topWinner}</strong> WIN RATE</h4>
-            <ResponsiveContainer width={400} height={250}>
-                <PieChart >
-                    <Pie
+            
+                <PieChart 
+                    width={400}
+                    height={250}
+                >
+                    <Pie                        
                         data={WinRate}
                         cx="50%"
                         cy="50%"
@@ -104,7 +107,6 @@ const GetTopWinnerWinRate = ({topWinner}: Props) => {
                         />
                     </Pie>
                 </PieChart>
-            </ResponsiveContainer>
 
         </div>
     );

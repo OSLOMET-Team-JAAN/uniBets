@@ -71,7 +71,7 @@ export function filterRows(rows: Array<ICSVdata>, filters: any) {
 
     return rows.filter((row: any) => {
         return Object.keys(filters).every((key) => {
-            const value: { [key: string]: any } = row[key]
+            let value: { [key: string | number]: any } = row[key]
             const searchQuery = filters[key]
 
             if (isString(value)) {
@@ -79,6 +79,7 @@ export function filterRows(rows: Array<ICSVdata>, filters: any) {
             }
 
             if (isNumber(value)) {
+                value = convertType(value)
                 return value === searchQuery
             }
             return false
@@ -94,11 +95,11 @@ export function sortRows(rows: Array<ICSVdata>, sort: { order: string; orderBy: 
         // union type containing only the keys of the object. Now TypeScript lets us access the specific property
         // without throwing the error. (as keyof typeof a)
         if (isNil(a[orderBy as keyof typeof a])) return 1
-        if (isNil(b[orderBy as keyof typeof a])) return -1
+        if (isNil(b[orderBy as keyof typeof b])) return -1
 
         //-- For localeCompare usage we need string data
         const value1 = convertType(a[orderBy as keyof typeof a])
-        const value2 = convertType(b[orderBy as keyof typeof a])
+        const value2 = convertType(b[orderBy as keyof typeof b])
 
         if (order === 'asc') {
             return value1.localeCompare(value2, undefined, {numeric: true})

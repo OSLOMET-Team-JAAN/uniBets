@@ -3,9 +3,9 @@ import styles from '../../../styles/MySearch.module.css';
 
 interface IFilter {
     value: string,
-    filters: any,
+    filters?: any,
     handleSearch: (value: any, columnName: any) => void,
-    placeholder: string,
+    placeholder?: string,
 }
 
 const MySearch = ({value, filters, handleSearch}: IFilter) => {

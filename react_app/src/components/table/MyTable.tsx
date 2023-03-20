@@ -28,6 +28,7 @@ type Props = {
 }
 
 const MyTable = ({columns, rows}: Props) => {
+    //-- DELETE FOR PRODUCTION --------------
     console.log(rows)
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -218,54 +219,7 @@ const MyTable = ({columns, rows}: Props) => {
                     currentPage={currentPage}
                     totalPages={totalPages}
                     handlePagination={handlePages}/>
-            </div>
-            <div>
-                <div>
-                    <h4>Bar chart testing</h4>
-                    <ResponsiveContainer height={200}>
-                        <BarChart
-                            data={calculatedRows}
-                            margin={{
-                                top: 20,
-                                right: 30,
-                                left: 20,
-                                bottom: 5
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend/>
-                            <Bar dataKey="BET_OUTCOME" stackId="a" fill="#8884d8"/>
-                            <Bar dataKey="Player_no" stackId="a" fill="#82ca9d"/>
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-                <div>
-                    <h4>Simple Scatter chart testing</h4>
-                    <ResponsiveContainer height={400}>
-                        <ScatterChart
-                            margin={{
-                                top: 20,
-                                right: 20,
-                                bottom: 20,
-                                left: 20,
-                            }}
-                        >
-                            <CartesianGrid/>
-                            <XAxis type="category" dataKey="BET_PLACED_DATE" name="BET_PLACED_DATE"/>
-                            <YAxis type="number" dataKey="ODDS" name="ODDS"/>
-                            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
-                            <Scatter name="ODDS" data={rows} fill="#8884d8"/>
-                        </ScatterChart>
-                    </ResponsiveContainer>
-                </div>
-                <div>
-                    <h4>Simple Scatter chart testing</h4>
-
-                </div>
-            </div>
+            </div>            
         </>
     )
 }
