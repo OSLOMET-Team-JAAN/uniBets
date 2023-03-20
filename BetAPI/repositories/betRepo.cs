@@ -57,7 +57,7 @@ public class BetRepo : IRepo
                     @BET_LABEL, @ODDS, @BET_OUTCOME);
                 END; ";
         await using (var destinationConnection =
-                     new SqlConnection(_configuration.GetConnectionString("ConnectionAPIConeectionString")))
+                     new SqlConnection(_configuration.GetConnectionString("ConnectionAPIConnectionString")))
         await using (var insertCommand = new SqlCommand(insertQuery, destinationConnection))
         {
             //the data we add 
@@ -100,7 +100,7 @@ public class BetRepo : IRepo
 
     public List<BetEntity> GetAll_July_25()
     {             //Connection
-        string connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+        string connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         SqlConnection con = new SqlConnection(connString);             //read the sql data
         SqlDataAdapter da = new SqlDataAdapter("july_25", con);             //create a table and add the data
         DataTable dt = new DataTable();
@@ -133,7 +133,7 @@ public class BetRepo : IRepo
     }
     public List<BetEntity> GetAll_July_11()
     {
-        string connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+        string connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         SqlConnection con = new SqlConnection(connString); SqlDataAdapter da = new SqlDataAdapter("july_11", con);
         DataTable dt = new DataTable();
         da.Fill(dt);
@@ -165,7 +165,7 @@ public class BetRepo : IRepo
     }
     public List<BetEntity> GetAll_July_4()
     {
-        string connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+        string connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         SqlConnection con = new SqlConnection(connString); SqlDataAdapter da = new SqlDataAdapter("july_4", con);
         DataTable dt = new DataTable();
         da.Fill(dt); List<BetEntity> list = new List<BetEntity>();
@@ -196,7 +196,7 @@ public class BetRepo : IRepo
     }
     public List<BetEntity> GetAll_July_18()
     {
-        string connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+        string connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         SqlConnection con = new SqlConnection(connString); SqlDataAdapter da = new SqlDataAdapter("july_18", con);
         DataTable dt = new DataTable();
         da.Fill(dt);
@@ -229,7 +229,7 @@ public class BetRepo : IRepo
 
     public List<BetEntity> GetAll()
     {
-        var connString = _configuration.GetConnectionString("ConnectionAPIConeectionString");
+        var connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         var con = new SqlConnection(connString);
         var cmd = new SqlCommand("SELECT * FROM BetEntities", con);
         var selectQuery = "SELECT *  FROM BetEntities";

@@ -18,7 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContextPool<Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAPIConeectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAPIConnectionString")));
 
 
 //connecting the frontend
