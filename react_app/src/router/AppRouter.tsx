@@ -11,8 +11,8 @@ import Profile from "../pages/Profile";
 import AdminPage from "../pages/AdminPage";
 import Dashboard from "../pages/Dashboard";
 import AuthIsRequire from "../services/AuthIsRequire";
-//import Contact from "../pages/Contact";
-//import Faq from "../pages/Faq";
+import Contact from "../pages/Contact";
+import Faq from "../pages/Faq";
 
 const ROLES = {
     'User': 'USER',
@@ -27,8 +27,8 @@ const AppRouter = () => {
                 {/* public routes */}
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/home" element={<Home />} />
-                {/*  <Route path="/faq" element={<Faq />} />
-                <Route path="/contact" element={<Contact />} /> */}
+                <Route path="/faq" element={<Faq />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/register" element={<RegistrationPage/>}/>
                 <Route path="/unauthorized" element={<Unauthorized/>}/>
 
