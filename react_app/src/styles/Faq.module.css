@@ -1,20 +1,21 @@
-/*.container {
-    margin: 0 16px 5px 16px;
+.max-w-screen-md {
+    max-width: 1200px;
 }
 
-.text {
-    font-size: 16px;
-    word-wrap: break-word;
+.section {
+    background-color: #fff;
+    max-width: fit-content;
 }
 
-.link {
-    color: blue;
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 5px auto;
+    max-width: 46rem;
 }
 
-    .link:hover {
-        color: blueviolet;
-    }
-*/
 
 .accordion-wrapper {
     margin-left: 30px;
