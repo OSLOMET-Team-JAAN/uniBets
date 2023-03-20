@@ -22,15 +22,17 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         // Log error to an error reporting service like Sentry
         console.log({error, errorInfo});
+        this.setState({error})
         // if to API logErrorToMyService(error, errorInfo);
     }
 
     render() {
         const {error} = this.state
-        if (error) {
-            return <this.props.FallbackComponent error={error}/>
-        }
-        return this.props.children
+        const { children } = this.props;
+        const {FallbackComponent} = this.props;
+        
+            return error ? <FallbackComponent error={error}/> : children
+        
     }
 }
 

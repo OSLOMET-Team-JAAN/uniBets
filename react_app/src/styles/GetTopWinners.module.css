@@ -1,0 +1,9 @@
+﻿.customTooltip {
+    display: inline-block;
+    text-align: left;
+    background-color: whitesmoke;
+    border: 1px solid #bdbcbc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
