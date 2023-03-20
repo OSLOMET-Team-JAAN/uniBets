@@ -9,7 +9,7 @@ namespace BetAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BetEntities",
+                name: "BetEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,7 +29,7 @@ namespace BetAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BetEntities", x => x.Id);
+                    table.PrimaryKey("PK_BetEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,7 +52,7 @@ namespace BetAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BetEntities");
+                name: "BetEntity");
 
             migrationBuilder.DropTable(
                 name: "Users");
