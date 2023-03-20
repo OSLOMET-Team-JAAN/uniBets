@@ -12,6 +12,7 @@ function App() {
         <div>
             <Navbar/>
             <AppRouter />
+            <br/>
             <Footer />
         </div>
     )

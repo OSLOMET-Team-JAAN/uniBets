@@ -6,10 +6,10 @@ import Login from "./Login";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 
 const Home = () => {
-
+    {/* adding the path for login page to redirect to it on click button */ }
     let navigate = useNavigate();
     const routeLogin = () => {
-        let path = "./Login";
+        let path = "./Login"; {/* ?? */ }
         navigate(path);
 
     }
