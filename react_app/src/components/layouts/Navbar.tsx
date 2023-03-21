@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import IUser from "../../models/IUser";
 import EventBus from "../../common/EventBus";
 import {Link} from "react-router-dom";
-import {getCurrentUser, logout} from "../../services/auth.service";
+import { getCurrentUser, logout } from "../../services/auth.service";
+import Logo from "../../styles/images/logo.png";
 
 const Navbar = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
@@ -35,16 +36,29 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <Link to={"/home"} className="navbar-brand">
-                UniBets
+        <nav className="navbar navbar-expand navbar-dark" style={{ backgroundColor: '#00838f' }}>
+            <div className="container-fluid">
+                <Link to={"/home"} className="navbar-brand" style={{ fontWeight: 'bold', color: 'white' }}>
+                    <img src={Logo} alt="Logo" style={{ maxHeight: '50px', width: 'auto' }} />
+                    Game Fixing
             </Link>
-            <div className="navbar-nav mr-auto">
+                <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                 <li className="nav-item">
                     <Link to={"/home"} className="nav-link">
                         Home
                     </Link>
-                </li>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/faq"} className="nav-link">
+                            FAQ
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/contact"} className="nav-link">
+                            Contact Us
+                        </Link>
+                    </li>
+                </div>
 
                 {showUserBoard && (
                     <li className="nav-item">
@@ -55,7 +69,7 @@ const Navbar = () => {
                 )}
 
                 {showAdminBoard && (
-                    <div className="navbar-nav ml-auto">
+                        <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                         <li className="nav-item">
                             <Link to={"/user"} className="nav-link">
                                 User Page
@@ -75,9 +89,9 @@ const Navbar = () => {
 
                 )}
             </div>
-            <div style={{marginLeft: "auto"}}>
+            <div className="navbar-nav ml-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                 {currentUser ? (
-                    <div className="navbar-nav ml-auto">
+                    <div className="navbar-nav">
                         <li className="nav-item">
                             <Link to={"/profile"} className="nav-link">
                                 {currentUser.username}
@@ -90,7 +104,7 @@ const Navbar = () => {
                         </li>
                     </div>
                 ) : (
-                    <div className="navbar-nav ml-auto">
+                    <div className="navbar-nav">
                         <li className="nav-item">
                             <Link to={"/login"} className="nav-link">
                                 Login
@@ -98,7 +112,7 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item">
                             <Link to={"/register"} className="nav-link">
-                                Sign Up
+                                SignUp
                             </Link>
                         </li>
                     </div>

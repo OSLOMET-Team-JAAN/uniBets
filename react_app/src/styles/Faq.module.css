@@ -1,0 +1,43 @@
+.max-w-screen-md {
+    max-width: 1200px;
+}
+
+.section {
+    background-color: #fff;
+    max-width: fit-content;
+}
+
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 5px auto;
+    max-width: 46rem;
+}
+
+
+.accordion-wrapper {
+    margin-left: 30px;
+    margin-right:30px;
+    margin-top: 5px;
+}
+
+.accordion-header {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.accordion-body {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+    .accordion-body a {
+        color: #3182ce;
+    }
+
+        .accordion-body a:hover {
+            color: #63b3ed;
+        }
