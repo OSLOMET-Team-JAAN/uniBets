@@ -1,4 +1,4 @@
-import * as st from "../styles/HomePage.style";
+import * as st from "../styles/tailwind/HomePage.style";
 import Fraud from "../styles/images/image1.jpg"
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
