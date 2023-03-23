@@ -18,7 +18,7 @@ export const login = (username: string, password: string) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem("user");
+    localStorage.clear();
 };
 
 export const getCurrentUser = () => {

@@ -13,9 +13,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const auth = getCurrentUser();
-        console.log(auth)
         if (auth) {
-            console.log(auth.role)
             setCurrentUser(auth);
             setShowUserBoard(auth.role === "USER")
             setShowAdminBoard(auth.role === "ADMIN");

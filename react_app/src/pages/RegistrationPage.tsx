@@ -5,10 +5,11 @@ import {Link, useNavigate} from "react-router-dom";
 import st from '../styles/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
+import MyButton from "../components/UI/buttons/DangerButton";
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const USER_REGEX = /^[A-z][A-z0-9-_]{4,20}$/;
+const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,16}$/;
 
 const RegistrationPage = () => {
     const userRef = useRef<HTMLInputElement>(null);
@@ -71,24 +72,14 @@ const RegistrationPage = () => {
         try {
             await register(username, email, password).then(
                 () => {
-                    navigate("/login");
-                    window.location.reload();
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                    setErrMsg(resMessage)
+                    setSuccess(true);
+                    //clear state and controlled inputs
+                    setUsername('');
+                    setPassword('');
+                    setMatchPwd('');
                 }
             );
-            setSuccess(true);
-            //clear state and controlled inputs
-            setUsername('');
-            setPassword('');
-            setMatchPwd('');
+           
         } catch (err: any) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -102,6 +93,10 @@ const RegistrationPage = () => {
             errRef.current?.focus();
         }
     }
+    
+    function redirect(){
+        navigate("/login");
+    }
 
     return (
         <>
@@ -109,7 +104,10 @@ const RegistrationPage = () => {
                 <section>
                     <h1>Registered successfully!</h1>
                     <p>
-                        <a href="/login">Sign In</a>
+                        <MyButton 
+                            onClick={redirect}
+                        >Login
+                        </MyButton>
                     </p>
                 </section>
             ) : (
@@ -232,3 +230,8 @@ const RegistrationPage = () => {
 }
 
 export default RegistrationPage;
+
+//https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Register.js
+//https://developer-mozilla-org.translate.goog/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US
+//https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid
+//https://ru.reactjs.org/docs/hooks-reference.html#useref

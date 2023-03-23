@@ -13,6 +13,7 @@ import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
+import usePersistData from '../context/PersistDataProvider'
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -23,7 +24,8 @@ const AdminPage = () => {
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
         const {data, setData}: any = useCSV();
-        // const [data, setData] = useState<Array<ICSVdata>>([])
+        
+        const [persistData, setPersistData] = usePersistData('data', data)
         //State 4_ Used context to hold headers (keys) from data (objects) received from csv files.
         const {csvHeaders, setCsvHeaders}: any = useCSVHeaders();
         //This state will control errors

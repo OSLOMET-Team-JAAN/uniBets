@@ -32,3 +32,15 @@ export const getAll = () => {
         }
     });
 };
+
+export const getStoredData = () => {
+    const storedData = localStorage.getItem("data");
+    if (storedData) return JSON.parse(storedData);
+    return null;
+};
+
+export const getStoredHeaders = () => {
+    const storedHeaders = localStorage.getItem("headers");
+    if (storedHeaders) return JSON.parse(storedHeaders);
+    return null;
+};

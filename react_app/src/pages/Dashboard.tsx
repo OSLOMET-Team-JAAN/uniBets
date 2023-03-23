@@ -12,9 +12,9 @@ import GetDatesRages from "../components/dashboard_components/GetDatesRages";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 
+
 const Dashboard = () => {
-    const {data}: any = useCSV()   
-    
+    const {data}: any = useCSV()
     const [playerNo, setPlayerNo] = useState(0);
     const [myTop, setMyTop] = useState(10);
     const [sortSettings] =
@@ -22,11 +22,12 @@ const Dashboard = () => {
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
     
+    
     useMemo(() => {
         getTop(sortedData, 1).map((key: any) => {
             setPlayerNo(key["Player_no"]);
         })
-    }, [])   
+    }, [])
     
     
     return (

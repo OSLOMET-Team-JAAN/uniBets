@@ -58,64 +58,120 @@ export default Contact;
 */
 
 
-import { FC } from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import { Button } from "@material-tailwind/react";
 import styles from "../styles/Contact.module.css";
+import EventBus from "../common/EventBus";
 
-const Contact: FC = () => (
-    <>
-    <br />
-    <section className={styles.section}>
-        <div className={styles.container}>
-            <h2 className={styles.title}>Contact Us</h2>
-            <p className={styles.subtitle}>
-                Got a question? Want to send feedback about game-fixing? Let us know.
-                </p>
-                <form action="#" >
-                <div className={styles.formGroup}>
-                    <label htmlFor="email" className={styles.label}>
-                        Your email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        className={styles.input}
-                        placeholder="name@example.com"
-                        required
-                    />
+const Contact: FC = () => {
+    const userRef = useRef<HTMLInputElement>(null);
+    
+    const [email, setEmail] = useState('');
+    const [emailFocus, setEmailFocus] = useState(false);
+
+    const [subject, setSubject] = useState('');
+    const [subjectFocus, setSubjectFocus] = useState(false);
+
+    const [message, setMessage] = useState('');
+    const [messageFocus, setMessageFocus] = useState(false);
+
+    const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        userRef.current?.focus();
+    }, [])
+    
+    function handleSubmit(e: any){
+        e.preventDefault();
+        alert(`Your message was sent successfully. Thank you!\n
+            Email: ${email},\n
+            Subject: ${subject},\n
+            Message: ${message}
+        `);
+        setSuccess(true);
+        setEmail('');
+        setSubject('');
+        setMessage('');
+    }
+    EventBus.dispatch('submit', handleSubmit);
+    
+    return (
+        <>
+            <br />
+            <section className={styles.section}>
+                <div className={styles.container}>
+                    <h2 className={styles.title}>Contact Us</h2>
+                    <p className={styles.subtitle}>
+                        Got a question? Want to send feedback about game-fixing? Let us know.
+                    </p>
+                    <form
+                        action="#"
+                    >
+                        <div className={styles.formGroup}>
+                            <label htmlFor="email" className={styles.label}>
+                                Your email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                className={styles.input}
+                                placeholder="name@example.com"
+                                ref={userRef}
+                                autoComplete="off"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
+                                required
+                            />
+                        </div>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="subject" className={styles.label}>
+                                Subject
+                            </label>
+                            <input
+                                type="text"
+                                id="subject"
+                                className={styles.input}
+                                placeholder="Let us know how we can help you"
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                                onFocus={() => setSubjectFocus(true)}
+                                onBlur={() => setSubjectFocus(false)}
+                                required
+                            />
+                        </div>
+                        <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+                            <label htmlFor="message" className={styles.label}>
+                                Your message
+                            </label>
+                            <textarea
+                                id="message"
+                                rows={6}
+                                className={styles.textarea}
+                                placeholder="Leave a comment..."
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                onFocus={() => setMessageFocus(true)}
+                                onBlur={() => setMessageFocus(false)}
+                            />
+                        </div>
+                        <br />
+                        <div>
+                            <Button 
+                                className="hover:scale-125"
+                                disabled={!email || !subject || !message}
+                                onClick={handleSubmit}
+                            >Send Message</Button>
+                        </div>
+
+                    </form>
                 </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="subject" className={styles.label}>
-                        Subject
-                    </label>
-                    <input
-                        type="text"
-                        id="subject"
-                        className={styles.input}
-                        placeholder="Let us know how we can help you"
-                        required
-                    />
-                </div>
-                <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-                    <label htmlFor="message" className={styles.label}>
-                        Your message
-                    </label>
-                    <textarea
-                        id="message"
-                        rows={6}
-                        className={styles.textarea}
-                        placeholder="Leave a comment..."
-                    />
-                    </div>
-                    <br /> 
-                    <div>
-                        <Button className="hover:scale-125">Send Message</Button>
-                    </div>
-                   
-            </form>
-        </div>
-        </section>
-    </>
-);
+            </section>
+        </>
+    );
+}
+    
+   
 
 export default Contact;
