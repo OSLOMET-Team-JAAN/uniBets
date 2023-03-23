@@ -27,9 +27,9 @@ input[type="password"],
 .buttonReg,
 textarea {
     font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    padding: 0.25rem;
-    border-radius: 0.5rem;
+    font-size: 15px;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
 }
 
 label,

@@ -59,16 +59,19 @@ export default Contact;
 
 
 import { FC } from "react";
+import { Button } from "@material-tailwind/react";
 import styles from "../styles/Contact.module.css";
 
 const Contact: FC = () => (
+    <>
+    <br />
     <section className={styles.section}>
         <div className={styles.container}>
             <h2 className={styles.title}>Contact Us</h2>
             <p className={styles.subtitle}>
                 Got a question? Want to send feedback about game-fixing? Let us know.
-            </p>
-            <form action="#" className={styles.form}>
+                </p>
+                <form action="#" >
                 <div className={styles.formGroup}>
                     <label htmlFor="email" className={styles.label}>
                         Your email
@@ -103,11 +106,16 @@ const Contact: FC = () => (
                         className={styles.textarea}
                         placeholder="Leave a comment..."
                     />
-                </div>
-                <button className={styles.button}>Send Message</button>
+                    </div>
+                    <br /> 
+                    <div>
+                        <Button className="hover:scale-125">Send Message</Button>
+                    </div>
+                   
             </form>
         </div>
-    </section>
+        </section>
+    </>
 );
 
 export default Contact;
