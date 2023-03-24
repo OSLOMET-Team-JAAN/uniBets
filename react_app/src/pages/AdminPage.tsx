@@ -228,12 +228,12 @@ const AdminPage = () => {
                                 delimiter: ',',
                                 header: true,
                                 //dynamicTyping: true, //numbers, boolean will not become strings
-                                complete: function (csvData) {
-                                    setData(getStoredData('csv'))
-                                    setDataToStore('csv',csvData.data)
+                                complete: function (csvData) {                                    
+                                    setDataToStore('csv',csvData.data)                                    
                                     // Extracting headers from all objects in a List and
                                     const headers = getHeaders(csvData.data)
                                     setHeadersToStore('headers', headers)
+                                    setData(getStoredData('csv'))
                                     setHeaders(getStoredHeaders('headers'))
                                     setShowContent(false)
                                     setShowButton(true)
@@ -306,7 +306,7 @@ const AdminPage = () => {
                 </div>
                 <div>
                     {isLoading && !myError
-                        ? <div><Loader/></div>
+                        ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
                         : <>
                             {showContent
                                 ? <MyTable
