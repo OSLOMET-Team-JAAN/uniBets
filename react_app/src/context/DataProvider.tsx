@@ -1,6 +1,6 @@
-import {createContext, useEffect, useMemo, useReducer, useState} from "react";
-import {ICSVdata} from "../models/ICSVdata";
-import {getStoredData, getStoredHeaders} from "../services/data.service";
+import {createContext, useEffect, useMemo, useState} from "react";
+
+import {getStoredData, getStoredHeaders, setDataToStore, setHeadersToStore} from "../services/data.service";
 
 const DataContext = createContext({});
 
@@ -9,13 +9,9 @@ interface Props {
 }
 
 export const DataProvider = ({children}: Props) => {
-    
-    const [data, setData] = useState<Array<ICSVdata>>([]);
-    const [headers, setHeaders] = useState<Array<string>>([]);
-    useEffect(() => {
-        setData(getStoredData('csv'));
-        setHeaders(getStoredHeaders('headers'))
-    },[])
+
+    const [data, setData] = useState(getStoredData('csv') || []);
+    const [headers, setHeaders] = useState(getStoredHeaders('headers') || []);
     const value = useMemo(() => ({data, headers, setData, setHeaders}),[data, headers])
     
         

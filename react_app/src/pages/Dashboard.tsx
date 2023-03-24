@@ -14,7 +14,7 @@ import useCSV from "../hooks/useCSV";
 
 
 const Dashboard = () => {
-    const {data}:any = useCSV();
+    const {data}:any = useCSV();    
     console.log(data)
     const [playerNo, setPlayerNo] = useState(0);
     const [myTop, setMyTop] = useState(10);

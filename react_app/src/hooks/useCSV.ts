@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import CSVContext from "../context/CSVdataProvider";
+import CSVContext from "../context/DataProvider";
 
 const useCSV = () => {
     return useContext(CSVContext);

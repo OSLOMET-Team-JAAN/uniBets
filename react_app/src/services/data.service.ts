@@ -43,7 +43,7 @@ export const setDataToStore = (key: string, data: any) => {
 };
 
 export const getStoredData = (key: string): any => {
-    let storedData = localStorage.getItem(key)
+    let storedData = localStorage.getItem(key) || JSON.stringify([])
     if (storedData) {
         return JSON.parse(storedData);
     }

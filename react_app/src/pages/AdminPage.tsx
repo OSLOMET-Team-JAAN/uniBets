@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Papa from "papaparse";
 import MyInput from "../components/UI/input/MyInput";
 import ErrorModal from "../components/UI/modals/ErrorModal";
@@ -15,6 +15,7 @@ import {
 import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
+import useCSV from "../hooks/useCSV";
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -24,9 +25,9 @@ const AdminPage = () => {
         //State 1_ This state to represent style change of drag area
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
-        //const {data, setData}: any = useCSV();
-        const data = getStoredData('csv');
-        const headers = getStoredHeaders('headers');
+        const {data, setData, headers, setHeaders}: any = useCSV();
+        // let data = getStoredData('csv');
+        // let headers = getStoredHeaders('headers');
         //const {data, headers}: any = useCSV()
         //State 4_ Used context to hold headers (keys) from data (objects) received from csv files.
         //const csvHeaders = getStoredHeaders('headers')
@@ -86,15 +87,8 @@ const AdminPage = () => {
                 throw new Error(error)
             }
         };
-
-
-//-------------------------------------------------------------------------
-//This function helps to store file names
-// const getFileName = (array: string[]): void => {
-//     setFileName((existing) => [...existing, ...array])
-// }
-
-//-------------------------------------------------------------------------
+        
+        
         const handleUploadedFile = () => {
             ClearContext()
             setIsLoading(true);
@@ -108,17 +102,18 @@ const AdminPage = () => {
                 delimiter: ',',
                 header: true,
                 //dynamicTyping: true, //numbers, boolean will not become strings
-                complete: function (results: any) {                    
-                    setDataToStore('csv', results.data)                   
+                complete: function (results: any) {
+                    setDataToStore('csv', results.data)
+                    setData(getStoredData('csv'))
                     const headers = getHeaders(results.data)
                     setHeadersToStore('headers', headers)
+                    setHeaders(getStoredHeaders('headers'))
                     setShowContent(true)
                     setMyError("");
                 }
             });
             setIsLoading(false)
-        };       
-        
+        };
 
         const handleUpload = async () => {
             try {
@@ -162,8 +157,10 @@ const AdminPage = () => {
                 await getAll().then(
                     (response: AxiosResponse<Array<ICSVdata>>) => {
                         setDataToStore('csv',response?.data)
+                        setData(getStoredData('csv'))
                         const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
                         setHeadersToStore('headers', headers)
+                        setHeaders(getStoredHeaders('headers'))
                         alert("Data fetched Successfully");
                         setShowContent(true)
                         setShowButton(true)
@@ -232,10 +229,12 @@ const AdminPage = () => {
                                 header: true,
                                 //dynamicTyping: true, //numbers, boolean will not become strings
                                 complete: function (csvData) {
+                                    setData(getStoredData('csv'))
                                     setDataToStore('csv',csvData.data)
                                     // Extracting headers from all objects in a List and
                                     const headers = getHeaders(csvData.data)
                                     setHeadersToStore('headers', headers)
+                                    setHeaders(getStoredHeaders('headers'))
                                     setShowContent(false)
                                     setShowButton(true)
                                 }
