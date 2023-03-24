@@ -132,7 +132,7 @@ const MyTable = ({columns, rows}: Props) => {
                     <tr>
                         {columns.map((column, index: number) => {
                             return (
-                                <th key={`${column}-search`}>
+                                <th key={`${column}-search`} style={{color: "black"}}>
                                     <MySearch
                                         key={`${index}-search`}
                                         value={column}

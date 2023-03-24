@@ -58,7 +58,7 @@ export default Contact;
 */
 
 
-import {FC, FormEvent, MouseEventHandler, useEffect, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import { Button } from "@material-tailwind/react";
 import styles from "../styles/Contact.module.css";
 import EventBus from "../common/EventBus";

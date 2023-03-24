@@ -59,11 +59,13 @@ const Navbar = () => {
                 </div>
 
                 {showUserBoard && (
+                    <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                     <li className="nav-item">
                         <Link to={"/user"} className="nav-link">
                             User Page
                         </Link>
                     </li>
+                    </div>
                 )}
 
                 {showAdminBoard && (

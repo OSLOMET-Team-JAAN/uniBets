@@ -1,21 +1,15 @@
 import React, {useEffect, useState} from "react";
 import MyTable from "../components/table/MyTable";
-import useCSV from "../hooks/useCSV";
 import {
-    ClearContext,
     getAll,
-    getStoredData,
-    getStoredHeaders,
-    setDataToStore,
-    setHeadersToStore
 } from "../services/data.service";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
 import {getHeaders} from "../utils/assistFunctions";
 import Loader from "../components/UI/loader/Loader";
 const UserPage = () => {
-    const [data, setData] = useState([]);
-    const [headers, setHeaders] = useState([]);
+    const [data, setData] = useState<Array<ICSVdata>>([]);
+    const [headers, setHeaders] = useState<Array<string>>([]);
     //This state will control errors
     const [myError, setMyError] = useState("");
     //State 10_ to show fetching data process
@@ -27,16 +21,13 @@ const UserPage = () => {
     
     const handleGetData = async () => {
         try {
-            ClearContext();
             setIsLoading(true)
             setMyError('')
             await getAll().then(
                 (response: AxiosResponse<Array<ICSVdata>>) => {
-                    setDataToStore('csv',response?.data)
-                    setData(getStoredData('csv'))
                     const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
-                    setHeadersToStore('headers', headers)
-                    setHeaders(getStoredHeaders('headers'))                    
+                    setData(response?.data)
+                    setHeaders(headers)
                 }
             );
             setIsLoading(false)
