@@ -7,7 +7,7 @@ import {
     LabelList,
     Tooltip,
     XAxis,
-    TooltipProps, ResponsiveContainer, YAxis,
+    TooltipProps, ResponsiveContainer,
 } from "recharts";
 import {ICSVdata} from "../../models/ICSVdata";
 import st from '../../styles/GetTopWinners.module.css';

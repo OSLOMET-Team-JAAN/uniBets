@@ -4,10 +4,7 @@ import './index.css';
 import App from './App';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {AuthProvider} from "./context/AuthProvider";
-import {DataProvider} from "./context/CSVdataProvider";
-import {CSVHeadersProvider} from "./context/CSVHeadersProvider";
-import {ErrorBoundary} from "./errors/ErrorBoundary";
-
+import {DataProvider} from "./context/DataProvider";
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
@@ -16,11 +13,9 @@ root.render(
         <BrowserRouter>
             <AuthProvider>
                 <DataProvider>
-                    <CSVHeadersProvider>
                         <Routes>
                             <Route path="/*" element={<App/>}/>
                         </Routes>
-                    </CSVHeadersProvider>
                 </DataProvider>
             </AuthProvider>
         </BrowserRouter>

@@ -1,8 +1,7 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
-import useCSV from "../hooks/useCSV";
 import {getBetWon, getTop, sortRows} from "../utils/assistFunctions";
 import GetTopWinnerBetStatus from "../components/dashboard_components/GetTopWinnerBetStatus";
 import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinnerWinRate";
@@ -11,10 +10,12 @@ import MyInput from "../components/UI/input/MyInput";
 import GetDatesRages from "../components/dashboard_components/GetDatesRages";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import useCSV from "../hooks/useCSV";
 
 
 const Dashboard = () => {
-    const {data}: any = useCSV()
+    const {data}:any = useCSV();
+    console.log(data)
     const [playerNo, setPlayerNo] = useState(0);
     const [myTop, setMyTop] = useState(10);
     const [sortSettings] =
@@ -22,13 +23,15 @@ const Dashboard = () => {
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
     
-    
-    useMemo(() => {
+    useEffect(() => {
         getTop(sortedData, 1).map((key: any) => {
-            setPlayerNo(key["Player_no"]);
+            return setPlayerNo(key["Player_no"]);
         })
-    }, [])
-    
+    }, [sortedData]);
+    console.group('Player number')
+    console.log(typeof playerNo)
+    console.log(playerNo)
+    console.groupEnd()
     
     return (
         <>
@@ -40,7 +43,7 @@ const Dashboard = () => {
                     name="Player_no"
                     placeholder="Enter Player_no here.."
                     autoComplete="off"
-                    onChange={(e) => setPlayerNo(e.target.value)}
+                    onChange={(e) => setPlayerNo(Number(e.target.value))}
                 />
                 <label htmlFor="Top_element">TOP customization: </label>
                 <MyInput
@@ -48,7 +51,7 @@ const Dashboard = () => {
                     name="Top_element"
                     placeholder="Enter Your TOP here.."
                     autoComplete="off"
-                    onChange={(e) => setMyTop(e.target.value)}
+                    onChange={(e) => setMyTop(Number(e.target.value))}
                 />
                 <GetTopWinner/>
                 <div style={{display: "block", margin: 20,}}>

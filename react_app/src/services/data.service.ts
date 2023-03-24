@@ -1,5 +1,6 @@
 import axios from "../common/axiosAPI";
 import {ICSVdata} from "../models/ICSVdata";
+import useCSV from "../hooks/useCSV";
 
 const TABLE_URL = "/Bets"
 export const upload = (data: Array<ICSVdata>) => {    
@@ -33,14 +34,35 @@ export const getAll = () => {
     });
 };
 
-export const getStoredData = () => {
-    const storedData = localStorage.getItem("data");
-    if (storedData) return JSON.parse(storedData);
-    return null;
+ //HERE WAS THE TEST TO MAKE PERSIST DATA
+export const setDataToStore = (key: string, data: any) => {
+    if(localStorage.getItem(key) === null){
+        let storedData = JSON.stringify(data)
+        localStorage.setItem(key, storedData);
+    }
 };
 
-export const getStoredHeaders = () => {
-    const storedHeaders = localStorage.getItem("headers");
+export const getStoredData = (key: string): any => {
+    let storedData = localStorage.getItem(key)
+    if (storedData) {
+        return JSON.parse(storedData);
+    }
+};
+
+export const setHeadersToStore = (key: string, data: any) => {
+    if(localStorage.getItem(key) === null){
+        let storedData = JSON.stringify(data)
+        localStorage.setItem(key, storedData);
+    }
+};
+
+export const getStoredHeaders = (key: string) => {
+    const storedHeaders = localStorage.getItem(key);
     if (storedHeaders) return JSON.parse(storedHeaders);
     return null;
 };
+
+export const ClearContext = () => {
+    localStorage.removeItem('csv');
+    localStorage.removeItem('headers');    
+}

@@ -1,13 +1,14 @@
-﻿import React, {useCallback, useState} from 'react';
+﻿import React from 'react';
+import {Cell, Label, Pie, PieChart, ResponsiveContainer} from "recharts";
 import useCSV from "../../hooks/useCSV";
-import {Cell, Label, Pie, PieChart, ResponsiveContainer, Sector} from "recharts";
 
 interface Props{
     topWinner: number
 }
 
 const GetTopWinnerWinRate = ({topWinner}: Props) => {
-    const {data}: any = useCSV();
+    const {data}:any = useCSV();
+    
     let total_bet_counter = 0;
     let win_bet_counter = 0;
     let lost_bet_counter = 0;

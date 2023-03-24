@@ -1,12 +1,12 @@
 ﻿import React, {useMemo, useState} from 'react';
-import UseCSV from "../../hooks/useCSV";
-import {convertType, getBetWon, isNil, sortRows} from "../../utils/assistFunctions";
+import {getBetWon, sortRows} from "../../utils/assistFunctions";
+import useCSV from "../../hooks/useCSV";
 
 
 //This component will check for date-time ranges
 //It can help us to suppose if there any  bot was used or not
 const GetDatesRages = () => {
-    const {data}: any = UseCSV();
+    const {data}:any = useCSV();
 
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'BET_PLACED_DATE'}); // asc desc default
@@ -18,7 +18,7 @@ const GetDatesRages = () => {
     const array: Array<number> = [];
     
     sortedData.map((item: any) => {
-        console.log(item.BET_PLACED_DATE)
+        //console.log(item.BET_PLACED_DATE)
         let timestamp = Date.parse(item.BET_PLACED_DATE);
         if (!isNaN(timestamp)) {
             let d = new Date(timestamp);

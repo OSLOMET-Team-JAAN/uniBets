@@ -1,5 +1,4 @@
 import React, {useMemo, useState} from 'react';
-import useCSV from "../../hooks/useCSV";
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import {
     Legend, Line,
@@ -9,9 +8,10 @@ import {
     XAxis,
     YAxis
 } from "recharts";
+import useCSV from "../../hooks/useCSV";
 
 const GetOddsOutliers = () => {
-    const {data}: any = useCSV();
+    const {data}:any = useCSV();
 
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default

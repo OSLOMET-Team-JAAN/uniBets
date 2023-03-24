@@ -58,7 +58,7 @@ export default Contact;
 */
 
 
-import {FC, useEffect, useRef, useState} from "react";
+import {FC, FormEvent, MouseEventHandler, useEffect, useRef, useState} from "react";
 import { Button } from "@material-tailwind/react";
 import styles from "../styles/Contact.module.css";
 import EventBus from "../common/EventBus";
@@ -67,28 +67,19 @@ const Contact: FC = () => {
     const userRef = useRef<HTMLInputElement>(null);
     
     const [email, setEmail] = useState('');
-    const [emailFocus, setEmailFocus] = useState(false);
-
     const [subject, setSubject] = useState('');
-    const [subjectFocus, setSubjectFocus] = useState(false);
-
     const [message, setMessage] = useState('');
-    const [messageFocus, setMessageFocus] = useState(false);
-
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current?.focus();
     }, [])
     
-    function handleSubmit(e: any){
-        e.preventDefault();
+    function handleSubmit(){        
         alert(`Your message was sent successfully. Thank you!\n
             Email: ${email},\n
             Subject: ${subject},\n
             Message: ${message}
         `);
-        setSuccess(true);
         setEmail('');
         setSubject('');
         setMessage('');
@@ -120,8 +111,6 @@ const Contact: FC = () => {
                                 autoComplete="off"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                onFocus={() => setEmailFocus(true)}
-                                onBlur={() => setEmailFocus(false)}
                                 required
                             />
                         </div>
@@ -136,8 +125,6 @@ const Contact: FC = () => {
                                 placeholder="Let us know how we can help you"
                                 value={subject}
                                 onChange={(e) => setSubject(e.target.value)}
-                                onFocus={() => setSubjectFocus(true)}
-                                onBlur={() => setSubjectFocus(false)}
                                 required
                             />
                         </div>
@@ -152,8 +139,6 @@ const Contact: FC = () => {
                                 placeholder="Leave a comment..."
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
-                                onFocus={() => setMessageFocus(true)}
-                                onBlur={() => setMessageFocus(false)}
                             />
                         </div>
                         <br />

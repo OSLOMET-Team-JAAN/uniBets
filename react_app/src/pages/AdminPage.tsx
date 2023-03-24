@@ -7,13 +7,14 @@ import MyButton from "../components/UI/buttons/MyButton";
 import Loader from "../components/UI/loader/Loader";
 import styles from "../styles/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
-import useCSVHeaders from "../hooks/useCSVHeaders";
-import {getAll, upload} from "../services/data.service";
+import {
+    ClearContext,
+    getAll, getStoredData, getStoredHeaders, setDataToStore, setHeadersToStore,
+    upload,
+} from "../services/data.service";
 import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
-import useCSV from "../hooks/useCSV";
-import usePersistData from '../context/PersistDataProvider'
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
@@ -23,11 +24,12 @@ const AdminPage = () => {
         //State 1_ This state to represent style change of drag area
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
-        const {data, setData}: any = useCSV();
-        
-        const [persistData, setPersistData] = usePersistData('data', data)
+        //const {data, setData}: any = useCSV();
+        const data = getStoredData('csv');
+        const headers = getStoredHeaders('headers');
+        //const {data, headers}: any = useCSV()
         //State 4_ Used context to hold headers (keys) from data (objects) received from csv files.
-        const {csvHeaders, setCsvHeaders}: any = useCSVHeaders();
+        //const csvHeaders = getStoredHeaders('headers')
         //This state will control errors
         const [myError, setMyError] = useState("");
         //State 5_ This state will store the file uploaded by the user
@@ -43,12 +45,11 @@ const AdminPage = () => {
         // State 9_ For showing and hiding buttons
         const [showButton, setShowButton] = useState(false);
         //State 10_ to show fetching data process
-        const [isFetchingData, setIsFetchingData] = useState(false);
+        const [isLoading, setIsLoading] = useState(false);
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
         const resetAll = () => {
-            setData([])
-            setCsvHeaders([])
+            ClearContext();
             setFile("")
             setShowContent(false)
             setShowButton(false)
@@ -61,7 +62,7 @@ const AdminPage = () => {
 //This function will be called when file will be uploaded by input from user
         const handleFiles = (e: any) => {
             try {
-                setIsFetchingData(true)
+                setIsLoading(true)
                 setMyError("");
                 // Check if user has entered the file
                 if (e.target.files.length) {
@@ -79,7 +80,7 @@ const AdminPage = () => {
                     // If input type is correct set the state
                     setFile(uploadedFiles);
                     setShowButton(true)
-                    setIsFetchingData(false)
+                    setIsLoading(false)
                 }
             } catch (error: any) {
                 throw new Error(error)
@@ -95,9 +96,10 @@ const AdminPage = () => {
 
 //-------------------------------------------------------------------------
         const handleUploadedFile = () => {
-            setIsFetchingData(true)
+            ClearContext()
+            setIsLoading(true);
             //Show error if buttons "Show content" pressed without file been uploaded
-            if (!file || !data) {
+            if (!file) {
                 setMyError("No data found. Please upload the file or fetch data from database.")
                 setModalVisible(true)
                 return
@@ -106,37 +108,40 @@ const AdminPage = () => {
                 delimiter: ',',
                 header: true,
                 //dynamicTyping: true, //numbers, boolean will not become strings
-                complete: function (results: any) {
-                    setData(results.data)                    
+                complete: function (results: any) {                    
+                    setDataToStore('csv', results.data)                   
                     const headers = getHeaders(results.data)
-                    setCsvHeaders(headers)
+                    setHeadersToStore('headers', headers)
                     setShowContent(true)
                     setMyError("");
                 }
             });
-            setIsFetchingData(false)
+            setIsLoading(false)
         };       
         
 
         const handleUpload = async () => {
             try {
+                setIsLoading(true)
                 if(data.length !== 0){
                     const promises = data.map(async (obj: ICSVdata) => {
                         const array: Array<ICSVdata> = [];
                         array.push(obj)
                         return await upload(array).then((response) => {
+                            //TO BE REMOVED BEFORE PRODUCTION
                             console.log(response.data)
                             }
                         )
                     });
                     Promise.allSettled(promises)
                         .then((response) => {
-                            console.log("Here is POST response " + JSON.stringify(response))})
-                        .catch((error) => setMyError(error)).finally(() =>
+                            console.log(JSON.stringify(response))})
+                        .catch((error) => setMyError(error))
+                        .finally(() =>
                         alert("Data is saved successfully to database!")
-                    )
-                    
-                }                
+                    )                    
+                }
+                setIsLoading(false)
             } catch (err: any) {
                 if (!err?.response) {
                     setMyError(err?.response);
@@ -151,18 +156,20 @@ const AdminPage = () => {
 
         const handleGetData = async () => {
             try {
+                ClearContext();
+                setIsLoading(true)
                 setMyError('')
                 await getAll().then(
                     (response: AxiosResponse<Array<ICSVdata>>) => {
-                        setData(response?.data)
-                        console.log(typeof data)
+                        setDataToStore('csv',response?.data)
                         const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
-                        setCsvHeaders(headers)
+                        setHeadersToStore('headers', headers)
                         alert("Data fetched Successfully");
                         setShowContent(true)
                         setShowButton(true)
                     }
                 );
+                setIsLoading(false)
             } catch (err: any) {
                 if (!err.response) {
                     setMyError(err.response);
@@ -197,7 +204,7 @@ const AdminPage = () => {
                         event.preventDefault();
                         setIndicator(false)
                         console.log("dataTransfer file" + event.dataTransfer.files)
-                        setIsFetchingData(true)
+                        setIsLoading(true)
                         // Check if user has entered the file
                         if (event.dataTransfer.files.length) {
                             const uploadedFile = event.dataTransfer.files && event.dataTransfer.files[0];
@@ -210,6 +217,7 @@ const AdminPage = () => {
                                 return;
                             }
                             setMyError("")
+                            ClearContext();
                         }
 
                         //Creating an array of files which will hold all csv files uploaded
@@ -224,16 +232,16 @@ const AdminPage = () => {
                                 header: true,
                                 //dynamicTyping: true, //numbers, boolean will not become strings
                                 complete: function (csvData) {
-                                    setData(csvData.data)
+                                    setDataToStore('csv',csvData.data)
                                     // Extracting headers from all objects in a List and
                                     const headers = getHeaders(csvData.data)
-                                    setCsvHeaders(headers as [])
+                                    setHeadersToStore('headers', headers)
                                     setShowContent(false)
                                     setShowButton(true)
                                 }
                             });
                         })
-                        setIsFetchingData(false)
+                        setIsLoading(false)
                         setModalVisible(true)
                         window.alert("CSV file was uploaded successfully!")
                     }}
@@ -298,12 +306,12 @@ const AdminPage = () => {
                         </ErrorModal>}
                 </div>
                 <div>
-                    {isFetchingData && !myError
+                    {isLoading && !myError
                         ? <div><Loader/></div>
                         : <>
                             {showContent
                                 ? <MyTable
-                                    columns={csvHeaders}
+                                    columns={headers}
                                     rows={data}
                                 />
                                 : <h1 style={{textAlign: "center", color: "teal"}}

@@ -1,5 +1,4 @@
 import React, {useMemo, useState} from 'react';
-import myKey from "../../utils/keyGenerator";
 import IPlayer from "../../models/IPlayer";
 import {filterRows, getPageCount, paginateTable, reformatColumnTitles, sortRows,} from "../../utils/assistFunctions";
 import Pagination from "./Pagination";
@@ -7,18 +6,6 @@ import MySearch from "../UI/search/MySearch";
 import MyButton from "../UI/buttons/MyButton";
 import styles from '../../styles/Mytable.module.css';
 import MyDropDown from "../UI/select/MyDropDown";
-import {
-    Bar,
-    BarChart, Brush,
-    CartesianGrid,
-    Legend, ReferenceLine,
-    ResponsiveContainer,
-    Scatter,
-    ScatterChart,
-    Tooltip,
-    XAxis,
-    YAxis
-} from "recharts";
 import {ICSVdata} from "../../models/ICSVdata";
 
 
@@ -28,8 +15,6 @@ type Props = {
 }
 
 const MyTable = ({columns, rows}: Props) => {
-    //-- DELETE FOR PRODUCTION --------------
-    console.log(rows)
 
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({});
@@ -163,48 +148,48 @@ const MyTable = ({columns, rows}: Props) => {
                     <tbody>
                     {calculatedRows.map((row: IPlayer, index: number) =>
                         <tr key={index}>
-                            <td key={"a" + myKey}>{row.Player_no}</td>
-                            <td key={"b" + myKey}>{row.PLAYER_BET_NUMBER}</td>
+                            <td key={crypto.randomUUID()}>{row.Player_no}</td>
+                            <td key={crypto.randomUUID()}>{row.PLAYER_BET_NUMBER}</td>
                             <td
-                                key={"c" + myKey}
+                                key={crypto.randomUUID()}
                                 className={styles.tooltip}
                                 abbr={`${row.BET_PLACED_DATE}`}>{row.BET_PLACED_DATE}</td>
                             <td
-                                key={"d" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.OVER_1000_SEK}`}
                                 className={styles.tooltip}
                             >{row.OVER_1000_SEK}</td>
                             <td
-                                key={"e" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.EVENT_NAME}`}
                                 className={styles.tooltip}
                             >{row.EVENT_NAME}</td>
                             <td
-                                key={"f" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.LEAGUE}`}
                                 className={styles.tooltip}
                             >{row.LEAGUE}</td>
                             <td
-                                key={"g" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.BET_OFFER_TYPE}`}
                                 className={styles.tooltip}
                             >{row.BET_OFFER_TYPE}</td>
                             <td
-                                key={"i" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.CRITERIA_NAME}`}
                                 className={styles.tooltip}
                             >{row.CRITERIA_NAME}</td>
                             <td
-                                key={"j" + myKey}>{row.IS_LIVE}</td>
+                                key={crypto.randomUUID()}>{row.IS_LIVE}</td>
                             <td
-                                key={"k" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.BET_LABEL}`}
                                 className={styles.tooltip}
                             >{row.BET_LABEL}</td>
                             <td
-                                key={"l" + myKey}>{row.ODDS}</td>
+                                key={crypto.randomUUID()}>{row.ODDS}</td>
                             <td
-                                key={"m" + myKey}
+                                key={crypto.randomUUID()}
                                 abbr={`${row.BET_OUTCOME}`}
                                 className={styles.tooltip}
                             >{row.BET_OUTCOME}</td>

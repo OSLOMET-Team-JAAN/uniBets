@@ -3,7 +3,7 @@ import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import useCSV from "../../hooks/useCSV";
 
 const GetTopWinner = () => {
-    const {data}: any = useCSV()
+    const {data}:any = useCSV();
 
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default

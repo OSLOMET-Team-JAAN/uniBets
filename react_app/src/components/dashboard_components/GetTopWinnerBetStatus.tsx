@@ -1,13 +1,14 @@
 ﻿import React from 'react';
-import useCSV from "../../hooks/useCSV";
 import {Pie, ResponsiveContainer, PieChart, Label, Cell} from "recharts";
+import useCSV from "../../hooks/useCSV";
 
 interface Props{
     topWinner: number
 }
 
 const GetWinRateTopWinner = ({topWinner}: Props) => {
-    const {data}: any = useCSV();
+    const {data}:any = useCSV();
+    
     let total_bet_counter = 0;
     let win_bet_counter = 0;
     let lost_bet_counter = 0;
@@ -15,7 +16,7 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
         if(obj.Player_no === topWinner){
             total_bet_counter += 1
             return obj.Player_no
-        }         
+        }
     })
     getTopWinnerData.filter((obj: any) => {
         if(obj.BET_OUTCOME === "Bet Won"){
@@ -69,14 +70,15 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
     
     return (
         <div style={{display: "block", margin: 5, padding: 5}}>
-            <h4>PLAYER <strong>{topWinner}</strong> BETS STATUS</h4>        <h5><strong>Player:&nbsp;</strong> {topWinner} &nbsp;have made total <strong>{total_bet_counter}</strong> bets</h5>
+            <h4>PLAYER <strong>{topWinner}</strong> BETS STATUS</h4>        
+            <h5><strong>Player:&nbsp;</strong> {topWinner} &nbsp;have made total 
+                <strong>{total_bet_counter}</strong> bets</h5>
                 
                         <PieChart 
                             height={250}
                             width={200}
                         >
-                            <Pie
-                                
+                            <Pie                                
                                 data={Results}
                                 cx="50%"
                                 cy="50%"
