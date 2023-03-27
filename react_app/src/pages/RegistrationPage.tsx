@@ -113,7 +113,7 @@ const RegistrationPage = () => {
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? st.errmsg : st.offscreen} aria-live="assertive">{errMsg}</p>
-                    <h1>Registration</h1>
+                    <h2>Create an Account</h2>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Username:
@@ -121,7 +121,8 @@ const RegistrationPage = () => {
                             <FontAwesomeIcon icon={faTimes} className={validName || !username ? st.hide : st.invalid}/>
                         </label>
                         <input
-                            type="text"
+                                type="text"
+                                placeholder ="Required .. "
                             id="username"
                             ref={userRef}
                             autoComplete="off"
@@ -148,7 +149,8 @@ const RegistrationPage = () => {
                         </label>
                         <input
                             type="text"
-                            id="email"
+                                id="email"
+                                placeholder="Required .. "
                             autoComplete="off"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
@@ -171,7 +173,8 @@ const RegistrationPage = () => {
                         </label>
                         <input
                             type="password"
-                            id="password"
+                                id="password"
+                                placeholder="8 to 24 Characters, include Upper and Low letters. "
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
@@ -209,7 +212,8 @@ const RegistrationPage = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? st.instructions : st.offscreen}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
                             Must match the first password input field.
-                        </p>
+                            </p>
+                        <br/>
 
                         <button
                             className={st.buttonReg}

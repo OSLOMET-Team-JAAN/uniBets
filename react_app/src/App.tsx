@@ -10,8 +10,10 @@ function App() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
+            <br/>
             <AppRouter />
+            <br/>
             <Footer />
         </div>
     )

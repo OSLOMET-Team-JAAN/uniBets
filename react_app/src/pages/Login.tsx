@@ -68,7 +68,7 @@ const Login = () => {
                 ref={errRef}
                 className={errMsg ? st.errmsg : st.offscreen}
                 aria-live="assertive">{errMsg}</p>
-            <h1>Please Login</h1>
+            <h2>Please Login</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -89,13 +89,15 @@ const Login = () => {
                     value={password}
                     required
                 />
+                <br/>
                 <button
                     className={st.button}>
                     <span>Sign In</span>
                 </button>
             </form>
             <p>
-                Need an Account?<br/>
+                New User ? Need to Sign Up
+                <br />
                 <span className={st.line}>
                     <Link to="/register"> <span>Sign Up</span> </Link>
                 </span>

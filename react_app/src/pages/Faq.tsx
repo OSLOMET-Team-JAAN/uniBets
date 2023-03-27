@@ -20,7 +20,13 @@ export default function Example() {
 
     return (
         <section className={styles.section}>
-        <div className={styles["container"]}>
+            <div className={styles["container"]}>
+                <div>
+                    <h2>
+                    Frequently Asked Questions
+                    </h2>
+                </div>
+                <br/>
         <Fragment>
             <Accordion open={open === 1} animate={customAnimation}>
                 <div className={styles["accordion-wrapper"]}>

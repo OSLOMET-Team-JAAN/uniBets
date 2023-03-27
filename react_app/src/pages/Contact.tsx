@@ -147,7 +147,7 @@ const Contact: FC = () => {
                                 className="hover:scale-125"
                                 disabled={!email || !subject || !message}
                                 onClick={handleSubmit}
-                            >Send Message</Button>
+                            >Send Message </Button>
                         </div>
 
                     </form>
