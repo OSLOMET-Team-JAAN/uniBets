@@ -54,8 +54,8 @@ const Profile: React.FC = () => {
 
     return (
         < >
-            <Card className="container shadow-lg p-32" >
-                <CardHeader floated={false} className="flex justify-center" color="transparent" >
+            <Card className="container shadow-lg p-32 " >
+                <CardHeader floated={false} className="flex justify-center bg-teal-500 " >
                 <img
                         src="../user.jpg"
                         alt="avatar"
