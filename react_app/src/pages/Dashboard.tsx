@@ -28,10 +28,6 @@ const Dashboard = () => {
             return setPlayerNo(key["Player_no"]);
         })
     }, [sortedData]);
-    console.group('Player number')
-    console.log(typeof playerNo)
-    console.log(playerNo)
-    console.groupEnd()
     
     return (
         <>
@@ -89,3 +85,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+//https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Login.js
+//https://ru.reactjs.org/docs/hooks-reference.html#useref

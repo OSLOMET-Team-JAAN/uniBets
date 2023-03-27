@@ -156,11 +156,13 @@ const AdminPage = () => {
                 setMyError('')
                 await getAll().then(
                     (response: AxiosResponse<Array<ICSVdata>>) => {
-                        setDataToStore('csv',response?.data)
-                        setData(getStoredData('csv'))
+                        // setDataToStore('csv',response?.data)
+                        //setData(getStoredData('csv'))
+                        setData(response?.data)
                         const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
-                        setHeadersToStore('headers', headers)
-                        setHeaders(getStoredHeaders('headers'))
+                        //setHeadersToStore('headers', headers)
+                        //setHeaders(getStoredHeaders('headers'))
+                        setHeaders(headers)
                         alert("Data fetched Successfully");
                         setShowContent(true)
                         setShowButton(true)

@@ -1,22 +1,23 @@
 .wrapper {
     display: flex;
+    text-align-all: center;
     justify-content: center;
     margin-top: 50px;
 }
 
 .myLoader {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 3px dotted teal;
-    animation: rotate 1s infinite linear;
+    animation: rotate 4s infinite linear;
 }
 
 @keyframes rotate {
     from {
-        transform: rotate(0deg) scale(1);
+        transform: rotate(0deg);
     }
     to {
-        transform: rotate(360deg) scale(1.5);
+        transform: rotate(360deg);
     }
 }

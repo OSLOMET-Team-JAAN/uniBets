@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <>
             <br />
-            <div >
+            <div>
                 <div className={st.Home.typo} >
                     <h1 className={st.Home.h1}>Welcome to Game-Fixing Website </h1>
                     <br />

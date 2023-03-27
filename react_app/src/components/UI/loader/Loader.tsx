@@ -7,6 +7,7 @@ type Props = {
 const Loader = ({children}: Props) => {
     return (
         <div className={styles.wrapper}>
+            <h4>Loading..&nbsp;</h4>
             <div className={styles.myLoader}>
                 {children}
             </div>
