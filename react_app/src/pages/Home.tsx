@@ -1,18 +1,11 @@
 import * as st from "../styles/tailwind/HomePage.style";
 import Fraud from "../styles/images/image1.jpg"
 import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
-import Login from "./Login";
+import { Link } from "react-router-dom";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 
 const Home = () => {
-    {/* adding the path for login page to redirect to it on click button */ }
-    let navigate = useNavigate();
-    const routeLogin = () => {
-        let path = "./Login"; {/* ?? */ }
-        navigate(path);
-
-    }
+  
     return (
         <>
             <br />
@@ -64,8 +57,8 @@ const Home = () => {
                 </div>
                 <br />
                 <div className="flex justify-center">
-                    <Button className={st.Home.but} onClick={routeLogin}>
-                        Let's Get Started
+                    <Button className={st.Home.but} >
+                        <Link to="/login" className={st.Home.font}> Let's Get Started</Link>
                         <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
                     </Button>
                 </div>
