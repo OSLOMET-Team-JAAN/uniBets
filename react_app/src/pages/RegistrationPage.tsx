@@ -2,7 +2,7 @@ import {useRef, useState, useEffect} from "react";
 import {faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link, useNavigate} from "react-router-dom";
-import st from '../styles/RegistrationPage.module.css';
+import st from '../styles/pages/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import MyButton from "../components/UI/buttons/DangerButton";

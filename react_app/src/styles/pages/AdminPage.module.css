@@ -1,3 +1,15 @@
+.cont {
+    border-radius: 21px 50px 0px 50px / 0px 25px 0px 25px;
+    display: block;
+    padding: 25px;
+    margin: 8px auto 8px auto;
+    width: 900px;
+    height: 400px;
+    box-shadow: -4px 8px 5px 0px rgba(137, 137, 137, 0.34);
+    background: white;
+}
+
+
 .dragAndDropArea {
     display: block;
     padding: 24px;
@@ -17,6 +29,7 @@
 
 .dragFree {
     border-color: grey;
+   
 }
 
 .listOfSelectedFiles {
@@ -41,8 +54,9 @@
 }
 
 .csvImport {
+    font-family: sans-serif;
     text-align: center;
-    color: teal;
+    color:dimgrey;
 }
 
 .searchBar {
@@ -51,4 +65,23 @@
     font-size: 14px;
     background: white;
     border: 1px solid teal;
+}
+
+@media (max-width: 900px) {
+    .cont {
+        width: 700px;
+        height: 400px;
+    }
+}
+@media (max-width: 700px) {
+    .cont {
+        width: 500px;
+        height: 400px;
+    }
+}
+@media (max-width: 500px){
+    .cont{
+        width:450px;
+        height: 400px;
+    }
 }

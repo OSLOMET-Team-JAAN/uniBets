@@ -2,9 +2,9 @@
 .myInput {
     padding: 5px 15px;
     margin: 10px;
-    color: teal;
+    color:white;
     font-size: 17px;
-    background: transparent;
-    border: 1px solid teal;
+    background: dodgerblue;
+   border-radius:0.25em;
     cursor: pointer;
 }

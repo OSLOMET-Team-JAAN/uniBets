@@ -1,0 +1,41 @@
+.navbar {
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: #3F7ED8;
+}
+.navbar:hover{
+    color:cornflowerblue;
+}
+
+.navbarItems {
+    display: flex;
+    margin: auto;
+}
+
+.Links {
+    margin: 0 0 0 10px;
+}
+
+.navitem{
+    color:white;
+}
+
+.image{
+    float:left;
+    max-height:50px;
+    width:auto;
+   
+}
+
+Link:hover{
+    color:dodgerblue;
+}
+
+@media (max-width:500px){
+    .navbar{
+        width:auto;
+    }
+}

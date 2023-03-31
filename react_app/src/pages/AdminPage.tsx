@@ -5,7 +5,7 @@ import ErrorModal from "../components/UI/modals/ErrorModal";
 import MyTable from "../components/table/MyTable";
 import MyButton from "../components/UI/buttons/MyButton";
 import Loader from "../components/UI/loader/Loader";
-import styles from "../styles/AdminPage.module.css";
+import styles from "../styles/pages/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
 import {
     ClearContext,
@@ -183,8 +183,11 @@ const AdminPage = () => {
 
 //-------------------------------------------------------------------------
 
-        return (
+    return (
+        <> 
+       
             <div>
+                <div className={styles.cont}>
                 <h2 className={styles.csvImport}> Import of CSV file</h2>
                 <div
                     className={`${styles.dragAndDropArea} ${indicator ? styles.dragHover : styles.dragFree}`}
@@ -249,7 +252,7 @@ const AdminPage = () => {
                 >
                     DRAG FILES HERE
                 </div>
-                <div>
+                <div >
                     <label htmlFor="fileUpload" style={{display: "block"}} title="Import CSV file">
                     </label>
                     <input
@@ -270,6 +273,7 @@ const AdminPage = () => {
                     >
                         Fetch from DB
                     </MyButton>
+                    </div>
                     {showButton &&
                         <DangerButton onClick={() => {
                             aRef.current!.value = '';
@@ -279,7 +283,7 @@ const AdminPage = () => {
                         </DangerButton>
                     }
                     {file && 
-                        <div style={{display: "block"}}>
+                        <div >
                             <MyInput
                                 type="submit"
                                 value="Show file content"
@@ -306,23 +310,30 @@ const AdminPage = () => {
                             }}>Close</MyButton>
                         </ErrorModal>}
                 </div>
-                <div>
+                <div >
                     {isLoading && !myError
                         ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
                         : <>
                             {showContent
-                                ? <MyTable
-                                    columns={headers}
-                                    rows={data}
-                                />
-                                : <h1 style={{textAlign: "center", color: "teal"}}
-                                >No data!
-                                </h1>
+                                ?
+                                <div >
+                                    <MyTable
+                                        columns={headers}
+                                        rows={data}
+                                    />
+                                </div>
+                                :
+                                <div>
+                                    <h1 style={{ textAlign: "center", color: "#686767" }}>
+                                        No data!
+                                    </h1>
+                                </div>
                             }
                         </>
                     }
                 </div>
             </div>
+        </>
         );
 
     }

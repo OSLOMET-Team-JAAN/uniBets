@@ -1,0 +1,146 @@
+
+
+.max-w-screen-md {
+    max-width: 1200px;
+}
+
+.section {
+    max-width: fit-content;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin-bottom: 50px;
+}
+
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 5px auto;
+    max-width: 46rem;
+   
+}
+
+.title {
+    margin-bottom: 1.5rem;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.subtitle {
+    margin-bottom: 3rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: #718096;
+}
+
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 20px 50px 20px 50px;
+    padding-right: 10px;
+    color: #1a202c;
+    width: 100%;
+}
+
+.input,
+.textarea {
+    padding: 0.75rem 1rem;
+    font-size: 15px;
+    line-height: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    color: #4a5568;
+    background-color: #fff;
+    width: 100%;
+}
+
+    .input::placeholder,
+    .textarea::placeholder {
+        color: #a0aec0;
+    }
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+/* 
+.button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    text-align: center;
+    color: #fff;
+    background-color: gray;
+    border-radius: 0;
+}
+*/
+
+
+/* Responsive styles */
+
+@media only screen and (min-width: 640px) {
+    .container {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .title {
+        margin-bottom: 2rem;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+    }
+
+    .subtitle {
+        margin-bottom: 4rem;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .formGroup {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .label {
+        width: 30%;
+        margin-right: 1rem;
+    }
+
+    .input,
+    .textarea {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .container {
+        max-width: 60rem;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .container {
+        max-width: 80rem;
+    }
+}

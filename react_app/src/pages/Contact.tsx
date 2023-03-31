@@ -60,7 +60,7 @@ export default Contact;
 
 import {FC, useEffect, useRef, useState} from "react";
 import { Button } from "@material-tailwind/react";
-import styles from "../styles/Contact.module.css";
+import styles from "../styles/pages/Contact.module.css";
 import EventBus from "../common/EventBus";
 
 const Contact: FC = () => {

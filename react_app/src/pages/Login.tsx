@@ -1,7 +1,7 @@
 import {useRef, useState, useEffect, FormEvent} from 'react';
 import useAuth from '../hooks/useAuth';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
-import st from '../styles/Login.module.css';
+import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 

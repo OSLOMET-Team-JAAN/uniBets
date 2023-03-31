@@ -2,6 +2,7 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {NavigateFunction} from "react-router";
 import MyButton from "../components/UI/buttons/DangerButton";
+import st from "../styles/pages/Error.module.css";
 
 
 const ErrorBoundaryResponse = ({error}: any) => {
@@ -14,7 +15,7 @@ const ErrorBoundaryResponse = ({error}: any) => {
     }
     
     return (
-            <div role="alert">
+        <div role="alert" className={st.sect } >
                 <h3>Something went wrong...</h3>
                 <h6>{error.message}</h6>
                 <p>{error.stack}</p>
