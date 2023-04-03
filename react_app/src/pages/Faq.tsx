@@ -4,7 +4,7 @@ import {
     AccordionHeader,
     AccordionBody,
 } from "@material-tailwind/react";
-import styles from "../styles/Faq.module.css";
+import styles from "../styles/pages/Faq.module.css";
 
 export default function Example() {
     const [open, setOpen] = useState<number>(0);
