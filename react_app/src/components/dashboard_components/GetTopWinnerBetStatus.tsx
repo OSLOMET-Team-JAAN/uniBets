@@ -70,20 +70,20 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
     
     
     return (
-        <div style={{ display: "block", margin: 5, padding: 5 }}>
 
+        <div className={style.cont}>
             <h4>Player <strong>{topWinner}</strong> Bets Status</h4>
            
-            <div className={style.cont }>
                 
-            <h5><strong>Player:&nbsp;</strong> {topWinner} &nbsp;have made total  
-                <strong> {total_bet_counter}</strong> bets</h5>
+            <p><strong>Player&nbsp;</strong> {topWinner} &nbsp;have made total  
+                <strong> {total_bet_counter}</strong> bets</p>
                 
-                        <PieChart 
-                             height={250}
-                             width={250}
+                   <PieChart 
+                             width={400}
+                             height={200}
+                             
                             
-                        >
+                    >
                             <Pie                                
                                 data={Results}
                                 cx="50%"
@@ -109,7 +109,7 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
                         </PieChart>
                           
             </div>
-        </div> 
+      
     );
 };
 

@@ -12,6 +12,13 @@ h3{
     font-size:30px;
 }
 
+.bets{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 30px 400px;
+    
+}
+
 @media (max-width:700px ){
     .cont{
         width: 500px

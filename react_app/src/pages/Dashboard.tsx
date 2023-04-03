@@ -56,14 +56,17 @@ const Dashboard = () => {
                 </div>
               <br />
                 <GetTopWinner />
-               
-                <div style={{display: "block", margin: 20,}}>
+
+                <div>
                     <GetTopWinners
                         sortedData={sortedData}
                         myTop={myTop}
                     />
                 </div>
-                <div style={{display: "inline", margin: 20}}>
+                <div>
+                <br />
+                </div>
+                <div className={st.bets}>
 
                     {playerNo ?
                         <GetTopWinnerBetStatus topWinner={playerNo} /> : <h3>NO PLAYER DATA</h3>

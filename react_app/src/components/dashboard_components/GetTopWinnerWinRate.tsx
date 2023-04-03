@@ -76,7 +76,7 @@ const GetTopWinnerWinRate = ({ topWinner }: Props) => {
 
     return (
         <div className={style.cont}>
-            <h4>Player : <strong>{topWinner}</strong> Win Rate</h4>
+            <h4>Player <strong>{topWinner}</strong> Win Rate</h4>
 
             <PieChart
                 width={400}
