@@ -39,9 +39,11 @@ Link:hover{
     margin: 10px 0;
 }
 
-@media (max-width:500px){
-    .navbar{
-        width:auto;
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 10px 15px;
     }
 }
 
