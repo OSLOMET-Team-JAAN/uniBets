@@ -9,6 +9,7 @@ import {
     YAxis
 } from "recharts";
 import useCSV from "../../hooks/useCSV";
+import st from '../../styles/layout/GetTopWinners.module.css';
 
 const GetOddsOutliers = () => {
     const {data}:any = useCSV();
@@ -32,8 +33,8 @@ const GetOddsOutliers = () => {
 
 
     return (
-        <div>
-            <h4>WON ODDS OUTLIERS CHART</h4>
+        <div className={st.cont}>
+            <h4 style={{ fontStyle: 'italic' }}>WON ODDS OUTLIERS CHART</h4>
             <ResponsiveContainer
                 height={300}
             >

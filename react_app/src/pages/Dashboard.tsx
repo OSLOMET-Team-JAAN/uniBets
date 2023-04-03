@@ -54,8 +54,9 @@ const Dashboard = () => {
                         onChange={(e) => setMyTop(Number(e.target.value))}
                     />
                 </div>
-              
-                <GetTopWinner/>
+              <br />
+                <GetTopWinner />
+               
                 <div style={{display: "block", margin: 20,}}>
                     <GetTopWinners
                         sortedData={sortedData}

@@ -1,5 +1,5 @@
 import React from 'react';
-import st from '../../../styles/DangerButton.module.css';
+import st from '../../../styles/layout/DangerButton.module.css';
 
 // classes gives us to receive styles as object properties
 

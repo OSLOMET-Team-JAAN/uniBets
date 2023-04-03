@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import cl from '../../../styles/ErrorModal.module.css';
+import cl from '../../../styles/layout/ErrorModal.module.css';
 
 type Props = {
     visible: boolean,

@@ -10,7 +10,7 @@ import {
     TooltipProps, ResponsiveContainer,
 } from "recharts";
 import {ICSVdata} from "../../models/ICSVdata";
-import st from '../../styles/GetTopWinners.module.css';
+import st from '../../styles/layout/GetTopWinners.module.css';
 
 type Props = {
     sortedData: ICSVdata[],
@@ -45,6 +45,8 @@ const GetTop10Winners = ({sortedData, myTop}: Props) => {
 
     return (
         <>
+            <div className={st.cont }>
+          
             <h4>TOP <strong>{myTop}</strong> WINNERS</h4>
             <ResponsiveContainer
                 height={300}
@@ -89,7 +91,8 @@ const GetTop10Winners = ({sortedData, myTop}: Props) => {
                         hide={true} >
                     </Bar>
                 </BarChart>
-            </ResponsiveContainer>
+                </ResponsiveContainer>
+            </div>
         </>
 
     );

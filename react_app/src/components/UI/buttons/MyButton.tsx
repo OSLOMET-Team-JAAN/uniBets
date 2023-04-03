@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/MyButton.module.css';
+import styles from '../../../styles/layout/MyButton.module.css';
 
 // classes gives us to receive styles as object properties
 

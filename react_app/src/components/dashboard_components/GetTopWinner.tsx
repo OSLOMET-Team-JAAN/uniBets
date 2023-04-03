@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import useCSV from "../../hooks/useCSV";
+import style from '../../styles/layout/TopWinner.module.css';
 
 const GetTopWinner = () => {
     const {data}:any = useCSV();
@@ -12,12 +13,13 @@ const GetTopWinner = () => {
     const topWinner = getTop(sortedData, 1)
 
     return (
-        <div style={{display: "block", maxWidth: 200, margin: 20, padding: 20}}>
-            <h4>TOP WINNER</h4>
-            <div>
+        <div className={style.cont}>
+            <h4> TOP WINNER </h4>
+            <br />
+            <div className={style.box} >
                 {topWinner.map((key: any, i: number) =>
                     <div key={i}
-                         style={{border: "1px solid teal", background: "peachpuff"}}>
+                       >
                         {key.Player_no}
                     </div>
                 )}

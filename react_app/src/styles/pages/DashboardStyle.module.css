@@ -1,7 +1,7 @@
 .cont {
     display: block;
-    background-color: azure;
-    border: 1px solid;
+    box-shadow: -4px 8px 5px 0px rgba(137, 137, 137, 0.34);
+    background: white;
     border-radius: 0.25rem;
     width: 800px;
     height: 80px;
