@@ -29,7 +29,7 @@ public class BetRepo : IRepo
         var insertQuery = @"IF NOT EXISTS
                 (
                     SELECT *
-                    FROM BetEntities
+                    FROM BetEntity
                     WHERE Player_no = @Player_no
                           AND PLAYER_BET_NUMBER = @PLAYER_BET_NUMBER
                           AND BET_PLACED_DATE = @BET_PLACED_DATE
@@ -43,7 +43,7 @@ public class BetRepo : IRepo
                           AND BET_OUTCOME = @BET_OUTCOME
                 )
                 BEGIN
-                    INSERT INTO BetEntities
+                    INSERT INTO BetEntity
                     (
                         Player_no, PLAYER_BET_NUMBER, BET_PLACED_DATE,
                         OVER_1000_SEK, EVENT_NAME, LEAGUE,
@@ -104,8 +104,8 @@ public class BetRepo : IRepo
     {
         var connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
         var con = new SqlConnection(connString);
-        var cmd = new SqlCommand("SELECT * FROM BetEntities", con);
-        var selectQuery = "SELECT *  FROM BetEntities";
+        var cmd = new SqlCommand("SELECT * FROM BetEntity", con);
+        var selectQuery = "SELECT *  FROM BetEntity";
 
         var da = new SqlDataAdapter(selectQuery, con);
         var dt = new DataTable();
