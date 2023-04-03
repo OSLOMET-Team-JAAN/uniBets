@@ -11,6 +11,7 @@ import GetDatesRages from "../components/dashboard_components/GetDatesRages";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useCSV from "../hooks/useCSV";
+import st from '../styles/pages/DashboardStyle.module.css';
 
 
 const Dashboard = () => {
@@ -32,23 +33,28 @@ const Dashboard = () => {
     return (
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse} >
-                <h3>HERE IS ADMIN DASHBOARD</h3>
-                <label htmlFor="Player_no">Player no: </label>
-                <MyInput
-                    value={playerNo}
-                    name="Player_no"
-                    placeholder="Enter Player_no here.."
-                    autoComplete="off"
-                    onChange={(e) => setPlayerNo(Number(e.target.value))}
-                />
-                <label htmlFor="Top_element">TOP customization: </label>
-                <MyInput
-                    value={myTop}
-                    name="Top_element"
-                    placeholder="Enter Your TOP here.."
-                    autoComplete="off"
-                    onChange={(e) => setMyTop(Number(e.target.value))}
-                />
+                <h3>Here is An ADMIN DASHBOARD</h3>
+                <br />
+
+                <div className={st.cont}>
+                    <label htmlFor="Player_no">Player no: </label>
+                    <MyInput
+                        value={playerNo}
+                        name="Player_no"
+                        placeholder="Enter Player_no here.."
+                        autoComplete="off"
+                        onChange={(e) => setPlayerNo(Number(e.target.value))}
+                    />
+                    <label htmlFor="Top_element">TOP customization: </label>
+                    <MyInput
+                        value={myTop}
+                        name="Top_element"
+                        placeholder="Enter Your TOP here.."
+                        autoComplete="off"
+                        onChange={(e) => setMyTop(Number(e.target.value))}
+                    />
+                </div>
+              
                 <GetTopWinner/>
                 <div style={{display: "block", margin: 20,}}>
                     <GetTopWinners
@@ -78,7 +84,8 @@ const Dashboard = () => {
                         <h3>NO PLAYER DATA</h3>
                     }
                     <GetDatesRages />
-                </div>
+                    </div>
+               
             </ErrorBoundary>
         </>
     );
