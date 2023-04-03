@@ -33,7 +33,7 @@ const Dashboard = () => {
     return (
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse} >
-                <h3>Here is An ADMIN DASHBOARD</h3>
+                <h3>Welcome To ADMIN Dashboard</h3>
                 <br />
 
                 <div className={st.cont}>

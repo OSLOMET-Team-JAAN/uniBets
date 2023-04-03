@@ -7,9 +7,11 @@
     height: 80px;
     margin: 15px auto 15px auto;
 }
-h3{
-    font-family:'Times New Roman';
-    font-size:30px;
+h3 {
+    font-family: 'Times New Roman';
+    font-size: 35px;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .bets{
@@ -19,7 +21,7 @@ h3{
     
 }
 
-@media (max-width:700px ){
+@media (max-width:768px ){
     .cont{
         width: 500px
     }

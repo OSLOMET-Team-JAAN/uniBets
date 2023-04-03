@@ -7,7 +7,7 @@ import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
 import {getHeaders} from "../utils/assistFunctions";
 import Loader from "../components/UI/loader/Loader";
-
+import st from '../styles/pages/UserPageStyle.module.css';
 
 const UserPage = () => {
     const [data, setData] = useState<Array<ICSVdata>>([]);
@@ -46,22 +46,26 @@ const UserPage = () => {
     
     return (
         <>
-            <h3>WELCOME TO USER PAGE</h3>
-            {myError && <h1 style={{color: "red"}}>{myError}</h1>}
+            <h2>WELCOME TO USER PAGE</h2>
+            <br/>
+            <div className={st.cont }>
+          <br />
+            {myError && <h5 style={{color: "red"}}>{myError}</h5>}
             {isLoading && !myError
-                ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
+                ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
                 : <>
                     {data
                         ? <MyTable
                             columns={headers}
                             rows={data}
                         /> 
-                        : <h1 style={{textAlign: "center", color: "teal"}}
+                        : <p style={{textAlign: "center", color: "teal"}}
                         >No data!
-                        </h1>
+                        </p>
                     }
                 </>
-            }
+                }
+            </div>
         </>
     );
 };
