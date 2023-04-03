@@ -14,7 +14,8 @@ const GetTopWinner = () => {
 
     return (
         <div className={style.cont}>
-            <h4> TOP WINNER </h4>
+            <h4> TOP Player Winner Number </h4>
+            <br />
             <br />
             <div className={style.box} >
                 {topWinner.map((key: any, i: number) =>

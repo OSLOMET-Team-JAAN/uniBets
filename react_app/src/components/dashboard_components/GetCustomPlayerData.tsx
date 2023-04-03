@@ -2,6 +2,7 @@
 import MyTable from "../table/MyTable";
 import useCSV from "../../hooks/useCSV";
 
+
 interface Props{
     topWinner: number
 }
@@ -17,12 +18,14 @@ const GetCustomPlayerData = ({topWinner}: Props) => {
     
     
     return (
+     
         <div style={{display: "block", margin: 5, padding: 20}}>
             <h4>PLAYER <strong>{topWinner}</strong> BETS DATA</h4>
            <MyTable  
                columns={headers} 
                rows={getTopWinnerData}/>
-        </div>
+            </div>
+  
     );
 };
 

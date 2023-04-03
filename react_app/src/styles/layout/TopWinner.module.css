@@ -1,8 +1,9 @@
-.cont{
-    display:inline;
+.cont {
+    display: inline;
     width: 200px;
     margin: 20px;
-    padding : 20px;
+    padding: 20px;
+   
 }
 .box {
     color:azure;

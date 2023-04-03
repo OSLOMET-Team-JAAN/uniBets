@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import {Pie, ResponsiveContainer, PieChart, Label, Cell} from "recharts";
 import useCSV from "../../hooks/useCSV";
-import style from '../../styles/layout/TopWinner.module.css';
+import style from '../../styles/layout/PieStyle.module.css';
 
 interface Props{
     topWinner: number
@@ -72,16 +72,17 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
     return (
         <div style={{ display: "block", margin: 5, padding: 5 }}>
 
-            <h4>PLAYER <strong>{topWinner}</strong> BETS STATUS</h4>
-
-            <div>
+            <h4>Player <strong>{topWinner}</strong> Bets Status</h4>
+           
+            <div className={style.cont }>
                 
             <h5><strong>Player:&nbsp;</strong> {topWinner} &nbsp;have made total  
                 <strong> {total_bet_counter}</strong> bets</h5>
                 
                         <PieChart 
-                            height={250}
-                            width={200}
+                             height={250}
+                             width={250}
+                            
                         >
                             <Pie                                
                                 data={Results}

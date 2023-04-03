@@ -63,7 +63,7 @@ const Dashboard = () => {
                         myTop={myTop}
                     />
                 </div>
-                <div style={{display: "flex", margin: 20}}>
+                <div style={{display: "inline", margin: 20}}>
 
                     {playerNo ?
                         <GetTopWinnerBetStatus topWinner={playerNo} /> : <h3>NO PLAYER DATA</h3>
