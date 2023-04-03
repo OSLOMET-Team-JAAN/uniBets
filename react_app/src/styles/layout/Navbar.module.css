@@ -1,6 +1,6 @@
 .navbar {
     height: 100px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 0 15px;
@@ -11,8 +11,9 @@
 }
 
 .navbarItems {
-    display: flex;
-    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .Links {
@@ -34,8 +35,18 @@ Link:hover{
     color:dodgerblue;
 }
 
-@media (max-width:500px){
-    .navbar{
-        width:auto;
+.Links {
+    margin: 10px 0;
+}
+
+
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 10px 15px;
     }
 }
+
+
+    
