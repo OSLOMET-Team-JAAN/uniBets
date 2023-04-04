@@ -64,7 +64,7 @@ const Profile: React.FC = () => {
                         </Typography>
 
                     </div>
-                    <Typography color="gray">
+                    <div color="gray">
                         <p>
                             <strong>Token:&nbsp;</strong> {JSON.stringify(currentUser.token).substring(16, 50)} ...
                         </p>
@@ -72,7 +72,7 @@ const Profile: React.FC = () => {
                             <strong>Email:&nbsp;</strong> {currentUser.email}
                         </p>
                         <strong>Authorities: &nbsp;</strong>{currentUser.role}
-                    </Typography>
+                    </div>
                 </CardBody>
 
                 <CardFooter className="pt-3">

@@ -74,11 +74,6 @@ const Navbar = () => {
                 {showAdminBoard && (
                     <div className="navbar-nav mx-auto" style={{fontWeight: 'bold', color: 'white'}}>
                         <li className="nav-item">
-                            <Link to={"/user"} className="nav-link" style={{color: 'white'}}>
-                                User Page
-                            </Link>
-                        </li>
-                        <li className="nav-item">
                             <Link to={"/dashboard"} className="nav-link" style={{color: 'white'}}>
                                 Dashboard
                             </Link>

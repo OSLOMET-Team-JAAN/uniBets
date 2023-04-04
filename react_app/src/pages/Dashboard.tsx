@@ -21,7 +21,7 @@ const Dashboard = () => {
     const [playerNo, setPlayerNo] = useState(0);
     const [myTop, setMyTop] = useState(10);
     const [sortSettings] =
-        useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
+        useState({order: 'desc', orderBy: 'ODDS'});
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
 
