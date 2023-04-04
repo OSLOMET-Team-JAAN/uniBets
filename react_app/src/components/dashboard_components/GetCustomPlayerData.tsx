@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import MyTable from "../table/MyTable";
 import useCSV from "../../hooks/useCSV";
+import st from '../../styles/layout/TopWinner.module.css';
 
 
 interface Props{
@@ -18,8 +19,8 @@ const GetCustomPlayerData = ({topWinner}: Props) => {
     
     
     return (
-     
-        <div style={{display: "block", margin: 5, padding: 20}}>
+
+        <div className={st.tabl }>
             <h4>PLAYER <strong>{topWinner}</strong> BETS DATA</h4>
            <MyTable  
                columns={headers} 
