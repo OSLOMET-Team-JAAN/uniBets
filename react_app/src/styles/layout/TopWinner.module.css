@@ -3,18 +3,27 @@
     width: 200px;
     margin: 20px;
     padding: 20px;
-
+   
 }
-
 .box {
-    color: azure;
+    color:azure;
     width: 200px;
     align-items: center;
     margin: auto;
     border-radius: 0.50rem;
     background: #008080;
 }
+.tabl {
+    display: block;
+    box-shadow: -4px 8px 5px 0px rgba(137, 137, 137, 0.34);
+    background: white;
+    border-radius: 0.50rem;
+    width: 900px;
+    height: auto;
+    margin: 5px auto 5px auto;
+    padding: 20px;
+}
 
-h4 {
-    display: inline;
+h4{
+    display:inline;
 }
