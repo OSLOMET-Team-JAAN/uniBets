@@ -1,5 +1,5 @@
-import {useRef, useState, useEffect} from "react";
-import {faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {useEffect, useRef, useState} from "react";
+import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link, useNavigate} from "react-router-dom";
 import st from '../styles/pages/RegistrationPage.module.css';
@@ -79,7 +79,7 @@ const RegistrationPage = () => {
                     setMatchPwd('');
                 }
             );
-           
+
         } catch (err: any) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -93,8 +93,8 @@ const RegistrationPage = () => {
             errRef.current?.focus();
         }
     }
-    
-    function redirect(){
+
+    function redirect() {
         navigate("/login");
     }
 
@@ -104,7 +104,7 @@ const RegistrationPage = () => {
                 <section>
                     <h1>Registered successfully!</h1>
                     <p>
-                        <MyButton 
+                        <MyButton
                             onClick={redirect}
                         >Login
                         </MyButton>
@@ -121,8 +121,8 @@ const RegistrationPage = () => {
                             <FontAwesomeIcon icon={faTimes} className={validName || !username ? st.hide : st.invalid}/>
                         </label>
                         <input
-                                type="text"
-                                placeholder ="Required .. "
+                            type="text"
+                            placeholder="Required .. "
                             id="username"
                             ref={userRef}
                             autoComplete="off"
@@ -149,8 +149,8 @@ const RegistrationPage = () => {
                         </label>
                         <input
                             type="text"
-                                id="email"
-                                placeholder="Required .. "
+                            id="email"
+                            placeholder="Required .. "
                             autoComplete="off"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
@@ -173,8 +173,8 @@ const RegistrationPage = () => {
                         </label>
                         <input
                             type="password"
-                                id="password"
-                                placeholder="8 to 24 Characters, include Upper and Low letters. "
+                            id="password"
+                            placeholder="8 to 24 Characters, include Upper and Low letters. "
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
@@ -212,7 +212,7 @@ const RegistrationPage = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? st.instructions : st.offscreen}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
                             Must match the first password input field.
-                            </p>
+                        </p>
                         <br/>
 
                         <button

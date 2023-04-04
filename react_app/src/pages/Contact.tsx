@@ -59,13 +59,13 @@ export default Contact;
 
 
 import {FC, useEffect, useRef, useState} from "react";
-import { Button } from "@material-tailwind/react";
+import {Button} from "@material-tailwind/react";
 import styles from "../styles/pages/Contact.module.css";
 import EventBus from "../common/EventBus";
 
 const Contact: FC = () => {
     const userRef = useRef<HTMLInputElement>(null);
-    
+
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
@@ -73,8 +73,8 @@ const Contact: FC = () => {
     useEffect(() => {
         userRef.current?.focus();
     }, [])
-    
-    function handleSubmit(){        
+
+    function handleSubmit() {
         alert(`Your message was sent successfully. Thank you!\n
             Email: ${email},\n
             Subject: ${subject},\n
@@ -84,11 +84,12 @@ const Contact: FC = () => {
         setSubject('');
         setMessage('');
     }
+
     EventBus.dispatch('submit', handleSubmit);
-    
+
     return (
         <>
-            <br />
+            <br/>
             <section className={styles.section}>
                 <div className={styles.container}>
                     <h2 className={styles.title}>Contact Us</h2>
@@ -141,9 +142,9 @@ const Contact: FC = () => {
                                 onChange={(e) => setMessage(e.target.value)}
                             />
                         </div>
-                        <br />
+                        <br/>
                         <div>
-                            <Button 
+                            <Button
                                 className="hover:scale-125"
                                 disabled={!email || !subject || !message}
                                 onClick={handleSubmit}
@@ -156,7 +157,6 @@ const Contact: FC = () => {
         </>
     );
 }
-    
-   
+
 
 export default Contact;

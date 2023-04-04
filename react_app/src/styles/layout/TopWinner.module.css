@@ -3,16 +3,18 @@
     width: 200px;
     margin: 20px;
     padding: 20px;
-   
+
 }
+
 .box {
-    color:azure;
+    color: azure;
     width: 200px;
     align-items: center;
     margin: auto;
     border-radius: 0.50rem;
     background: #008080;
 }
-h4{
-    display:inline;
+
+h4 {
+    display: inline;
 }

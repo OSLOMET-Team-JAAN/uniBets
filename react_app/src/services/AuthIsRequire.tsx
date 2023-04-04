@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import {useLocation, Navigate, Outlet} from "react-router-dom";
+import {Navigate, Outlet, useLocation} from "react-router-dom";
 import {getCurrentUser} from "./auth.service";
 
 interface Roles {

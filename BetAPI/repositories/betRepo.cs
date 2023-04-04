@@ -1,10 +1,8 @@
-﻿using BetAPI.Data;
+﻿using System.Data;
+using BetAPI.Data;
 using BetAPI.repositories.Contracts;
 using Domain;
-using System.Data;
-using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
-using SqlConnection = Microsoft.Data.SqlClient.SqlConnection;
-using SqlDataAdapter = Microsoft.Data.SqlClient.SqlDataAdapter;
+using Microsoft.Data.SqlClient;
 
 namespace BetAPI.repositories;
 
@@ -79,7 +77,6 @@ public class BetRepo : IRepo
             foreach (var item in betList)
             {
                 insertCommand.Parameters["@Player_no"].Value = item.Player_no;
-
                 insertCommand.Parameters["@PLAYER_BET_NUMBER"].Value = item.PLAYER_BET_NUMBER;
                 insertCommand.Parameters["@BET_PLACED_DATE"].Value = item.BET_PLACED_DATE;
                 insertCommand.Parameters["@OVER_1000_SEK"].Value = item.OVER_1000_SEK;
@@ -98,8 +95,7 @@ public class BetRepo : IRepo
         await Task.CompletedTask;
     }
 
-   
-   
+
     public List<BetEntity> GetAll()
     {
         var connString = _configuration.GetConnectionString("ConnectionAPIConnectionString");
@@ -137,5 +133,4 @@ public class BetRepo : IRepo
         if (list.Count > 0) return list;
         return null;
     }
-
 }

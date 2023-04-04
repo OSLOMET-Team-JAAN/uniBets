@@ -29,7 +29,7 @@
 
 .dragFree {
     border-color: grey;
-   
+
 }
 
 .listOfSelectedFiles {
@@ -56,7 +56,7 @@
 .csvImport {
     font-family: sans-serif;
     text-align: center;
-    color:dimgrey;
+    color: dimgrey;
 }
 
 .searchBar {
@@ -73,15 +73,17 @@
         height: 400px;
     }
 }
+
 @media (max-width: 700px) {
     .cont {
         width: 500px;
         height: 400px;
     }
 }
-@media (max-width: 500px){
-    .cont{
-        width:450px;
+
+@media (max-width: 500px) {
+    .cont {
+        width: 450px;
         height: 400px;
     }
 }

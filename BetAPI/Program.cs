@@ -1,4 +1,4 @@
-using BetAPI;
+using System.Text;
 using BetAPI.Data;
 using BetAPI.repositories;
 using BetAPI.repositories.Contracts;
@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

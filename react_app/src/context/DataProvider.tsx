@@ -1,6 +1,6 @@
-import {createContext, useEffect, useMemo, useState} from "react";
+import {createContext, useMemo, useState} from "react";
 
-import {getStoredData, getStoredHeaders, setDataToStore, setHeadersToStore} from "../services/data.service";
+import {getStoredData, getStoredHeaders} from "../services/data.service";
 
 const DataContext = createContext({});
 
@@ -12,9 +12,9 @@ export const DataProvider = ({children}: Props) => {
 
     const [data, setData] = useState(getStoredData('csv') || []);
     const [headers, setHeaders] = useState(getStoredHeaders('headers') || []);
-    const value = useMemo(() => ({data, headers, setData, setHeaders}),[data, headers])
-    
-        
+    const value = useMemo(() => ({data, headers, setData, setHeaders}), [data, headers])
+
+
     return (
         <DataContext.Provider
             value={value}>

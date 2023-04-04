@@ -13,17 +13,17 @@ const ErrorBoundaryResponse = ({error}: any) => {
         navigate(from, {replace: true});
         window.location.reload();
     }
-    
+
     return (
-        <div role="alert" className={st.sect } >
-                <h3>Something went wrong...</h3>
-                <h6>{error.message}</h6>
-                <p>{error.stack}</p>
-                <MyButton
-                    onClick={() => handleBack()}
-                >BACK</MyButton>
-            </div>
-        
+        <div role="alert" className={st.sect}>
+            <h3>Something went wrong...</h3>
+            <h6>{error.message}</h6>
+            <p>{error.stack}</p>
+            <MyButton
+                onClick={() => handleBack()}
+            >BACK</MyButton>
+        </div>
+
     );
 };
 

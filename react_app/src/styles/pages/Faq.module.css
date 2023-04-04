@@ -19,7 +19,7 @@
 
 .accordion-wrapper {
     margin-left: 30px;
-    margin-right:30px;
+    margin-right: 30px;
     margin-top: 5px;
 }
 
@@ -34,10 +34,10 @@
     margin-top: 10px;
 }
 
-    .accordion-body a {
-        color: #3182ce;
-    }
+.accordion-body a {
+    color: #3182ce;
+}
 
-        .accordion-body a:hover {
-            color: #63b3ed;
-        }
+.accordion-body a:hover {
+    color: #63b3ed;
+}

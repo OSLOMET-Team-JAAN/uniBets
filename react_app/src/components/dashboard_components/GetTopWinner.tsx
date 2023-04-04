@@ -4,7 +4,7 @@ import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/TopWinner.module.css';
 
 const GetTopWinner = () => {
-    const {data}:any = useCSV();
+    const {data}: any = useCSV();
 
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
@@ -15,12 +15,12 @@ const GetTopWinner = () => {
     return (
         <div className={style.cont}>
             <h4> TOP Player Winner Number </h4>
-            <br />
-            <br />
-            <div className={style.box} >
+            <br/>
+            <br/>
+            <div className={style.box}>
                 {topWinner.map((key: any, i: number) =>
                     <div key={i}
-                       >
+                    >
                         {key.Player_no}
                     </div>
                 )}

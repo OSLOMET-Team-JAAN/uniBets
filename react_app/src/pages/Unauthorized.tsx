@@ -8,7 +8,7 @@ const Unauthorized = () => {
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     return (
-        <section style={{ background: "#2444" }}>
+        <section style={{background: "#2444"}}>
             <h1>Unauthorized</h1>
             <br/>
             <p>You do not have access to the requested page.</p>

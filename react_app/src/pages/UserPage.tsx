@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import MyTable from "../components/table/MyTable";
-import {
-    getAll,
-} from "../services/data.service";
+import {getAll,} from "../services/data.service";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
 import {getHeaders} from "../utils/assistFunctions";
@@ -16,11 +14,11 @@ const UserPage = () => {
     const [myError, setMyError] = useState("");
     //State 10_ to show fetching data process
     const [isLoading, setIsLoading] = useState(false);
-    
+
     useEffect(() => {
         handleGetData().then()
-    },[])
-    
+    }, [])
+
     const handleGetData = async () => {
         try {
             setIsLoading(true)
@@ -43,27 +41,27 @@ const UserPage = () => {
             }
         }
     }
-    
+
     return (
         <>
             <h2>WELCOME TO USER PAGE</h2>
             <br/>
-            <div className={st.cont }>
-          <br />
-            {myError && <h5 style={{color: "red"}}>{myError}</h5>}
-            {isLoading && !myError
-                ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
-                : <>
-                    {data
-                        ? <MyTable
-                            columns={headers}
-                            rows={data}
-                        /> 
-                        : <p style={{textAlign: "center", color: "teal"}}
-                        >No data!
-                        </p>
-                    }
-                </>
+            <div className={st.cont}>
+                <br/>
+                {myError && <h5 style={{color: "red"}}>{myError}</h5>}
+                {isLoading && !myError
+                    ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
+                    : <>
+                        {data
+                            ? <MyTable
+                                columns={headers}
+                                rows={data}
+                            />
+                            : <p style={{textAlign: "center", color: "teal"}}
+                            >No data!
+                            </p>
+                        }
+                    </>
                 }
             </div>
         </>

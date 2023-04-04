@@ -6,8 +6,9 @@
     padding: 0 15px;
     background: #3F7ED8;
 }
-.navbar:hover{
-    color:cornflowerblue;
+
+.navbar:hover {
+    color: cornflowerblue;
 }
 
 .navbarItems {
@@ -20,19 +21,19 @@
     margin: 0 0 0 10px;
 }
 
-.navitem{
-    color:white;
+.navitem {
+    color: white;
 }
 
-.image{
-    float:left;
-    max-height:50px;
-    width:auto;
-   
+.image {
+    float: left;
+    max-height: 50px;
+    width: auto;
+
 }
 
-Link:hover{
-    color:dodgerblue;
+Link:hover {
+    color: dodgerblue;
 }
 
 .Links {

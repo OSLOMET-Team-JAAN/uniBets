@@ -1,6 +1,6 @@
-import {useRef, useState, useEffect, FormEvent} from 'react';
+import {FormEvent, useEffect, useRef, useState} from 'react';
 import useAuth from '../hooks/useAuth';
-import {Link, useNavigate, useLocation} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
@@ -35,7 +35,7 @@ const Login = () => {
                 const _email = response?.token;
                 const _role = response?.role;
                 if (_token) {
-                    setAuth({username,_role, _email, password, _token});
+                    setAuth({username, _role, _email, password, _token});
                     setUsername('');
                     setPassword('');
                     navigate(from, {replace: true});
@@ -97,7 +97,7 @@ const Login = () => {
             </form>
             <p>
                 New User ? Need to Sign Up
-                <br />
+                <br/>
                 <span className={st.line}>
                     <Link to="/register"> <span>Sign Up</span> </Link>
                 </span>

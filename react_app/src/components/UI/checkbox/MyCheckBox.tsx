@@ -1,5 +1,4 @@
-import React, {FC, MutableRefObject, ReactNode} from 'react';
-import styles from '../../../styles/MyCheckBox.module.css';
+import React, {FC} from 'react';
 
 interface Props {
     id?: string;

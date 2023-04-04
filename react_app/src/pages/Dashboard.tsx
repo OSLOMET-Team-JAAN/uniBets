@@ -12,10 +12,11 @@ import {ErrorBoundary} from "../errors/ErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useCSV from "../hooks/useCSV";
 import st from '../styles/pages/DashboardStyle.module.css';
+import GetBetsWinRateTopWinners from "../components/dashboard_components/GetBetsWinRateTopWinners";
 
 
 const Dashboard = () => {
-    const {data}:any = useCSV();    
+    const {data}: any = useCSV();
     console.log(data)
     const [playerNo, setPlayerNo] = useState(0);
     const [myTop, setMyTop] = useState(10);
@@ -23,18 +24,18 @@ const Dashboard = () => {
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
-    
+
     useEffect(() => {
         getTop(sortedData, 1).map((key: any) => {
             return setPlayerNo(key["Player_no"]);
         })
     }, [sortedData]);
-    
+
     return (
         <>
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse} >
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <h3>Welcome To ADMIN Dashboard</h3>
-                <br />
+                <br/>
 
                 <div className={st.cont}>
                     <label htmlFor="Player_no">Player no: </label>
@@ -54,9 +55,8 @@ const Dashboard = () => {
                         onChange={(e) => setMyTop(Number(e.target.value))}
                     />
                 </div>
-              <br />
-                <GetTopWinner />
-
+                <br/>
+                <GetTopWinner/>
                 <div>
                     <GetTopWinners
                         sortedData={sortedData}
@@ -64,19 +64,24 @@ const Dashboard = () => {
                     />
                 </div>
                 <div>
-                <br />
+                    <br/>
                 </div>
                 <div className={st.bets}>
 
                     {playerNo ?
-                        <GetTopWinnerBetStatus topWinner={playerNo} /> : <h3>NO PLAYER DATA</h3>
+                        <GetTopWinnerBetStatus topWinner={playerNo}/> : <h3>NO PLAYER DATA</h3>
                     }
 
                     {playerNo ?
-                        <GetTopWinnerWinRate topWinner={playerNo} />
+                        <GetTopWinnerWinRate topWinner={playerNo}/>
                         :
                         <h3>NO PLAYER DATA</h3>
                     }
+                </div>
+                <div>
+                    <GetBetsWinRateTopWinners
+                        myTop={myTop}
+                    />
                 </div>
                 <div style={{display: "block", margin: 20}}>
                     <GetOddsOutliers/>
@@ -87,9 +92,8 @@ const Dashboard = () => {
                         /> :
                         <h3>NO PLAYER DATA</h3>
                     }
-                    <GetDatesRages />
-                    </div>
-               
+                    <GetDatesRages/>
+                </div>
             </ErrorBoundary>
         </>
     );

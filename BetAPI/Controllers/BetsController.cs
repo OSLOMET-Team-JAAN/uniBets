@@ -21,7 +21,6 @@ public class BetsController : ControllerBase
         _logger = logger;
     }
 
-   
 
     [HttpPost("saveTable")]
     [Authorize(Policy = "ADMIN")]
@@ -71,6 +70,4 @@ public class BetsController : ControllerBase
             );
         }
     }
-
-
 }

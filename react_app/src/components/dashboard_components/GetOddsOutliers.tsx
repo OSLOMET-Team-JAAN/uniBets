@@ -1,18 +1,11 @@
 import React, {useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
-import {
-    Legend, Line,
-    LineChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis,
-    YAxis
-} from "recharts";
+import {Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import st from '../../styles/layout/GetTopWinners.module.css';
 
 const GetOddsOutliers = () => {
-    const {data}:any = useCSV();
+    const {data}: any = useCSV();
 
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
@@ -25,21 +18,21 @@ const GetOddsOutliers = () => {
     const getTopValue = () => {
         let val;
         getTop(getOutliers, 1).map((key: any) => {
-            val = key["ODDS"]
-           }           
-       ) 
-       return val;
+                val = key["ODDS"]
+            }
+        )
+        return val;
     }
 
 
     return (
         <div className={st.cont}>
-            <h4 style={{ fontStyle: 'italic' }}>WON ODDS OUTLIERS CHART</h4>
+            <h4 style={{fontStyle: 'italic'}}>WON ODDS OUTLIERS CHART</h4>
             <ResponsiveContainer
                 height={300}
             >
                 <LineChart
-                    width={500}                    
+                    width={500}
                     data={getOutliers}
                     margin={{
                         top: 5,

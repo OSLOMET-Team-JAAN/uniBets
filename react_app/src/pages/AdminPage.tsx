@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import Papa from "papaparse";
 import MyInput from "../components/UI/input/MyInput";
 import ErrorModal from "../components/UI/modals/ErrorModal";
@@ -9,7 +9,11 @@ import styles from "../styles/pages/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
 import {
     ClearContext,
-    getAll, getStoredData, getStoredHeaders, setDataToStore, setHeadersToStore,
+    getAll,
+    getStoredData,
+    getStoredHeaders,
+    setDataToStore,
+    setHeadersToStore,
     upload,
 } from "../services/data.service";
 import {ICSVdata} from "../models/ICSVdata";
@@ -87,8 +91,8 @@ const AdminPage = () => {
                 throw new Error(error)
             }
         };
-        
-        
+
+
         const handleUploadedFile = () => {
             ClearContext()
             setIsLoading(true);
@@ -118,23 +122,24 @@ const AdminPage = () => {
         const handleUpload = async () => {
             try {
                 setIsLoading(true)
-                if(data.length !== 0){
+                if (data.length !== 0) {
                     const promises = data.map(async (obj: ICSVdata) => {
                         const array: Array<ICSVdata> = [];
                         array.push(obj)
                         return await upload(array).then((response) => {
-                            //TO BE REMOVED BEFORE PRODUCTION
-                            console.log(response.data)
+                                //TO BE REMOVED BEFORE PRODUCTION
+                                console.log(response.data)
                             }
                         )
                     });
                     Promise.allSettled(promises)
                         .then((response) => {
-                            console.log(JSON.stringify(response))})
+                            console.log(JSON.stringify(response))
+                        })
                         .catch((error) => setMyError(error))
                         .finally(() =>
-                        alert("Data is saved successfully to database!")
-                    )                    
+                            alert("Data is saved successfully to database!")
+                        )
                 }
                 setIsLoading(false)
             } catch (err: any) {
@@ -147,7 +152,7 @@ const AdminPage = () => {
                 }
             }
         }
-        
+
 
         const handleGetData = async () => {
             try {
@@ -183,157 +188,157 @@ const AdminPage = () => {
 
 //-------------------------------------------------------------------------
 
-    return (
-        <> 
-       
-            <div>
-                <div className={styles.cont}>
-                <h2 className={styles.csvImport}> Import of CSV file</h2>
-                <div
-                    className={`${styles.dragAndDropArea} ${indicator ? styles.dragHover : styles.dragFree}`}
-                    //Used conditioning (ternary) expression for dragging styling
+        return (
+            <>
 
-                    onDragEnter={() => {
-                        setIndicator(true)
-                    }}
-                    onDragLeave={() => {
-                        setIndicator(false)
-                    }}
-                    onDragOver={(event) => {
-                        event.preventDefault()
-                    }}
-                    onDrop={(event) => {
-                        event.preventDefault();
-                        setIndicator(false)
-                        console.log("dataTransfer file" + event.dataTransfer.files)
-                        setIsLoading(true)
-                        // Check if user has entered the file
-                        if (event.dataTransfer.files.length) {
-                            const uploadedFile = event.dataTransfer.files && event.dataTransfer.files[0];
-                            setFile(uploadedFile)
-                            // Checking file's extension and throwing error if incorrect
-                            const extension = uploadedFile?.type.split("/")[1].toString();
-                            console.log(extension)
-                            if (!allowedFileTypes.includes(extension)) {
-                                setMyError("Please input a csv file");
-                                return;
-                            }
-                            setMyError("")
-                            ClearContext();
-                        }
+                <div>
+                    <div className={styles.cont}>
+                        <h2 className={styles.csvImport}> Import of CSV file</h2>
+                        <div
+                            className={`${styles.dragAndDropArea} ${indicator ? styles.dragHover : styles.dragFree}`}
+                            //Used conditioning (ternary) expression for dragging styling
 
-                        //Creating an array of files which will hold all csv files uploaded
-                        //It was an idea to upload several files. But later it was dropped.
-                        //We are keeping array anyway for future, in case if it will require to implement it later
-                        Array.from(event.dataTransfer.files)
-                            .filter((file) => file.type === allowedFileTypes).forEach(async (file) => {
-                            // we need to make async for promise resolving
-                            const text = await file.text();
-                            Papa.parse(text, {
-                                delimiter: ',',
-                                header: true,
-                                //dynamicTyping: true, //numbers, boolean will not become strings
-                                complete: function (csvData) {                                    
-                                    setDataToStore('csv',csvData.data)                                    
-                                    // Extracting headers from all objects in a List and
-                                    const headers = getHeaders(csvData.data)
-                                    setHeadersToStore('headers', headers)
-                                    setData(getStoredData('csv'))
-                                    setHeaders(getStoredHeaders('headers'))
-                                    setShowContent(false)
-                                    setShowButton(true)
+                            onDragEnter={() => {
+                                setIndicator(true)
+                            }}
+                            onDragLeave={() => {
+                                setIndicator(false)
+                            }}
+                            onDragOver={(event) => {
+                                event.preventDefault()
+                            }}
+                            onDrop={(event) => {
+                                event.preventDefault();
+                                setIndicator(false)
+                                console.log("dataTransfer file" + event.dataTransfer.files)
+                                setIsLoading(true)
+                                // Check if user has entered the file
+                                if (event.dataTransfer.files.length) {
+                                    const uploadedFile = event.dataTransfer.files && event.dataTransfer.files[0];
+                                    setFile(uploadedFile)
+                                    // Checking file's extension and throwing error if incorrect
+                                    const extension = uploadedFile?.type.split("/")[1].toString();
+                                    console.log(extension)
+                                    if (!allowedFileTypes.includes(extension)) {
+                                        setMyError("Please input a csv file");
+                                        return;
+                                    }
+                                    setMyError("")
+                                    ClearContext();
                                 }
-                            });
-                        })
-                        setIsLoading(false)
-                        setModalVisible(true)
-                        window.alert("CSV file was uploaded successfully!")
-                    }}
-                >
-                    DRAG FILES HERE
-                </div>
-                <div >
-                    <label htmlFor="fileUpload" style={{display: "block"}} title="Import CSV file">
-                    </label>
-                    <input
-                        //We cannot use <MyInput /> - Function components cannot be given refs.
-                        //Possible to use React.forwardRef with useImperativeHandle hook to expose some functions or states
-                        // from component to the parent component,
-                        // but...
-                        className={styles.buttons}
-                        key="fileUploadKey"
-                        onChange={handleFiles}
-                        id="fileUpload"
-                        name="file"
-                        type="File"
-                        ref={aRef} //for ref was a trouble to use <MyInput/>
-                    />
-                    <MyButton
-                        onClick={handleGetData}
-                    >
-                        Fetch from DB
-                    </MyButton>
-                    </div>
-                    {showButton &&
-                        <DangerButton onClick={() => {
-                            aRef.current!.value = '';
-                            resetAll()
-                        }}
-                        >Reset
-                        </DangerButton>
-                    }
-                    {file && 
-                        <div >
-                            <MyInput
-                                type="submit"
-                                value="Show file content"
-                                onClick={() => {
-                                    handleUploadedFile()
-                                }}
+
+                                //Creating an array of files which will hold all csv files uploaded
+                                //It was an idea to upload several files. But later it was dropped.
+                                //We are keeping array anyway for future, in case if it will require to implement it later
+                                Array.from(event.dataTransfer.files)
+                                    .filter((file) => file.type === allowedFileTypes).forEach(async (file) => {
+                                    // we need to make async for promise resolving
+                                    const text = await file.text();
+                                    Papa.parse(text, {
+                                        delimiter: ',',
+                                        header: true,
+                                        //dynamicTyping: true, //numbers, boolean will not become strings
+                                        complete: function (csvData) {
+                                            setDataToStore('csv', csvData.data)
+                                            // Extracting headers from all objects in a List and
+                                            const headers = getHeaders(csvData.data)
+                                            setHeadersToStore('headers', headers)
+                                            setData(getStoredData('csv'))
+                                            setHeaders(getStoredHeaders('headers'))
+                                            setShowContent(false)
+                                            setShowButton(true)
+                                        }
+                                    });
+                                })
+                                setIsLoading(false)
+                                setModalVisible(true)
+                                window.alert("CSV file was uploaded successfully!")
+                            }}
+                        >
+                            DRAG FILES HERE
+                        </div>
+                        <div>
+                            <label htmlFor="fileUpload" style={{display: "block"}} title="Import CSV file">
+                            </label>
+                            <input
+                                //We cannot use <MyInput /> - Function components cannot be given refs.
+                                //Possible to use React.forwardRef with useImperativeHandle hook to expose some functions or states
+                                // from component to the parent component,
+                                // but...
+                                className={styles.buttons}
+                                key="fileUploadKey"
+                                onChange={handleFiles}
+                                id="fileUpload"
+                                name="file"
+                                type="File"
+                                ref={aRef} //for ref was a trouble to use <MyInput/>
                             />
                             <MyButton
-                                onClick={handleUpload}
-                            >Save to database
+                                onClick={handleGetData}
+                            >
+                                Fetch from DB
                             </MyButton>
                         </div>
-                    }                    
-                    {myError &&
-                        <ErrorModal
-                            visible={modalVisible}
-                            setVisible={setModalVisible}
-                        >
-                            <div style={{color: "red"}}>
-                                {myError}
+                        {showButton &&
+                            <DangerButton onClick={() => {
+                                aRef.current!.value = '';
+                                resetAll()
+                            }}
+                            >Reset
+                            </DangerButton>
+                        }
+                        {file &&
+                            <div>
+                                <MyInput
+                                    type="submit"
+                                    value="Show file content"
+                                    onClick={() => {
+                                        handleUploadedFile()
+                                    }}
+                                />
+                                <MyButton
+                                    onClick={handleUpload}
+                                >Save to database
+                                </MyButton>
                             </div>
-                            <MyButton onClick={() => {
-                                setModalVisible(false)
-                            }}>Close</MyButton>
-                        </ErrorModal>}
-                </div>
-                <div >
-                    {isLoading && !myError
-                        ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
-                        : <>
-                            {showContent
-                                ?
-                                <div >
-                                    <MyTable
-                                        columns={headers}
-                                        rows={data}
-                                    />
+                        }
+                        {myError &&
+                            <ErrorModal
+                                visible={modalVisible}
+                                setVisible={setModalVisible}
+                            >
+                                <div style={{color: "red"}}>
+                                    {myError}
                                 </div>
-                                :
-                                <div>
-                                    <h1 style={{ textAlign: "center", color: "#686767" }}>
-                                        No data!
-                                    </h1>
-                                </div>
-                            }
-                        </>
-                    }
+                                <MyButton onClick={() => {
+                                    setModalVisible(false)
+                                }}>Close</MyButton>
+                            </ErrorModal>}
+                    </div>
+                    <div>
+                        {isLoading && !myError
+                            ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
+                            : <>
+                                {showContent
+                                    ?
+                                    <div>
+                                        <MyTable
+                                            columns={headers}
+                                            rows={data}
+                                        />
+                                    </div>
+                                    :
+                                    <div>
+                                        <h1 style={{textAlign: "center", color: "#686767"}}>
+                                            No data!
+                                        </h1>
+                                    </div>
+                                }
+                            </>
+                        }
+                    </div>
                 </div>
-            </div>
-        </>
+            </>
         );
 
     }

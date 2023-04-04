@@ -1,13 +1,12 @@
-﻿using BetAPI.Data;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using BetAPI.Data;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using User = Domain.User;
 
 namespace BetAPI.Controllers;
 
@@ -16,7 +15,7 @@ namespace BetAPI.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly IConfiguration _conf;
-    private Context _context;
+    private readonly Context _context;
 
     public AuthenticationController(Context context, IConfiguration conf)
     {

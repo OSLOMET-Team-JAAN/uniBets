@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Cell, Label, Pie, PieChart, ResponsiveContainer } from "recharts";
+import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/PieStyle.module.css';
 
@@ -7,8 +7,8 @@ interface Props {
     topWinner: number
 }
 
-const GetTopWinnerWinRate = ({ topWinner }: Props) => {
-    const { data }: any = useCSV();
+const GetTopWinnerWinRate = ({topWinner}: Props) => {
+    const {data}: any = useCSV();
 
     let total_bet_counter = 0;
     let win_bet_counter = 0;
@@ -29,11 +29,11 @@ const GetTopWinnerWinRate = ({ topWinner }: Props) => {
     })
 
     //---- Custom Label for Pie Chart ------
-    const CustomLabel = ({ viewBox, betsWon = 0 }: any) => {
-        const { cx, cy } = viewBox;
+    const CustomLabel = ({viewBox, betsWon = 0}: any) => {
+        const {cx, cy} = viewBox;
         return (
-            <React.Fragment >
-                <text x={cx - 45} y={cy - 5} >
+            <React.Fragment>
+                <text x={cx - 45} y={cy - 5}>
                     <tspan
                         style={{
                             fontWeight: 700,
@@ -64,13 +64,13 @@ const GetTopWinnerWinRate = ({ topWinner }: Props) => {
 
     const Results = [
         // {name: 'Total bets', value: total_bet_counter},
-        { name: 'Bets Won', value: win_bet_counter },
-        { name: 'Bets Lost', value: lost_bet_counter },
+        {name: 'Bets Won', value: win_bet_counter},
+        {name: 'Bets Lost', value: lost_bet_counter},
     ]
 
     const WinRate = [
-        { name: 'Win Rate', value: Math.round((win_bet_counter / total_bet_counter) * 100) },
-        { name: 'Lost Rate', value: Math.round((lost_bet_counter / total_bet_counter) * 100) },
+        {name: 'Win Rate', value: Math.round((win_bet_counter / total_bet_counter) * 100)},
+        {name: 'Lost Rate', value: Math.round((lost_bet_counter / total_bet_counter) * 100)},
     ]
 
 
@@ -94,11 +94,11 @@ const GetTopWinnerWinRate = ({ topWinner }: Props) => {
                         if (index === 1 || index === 2) {
                             return <Cell
                                 key={`cell-${index}`}
-                                fill="#f3f6f9" />;
+                                fill="#f3f6f9"/>;
                         }
                         return <Cell
                             key={`cell-${index}`}
-                            fill="green" />;
+                            fill="green"/>;
                     })}
                     <Label
                         content={

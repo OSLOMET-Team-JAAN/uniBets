@@ -1,9 +1,8 @@
 import axios from "../common/axiosAPI";
 import {ICSVdata} from "../models/ICSVdata";
-import useCSV from "../hooks/useCSV";
 
 const TABLE_URL = "/Bets"
-export const upload = (data: Array<ICSVdata>) => {    
+export const upload = (data: Array<ICSVdata>) => {
     const userStr = localStorage.getItem("user");
     let user = null;
     if (userStr)
@@ -34,9 +33,9 @@ export const getAll = () => {
     });
 };
 
- //HERE WAS THE TEST TO MAKE PERSIST DATA
+//HERE WAS THE TEST TO MAKE PERSIST DATA
 export const setDataToStore = (key: string, data: any) => {
-    if(localStorage.getItem(key) === null){
+    if (localStorage.getItem(key) === null) {
         let storedData = JSON.stringify(data)
         localStorage.setItem(key, storedData);
     }
@@ -50,7 +49,7 @@ export const getStoredData = (key: string): any => {
 };
 
 export const setHeadersToStore = (key: string, data: any) => {
-    if(localStorage.getItem(key) === null){
+    if (localStorage.getItem(key) === null) {
         let storedData = JSON.stringify(data)
         localStorage.setItem(key, storedData);
     }
@@ -64,5 +63,5 @@ export const getStoredHeaders = (key: string) => {
 
 export const ClearContext = () => {
     localStorage.removeItem('csv');
-    localStorage.removeItem('headers');    
+    localStorage.removeItem('headers');
 }

@@ -28,11 +28,11 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
 
     render() {
         const {error} = this.state
-        const { children } = this.props;
+        const {children} = this.props;
         const {FallbackComponent} = this.props;
-        
-            return error ? <FallbackComponent error={error}/> : children
-        
+
+        return error ? <FallbackComponent error={error}/> : children
+
     }
 }
 

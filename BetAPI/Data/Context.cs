@@ -1,7 +1,6 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace BetAPI.Data;
 
 public sealed class Context : DbContext
@@ -13,5 +12,4 @@ public sealed class Context : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<BetEntity> BetEntity { get; set; }
-
 }

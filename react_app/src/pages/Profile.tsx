@@ -37,17 +37,10 @@ export default Profile;
 
  */
 import React from "react";
-import { getCurrentUser } from "../services/auth.service";
-import { Link } from "react-router-dom";
+import {getCurrentUser} from "../services/auth.service";
+import {Link} from "react-router-dom";
 import * as st from '../styles/tailwind/ProfileUser.style';
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button 
-} from "@material-tailwind/react";
+import {Button, Card, CardBody, CardFooter, CardHeader, Typography} from "@material-tailwind/react";
 
 const Profile: React.FC = () => {
     const currentUser = getCurrentUser();
@@ -55,41 +48,41 @@ const Profile: React.FC = () => {
     return (
         < >
             <Card className={st.Profile.card}>
-                <CardHeader floated={false} className={st.Profile.header} >
-                <img
+                <CardHeader floated={false} className={st.Profile.header}>
+                    <img
                         src="../user.jpg"
                         alt="avatar"
                         className={st.Profile.imag}
-                />
-           
+                    />
+
                 </CardHeader>
 
-            <CardBody>
-                <div className="mb-3">
-                    <Typography variant="h3" color="blue-gray"  >
-                        Welcome <strong >{currentUser.username}</strong>
+                <CardBody>
+                    <div className="mb-3">
+                        <Typography variant="h3" color="blue-gray">
+                            Welcome <strong>{currentUser.username}</strong>
+                        </Typography>
+
+                    </div>
+                    <Typography color="gray">
+                        <p>
+                            <strong>Token:&nbsp;</strong> {JSON.stringify(currentUser.token).substring(16, 50)} ...
+                        </p>
+                        <p>
+                            <strong>Email:&nbsp;</strong> {currentUser.email}
+                        </p>
+                        <strong>Authorities: &nbsp;</strong>{currentUser.role}
                     </Typography>
-                   
-                </div>
-                <Typography color="gray">
-                    <p>
-                        <strong>Token:&nbsp;</strong> {JSON.stringify(currentUser.token).substring(16, 50)} ...
-                    </p>
-                    <p>
-                        <strong>Email:&nbsp;</strong> {currentUser.email}
-                    </p>
-                    <strong>Authorities: &nbsp;</strong>{currentUser.role}
-                </Typography>
                 </CardBody>
 
                 <CardFooter className="pt-3">
-                    <Button className="hover:scale-125" >
-                    <Link to="/home" className="text-white">Back to Home Page</Link>
-                </Button>
-            </CardFooter>
-             </Card>
+                    <Button className="hover:scale-125">
+                        <Link to="/home" className="text-white">Back to Home Page</Link>
+                    </Button>
+                </CardFooter>
+            </Card>
         </>
-   );
- }
+    );
+}
 
 export default Profile;

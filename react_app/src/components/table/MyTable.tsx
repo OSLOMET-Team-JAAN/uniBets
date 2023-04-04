@@ -204,7 +204,7 @@ const MyTable = ({columns, rows}: Props) => {
                     currentPage={currentPage}
                     totalPages={totalPages}
                     handlePagination={handlePages}/>
-            </div>            
+            </div>
         </>
     )
 }
