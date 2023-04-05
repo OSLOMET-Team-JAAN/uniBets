@@ -9,7 +9,6 @@ type Props = {
     myTop: number
 }
 
-
 const GetBetsWinRateTopWinners = ({ myTop}: Props) => {
     const {data}: any = useCSV();
 

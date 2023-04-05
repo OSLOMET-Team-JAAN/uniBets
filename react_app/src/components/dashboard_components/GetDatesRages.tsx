@@ -26,7 +26,7 @@ const GetDatesRages = () => {
         }
 
     })
-    console.log(array)
+    // console.log(array)
 
 
     return (
