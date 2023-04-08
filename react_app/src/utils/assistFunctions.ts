@@ -181,7 +181,7 @@ export const getResultsTotal = (data: ICSVdata[], Player: number) => {
 export const getResults = (data: ICSVdata[], Player: number) => {
     const playerData: any = getPlayerData(data, Player);
     return [
-        // {name: 'Total bets', value: total_bet_counter},
+        {name: 'Total bets', value: playerData.Bets_Total},
         {name: 'Bets Won', value: playerData.Bets_Won},
         {name: 'Bets Lost', value: playerData.Bets_lost},
     ]

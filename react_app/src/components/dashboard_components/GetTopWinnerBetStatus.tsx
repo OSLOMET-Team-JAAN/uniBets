@@ -2,6 +2,7 @@
 import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/PieStyle.module.css';
+import {getResults} from "../../utils/assistFunctions";
 
 interface Props {
     Player: number
@@ -9,30 +10,9 @@ interface Props {
 
 const GetWinRateTopWinner = ({Player}: Props) => {
     const {data}: any = useCSV();
-
-    let total_bet_counter = 0;
-    let win_bet_counter = 0;
-    let lost_bet_counter = 0;
-    const getTopPlayerData = useMemo(() => {
-        return data.filter((obj: any) => {
-            if (obj.Player_no === Player) {
-                total_bet_counter += 1
-                return obj.Player_no
-            }
-        })
-    },[Player])
     
-    useMemo(() => {
-        return getTopPlayerData.filter((obj: any) => {
-            if (obj.BET_OUTCOME === "Bet Won") {
-                win_bet_counter += 1;
-            }
-            if (obj.BET_OUTCOME === "Bet Lost") {
-                lost_bet_counter += 1;
-            }
-        })
-    },[Player])
-    
+    const Results = useMemo(() => getResults(data, Player),[Player])
+    console.log(Results)
 
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
@@ -68,20 +48,13 @@ const GetWinRateTopWinner = ({Player}: Props) => {
     };
 
 
-    const Results = [
-        // {name: 'Total bets', value: total_bet_counter},
-        {name: 'Bets Won', value: win_bet_counter},
-        {name: 'Bets Lost', value: lost_bet_counter},
-    ]
-
-
     return (
 
         <div className={style.cont}>
             <h4>Player <strong>{Player}</strong> Bets Status</h4>
 
             <p><strong>Player&nbsp;</strong> {Player} &nbsp;have made total
-                <strong> {total_bet_counter}</strong> bets</p>
+                <strong> {Results[0].value}</strong> bets</p>
 
             <PieChart
                 width={400}
@@ -96,7 +69,7 @@ const GetWinRateTopWinner = ({Player}: Props) => {
                     outerRadius={90}
                 >
                     {Results.map((entry, index) => {
-                        if (index === 1 || index === 2) {
+                        if (index === 2 || index === 3) {
                             return <Cell key={`cell-${index}`} fill="#f3f6f9"/>;
                         }
                         return <Cell key={`cell-${index}`} fill="green"/>;
@@ -104,7 +77,7 @@ const GetWinRateTopWinner = ({Player}: Props) => {
                     <Label
                         content={
                             <CustomLabel
-                                betsWon={Results[0].value}
+                                betsWon={Results[1].value}
                             />}
                         position="center"
                     />
