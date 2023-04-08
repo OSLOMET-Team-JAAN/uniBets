@@ -121,7 +121,8 @@ const GetBetsWinRateTopWinners = ({ myTop}: Props) => {
                         >
                             <Label
                                 value="Player"
-                                offset={-10} position="insideBottom"/>
+                                offset={-10} 
+                                position="insideBottom"/>
                         </XAxis>
                         <Tooltip
                             offset={20}

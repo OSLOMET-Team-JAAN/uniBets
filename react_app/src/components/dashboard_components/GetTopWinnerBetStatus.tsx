@@ -1,32 +1,38 @@
-﻿import React from 'react';
+﻿import React, {useMemo} from 'react';
 import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/PieStyle.module.css';
 
 interface Props {
-    topWinner: number
+    Player: number
 }
 
-const GetWinRateTopWinner = ({topWinner}: Props) => {
+const GetWinRateTopWinner = ({Player}: Props) => {
     const {data}: any = useCSV();
 
     let total_bet_counter = 0;
     let win_bet_counter = 0;
     let lost_bet_counter = 0;
-    const getTopWinnerData = data.filter((obj: any) => {
-        if (obj.Player_no === topWinner) {
-            total_bet_counter += 1
-            return obj.Player_no
-        }
-    })
-    getTopWinnerData.filter((obj: any) => {
-        if (obj.BET_OUTCOME === "Bet Won") {
-            win_bet_counter += 1;
-        }
-        if (obj.BET_OUTCOME === "Bet Lost") {
-            lost_bet_counter += 1;
-        }
-    })
+    const getTopPlayerData = useMemo(() => {
+        return data.filter((obj: any) => {
+            if (obj.Player_no === Player) {
+                total_bet_counter += 1
+                return obj.Player_no
+            }
+        })
+    },[Player])
+    
+    useMemo(() => {
+        return getTopPlayerData.filter((obj: any) => {
+            if (obj.BET_OUTCOME === "Bet Won") {
+                win_bet_counter += 1;
+            }
+            if (obj.BET_OUTCOME === "Bet Lost") {
+                lost_bet_counter += 1;
+            }
+        })
+    },[Player])
+    
 
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
@@ -72,9 +78,9 @@ const GetWinRateTopWinner = ({topWinner}: Props) => {
     return (
 
         <div className={style.cont}>
-            <h4>Player <strong>{topWinner}</strong> Bets Status</h4>
+            <h4>Player <strong>{Player}</strong> Bets Status</h4>
 
-            <p><strong>Player&nbsp;</strong> {topWinner} &nbsp;have made total
+            <p><strong>Player&nbsp;</strong> {Player} &nbsp;have made total
                 <strong> {total_bet_counter}</strong> bets</p>
 
             <PieChart

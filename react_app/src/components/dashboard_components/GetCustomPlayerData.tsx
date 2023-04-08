@@ -5,14 +5,14 @@ import st from '../../styles/layout/TopWinner.module.css';
 
 
 interface Props{
-    topWinner: number
+    Player: number
 }
 
-const GetCustomPlayerData = ({topWinner}: Props) => {
+const GetCustomPlayerData = ({Player}: Props) => {
     const {data, headers}:any = useCSV();
 
     const getTopWinnerData = data.filter((obj: any) => {
-        if(obj.Player_no === topWinner){
+        if(obj.Player_no === Player){
             return obj
         }
     })
@@ -21,7 +21,7 @@ const GetCustomPlayerData = ({topWinner}: Props) => {
     return (
 
         <div className={st.tabl }>
-            <h4>PLAYER <strong>{topWinner}</strong> BETS DATA</h4>
+            <h4>PLAYER <strong>{Player}</strong> BETS DATA</h4>
            <MyTable  
                columns={headers} 
                rows={getTopWinnerData}/>

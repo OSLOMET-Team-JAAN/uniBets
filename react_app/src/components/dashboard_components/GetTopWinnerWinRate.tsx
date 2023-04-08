@@ -1,33 +1,20 @@
-﻿import React from 'react';
+﻿import React, {useMemo} from 'react';
 import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/PieStyle.module.css';
+import {getResults, getWinRate} from "../../utils/assistFunctions";
 
 interface Props {
-    topWinner: number
+    Player: number
 }
 
-const GetTopWinnerWinRate = ({topWinner}: Props) => {
+const GetTopWinnerWinRate = ({Player}: Props) => {
     const {data}: any = useCSV();
 
-    let total_bet_counter = 0;
-    let win_bet_counter = 0;
-    let lost_bet_counter = 0;
-    const getTopWinnerData = data.filter((obj: any) => {
-        if (obj.Player_no === topWinner) {
-            total_bet_counter += 1
-            return obj.Player_no
-        }
-    })
-    getTopWinnerData.filter((obj: any) => {
-        if (obj.BET_OUTCOME === "Bet Won") {
-            win_bet_counter += 1;
-        }
-        if (obj.BET_OUTCOME === "Bet Lost") {
-            lost_bet_counter += 1;
-        }
-    })
-
+    const Results = useMemo(() => getResults(data, Player), [Player]);
+    const WinRate = useMemo(() => getWinRate(data, Player),[Player]);
+    
+    
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
         const {cx, cy} = viewBox;
@@ -61,22 +48,9 @@ const GetTopWinnerWinRate = ({topWinner}: Props) => {
         );
     };
 
-
-    const Results = [
-        // {name: 'Total bets', value: total_bet_counter},
-        {name: 'Bets Won', value: win_bet_counter},
-        {name: 'Bets Lost', value: lost_bet_counter},
-    ]
-
-    const WinRate = [
-        {name: 'Win Rate', value: Math.round((win_bet_counter / total_bet_counter) * 100)},
-        {name: 'Lost Rate', value: Math.round((lost_bet_counter / total_bet_counter) * 100)},
-    ]
-
-
     return (
         <div className={style.cont}>
-            <h4>Player <strong>{topWinner}</strong> Win Rate</h4>
+            <h4>Player <strong>{Player}</strong> Win Rate</h4>
 
             <PieChart
                 width={400}

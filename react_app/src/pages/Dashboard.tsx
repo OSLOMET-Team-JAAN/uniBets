@@ -109,11 +109,18 @@ const Dashboard = () => {
                         <div className={st.bets}>
         
                             {playerNo ?
-                                <GetTopWinnerBetStatus topWinner={playerNo}/> : <h3>NO PLAYER DATA</h3>
+                                <GetTopWinnerBetStatus Player={playerNo}/> : <h3>NO PLAYER DATA</h3>
                             }
         
                             {playerNo ?
-                                <GetTopWinnerWinRate topWinner={playerNo}/>
+                                <GetTopWinnerWinRate Player={playerNo}/>
+                                :
+                                <h3>NO PLAYER DATA</h3>
+                            }
+                        </div>
+                        <div>
+                            {playerNo ?
+                                <GetDatesRages Player={playerNo}/>
                                 :
                                 <h3>NO PLAYER DATA</h3>
                             }
@@ -128,11 +135,10 @@ const Dashboard = () => {
                         </div>
                         <div>
                             {playerNo ?
-                                <GetCustomPlayerData topWinner={playerNo}
+                                <GetCustomPlayerData Player={playerNo}
                                 /> :
                                 <h3>NO PLAYER DATA</h3>
                             }
-                            <GetDatesRages/>
                         </div>
                     </>}
             </ErrorBoundary>

@@ -136,6 +136,65 @@ export function getTop(data: any, top: number): ICSVdata[] {
     )
 }
 
+// GET CUSTOM PLAYER's DATA
+export function getPlayerData(data: ICSVdata[], Player: number){
+    let total_bet_counter = 0;
+    let win_bet_counter = 0;
+    let lost_bet_counter = 0;
+    const getTopWinnerData = data.filter((obj: any) => {
+        if (obj.Player_no === Player) {
+            total_bet_counter += 1
+            return obj.Player_no
+        }
+    })
+    getTopWinnerData.filter((obj: any) => {
+        if (obj.BET_OUTCOME === "Bet Won") {
+            win_bet_counter += 1;
+        }
+        if (obj.BET_OUTCOME === "Bet Lost") {
+            lost_bet_counter += 1;
+        }
+    })
+    
+    return {
+        Player: Player,
+        Bets_Total: total_bet_counter,
+        Bets_Won: win_bet_counter,
+        Bets_lost: lost_bet_counter,
+        Win_Rate: Math.round((win_bet_counter / total_bet_counter) * 100),
+        Lost_Rate: Math.round((lost_bet_counter / total_bet_counter) * 100),
+    }
+}
+
+export const getResultsTotal = (data: ICSVdata[], Player: number) => {
+    const playerData: any = getPlayerData(data, Player);
+    return {
+        Player: Player,
+        Bets_Total: playerData.Bets_Total,
+        Bets_Won: playerData.Bets_Won,
+        Bets_lost: playerData.Bets_lost,
+        Win_Rate: Math.round((playerData.Bets_Won / playerData.Bets_Total) * 100),
+        Lost_Rate: Math.round((playerData.Bets_lost / playerData.Bets_Total) * 100),
+    }
+}
+
+export const getResults = (data: ICSVdata[], Player: number) => {
+    const playerData: any = getPlayerData(data, Player);
+    return [
+        // {name: 'Total bets', value: total_bet_counter},
+        {name: 'Bets Won', value: playerData.Bets_Won},
+        {name: 'Bets Lost', value: playerData.Bets_lost},
+    ]
+}
+
+export const getWinRate = (data: ICSVdata[], Player: number) => {
+    const playerData: any = getPlayerData(data, Player);
+    return [
+        {name: 'Win Rate', value: Math.round((playerData.Bets_Won / playerData.Bets_Total) * 100)},
+        {name: 'Lost Rate', value: Math.round((playerData.Bets_lost / playerData.Bets_Total) * 100)},
+    ]
+}
+
 
 // https://bobbyhadz.com/blog/typescript-element-implicitly-has-any-type-expression
 
