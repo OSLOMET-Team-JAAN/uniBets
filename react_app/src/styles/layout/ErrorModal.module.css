@@ -29,5 +29,10 @@
 }
 
 .modal__content.active {
-    transform: scale(1);
+    transform: scale(0.8);
+}
+
+img {
+    width: 50vw;
+    height: auto;
 }

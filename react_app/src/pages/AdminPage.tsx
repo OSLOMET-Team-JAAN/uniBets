@@ -20,10 +20,10 @@ import {ICSVdata} from "../models/ICSVdata";
 import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
+import InfoModal from "../components/UI/modals/InfoModal";
 
 const allowedFileTypes: string = "text/csv";
 const AdminPage = () => {
-
 
         //----------------------LIST OF STATES ----------------------------------
         //State 1_ This state to represent style change of drag area
@@ -52,6 +52,8 @@ const AdminPage = () => {
         const [showButton, setShowButton] = useState(false);
         //State 10_ to show fetching data process
         const [isLoading, setIsLoading] = useState(false);
+        const [isInfoModalVisible, setInfoModalVisible] = useState(false);
+        
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
         const resetAll = () => {
@@ -139,7 +141,14 @@ const AdminPage = () => {
                         })
                         .catch((error) => setMyError(error))
                         .finally(() =>
-                            alert("Data is saved successfully to database!")
+                            <InfoModal visible={isInfoModalVisible} setVisible={setInfoModalVisible} >
+                                <div style={{color: "red"}}>
+                                    <p>Data is saved successfully to database!</p>
+                                </div>
+                                <MyButton onClick={() => {
+                                    setInfoModalVisible(false);
+                                }}>Close</MyButton>
+                            </InfoModal>
                         )
                 }
                 setIsLoading(false)
@@ -169,7 +178,8 @@ const AdminPage = () => {
                         //setHeadersToStore('headers', headers)
                         //setHeaders(getStoredHeaders('headers'))
                         setHeaders(headers)
-                        alert("Data fetched Successfully");
+                        setInfoModalVisible(true);
+                        //alert("Data fetched Successfully");
                         setShowContent(true)
                         setShowButton(true)
                     }
@@ -240,20 +250,21 @@ const AdminPage = () => {
                                         header: true,
                                         //dynamicTyping: true, //numbers, boolean will not become strings
                                         complete: function (csvData) {
-                                            setDataToStore('csv', csvData.data)
+                                            setDataToStore('csv', csvData.data);
                                             // Extracting headers from all objects in a List and
-                                            const headers = getHeaders(csvData.data)
-                                            setHeadersToStore('headers', headers)
-                                            setData(getStoredData('csv'))
-                                            setHeaders(getStoredHeaders('headers'))
-                                            setShowContent(false)
-                                            setShowButton(true)
+                                            const headers = getHeaders(csvData.data);
+                                            setHeadersToStore('headers', headers);
+                                            setData(getStoredData('csv'));
+                                            setHeaders(getStoredHeaders('headers'));
+                                            setShowContent(false);
+                                            setShowButton(true);
                                         }
                                     });
                                 })
-                                setIsLoading(false)
-                                setModalVisible(true)
-                                window.alert("CSV file was uploaded successfully!")
+                                setIsLoading(false);
+                                setModalVisible(true);
+                                setInfoModalVisible(true);
+                                //alert("CSV file was uploaded successfully!")
                             }}
                         >
                             DRAG FILES HERE
@@ -315,6 +326,16 @@ const AdminPage = () => {
                                     setModalVisible(false)
                                 }}>Close</MyButton>
                             </ErrorModal>}
+                        {isInfoModalVisible &&
+                            <InfoModal visible={isInfoModalVisible} setVisible={setInfoModalVisible} >
+                                <div style={{color: "red"}}>
+                                    <p>Operation completed successfully!</p>
+                                </div>
+                                <MyButton onClick={() => {
+                                    setInfoModalVisible(false);
+                                }}>Close</MyButton>
+                            </InfoModal>
+                        }
                     </div>
                     <div>
                         {isLoading && !myError
