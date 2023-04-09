@@ -6,7 +6,7 @@ import {getTop, sortRows} from "../../utils/assistFunctions";
 
 
 type Props = {
-    myTop: number
+    myTop: number | string
 }
 
 const GetBetsWinRateTopWinners = ({ myTop}: Props) => {

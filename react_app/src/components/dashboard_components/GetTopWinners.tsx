@@ -6,7 +6,7 @@ import st from '../../styles/layout/GetTopWinners.module.css';
 
 type Props = {
     sortedData: ICSVdata[],
-    myTop: number
+    myTop: number | string
 }
 
 const GetTop10Winners = ({sortedData, myTop}: Props) => {
@@ -39,7 +39,6 @@ const GetTop10Winners = ({sortedData, myTop}: Props) => {
     return (
         <>
             <div className={st.cont}>
-
                 <h4>TOP <strong>{myTop}</strong> WINNERS</h4>
                 <ResponsiveContainer
                     height={300}

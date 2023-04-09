@@ -2,12 +2,12 @@ import React, {useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
-import {getBetWon, getHeaders, getTop, isNumber, sortRows} from "../utils/assistFunctions";
+import {getBetWon, getHeaders, getTop, sortRows} from "../utils/assistFunctions";
 import GetTopWinnerBetStatus from "../components/dashboard_components/GetTopWinnerBetStatus";
 import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinnerWinRate";
 import GetCustomPlayerData from "../components/dashboard_components/GetCustomPlayerData";
 import MyInput from "../components/UI/input/MyInput";
-import GetDatesRages from "../components/dashboard_components/GetDatesRages";
+import GetDatesIntervals from "../components/dashboard_components/GetDatesIntervals";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useCSV from "../hooks/useCSV";
@@ -22,7 +22,7 @@ import {ICSVdata} from "../models/ICSVdata";
 const Dashboard = () => {
     const {data, setData, setHeaders}: any = useCSV();
     const [playerNo, setPlayerNo] = useState<number | string>(0 || '')
-    const [myTop, setMyTop] = useState(10 || '');
+    const [myTop, setMyTop] = useState<number | string>(10 || '');
     const [isLoading, setIsLoading] = useState(false);
     const [myError, setMyError] = useState("");
     
@@ -34,8 +34,7 @@ const Dashboard = () => {
     
     useEffect(() => {
         if (localStorage.getItem('csv') === null){
-            handleGetData().then()
-            
+            handleGetData().then()            
         }        
     },[]);
 
@@ -84,8 +83,7 @@ const Dashboard = () => {
         }else {
             return setMyTop(item)
         }
-    }
-    
+    }  
     
 
     return (
@@ -140,15 +138,16 @@ const Dashboard = () => {
                         </div>
                         <div>
                             {playerNo ?
-                                <GetDatesRages 
+                                <GetDatesIntervals 
                                     Player={playerNo}/>
                                 :
                                 <h3>NO PLAYER DATA</h3>
                             }
                         </div>
                         <div>
-                            {myTop ? <GetBetsWinRateTopWinners
-                                myTop={myTop}
+                            {myTop ? 
+                                <GetBetsWinRateTopWinners
+                                    myTop={myTop}
                             /> : <h3>NO DATA</h3>}
                         </div>
                         <div style={{display: "block", margin: 20}}>

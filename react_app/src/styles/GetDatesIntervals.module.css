@@ -1,0 +1,21 @@
+﻿.cont {
+    border-radius: 0.50rem;
+    display: block;
+    padding: 25px;
+    margin: 8px auto 8px auto;
+    width: 900px;
+    height: auto;
+    box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
+    background: white;
+}
+
+.cont2 {
+    border-radius: 0.50rem;
+    display: block;
+    padding: 25px;
+    margin: 8px auto 8px auto;
+    width: 900px;
+    height: auto;
+    box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
+    background: white;
+}

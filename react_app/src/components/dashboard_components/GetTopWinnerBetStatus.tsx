@@ -13,7 +13,6 @@ const GetWinRateTopWinner = ({Player}: Props) => {
 
     console.log(data)
     const Results = useMemo(() => getResults(data, Player),[Player])
-    console.log(Results)
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
         const {cx, cy} = viewBox;

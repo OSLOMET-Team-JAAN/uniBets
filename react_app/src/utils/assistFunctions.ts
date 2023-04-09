@@ -130,7 +130,7 @@ export function getBetWon(data: any): ICSVdata[] {
 }
 
 // Get Top data
-export function getTop(data: any, top: number): ICSVdata[] {
+export function getTop(data: any, top: number | string): ICSVdata[] {
     return data.slice(0, top).map((item: any) =>
         item
     )

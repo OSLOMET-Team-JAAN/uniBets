@@ -1,6 +1,7 @@
-﻿import React, {useMemo, useState} from 'react';
+﻿import React, {useMemo} from 'react';
 import useCSV from "../../hooks/useCSV";
 import {Pie, PieChart,} from 'recharts';
+import st from '../../styles/GetDatesIntervals.module.css';
 
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 //This component will check for date-time ranges
 //It can help us to suppose if there any bot was used or not
-const GetDatesRages = ({Player}: Props) => {
+const GetDatesIntervals = ({Player}: Props) => {
     const {data}: any = useCSV();
     
     const reformatPlayerData = () => {
@@ -57,7 +58,7 @@ const GetDatesRages = ({Player}: Props) => {
     return (
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
-                <>
+                <div className={st.cont}>
                     <h4>Player <strong>{Player}</strong> Bet Setting Time Intervals &lsaquo; 60 sec (sec)</h4>
                     <PieChart
                         width={300}
@@ -74,15 +75,17 @@ const GetDatesRages = ({Player}: Props) => {
                             label
                         />
                     </PieChart>
-                </>
+                </div>
                 :
-                <h4>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 60 sec</h4>
+                <div className={st.cont2}>
+                    <h4 style={{color: "red"}}>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 60 sec</h4>
+                </div>
             }
             
         </>
     );
 };
 
-export default GetDatesRages;
+export default GetDatesIntervals;
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse
