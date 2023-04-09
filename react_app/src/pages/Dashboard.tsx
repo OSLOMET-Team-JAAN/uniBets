@@ -120,15 +120,16 @@ const Dashboard = () => {
                         </div>
                         <div>
                             {playerNo ?
-                                <GetDatesRages Player={playerNo}/>
+                                <GetDatesRages 
+                                    Player={playerNo}/>
                                 :
                                 <h3>NO PLAYER DATA</h3>
                             }
                         </div>
                         <div>
-                            <GetBetsWinRateTopWinners
+                            {myTop ? <GetBetsWinRateTopWinners
                                 myTop={myTop}
-                            />
+                            /> : <h3>NO DATA</h3>}
                         </div>
                         <div style={{display: "block", margin: 20}}>
                             <GetOddsOutliers/>

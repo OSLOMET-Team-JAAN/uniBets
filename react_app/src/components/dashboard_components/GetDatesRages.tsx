@@ -1,6 +1,6 @@
-﻿import React, {useMemo} from 'react';
+﻿import React, {useMemo, useState} from 'react';
 import useCSV from "../../hooks/useCSV";
-import {PieChart, Pie, Label,} from 'recharts';
+import {Pie, PieChart,} from 'recharts';
 
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 //This component will check for date-time ranges
 //It can help us to suppose if there any bot was used or not
 const GetDatesRages = ({Player}: Props) => {
-    console.log(Player)
     const {data}: any = useCSV();
     
     const reformatPlayerData = () => {
@@ -22,7 +21,7 @@ const GetDatesRages = ({Player}: Props) => {
         
         const getBetPlacedDates = getPlayerData.map((obj: any) => {
             return obj.BET_PLACED_DATE
-        });
+        }).sort();
         
         const getEventName = getPlayerData.map((obj: any) => {
             return obj.EVENT_NAME;
@@ -54,7 +53,7 @@ const GetDatesRages = ({Player}: Props) => {
     }
     
     useMemo(() => {reformatPlayerData()},[Player])
-
+    
     return (
         <>
             <h4>Player <strong>{Player}</strong> Bet Setting Time Ranges (sec)</h4>
