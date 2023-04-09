@@ -5,7 +5,7 @@ import style from '../../styles/layout/PieStyle.module.css';
 import {getResults, getWinRate} from "../../utils/assistFunctions";
 
 interface Props {
-    Player: number
+    Player: number | string
 }
 
 const GetTopWinnerWinRate = ({Player}: Props) => {

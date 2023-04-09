@@ -5,14 +5,15 @@ import style from '../../styles/layout/PieStyle.module.css';
 import {getResults} from "../../utils/assistFunctions";
 
 interface Props {
-    Player: number
+    Player: number | string
 }
 
 const GetWinRateTopWinner = ({Player}: Props) => {
     const {data}: any = useCSV();
-    
-    const Results = useMemo(() => getResults(data, Player),[Player])
 
+    console.log(data)
+    const Results = useMemo(() => getResults(data, Player),[Player])
+    console.log(Results)
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
         const {cx, cy} = viewBox;

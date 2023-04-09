@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
-import {getBetWon, getHeaders, getTop, sortRows} from "../utils/assistFunctions";
+import {getBetWon, getHeaders, getTop, isNumber, sortRows} from "../utils/assistFunctions";
 import GetTopWinnerBetStatus from "../components/dashboard_components/GetTopWinnerBetStatus";
 import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinnerWinRate";
 import GetCustomPlayerData from "../components/dashboard_components/GetCustomPlayerData";
@@ -14,15 +14,15 @@ import useCSV from "../hooks/useCSV";
 import st from '../styles/pages/DashboardStyle.module.css';
 import GetBetsWinRateTopWinners from "../components/dashboard_components/GetBetsWinRateTopWinners";
 import {ClearContext, getAll} from "../services/data.service";
+import Loader from "../components/UI/loader/Loader";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
-import Loader from "../components/UI/loader/Loader";
 
 
 const Dashboard = () => {
     const {data, setData, setHeaders}: any = useCSV();
-    const [playerNo, setPlayerNo] = useState(0);
-    const [myTop, setMyTop] = useState(10);
+    const [playerNo, setPlayerNo] = useState<number | string>(0 || '')
+    const [myTop, setMyTop] = useState(10 || '');
     const [isLoading, setIsLoading] = useState(false);
     const [myError, setMyError] = useState("");
     
@@ -35,8 +35,9 @@ const Dashboard = () => {
     useEffect(() => {
         if (localStorage.getItem('csv') === null){
             handleGetData().then()
+            
         }        
-    },[])
+    },[]);
 
     useEffect(() => {
         getTop(sortedData, 1).map((key: any) => {
@@ -67,7 +68,25 @@ const Dashboard = () => {
                 setMyError('Data Fetching is Failed');
             }
         }
+    }  
+    
+    function verifyPlayer(item: any){
+        if (localStorage.getItem('csv') === null){
+            return setPlayerNo(Number(item));
+        }else {
+            return setPlayerNo(item)
+        }        
     }
+
+    function verifyMyTop(item: any){
+        if (localStorage.getItem('csv') === null){
+            return setMyTop(Number(item));
+        }else {
+            return setMyTop(item)
+        }
+    }
+    
+    
 
     return (
         <>
@@ -84,7 +103,7 @@ const Dashboard = () => {
                                 name="Player_no"
                                 placeholder="Enter Player_no here.."
                                 autoComplete="off"
-                                onChange={(e) => setPlayerNo(e.target.value)}
+                                onChange={(e) => verifyPlayer(e.target.value)}
                             />
                             <label htmlFor="Top_element">TOP customization: </label>
                             <MyInput
@@ -92,7 +111,7 @@ const Dashboard = () => {
                                 name="Top_element"
                                 placeholder="Enter Your TOP here.."
                                 autoComplete="off"
-                                onChange={(e) => setMyTop(e.target.value)}
+                                onChange={(e) => verifyMyTop(e.target.value)}
                             />
                         </div>
                         <br/>
@@ -109,7 +128,8 @@ const Dashboard = () => {
                         <div className={st.bets}>
         
                             {playerNo ?
-                                <GetTopWinnerBetStatus Player={playerNo}/> : <h3>NO PLAYER DATA</h3>
+                                <GetTopWinnerBetStatus Player={playerNo}/> 
+                                : <h3>NO PLAYER DATA</h3>
                             }
         
                             {playerNo ?

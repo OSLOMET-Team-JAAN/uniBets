@@ -4,7 +4,7 @@ import {Pie, PieChart,} from 'recharts';
 
 
 interface Props {
-    Player: number
+    Player: number | string
 }
 
 //This component will check for date-time ranges
@@ -56,25 +56,28 @@ const GetDatesRages = ({Player}: Props) => {
     
     return (
         <>
-            <h4>Player <strong>{Player}</strong> Bet Setting Time Ranges (sec)</h4>
-            <p>Presented only what is &lsaquo; 60 sec</p>
-            <p>NB! If there is no any data: it's mean there is only 1 bet or &rsaquo; 60 sec</p>
-            
-            <PieChart 
-                width={300} 
-                height={300}>
-                <Pie
-                    dataKey="sec"
-                    startAngle={180}
-                    endAngle={0}
-                    data={reformatPlayerData()[0].Time_Range}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={90}
-                    fill="teal"
-                    label
-                />
-            </PieChart>
+            {reformatPlayerData()[0].Time_Range != 0 ? 
+                <>
+                    <h4>Player <strong>{Player}</strong> Bet Setting Time Intervals &lsaquo; 60 sec (sec)</h4>
+                    <PieChart
+                        width={300}
+                        height={300}>
+                        <Pie
+                            dataKey="sec"
+                            startAngle={180}
+                            endAngle={0}
+                            data={reformatPlayerData()[0].Time_Range}
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={90}
+                            fill="teal"
+                            label
+                        />
+                    </PieChart>
+                </>
+                :
+                <h4>NB! If there is no any data: it's mean there is only 1 bet or &rsaquo; 60 sec</h4>
+            }
             
         </>
     );

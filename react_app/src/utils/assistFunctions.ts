@@ -137,7 +137,7 @@ export function getTop(data: any, top: number): ICSVdata[] {
 }
 
 // GET CUSTOM PLAYER's DATA
-export function getPlayerData(data: ICSVdata[], Player: number){
+export function getPlayerData(data: ICSVdata[], Player: number | string){
     let total_bet_counter = 0;
     let win_bet_counter = 0;
     let lost_bet_counter = 0;
@@ -166,7 +166,7 @@ export function getPlayerData(data: ICSVdata[], Player: number){
     }
 }
 
-export const getResultsTotal = (data: ICSVdata[], Player: number) => {
+export const getResultsTotal = (data: ICSVdata[], Player: number | string) => {
     const playerData: any = getPlayerData(data, Player);
     return {
         Player: Player,
@@ -178,7 +178,7 @@ export const getResultsTotal = (data: ICSVdata[], Player: number) => {
     }
 }
 
-export const getResults = (data: ICSVdata[], Player: number) => {
+export const getResults = (data: ICSVdata[], Player: number | string) => {
     const playerData: any = getPlayerData(data, Player);
     return [
         {name: 'Total bets', value: playerData.Bets_Total},
@@ -187,7 +187,7 @@ export const getResults = (data: ICSVdata[], Player: number) => {
     ]
 }
 
-export const getWinRate = (data: ICSVdata[], Player: number) => {
+export const getWinRate = (data: ICSVdata[], Player: number | string) => {
     const playerData: any = getPlayerData(data, Player);
     return [
         {name: 'Win Rate', value: Math.round((playerData.Bets_Won / playerData.Bets_Total) * 100)},

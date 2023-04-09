@@ -5,7 +5,7 @@ import st from '../../styles/layout/TopWinner.module.css';
 
 
 interface Props{
-    Player: number
+    Player: number | string
 }
 
 const GetCustomPlayerData = ({Player}: Props) => {

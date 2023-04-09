@@ -30,6 +30,7 @@ const AdminPage = () => {
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
         const {data, setData, headers, setHeaders}: any = useCSV();
+        console.log(data)
         // let data = getStoredData('csv');
         // let headers = getStoredHeaders('headers');
         //const {data, headers}: any = useCSV()
