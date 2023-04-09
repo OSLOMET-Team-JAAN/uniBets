@@ -76,7 +76,7 @@ const GetDatesRages = ({Player}: Props) => {
                     </PieChart>
                 </>
                 :
-                <h4>NB! If there is no any data: it's mean there is only 1 bet or &rsaquo; 60 sec</h4>
+                <h4>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 60 sec</h4>
             }
             
         </>
