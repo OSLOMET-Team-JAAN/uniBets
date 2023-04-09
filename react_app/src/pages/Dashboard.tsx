@@ -17,6 +17,8 @@ import {ClearContext, getAll} from "../services/data.service";
 import Loader from "../components/UI/loader/Loader";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
+import InfoModal from "../components/UI/modals/InfoModal";
+import MyButton from "../components/UI/buttons/MyButton";
 
 
 const Dashboard = () => {
@@ -24,8 +26,8 @@ const Dashboard = () => {
     const [playerNo, setPlayerNo] = useState<number | string>(0 || '')
     const [myTop, setMyTop] = useState<number | string>(10 || '');
     const [isLoading, setIsLoading] = useState(false);
-    const [myError, setMyError] = useState("");
-    
+    const [isVisible, setIsVisible] = useState(false);
+    const [myError, setMyError] = useState("");    
     
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
@@ -51,10 +53,11 @@ const Dashboard = () => {
             setMyError('')
             await getAll().then(
                 (response: AxiosResponse<Array<ICSVdata>>) => {
-                    setData(response?.data)
-                    const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
-                    setHeaders(headers)
-                    alert("Not found data from CSV file! \nData is fetched from database successfully");
+                    setData(response?.data);
+                    const headers = getHeaders(response?.data).filter((item) => item !== 'Id');
+                    setHeaders(headers);
+                    setIsVisible(true)
+                    //alert("Not found data from CSV file! \nData is fetched from database successfully");
                 }
             );
             setIsLoading(false)
@@ -91,76 +94,93 @@ const Dashboard = () => {
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
                     ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
-                    : <>
-                        <h3>Welcome To ADMIN Dashboard</h3>
-                        <br/>        
-                        <div className={st.cont}>
-                            <label htmlFor="Player_no">Player no: </label>
-                            <MyInput
-                                value={playerNo}
-                                name="Player_no"
-                                placeholder="Enter Player_no here.."
-                                autoComplete="off"
-                                onChange={(e) => verifyPlayer(e.target.value)}
-                            />
-                            <label htmlFor="Top_element">TOP customization: </label>
-                            <MyInput
-                                value={myTop}
-                                name="Top_element"
-                                placeholder="Enter Your TOP here.."
-                                autoComplete="off"
-                                onChange={(e) => verifyMyTop(e.target.value)}
-                            />
-                        </div>
-                        <br/>
-                        <GetTopWinner/>
-                        <div>
-                            <GetTopWinners
-                                sortedData={sortedData}
-                                myTop={myTop}
-                            />
-                        </div>
-                        <div>
+                    : <> {isVisible ?
+                                <InfoModal
+                                    visible={isVisible}
+                                    setVisible={setIsVisible}
+                                >
+                                    <div style={{color: "red"}}>
+                                        <p>Not found data from CSV file! Data is fetched from database successfully</p>
+                                    </div>
+                                    <MyButton onClick={() => {
+                                        setIsVisible(false)
+                                    }}>Close</MyButton>
+                                </InfoModal> 
+                        :
+                        <>
+                            <h3>Welcome To ADMIN Dashboard</h3>
                             <br/>
-                        </div>
-                        <div className={st.bets}>
-        
-                            {playerNo ?
-                                <GetTopWinnerBetStatus Player={playerNo}/> 
-                                : <h3>NO PLAYER DATA</h3>
-                            }
-        
-                            {playerNo ?
-                                <GetTopWinnerWinRate Player={playerNo}/>
-                                :
-                                <h3>NO PLAYER DATA</h3>
-                            }
-                        </div>
-                        <div>
-                            {playerNo ?
-                                <GetDatesIntervals 
-                                    Player={playerNo}/>
-                                :
-                                <h3>NO PLAYER DATA</h3>
-                            }
-                        </div>
-                        <div>
-                            {myTop ? 
-                                <GetBetsWinRateTopWinners
+                            <div className={st.cont}>
+                                <label htmlFor="Player_no">Player no: </label>
+                                <MyInput
+                                    value={playerNo}
+                                    name="Player_no"
+                                    placeholder="Enter Player_no here.."
+                                    autoComplete="off"
+                                    onChange={(e) => verifyPlayer(e.target.value)}
+                                />
+                                <label htmlFor="Top_element">TOP customization: </label>
+                                <MyInput
+                                    value={myTop}
+                                    name="Top_element"
+                                    placeholder="Enter Your TOP here.."
+                                    autoComplete="off"
+                                    onChange={(e) => verifyMyTop(e.target.value)}
+                                />
+                            </div>
+                            <br/>
+                            <GetTopWinner/>
+                            <div>
+                                <GetTopWinners
+                                    sortedData={sortedData}
                                     myTop={myTop}
-                            /> : <h3>NO DATA</h3>}
-                        </div>
-                        <div style={{display: "block", margin: 20}}>
-                            <GetOddsOutliers/>
-                        </div>
-                        <div>
-                            {playerNo ?
-                                <GetCustomPlayerData Player={playerNo}
-                                /> :
-                                <h3>NO PLAYER DATA</h3>
-                            }
-                        </div>
-                    </>}
+                                />
+                            </div>
+                            <div>
+                                <br/>
+                            </div>
+                            <div className={st.bets}>
+
+                                {playerNo ?
+                                    <GetTopWinnerBetStatus Player={playerNo}/>
+                                    : <h3>NO PLAYER DATA</h3>
+                                }
+
+                                {playerNo ?
+                                    <GetTopWinnerWinRate Player={playerNo}/>
+                                    :
+                                    <h3>NO PLAYER DATA</h3>
+                                }
+                            </div>
+                            <div>
+                                {playerNo ?
+                                    <GetDatesIntervals
+                                        Player={playerNo}/>
+                                    :
+                                    <h3>NO PLAYER DATA</h3>
+                                }
+                            </div>
+                            <div>
+                                {myTop ?
+                                    <GetBetsWinRateTopWinners
+                                        myTop={myTop}
+                                    /> : <h3>NO DATA</h3>}
+                            </div>
+                            <div style={{display: "block", margin: 20}}>
+                                <GetOddsOutliers/>
+                            </div>
+                            <div>
+                                {playerNo ?
+                                    <GetCustomPlayerData Player={playerNo}
+                                    /> :
+                                    <h3>NO PLAYER DATA</h3>
+                                }
+                            </div>
+                        </>
+                    }                        
+                        </>
+                    
+                }
             </ErrorBoundary>
         </>
     );
