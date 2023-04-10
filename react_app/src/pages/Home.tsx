@@ -3,11 +3,14 @@ import Fraud from "../styles/images/image1.jpg"
 import {Button} from "@material-tailwind/react";
 import {Link} from "react-router-dom";
 import {ArrowLongRightIcon} from "@heroicons/react/24/outline";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Home = () => {
 
     return (
         <>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             <br/>
             <div>
                 <div className={st.Home.typo}>
@@ -68,6 +71,7 @@ const Home = () => {
                     </Button>
                 </div>
             </div>
+            </ErrorBoundary>
         </>
     )
 }

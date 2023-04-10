@@ -9,7 +9,6 @@ import styles from "../styles/pages/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
 import {
     ClearContext,
-    getAll,
     getStoredData,
     getStoredHeaders,
     setDataToStore,
@@ -17,12 +16,15 @@ import {
     upload,
 } from "../services/data.service";
 import {ICSVdata} from "../models/ICSVdata";
-import {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
 import InfoModal from "../components/UI/modals/InfoModal";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from '../errors/ErrorBoundary';
+import MyFileUpload from "../components/UI/input/MyFileUpload";
+import MyDragDropArea from "../components/UI/input/MyDragDropArea";
 
-const allowedFileTypes: string = "text/csv";
+
 const AdminPage = () => {
 
         //----------------------LIST OF STATES ----------------------------------
@@ -30,29 +32,26 @@ const AdminPage = () => {
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
         const {data, setData, headers, setHeaders}: any = useCSV();
-        console.log(data)
-        // let data = getStoredData('csv');
-        // let headers = getStoredHeaders('headers');
-        //const {data, headers}: any = useCSV()
-        //State 4_ Used context to hold headers (keys) from data (objects) received from csv files.
-        //const csvHeaders = getStoredHeaders('headers')
-        //This state will control errors
+        //State 3_ This state will store error messages
         const [myError, setMyError] = useState("");
-        //State 5_ This state will store the file uploaded by the user
+        //State 4_ This state will store the file uploaded by the user
         const [file, setFile] = useState<File | string>("");
         // //State _ This state will store file names to represent the list of uploaded files
         // const [fileName, setFileName] = useState([]);
-        //State 6_ This state will show / hide results
+        //State 5_ This state will show / hide results
         const [showContent, setShowContent] = useState(false);
-        //State 7_ To avoid typescript complains about ref usage in <input> we'll create our own which will return a reference.
+        //State 6_ To avoid typescript complains about ref usage in <input> we'll create our own which will return a reference.
         const aRef = useRef<HTMLInputElement>(null);
-        //State 8_ The state below will control modal windows
+        //State 7_ The state below will control modal windows
         const [modalVisible, setModalVisible] = useState(true);
-        // State 9_ For showing and hiding buttons
+        // State 8_ For showing and hiding buttons
         const [showButton, setShowButton] = useState(false);
-        //State 10_ to show fetching data process
+        //State 9_ to show fetching data process
         const [isLoading, setIsLoading] = useState(false);
+        //State 10_ activates / deactivates info Modal window
         const [isInfoModalVisible, setInfoModalVisible] = useState(false);
+        //State 11_ stores messages for Info modal window
+        const [infoMessage, setInfoMessage] = useState('');
         
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
@@ -63,38 +62,12 @@ const AdminPage = () => {
             setShowButton(false)
             setMyError("No data found. Please upload the file or fetch data from database.")
             setModalVisible(true)
+            setInfoModalVisible(false);
+            setInfoMessage('');
         }
 
 
 //-------------------------------------------------------------------------
-//This function will be called when file will be uploaded by input from user
-        const handleFiles = (e: any) => {
-            try {
-                setIsLoading(true)
-                setMyError("");
-                // Check if user has entered the file
-                if (e.target.files.length) {
-                    let uploadedFiles = e.target.files[0];
-
-                    // Checking file's extension and throwing error if incorrect
-                    const extension: string = uploadedFiles?.type.split("/")[1].toString();
-
-                    if (!allowedFileTypes.includes(extension)) {
-                        setMyError("Uploading Error! File type is not CSV! Please choose CSV file!");
-                        aRef.current!.value = '';
-                        setModalVisible(true);
-                        return false;
-                    }
-                    // If input type is correct set the state
-                    setFile(uploadedFiles);
-                    setShowButton(true)
-                    setIsLoading(false)
-                }
-            } catch (error: any) {
-                throw new Error(error)
-            }
-        };
-
 
         const handleUploadedFile = () => {
             ClearContext()
@@ -129,11 +102,7 @@ const AdminPage = () => {
                     const promises = data.map(async (obj: ICSVdata) => {
                         const array: Array<ICSVdata> = [];
                         array.push(obj)
-                        return await upload(array).then((response) => {
-                                //TO BE REMOVED BEFORE PRODUCTION
-                                console.log(response.data)
-                            }
-                        )
+                        return await upload(array).then()
                     });
                     Promise.allSettled(promises)
                         .then((response) => {
@@ -164,135 +133,48 @@ const AdminPage = () => {
         }
 
 
-        const handleGetData = async () => {
-            try {
-                ClearContext();
-                setIsLoading(true)
-                setMyError('')
-                await getAll().then(
-                    (response: AxiosResponse<Array<ICSVdata>>) => {
-                        // setDataToStore('csv',response?.data)
-                        //setData(getStoredData('csv'))
-                        setData(response?.data)
-                        const headers = getHeaders(response?.data).filter((item) => item !== 'Id')
-                        //setHeadersToStore('headers', headers)
-                        //setHeaders(getStoredHeaders('headers'))
-                        setHeaders(headers)
-                        setInfoModalVisible(true);
-                        //alert("Data fetched Successfully");
-                        setShowContent(true)
-                        setShowButton(true)
-                    }
-                );
-                setIsLoading(false)
-            } catch (err: any) {
-                if (!err.response) {
-                    setMyError(err.response);
-                } else if (err.response?.status === 401) {
-                    setMyError('Unauthorized');
-                } else {
-                    setMyError('Data Fetching is Failed');
-                }
-            }
-        }
-
-
 //-------------------------------------------------------------------------
 
         return (
             <>
-
-                <div>
+                <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                     <div className={styles.cont}>
                         <h2 className={styles.csvImport}> Import of CSV file</h2>
-                        <div
-                            className={`${styles.dragAndDropArea} ${indicator ? styles.dragHover : styles.dragFree}`}
-                            //Used conditioning (ternary) expression for dragging styling
-
-                            onDragEnter={() => {
-                                setIndicator(true)
-                            }}
-                            onDragLeave={() => {
-                                setIndicator(false)
-                            }}
-                            onDragOver={(event) => {
-                                event.preventDefault()
-                            }}
-                            onDrop={(event) => {
-                                event.preventDefault();
-                                setIndicator(false)
-                                console.log("dataTransfer file" + event.dataTransfer.files)
-                                setIsLoading(true)
-                                // Check if user has entered the file
-                                if (event.dataTransfer.files.length) {
-                                    const uploadedFile = event.dataTransfer.files && event.dataTransfer.files[0];
-                                    setFile(uploadedFile)
-                                    // Checking file's extension and throwing error if incorrect
-                                    const extension = uploadedFile?.type.split("/")[1].toString();
-                                    console.log(extension)
-                                    if (!allowedFileTypes.includes(extension)) {
-                                        setMyError("Please input a csv file");
-                                        return;
-                                    }
-                                    setMyError("")
-                                    ClearContext();
-                                }
-
-                                //Creating an array of files which will hold all csv files uploaded
-                                //It was an idea to upload several files. But later it was dropped.
-                                //We are keeping array anyway for future, in case if it will require to implement it later
-                                Array.from(event.dataTransfer.files)
-                                    .filter((file) => file.type === allowedFileTypes).forEach(async (file) => {
-                                    // we need to make async for promise resolving
-                                    const text = await file.text();
-                                    Papa.parse(text, {
-                                        delimiter: ',',
-                                        header: true,
-                                        //dynamicTyping: true, //numbers, boolean will not become strings
-                                        complete: function (csvData) {
-                                            setDataToStore('csv', csvData.data);
-                                            // Extracting headers from all objects in a List and
-                                            const headers = getHeaders(csvData.data);
-                                            setHeadersToStore('headers', headers);
-                                            setData(getStoredData('csv'));
-                                            setHeaders(getStoredHeaders('headers'));
-                                            setShowContent(false);
-                                            setShowButton(true);
-                                        }
-                                    });
-                                })
-                                setIsLoading(false);
-                                setModalVisible(true);
-                                setInfoModalVisible(true);
-                                //alert("CSV file was uploaded successfully!")
-                            }}
+                        <MyDragDropArea 
+                            indicator={indicator} 
+                            setIndicator={setIndicator} 
+                            setIsLoading={setIsLoading} 
+                            setFile={setFile} 
+                            setMyError={setMyError} 
+                            setData={setData} 
+                            setHeaders={setHeaders} 
+                            setShowContent={setShowContent} 
+                            setShowButton={setShowButton} 
+                            setModalVisible={setModalVisible} 
+                            setInfoModalVisible={setInfoModalVisible} 
+                            setInfoMessage={setInfoMessage} 
                         >
                             DRAG FILES HERE
-                        </div>
+                        </MyDragDropArea>
                         <div>
-                            <label htmlFor="fileUpload" style={{display: "block"}} title="Import CSV file">
-                            </label>
-                            <input
-                                //We cannot use <MyInput /> - Function components cannot be given refs.
-                                //Possible to use React.forwardRef with useImperativeHandle hook to expose some functions or states
-                                // from component to the parent component,
-                                // but...
-                                className={styles.buttons}
-                                key="fileUploadKey"
-                                onChange={handleFiles}
-                                id="fileUpload"
-                                name="file"
-                                type="File"
-                                ref={aRef} //for ref was a trouble to use <MyInput/>
-                            />
-                            <MyButton
-                                onClick={handleGetData}
-                            >
-                                Fetch from DB
-                            </MyButton>
+                            <MyFileUpload 
+                                setIsLoading={setIsLoading} 
+                                setMyError={setMyError} 
+                                setData={setData} 
+                                setHeaders={setHeaders} 
+                                setModalVisible={setModalVisible} 
+                                setInfoModalVisible={setInfoModalVisible} 
+                                setInfoMessage={setInfoMessage} 
+                                setShowContent={setShowContent} 
+                                setShowButton={setShowButton} 
+                                setFile={setFile} 
+                                aRef={aRef}
+                            > Fetch from DB                                
+                            </MyFileUpload>
                         </div>
                         {showButton &&
-                            <DangerButton onClick={() => {
+                            <DangerButton 
+                                onClick={() => {
                                 aRef.current!.value = '';
                                 resetAll()
                             }}
@@ -329,7 +211,7 @@ const AdminPage = () => {
                         {isInfoModalVisible &&
                             <InfoModal visible={isInfoModalVisible} setVisible={setInfoModalVisible} >
                                 <div style={{color: "red"}}>
-                                    <p>Operation completed successfully!</p>
+                                    <p>{infoMessage}</p>
                                 </div>
                                 <MyButton onClick={() => {
                                     setInfoModalVisible(false);
@@ -359,7 +241,7 @@ const AdminPage = () => {
                             </>
                         }
                     </div>
-                </div>
+                </ErrorBoundary>
             </>
         );
 

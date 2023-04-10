@@ -10,9 +10,9 @@ interface Props {
 
 const GetWinRateTopWinner = ({Player}: Props) => {
     const {data}: any = useCSV();
-
-    console.log(data)
-    const Results = useMemo(() => getResults(data, Player),[Player])
+    
+    const Results = useMemo(() => getResults(data, Player),[Player]);
+    
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
         const {cx, cy} = viewBox;

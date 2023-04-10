@@ -1,6 +1,8 @@
 import {Fragment, useState} from "react";
 import {Accordion, AccordionBody, AccordionHeader,} from "@material-tailwind/react";
 import styles from "../styles/pages/Faq.module.css";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 export default function Example() {
     const [open, setOpen] = useState<number>(0);
@@ -15,7 +17,9 @@ export default function Example() {
     };
 
     return (
-        <section className={styles.section}>
+        <>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <section className={styles.section}>
             <div className={styles["container"]}>
                 <div>
                     <h2>
@@ -180,12 +184,11 @@ export default function Example() {
                             </AccordionBody>
                         </div>
                     </Accordion>
-
-
                 </Fragment>
             </div>
         </section>
-
+            </ErrorBoundary>
+        </>
     );
 
 }

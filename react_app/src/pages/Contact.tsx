@@ -62,6 +62,8 @@ import {FC, useEffect, useRef, useState} from "react";
 import {Button} from "@material-tailwind/react";
 import styles from "../styles/pages/Contact.module.css";
 import EventBus from "../common/EventBus";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Contact: FC = () => {
     const userRef = useRef<HTMLInputElement>(null);
@@ -89,6 +91,7 @@ const Contact: FC = () => {
 
     return (
         <>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             <br/>
             <section className={styles.section}>
                 <div className={styles.container}>
@@ -154,6 +157,7 @@ const Contact: FC = () => {
                     </form>
                 </div>
             </section>
+            </ ErrorBoundary>
         </>
     );
 }

@@ -6,6 +6,8 @@ import st from '../styles/pages/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import MyButton from "../components/UI/buttons/DangerButton";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import { ErrorBoundary } from "../errors/ErrorBoundary";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{4,20}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
@@ -100,6 +102,7 @@ const RegistrationPage = () => {
 
     return (
         <>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             {success ? (
                 <section>
                     <h1>Registered successfully!</h1>
@@ -229,6 +232,7 @@ const RegistrationPage = () => {
                     </p>
                 </section>
             )}
+            </ErrorBoundary>
         </>
     )
 }

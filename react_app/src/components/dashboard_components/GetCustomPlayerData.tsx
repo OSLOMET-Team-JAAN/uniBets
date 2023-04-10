@@ -20,7 +20,7 @@ const GetCustomPlayerData = ({Player}: Props) => {
     
     return (
 
-        <div className={st.tabl }>
+        <div className={st.table }>
             <h4>PLAYER <strong>{Player}</strong> BETS DATA</h4>
            <MyTable  
                columns={headers} 

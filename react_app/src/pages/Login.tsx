@@ -4,6 +4,8 @@ import {Link, useLocation, useNavigate} from 'react-router-dom';
 import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Login = () => {
     const {auth, setAuth}: any = useAuth();
@@ -63,47 +65,50 @@ const Login = () => {
 
     return (
 
-        <section>
-            <p
-                ref={errRef}
-                className={errMsg ? st.errmsg : st.offscreen}
-                aria-live="assertive">{errMsg}</p>
-            <h2>Please Login</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
-                    required
-                />
-
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required
-                />
-                <br/>
-                <button
-                    className={st.button}>
-                    <span>Sign In</span>
-                </button>
-            </form>
-            <p>
-                New User ? Need to Sign Up
-                <br/>
-                <span className={st.line}>
-                    <Link to="/register"> <span>Sign Up</span> </Link>
-                </span>
-            </p>
-        </section>
-
+        <>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+                <section>
+                    <p
+                        ref={errRef}
+                        className={errMsg ? st.errmsg : st.offscreen}
+                        aria-live="assertive">{errMsg}</p>
+                    <h2>Please Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="username">Username:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                            required
+                        />
+        
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        />
+                        <br/>
+                        <button
+                            className={st.button}>
+                            <span>Sign In</span>
+                        </button>
+                    </form>
+                    <p>
+                        New User ? Need to Sign Up
+                        <br/>
+                        <span className={st.line}>
+                            <Link to="/register"> <span>Sign Up</span> </Link>
+                        </span>
+                    </p>
+                </section>
+            </ErrorBoundary>
+            </>
     )
 }
 

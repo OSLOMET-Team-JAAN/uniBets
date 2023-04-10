@@ -6,6 +6,8 @@ import {ICSVdata} from "../models/ICSVdata";
 import {getHeaders} from "../utils/assistFunctions";
 import Loader from "../components/UI/loader/Loader";
 import st from '../styles/pages/UserPageStyle.module.css';
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const UserPage = () => {
     const [data, setData] = useState<Array<ICSVdata>>([]);
@@ -44,26 +46,28 @@ const UserPage = () => {
 
     return (
         <>
-            <h2>WELCOME TO USER PAGE</h2>
-            <br/>
-            <div className={st.cont}>
+            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+                <h2>WELCOME TO USER PAGE</h2>
                 <br/>
-                {myError && <h5 style={{color: "red"}}>{myError}</h5>}
-                {isLoading && !myError
-                    ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
-                    : <>
-                        {data
-                            ? <MyTable
-                                columns={headers}
-                                rows={data}
-                            />
-                            : <p style={{textAlign: "center", color: "teal"}}
-                            >No data!
-                            </p>
-                        }
-                    </>
-                }
-            </div>
+                <div className={st.cont}>
+                    <br/>
+                    {myError && <h5 style={{color: "red"}}>{myError}</h5>}
+                    {isLoading && !myError
+                        ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
+                        : <>
+                            {data
+                                ? <MyTable
+                                    columns={headers}
+                                    rows={data}
+                                />
+                                : <p style={{textAlign: "center", color: "teal"}}
+                                >No data!
+                                </p>
+                            }
+                        </>
+                    }
+                </div>
+            </ErrorBoundary>
         </>
     );
 };
