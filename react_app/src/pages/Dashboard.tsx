@@ -22,7 +22,10 @@ import MyButton from "../components/UI/buttons/MyButton";
 
 
 const Dashboard = () => {
+    //using data from context
     const {data, setData, setHeaders}: any = useCSV();
+    //This state is to store player_no, we have player_no fetched from
+    //database as number and from localStorage as string - we need state for both <number | string>
     const [playerNo, setPlayerNo] = useState<number | string>(0 || '')
     const [myTop, setMyTop] = useState<number | string>(10 || '');
     const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +38,7 @@ const Dashboard = () => {
         sortRows(getBetWon(data), sortSettings), [data, sortSettings]);
     
     useEffect(() => {
-        if (localStorage.getItem('csv') === null){
+        if ( Object.keys(data).length === 0){
             handleGetData().then()            
         }        
     },[]);
@@ -56,8 +59,7 @@ const Dashboard = () => {
                     setData(response?.data);
                     const headers = getHeaders(response?.data).filter((item) => item !== 'Id');
                     setHeaders(headers);
-                    setIsVisible(true)
-                    //alert("Not found data from CSV file! \nData is fetched from database successfully");
+                    setIsVisible(true);
                 }
             );
             setIsLoading(false)
