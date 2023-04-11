@@ -62,11 +62,12 @@ const MyFileUpload = ({setIsLoading, setMyError, setData, setHeaders, setModalVi
                 (response: AxiosResponse<Array<ICSVdata>>) => {
                     setData(response?.data);
                     const headers = getHeaders(response?.data).filter((item) => item !== 'Id');
-                    setHeaders(headers)
+                    setHeaders(headers);
+                    setIsLoading(true)
                     setInfoModalVisible(true);
-                    setInfoMessage('Data fetched from database successfully!')
-                    setShowContent(true)
-                    setShowButton(true)
+                    setInfoMessage('Data fetched from database successfully!');
+                    setShowContent(true);
+                    setShowButton(true);
                 }
             );
             setIsLoading(true)

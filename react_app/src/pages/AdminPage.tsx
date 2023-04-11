@@ -207,38 +207,42 @@ const AdminPage = () => {
                                 <MyButton onClick={() => {
                                     setModalVisible(false)
                                 }}>Close</MyButton>
-                            </ErrorModal>}
-                        {isInfoModalVisible &&
-                            <InfoModal visible={isInfoModalVisible} setVisible={setInfoModalVisible} >
-                                <div style={{color: "red"}}>
-                                    <p>{infoMessage}</p>
-                                </div>
-                                <MyButton onClick={() => {
-                                    setInfoModalVisible(false);
-                                }}>Close</MyButton>
-                            </InfoModal>
+                            </ErrorModal>
                         }
+                        
                     </div>
                     <div>
-                        {isLoading && !myError
+                        {isLoading && !myError && !isInfoModalVisible
                             ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
-                            : <>
-                                {showContent
-                                    ?
-                                    <div>
-                                        <MyTable
-                                            columns={headers}
-                                            rows={data}
-                                        />
-                                    </div>
-                                    :
-                                    <div>
-                                        <h1 style={{textAlign: "center", color: "#686767"}}>
-                                            No data!
-                                        </h1>
-                                    </div>
-                                }
-                            </>
+                            : 
+                            <>{isInfoModalVisible &&
+                                    <InfoModal
+                                        visible={isInfoModalVisible}
+                                        setVisible={setInfoModalVisible} >
+                                        <div style={{color: "red"}}>
+                                            <p>{infoMessage}</p>
+                                        </div>
+                                        <MyButton onClick={() => {
+                                            setInfoModalVisible(false);
+                                            setIsLoading(false);
+                                        }}>Close</MyButton>
+                                    </InfoModal>
+                                }</> 
+                        }
+                        {!isInfoModalVisible && !myError && showContent
+                            ?
+                            <div>
+                                <MyTable
+                                    columns={headers}
+                                    rows={data}
+                                />
+                            </div>
+                            :
+                            <div>
+                                <h1 style={{textAlign: "center", color: "#686767"}}>
+                                    No data!
+                                </h1>
+                            </div>
                         }
                     </div>
                 </ErrorBoundary>
