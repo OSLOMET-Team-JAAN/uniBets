@@ -70,7 +70,7 @@ const Login = () => {
                 <section>
                     <p
                         ref={errRef}
-                        className={errMsg ? st.errmsg : st.offscreen}
+                        className={errMsg ? st.errMsg : st.offscreen}
                         aria-live="assertive">{errMsg}</p>
                     <h2>Please Login</h2>
                     <form onSubmit={handleSubmit}>
