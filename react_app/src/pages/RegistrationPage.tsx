@@ -66,7 +66,7 @@ const RegistrationPage = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // if button enabled with JS hack
+        // validation
         if (!v1 || !v2 || !v3) {
             setErrMsg("Invalid Entry");
             return;
@@ -115,13 +115,22 @@ const RegistrationPage = () => {
                 </section>
             ) : (
                 <section>
-                    <p ref={errRef} className={errMsg ? st.errmsg : st.offscreen} aria-live="assertive">{errMsg}</p>
+                    {/* -- ALERT paragraph with "assertive" ARIA - Indicates that updates to the region have the 
+                    highest priority and should be presented to the user immediately. ----*/}
+                    <p ref={errRef} 
+                       className={errMsg ? st.errMsg : st.offscreen} 
+                       aria-live="assertive">{errMsg}</p>
                     <h2>Create an Account</h2>
                     <form onSubmit={handleSubmit}>
+                        {/* -- USERNAME FORM FILED ----------------------------------*/}
                         <label htmlFor="username">
                             Username:
-                            <FontAwesomeIcon icon={faCheck} className={validName ? st.valid : st.hide}/>
-                            <FontAwesomeIcon icon={faTimes} className={validName || !username ? st.hide : st.invalid}/>
+                            <FontAwesomeIcon 
+                                icon={faCheck} 
+                                className={validName ? st.valid : st.hide}/>
+                            <FontAwesomeIcon 
+                                icon={faTimes} 
+                                className={validName || !username ? st.hide : st.invalid}/>
                         </label>
                         <input
                             type="text"
@@ -133,22 +142,27 @@ const RegistrationPage = () => {
                             value={username}
                             required
                             aria-invalid={validName ? "false" : "true"}
-                            aria-describedby="uidnote"
+                            aria-describedby="username_label"
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
                         />
-                        <p id="uidnote"
+                        <p id="username_label"
                            className={userFocus && username && !validName ? st.instructions : st.offscreen}>
-                            <FontAwesomeIcon icon={faInfoCircle}/>
-                            4 to 24 characters.<br/>
+                            <FontAwesomeIcon 
+                                icon={faInfoCircle}/>
+                            4 to 20 characters.<br/>
                             Must begin with a letter.<br/>
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
-
+                        {/* -- EMAIL FORM FILED ----------------------------------------*/}
                         <label htmlFor="email">
                             Email:
-                            <FontAwesomeIcon icon={faCheck} className={validEmail ? st.valid : st.hide}/>
-                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? st.hide : st.invalid}/>
+                            <FontAwesomeIcon 
+                                icon={faCheck} 
+                                className={validEmail ? st.valid : st.hide}/>
+                            <FontAwesomeIcon 
+                                icon={faTimes} 
+                                className={validEmail || !email ? st.hide : st.invalid}/>
                         </label>
                         <input
                             type="text"
@@ -159,47 +173,60 @@ const RegistrationPage = () => {
                             value={email}
                             required
                             aria-invalid={validEmail ? "false" : "true"}
-                            aria-describedby="uidnote"
+                            aria-describedby="email_label"
                             onFocus={() => setEmailFocus(true)}
                             onBlur={() => setEmailFocus(false)}
                         />
-                        <p id="uidnote" className={emailFocus && email && !validEmail ? st.instructions : st.offscreen}>
-                            <FontAwesomeIcon icon={faInfoCircle}/>
+                        <p id="email_label" 
+                           className={emailFocus && email && !validEmail ? st.instructions : st.offscreen}>
+                            <FontAwesomeIcon 
+                                icon={faInfoCircle}/>
                             Please enter valid email.<br/>.
                         </p>
-
-
+                        
+                        {/* -- PASSWORD FORM FILED ---------------------------------*/}
                         <label htmlFor="password">
                             Password:
-                            <FontAwesomeIcon icon={faCheck} className={validPwd ? st.valid : st.hide}/>
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !password ? st.hide : st.invalid}/>
+                            <FontAwesomeIcon 
+                                icon={faCheck} 
+                                className={validPwd ? st.valid : st.hide}/>
+                            <FontAwesomeIcon 
+                                icon={faTimes} 
+                                className={validPwd || !password ? st.hide : st.invalid}/>
                         </label>
                         <input
                             type="password"
                             id="password"
-                            placeholder="8 to 24 Characters, include Upper and Low letters. "
+                            placeholder="8 to 16 Characters, include Upper and Low letters. "
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
                             aria-invalid={validPwd ? "false" : "true"}
-                            aria-describedby="pwdnote"
+                            aria-describedby="pwd_label"
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
                         />
-                        <p id="pwdnote" className={pwdFocus && !validPwd ? st.instructions : st.offscreen}>
+                        <p id="pwd_label" 
+                           className={pwdFocus && !validPwd ? st.instructions : st.offscreen}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
-                            8 to 24 characters.<br/>
+                            8 to 16 characters.<br/>
                             Must include uppercase and lowercase letters, a number and a special character.<br/>
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span
-                            aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span
-                            aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                            Allowed special characters: 
+                            <span aria-label="exclamation mark">!</span> 
+                            <span aria-label="at symbol">@</span> 
+                            <span aria-label="hashtag">#</span> 
+                            <span aria-label="dollar sign">$</span> 
+                            <span aria-label="percent">%</span>
                         </p>
-
 
                         <label htmlFor="confirm_pwd">
                             Confirm Password:
-                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? st.valid : st.hide}/>
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? st.hide : st.invalid}/>
+                            <FontAwesomeIcon 
+                                icon={faCheck} 
+                                className={validMatch && matchPwd ? st.valid : st.hide}/>
+                            <FontAwesomeIcon 
+                                icon={faTimes} 
+                                className={validMatch || !matchPwd ? st.hide : st.invalid}/>
                         </label>
                         <input
                             type="password"
@@ -208,12 +235,14 @@ const RegistrationPage = () => {
                             value={matchPwd}
                             required
                             aria-invalid={validMatch ? "false" : "true"}
-                            aria-describedby="confirmnote"
+                            aria-describedby="confirm_pwd_label"
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
-                        <p id="confirmnote" className={matchFocus && !validMatch ? st.instructions : st.offscreen}>
-                            <FontAwesomeIcon icon={faInfoCircle}/>
+                        <p id="confirm_pwd_label" 
+                           className={matchFocus && !validMatch ? st.instructions : st.offscreen}>
+                            <FontAwesomeIcon 
+                                icon={faInfoCircle}/>
                             Must match the first password input field.
                         </p>
                         <br/>
@@ -240,6 +269,8 @@ const RegistrationPage = () => {
 export default RegistrationPage;
 
 //https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Register.js
+//https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions (aria-live="assertive")
 //https://developer-mozilla-org.translate.goog/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid
+//https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label
 //https://ru.reactjs.org/docs/hooks-reference.html#useref

@@ -26,7 +26,7 @@ const Dashboard = () => {
     const {data, setData, setHeaders}: any = useCSV();
     //This state is to store player_no, we have player_no fetched from
     //database as number and from localStorage as string - we need state for both <number | string>
-    const [playerNo, setPlayerNo] = useState<number | string>(0 || '')
+    const [playerNo, setPlayerNo] = useState<number | string>(0 || '');
     const [myTop, setMyTop] = useState<number | string>(10 || '');
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
