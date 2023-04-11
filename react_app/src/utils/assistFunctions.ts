@@ -168,14 +168,14 @@ export function getPlayerData(data: ICSVdata[], Player: number | string){
 
 export const getResultsTotal = (data: ICSVdata[], Player: number | string) => {
     const playerData: any = getPlayerData(data, Player);
-    return {
+    return [{
         Player: Player,
         Bets_Total: playerData.Bets_Total,
         Bets_Won: playerData.Bets_Won,
         Bets_lost: playerData.Bets_lost,
         Win_Rate: Math.round((playerData.Bets_Won / playerData.Bets_Total) * 100),
         Lost_Rate: Math.round((playerData.Bets_lost / playerData.Bets_Total) * 100),
-    }
+    }]
 }
 
 export const getResults = (data: ICSVdata[], Player: number | string) => {
