@@ -59,7 +59,7 @@ const GetDatesIntervals = ({Player}: Props) => {
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
                 <div className={st.cont}>
-                    <h4>Player <strong>{Player}</strong> Bet Setting Time Intervals &lsaquo; 60 sec (sec)</h4>
+                    <h4>PLAYER <strong>{Player}</strong> BET SETTING TIME INTERVALS &lsaquo; 60 sec (sec)</h4>
                     <PieChart
                         width={300}
                         height={300}>

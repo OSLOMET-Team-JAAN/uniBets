@@ -2,7 +2,7 @@ import React, {useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import {Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import useCSV from "../../hooks/useCSV";
-import st from '../../styles/layout/GetTopWinners.module.css';
+import st from '../../styles/GetOddsOutliers.module.css';
 
 const GetOddsOutliers = () => {
     const {data}: any = useCSV();
@@ -32,12 +32,12 @@ const GetOddsOutliers = () => {
                 height={300}
             >
                 <LineChart
-                    width={500}
+                    width={600}
                     data={getOutliers}
                     margin={{
                         top: 5,
-                        right: 30,
-                        left: 20,
+                        right: 20,
+                        left: 0,
                         bottom: 5,
                     }}
                 >

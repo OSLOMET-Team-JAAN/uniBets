@@ -26,8 +26,8 @@ const Dashboard = () => {
     const {data, setData, setHeaders}: any = useCSV();
     //This state is to store player_no, we have player_no fetched from
     //database as number and from localStorage as string - we need state for both <number | string>
-    const [playerNo, setPlayerNo] = useState<number | string>(0 || '');
-    const [myTop, setMyTop] = useState<number | string>(10 || '');
+    const [playerNo, setPlayerNo] = useState<string>( '');
+    const [myTop, setMyTop] = useState<string>('10');
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [myError, setMyError] = useState("");    
@@ -76,20 +76,19 @@ const Dashboard = () => {
     
     function verifyPlayer(item: any){
         if (localStorage.getItem('csv') === null){
-            return setPlayerNo(Number(item));
+            return setPlayerNo(item.toString());
         }else {
-            return setPlayerNo(item)
+            return setPlayerNo(item.toString())
         }        
     }
 
     function verifyMyTop(item: any){
         if (localStorage.getItem('csv') === null){
-            return setMyTop(Number(item));
+            return setMyTop((item));
         }else {
             return setMyTop(item)
         }
-    }  
-    
+    }
 
     return (
         <>
@@ -130,52 +129,58 @@ const Dashboard = () => {
                                     onChange={(e) => verifyMyTop(e.target.value)}
                                 />
                             </div>
-                            <br/>
-                            <GetTopWinner/>
+                            <div className={st.cont}>
+                                <GetTopWinner/>
+                            </div>
                             <div>
-                                <GetTopWinners
+                                {myTop ?
+                                    <GetTopWinners
                                     sortedData={sortedData}
-                                    myTop={myTop}
+                                    myTop={parseInt(myTop)}
                                 />
+                                : <h4 className={st.errCont}>NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>
+                                }
                             </div>
-                            <div>
-                                <br/>
-                            </div>
-                            <div className={st.bets}>
-
+                            <div 
+                                className={st.bets}>
                                 {playerNo ?
-                                    <GetTopWinnerBetStatus Player={playerNo}/>
-                                    : <h3>NO PLAYER DATA</h3>
+                                    <GetTopWinnerBetStatus 
+                                        Player={parseInt(playerNo)}/>
+                                    : <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
 
                                 {playerNo ?
-                                    <GetTopWinnerWinRate Player={playerNo}/>
+                                    <GetTopWinnerWinRate 
+                                        Player={parseInt(playerNo)}/>
                                     :
-                                    <h3>NO PLAYER DATA</h3>
+                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
                             <div>
                                 {playerNo ?
                                     <GetDatesIntervals
-                                        Player={playerNo}/>
+                                        Player={parseInt(playerNo)}/>
                                     :
-                                    <h3>NO PLAYER DATA</h3>
+                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
                             <div>
-                                {myTop ?
+                                {myTop 
+                                    ?
                                     <GetBetsWinRateTopWinners
-                                        myTop={myTop}
-                                    /> : <h3>NO DATA</h3>}
+                                        myTop={parseInt(myTop)}
+                                    /> 
+                                    : <h4 className={st.errCont}>NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>}
                             </div>
-                            <div style={{display: "block", margin: 20}}>
+                            <div>
                                 <GetOddsOutliers/>
                             </div>
                             <div>
                                 {playerNo ?
-                                    <GetCustomPlayerData Player={playerNo}
+                                    <GetCustomPlayerData 
+                                        Player={parseInt(playerNo)}
                                     /> :
-                                    <h3>NO PLAYER DATA</h3>
+                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
                         </>

@@ -1,7 +1,7 @@
 ﻿import React, {useMemo} from 'react';
 import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
-import style from '../../styles/layout/PieStyle.module.css';
+import style from '../../styles/GetTopWinnerBetStatus.module.css';
 import {getResults} from "../../utils/assistFunctions";
 
 interface Props {
@@ -20,24 +20,14 @@ const GetWinRateTopWinner = ({Player}: Props) => {
             <React.Fragment>
                 <text x={cx - 15} y={cy - 5}>
                     <tspan
-                        style={{
-                            fontWeight: 700,
-                            fontSize: "3.5em",
-                            fill: "#2B5CE7",
-                            fontFamily: "Roboto"
-                        }}
+                        className={style.tspan}
                     >
                         {betsWon}
                     </tspan>
                 </text>
                 <text x={cx - 50} y={cy + 15}>
                     <tspan
-                        style={{
-                            fontWeight: 700,
-                            fontSize: "0.8em",
-                            fill: "#A9A9A9",
-                            fontFamily: "Roboto"
-                        }}
+                        className={style.tspan2}
                     >
                         TOTAL BETS WON
                     </tspan>
@@ -50,7 +40,7 @@ const GetWinRateTopWinner = ({Player}: Props) => {
     return (
 
         <div className={style.cont}>
-            <h4>Player <strong>{Player}</strong> Bets Status</h4>
+            <h4>PLAYER <strong>{Player}</strong> BETS STATUS</h4>
 
             <p><strong>Player&nbsp;</strong> {Player} &nbsp;have made total
                 <strong> {Results[0].value}</strong> bets</p>

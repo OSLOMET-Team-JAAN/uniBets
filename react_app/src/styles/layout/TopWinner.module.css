@@ -2,8 +2,7 @@
     display: inline;
     width: 200px;
     margin: 20px;
-    padding: 20px;
-   
+    padding: 20px;   
 }
 .box {
     color:azure;
@@ -20,10 +19,17 @@
     border-radius: 0.50rem;
     width: 900px;
     height: auto;
-    margin: 5px auto 5px auto;
+    margin: 5px auto;
     padding: 20px;
 }
 
 h4{
     display:inline;
+}
+
+@media (max-width: 768px ) {
+    .table{
+        width: 100%;
+        padding: 1rem 0;
+    }
 }

@@ -6,26 +6,48 @@ import st from '../../styles/layout/GetTopWinners.module.css';
 
 type Props = {
     sortedData: ICSVdata[],
-    myTop: number | string
+    myTop: number
 }
 
-const GetTop10Winners = ({sortedData, myTop}: Props) => {
+const GetTopWinners = ({sortedData, myTop}: Props) => {
     const getTopData = getTop(sortedData, myTop)
 
     const CustomTooltip = ({
                                active,
                                payload,
-                               label,
                            }: TooltipProps<number, string>) => {
         if (active && payload && payload.length) {
             return (
                 <React.Fragment>
                     {payload.map((pld, index) => (
-                        <div className={st.customTooltip} key={index}>
-                            <p className="label" key={`label`}>Player_no: <strong>{label}</strong></p>
-                            <p style={{color: "red"}} key={`odd`}>{pld.dataKey}: <strong>{pld.value}</strong></p>
-                            <p style={{color: "gray"}} key={`event`}>Event: <strong>{pld.payload.EVENT_NAME}</strong>
-                            </p>
+                        <div 
+                            className={st.customTooltip} 
+                            key={index}>
+                            <p 
+                                style={{color: "grey"}} 
+                                key={`player`}>
+                                Player_no:
+                                <strong> {pld.payload.Player_no}</strong></p>
+                            <p 
+                                style={{color: "red"}} 
+                                key={`odds`}>
+                                ODD:
+                                <strong> {pld.payload.ODDS}</strong></p>
+                            <p 
+                                style={{color: "grey"}} 
+                                key={`event`}>
+                                Event:
+                                <strong> {pld.payload.EVENT_NAME}</strong></p>
+                            <p 
+                                style={{color: "grey"}} 
+                                key={`league`}>
+                                League:
+                                <strong> {pld.payload.LEAGUE}</strong></p>
+                            <p 
+                                style={{color: "red"}} 
+                                key={`outcome`}>
+                                Bet outcome:
+                                <strong> {pld.payload.BET_OUTCOME}</strong></p>
                         </div>
                     ))}
                 </React.Fragment>
@@ -35,14 +57,13 @@ const GetTop10Winners = ({sortedData, myTop}: Props) => {
         return null;
     };
 
-
     return (
         <>
-            <div className={st.cont}>
+            <div className={ Number.isNaN(myTop) ? st.errCont : st.cont}>
                 <h4>TOP <strong>{myTop}</strong> WINNERS</h4>
                 <ResponsiveContainer
                     height={300}
-                    minWidth={600}
+                    minWidth={500}
                 >
                     <BarChart
                         width={400}
@@ -90,4 +111,4 @@ const GetTop10Winners = ({sortedData, myTop}: Props) => {
     );
 };
 
-export default GetTop10Winners;
+export default GetTopWinners;

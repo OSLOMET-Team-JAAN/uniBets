@@ -91,7 +91,6 @@ const MyTable = ({columns, rows}: Props) => {
                     >
                         Clear Filters
                     </MyButton>
-
                     <MyDropDown
                         defaultValue={`Rows..`}
                         options={[
@@ -104,7 +103,8 @@ const MyTable = ({columns, rows}: Props) => {
                             {value: 100, label: '100'},
                         ]}
                         value={rowsPerPage}
-                        onChange={setRowsPerPage}/>
+                        onChange={setRowsPerPage}
+                    />
 
                 </div>
                 <table>
@@ -122,7 +122,9 @@ const MyTable = ({columns, rows}: Props) => {
                     <tr>
                         {columns.map((column: any, index: number) => {
                             return (
-                                <th key={index} className={styles.sortButton}
+                                <th 
+                                    key={index} 
+                                    className={styles.sortButton}
                                     onClick={() => handleSort(column)}
                                 >{sortButton(column)}
                                 </th>
@@ -132,7 +134,9 @@ const MyTable = ({columns, rows}: Props) => {
                     <tr>
                         {columns.map((column, index: number) => {
                             return (
-                                <th key={`${column}-search`} style={{color: "black"}}>
+                                <th 
+                                    key={`${column}-search`} 
+                                    style={{color: "black"}}>
                                     <MySearch
                                         key={`${index}-search`}
                                         value={column}

@@ -1,0 +1,20 @@
+﻿.table {
+    display: block;
+    box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
+    background: white;
+    border-radius: 0.50rem;
+    width: 900px;
+    height: auto;
+    margin: 5px auto;
+    padding: 20px;
+}
+
+@media (max-width: 768px ) {
+    .table{
+        width: 95%;
+        padding: 1rem 0;
+    }
+    .table h4 {
+        font-size: 1.1rem;
+    }
+}

@@ -39,9 +39,9 @@
         padding: 1rem;
     }
     .errCont{
-        width: 100%;
+        width: 95%;
     }
-    h4 {
+    .cont h4 {
         font-size: 1.1rem;
     }
 }

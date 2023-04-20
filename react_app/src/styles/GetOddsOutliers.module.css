@@ -1,0 +1,21 @@
+﻿.cont {
+    border-radius: 0.50rem;
+    display: block;
+    padding: 25px;
+    margin: 8px auto;
+    width: 900px;
+    height: 500px;
+    box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
+    background: white;
+}
+
+@media (max-width: 768px ) {
+    .cont {
+        width: 95%;
+        height: auto;
+        padding: 1rem 0;
+    }
+    h4 {
+        font-size: 1.1rem;
+    }
+}

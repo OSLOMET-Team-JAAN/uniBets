@@ -1,9 +1,12 @@
 ﻿.cont {
     border-radius: 0.50rem;
-    display: block;
-    padding: 25px;
-    margin: 8px auto 8px auto;
-    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    margin: 8px auto;
+    width: 500px;
     height: auto;
     box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
     background: white;
@@ -13,9 +16,21 @@
     border-radius: 0.50rem;
     display: block;
     padding: 25px;
-    margin: 8px auto 8px auto;
+    margin: 8px auto;
     width: 900px;
     height: auto;
     box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
     background: white;
+}
+
+@media (max-width: 768px ) {
+    .cont{
+        width: 95%
+    }
+    .cont2{
+        width: 95%;
+    }
+    .cont2 h4{
+        font-size: 1.1rem;
+    }
 }

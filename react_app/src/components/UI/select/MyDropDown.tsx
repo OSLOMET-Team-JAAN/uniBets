@@ -2,18 +2,20 @@ import React from 'react';
 import styles from '../../../styles/MyDropDown.module.css';
 
 interface Props {
-    defaultValue: string
-    options: IOption[]
-    value: any
+    defaultValue: string,
+    options: IOption[],
+    value: any,
+    name?: string,
     onChange: (a: any) => void
 }
 
 interface IOption {
-    value: string | number
+    value: any
     label: string
 }
 
 const MyDropDown = ({options, defaultValue, value, onChange}: Props) => {
+    
     return (
         <div>
             <select
@@ -23,14 +25,15 @@ const MyDropDown = ({options, defaultValue, value, onChange}: Props) => {
                 //onChange(event.target.value) - choosing user
                 onChange={event => onChange(event.target.value)}
             >
-                <option value=""
-                        disabled
+                <option 
+                    value=""
+                    disabled
                 >
                     {defaultValue}
                 </option>
-                {options.map(option =>
+                {options.map((option, index) =>
                     <option
-                        key={option.value}
+                        key={index}
                         value={option.value}>
                         {option.label}
                     </option>

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import MyTable from "../table/MyTable";
 import useCSV from "../../hooks/useCSV";
-import st from '../../styles/layout/TopWinner.module.css';
+import st from '../../styles/GetCustomPlayerData.module.css';
 
 
 interface Props{

@@ -14,7 +14,7 @@ const GetTopWinner = () => {
 
     return (
         <div className={style.cont}>
-            <h4> TOP Player Winner Number </h4>
+            <h4> TOP WINNER PLAYER NUMBER </h4>
             <br/>
             <br/>
             <div className={style.box}>
