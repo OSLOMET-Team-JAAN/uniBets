@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {FC} from 'react';
 import {Navigate, Outlet, useLocation} from "react-router-dom";
 import {getCurrentUser} from "./auth.service";
 
@@ -6,7 +6,7 @@ interface Roles {
     allowedRoles: Array<string>
 }
 
-const AuthIsRequire = ({allowedRoles}: Roles) => {
+const AuthIsRequire: FC<Roles> = ({allowedRoles}) => {
     const location = useLocation();
     const user = getCurrentUser()
 

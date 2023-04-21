@@ -1,4 +1,4 @@
-﻿import React, {ReactNode} from 'react';
+﻿import React, {FC, ReactNode} from 'react';
 import styles from "../../../styles/pages/AdminPage.module.css";
 import MyButton from "../buttons/MyButton";
 import {ClearContext, getAll} from "../../../services/data.service";
@@ -23,7 +23,19 @@ interface GET_DATA{
     aRef: any,    
 }
 
-const MyFileUpload = ({setIsLoading, setMyError, setData, setHeaders, setModalVisible, setInfoModalVisible, setInfoMessage, setShowContent, setFile, setShowButton, children, aRef }: GET_DATA) => {
+const MyFileUpload: FC<GET_DATA> = ({
+                                        setIsLoading, 
+                                        setMyError, 
+                                        setData, 
+                                        setHeaders, 
+                                        setModalVisible, 
+                                        setInfoModalVisible, 
+                                        setInfoMessage, 
+                                        setShowContent, 
+                                        setFile, 
+                                        setShowButton, 
+                                        children, 
+                                        aRef }) => {
     const allowedFileTypes: string = "text/csv";
 
     //This function will be called when file will be uploaded by input from user

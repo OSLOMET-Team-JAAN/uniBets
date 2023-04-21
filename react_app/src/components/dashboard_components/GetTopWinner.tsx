@@ -1,11 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/layout/TopWinner.module.css';
 
-const GetTopWinner = () => {
+const GetTopWinner: FC = () => {
     const {data}: any = useCSV();
-
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
     const sortedData = useMemo(() =>

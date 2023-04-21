@@ -1,11 +1,11 @@
-﻿import React from 'react';
+﻿import React, {FC} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import {NavigateFunction} from "react-router";
 import MyButton from "../components/UI/buttons/DangerButton";
 import st from "../styles/pages/Error.module.css";
 
 
-const ErrorBoundaryResponse = ({error}: any) => {
+const ErrorBoundaryResponse: FC = ({error}: any) => {
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";

@@ -5,8 +5,9 @@ import {Link} from "react-router-dom";
 import {ArrowLongRightIcon} from "@heroicons/react/24/outline";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {FC} from "react";
 
-const Home = () => {
+const Home: FC = () => {
 
     return (
         <>

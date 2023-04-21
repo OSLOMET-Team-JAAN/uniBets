@@ -1,4 +1,4 @@
-import {FormEvent, useEffect, useRef, useState} from 'react';
+import {FC, FormEvent, useEffect, useRef, useState} from 'react';
 import useAuth from '../hooks/useAuth';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import st from '../styles/pages/Login.module.css';
@@ -7,7 +7,7 @@ import {NavigateFunction} from "react-router";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
-const Login = () => {
+const Login: FC = () => {
     const {auth, setAuth}: any = useAuth();
 
     const navigate: NavigateFunction = useNavigate();

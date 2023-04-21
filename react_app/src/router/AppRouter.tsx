@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Route, Routes} from "react-router-dom";
 import Layout from "../components/layouts/Layout";
 import NotFound from "../pages/NotFound";
@@ -19,7 +19,7 @@ const ROLES = {
     'Admin': 'ADMIN'
 }
 
-const AppRouter = () => {
+const AppRouter: FC = () => {
 
     return (
         <Routes>

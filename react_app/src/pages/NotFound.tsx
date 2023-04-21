@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from '../styles/pages/NotFound.module.css';
 import {Link} from "react-router-dom";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from '../errors/ErrorBoundary';
 
-const NotFound = () => {
+const NotFound: FC = () => {
 
     return (
             <>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import MyTable from "../components/table/MyTable";
 import {getAll,} from "../services/data.service";
 import {AxiosResponse} from "axios";
@@ -9,7 +9,7 @@ import st from '../styles/pages/UserPageStyle.module.css';
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
-const UserPage = () => {
+const UserPage: FC = () => {
     const [data, setData] = useState<Array<ICSVdata>>([]);
     const [headers, setHeaders] = useState<Array<string>>([]);
     //This state will control errors

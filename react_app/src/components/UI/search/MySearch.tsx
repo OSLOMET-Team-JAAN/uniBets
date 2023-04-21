@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from '../../../styles/MySearch.module.css';
 
 interface IFilter {
@@ -8,7 +8,7 @@ interface IFilter {
     placeholder?: string,
 }
 
-const MySearch = ({value, filters, handleSearch}: IFilter) => {
+const MySearch: FC<IFilter> = ({value, filters, handleSearch}) => {
     return (
         <input
             type="search"

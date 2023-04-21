@@ -1,12 +1,12 @@
-import {createContext, useState} from "react";
+import {createContext, FC, ReactNode, useState} from "react";
 
 const AuthContext = createContext({});
 
 interface Props {
-    children?: any
+    children?: ReactNode;
 }
 
-export const AuthProvider = ({children}: Props) => {
+export const AuthProvider: FC<Props> = ({children}) => {
     const [auth, setAuth] = useState({});
 
     return (

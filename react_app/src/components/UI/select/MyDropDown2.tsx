@@ -1,4 +1,4 @@
-﻿import React, { FC } from 'react';
+﻿import React, {ChangeEvent, FC} from 'react';
 
 type Option = {
     value: {
@@ -16,8 +16,9 @@ type Props = {
 };
 
 const MyDropDown2: FC<Props> = ({ options, defaultValue, onChange }) => {
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = options.find((option) => option.label === e.target.value)?.value;
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = options.find((option) => 
+            option.label === e.target.value)?.value;
         if (selectedValue) {
             onChange(selectedValue);
         }

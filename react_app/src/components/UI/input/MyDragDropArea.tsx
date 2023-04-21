@@ -1,4 +1,4 @@
-﻿import React, {ReactNode} from 'react';
+﻿import React, {FC, ReactNode} from 'react';
 import styles from "../../../styles/pages/AdminPage.module.css";
 import {
     ClearContext,
@@ -28,7 +28,7 @@ interface DRAG_DROP{
 
 const allowedFileTypes: string = "text/csv";
 
-const MyDragDropArea = ({
+const MyDragDropArea: FC<DRAG_DROP> = ({
                             indicator, 
                             setIndicator, 
                             setIsLoading, 
@@ -41,7 +41,7 @@ const MyDragDropArea = ({
                             setInfoMessage, 
                             setInfoModalVisible, 
                             setModalVisible, 
-                            children }: DRAG_DROP) => {
+                            children }) => {
     return (
             <div
                 className={`${styles.dragAndDropArea} ${indicator ? styles.dragHover : styles.dragFree}`}

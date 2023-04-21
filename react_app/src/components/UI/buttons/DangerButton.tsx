@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import st from '../../../styles/layout/DangerButton.module.css';
 
 // classes gives us to receive styles as object properties
@@ -10,7 +10,7 @@ interface Props {
     abbr?: string
 }
 
-const MyButton: React.FC<Props> = ({children, ...props}) => {
+const MyButton: FC<Props> = ({children, ...props}) => {
     return (
         <>
             <button className={st.myDangerBtn} {...props}>

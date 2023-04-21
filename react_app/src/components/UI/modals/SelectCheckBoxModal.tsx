@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import cl from '../../../styles/SelectCheckBoxModal.module.css';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
     children?: any
 }
 
-const SelectCheckBoxModal = ({visible, setVisible, children}: Props) => {
+const SelectCheckBoxModal: FC<Props> = ({visible, setVisible, children}) => {
     return (
         <div className={visible ? [cl.myModalWindow, cl.active].join(' ') : cl.myModalWindow}
              onClick={() => setVisible(false)}>

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
@@ -21,7 +21,7 @@ import InfoModal from "../components/UI/modals/InfoModal";
 import MyButton from "../components/UI/buttons/MyButton";
 
 
-const Dashboard = () => {
+const Dashboard: FC = () => {
     //using data from context
     const {data, setData, setHeaders}: any = useCSV();
     //This state is to store player_no, we have player_no fetched from
@@ -155,8 +155,7 @@ const Dashboard = () => {
                                     :
                                     <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
-                            </div>
-                            <div>
+
                                 {playerNo ?
                                     <GetDatesIntervals
                                         Player={parseInt(playerNo)}/>

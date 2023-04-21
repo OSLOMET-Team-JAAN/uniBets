@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import IPlayer from "../../models/IPlayer";
 import {filterRows, getPageCount, paginateTable, reformatColumnTitles, sortRows,} from "../../utils/assistFunctions";
 import Pagination from "./Pagination";
@@ -14,7 +14,7 @@ type Props = {
     rows: Array<ICSVdata>
 }
 
-const MyTable = ({columns, rows}: Props) => {
+const MyTable: FC<Props> = ({columns, rows}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({});

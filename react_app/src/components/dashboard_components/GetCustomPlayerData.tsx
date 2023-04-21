@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {FC} from 'react';
 import MyTable from "../table/MyTable";
 import useCSV from "../../hooks/useCSV";
 import st from '../../styles/GetCustomPlayerData.module.css';
@@ -8,7 +8,7 @@ interface Props{
     Player: number | string
 }
 
-const GetCustomPlayerData = ({Player}: Props) => {
+const GetCustomPlayerData: FC<Props> = ({Player}) => {
     const {data, headers}:any = useCSV();
 
     const getTopWinnerData = data.filter((obj: any) => {

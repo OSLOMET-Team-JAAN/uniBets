@@ -1,4 +1,4 @@
-﻿import React, {useMemo, useState} from 'react';
+﻿import React, {FC, useMemo, useState} from 'react';
 import {Bar, BarChart, Label, LabelList, ResponsiveContainer, Tooltip, TooltipProps, XAxis} from "recharts";
 import st from "../../styles/GetBetsWinRateTopWinners.module.css";
 import useCSV from "../../hooks/useCSV";
@@ -19,7 +19,7 @@ type Player = {
     LOST_RATE: number;
 };
 
-const GetBetsWinRateTopWinners = ({ myTop}: Props) => {
+const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
     const {data}: any = useCSV();
 
     const getWinnerData = useMemo(() => (Player: number) => {

@@ -18,8 +18,9 @@ h3 {
 
 .bets {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 20px;
 }
 .errCont {
     display: flex;
@@ -45,6 +46,12 @@ h3 {
     }
     h4 {
         font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 1024px ){
+    .bets {
+        grid-template-columns: 1fr 1fr;
     }
 }
  

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {getTop} from "../../utils/assistFunctions";
 import {Bar, BarChart, Label, LabelList, ResponsiveContainer, Tooltip, TooltipProps, XAxis,} from "recharts";
 import {ICSVdata} from "../../models/ICSVdata";
@@ -9,7 +9,7 @@ type Props = {
     myTop: number
 }
 
-const GetTopWinners = ({sortedData, myTop}: Props) => {
+const GetTopWinners: FC<Props> = ({sortedData, myTop}) => {
     const getTopData = getTop(sortedData, myTop)
 
     const CustomTooltip = ({

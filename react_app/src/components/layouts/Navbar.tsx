@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import IUser from "../../models/IUser";
 import EventBus from "../../common/EventBus";
 import {Link} from "react-router-dom";
@@ -6,7 +6,7 @@ import {getCurrentUser, logout} from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import styles from "../../styles/layout/Navbar.module.css";
 
-const Navbar = () => {
+const Navbar: FC = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import cl from '../../styles/Pagination.module.css'
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
     handlePagination: (pageNumber: number) => void;
 }
 
-const Pagination = ({currentPage, totalPages, handlePagination,}: Props) => {
+const Pagination: FC<Props> = ({currentPage, totalPages, handlePagination,}) => {
 
     return (
         <>

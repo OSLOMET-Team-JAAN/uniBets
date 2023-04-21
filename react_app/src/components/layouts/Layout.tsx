@@ -1,6 +1,7 @@
 import {Outlet} from "react-router-dom"
+import {FC} from "react";
 
-const Layout = () => {
+const Layout: FC = () => {
     return (
         <main className="App">
             <Outlet/>

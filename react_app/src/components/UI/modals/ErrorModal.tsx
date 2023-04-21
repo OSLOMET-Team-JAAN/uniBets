@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {FC, ReactNode} from 'react';
 import cl from '../../../styles/layout/ErrorModal.module.css';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
     children: ReactNode,
 }
 
-const ErrorModal = ({visible, setVisible, children}: Props) => {
+const ErrorModal: FC<Props> = ({visible, setVisible, children}) => {
     return (
         <div className={visible ? [cl.myModal, cl.active].join(' ') : cl.myModal} onClick={() => setVisible(false)}>
             <div

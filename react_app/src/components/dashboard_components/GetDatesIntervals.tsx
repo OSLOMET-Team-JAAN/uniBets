@@ -1,4 +1,4 @@
-﻿import React, {useMemo} from 'react';
+﻿import React, {FC, useMemo} from 'react';
 import useCSV from "../../hooks/useCSV";
 import {Pie, PieChart,} from 'recharts';
 import st from '../../styles/GetDatesIntervals.module.css';
@@ -10,7 +10,7 @@ interface Props {
 
 //This component will check for date-time ranges
 //It can help us to suppose if there any bot was used or not
-const GetDatesIntervals = ({Player}: Props) => {
+const GetDatesIntervals: FC<Props> = ({Player}) => {
     const {data}: any = useCSV();
     
     const reformatPlayerData = () => {

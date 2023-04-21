@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import Papa from "papaparse";
 import MyInput from "../components/UI/input/MyInput";
 import ErrorModal from "../components/UI/modals/ErrorModal";
@@ -25,7 +25,7 @@ import MyFileUpload from "../components/UI/input/MyFileUpload";
 import MyDragDropArea from "../components/UI/input/MyDragDropArea";
 
 
-const AdminPage = () => {
+const AdminPage: FC = () => {
 
         //----------------------LIST OF STATES ----------------------------------
         //State 1_ This state to represent style change of drag area

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from '../../../styles/MyDropDown.module.css';
 
 interface Props {
@@ -14,7 +14,7 @@ interface IOption {
     label: string
 }
 
-const MyDropDown = ({options, defaultValue, value, onChange}: Props) => {
+const MyDropDown: FC<Props> = ({options, defaultValue, value, onChange}) => {
     
     return (
         <div>
