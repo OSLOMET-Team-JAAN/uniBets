@@ -63,7 +63,7 @@ const GetTopWinners: FC<Props> = ({sortedData, myTop}) => {
                 <h4>TOP <strong>{myTop}</strong> WINNERS</h4>
                 <ResponsiveContainer
                     height={300}
-                    minWidth={500}
+                    minWidth={300}
                 >
                     <BarChart
                         width={400}

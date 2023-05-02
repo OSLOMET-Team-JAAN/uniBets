@@ -131,7 +131,7 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
                         </div>
                         <ResponsiveContainer
                             height={300}
-                            minWidth={500}
+                            minWidth={300}
                         >
                             <BarChart
                                 width={400}
