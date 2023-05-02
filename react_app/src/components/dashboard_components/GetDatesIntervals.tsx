@@ -31,7 +31,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
         const getSeconds = () => {
             return getBetPlacedDates.slice(1).map((date: any, index: number) => {
                 const seconds = (Date.parse(date) - Date.parse(getBetPlacedDates[index]))/1000;
-                if(seconds > 60){
+                if(seconds > 20){
                     return
                 }
                 return seconds;
@@ -60,7 +60,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
                 <div className={st.cont}>
-                    <h4>PLAYER <strong>{Player}</strong> BET SETTING TIME INTERVALS &lsaquo; 60 sec (sec)</h4>
+                    <h4>PLAYER <strong>{Player}</strong> BET SETTING TIME INTERVALS &lsaquo; 20 sec (sec)</h4>
                     <PieChart
                         width={300}
                         height={300}>
@@ -79,7 +79,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
                 </div>
                 :
                 <div className={st.cont2}>
-                    <h4 style={{color: "red"}}>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 60 sec</h4>
+                    <h4 style={{color: "red"}}>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 20 sec</h4>
                 </div>
             }            
         </>
