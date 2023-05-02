@@ -112,7 +112,9 @@ const Dashboard: FC = () => {
                             <h3>Welcome To ADMIN Dashboard</h3>
                             <br/>
                             <div className={st.cont}>
-                                <label htmlFor="Player_no">Player no: </label>
+                                <label 
+                                    htmlFor="Player_no"
+                                >Player no: </label>
                                 <MyInput
                                     value={playerNo}
                                     name="Player_no"
@@ -120,7 +122,10 @@ const Dashboard: FC = () => {
                                     autoComplete="off"
                                     onChange={(e) => verifyPlayer(e.target.value)}
                                 />
-                                <label htmlFor="Top_element">TOP customization: </label>
+                                <label 
+                                    htmlFor="Top_element"
+                                >TOP customization: 
+                                </label>
                                 <MyInput
                                     value={myTop}
                                     name="Top_element"
@@ -129,7 +134,8 @@ const Dashboard: FC = () => {
                                     onChange={(e) => verifyMyTop(e.target.value)}
                                 />
                             </div>
-                            <div className={st.cont}>
+                            <div 
+                                className={st.cont}>
                                 <GetTopWinner/>
                             </div>
                             <div>
@@ -138,7 +144,9 @@ const Dashboard: FC = () => {
                                     sortedData={sortedData}
                                     myTop={parseInt(myTop)}
                                 />
-                                : <h4 className={st.errCont}>NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>
+                                : <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>
                                 }
                             </div>
                             <div 
@@ -146,21 +154,27 @@ const Dashboard: FC = () => {
                                 {playerNo ?
                                     <GetTopWinnerBetStatus 
                                         Player={parseInt(playerNo)}/>
-                                    : <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    : <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
 
                                 {playerNo ?
                                     <GetTopWinnerWinRate 
                                         Player={parseInt(playerNo)}/>
                                     :
-                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
 
                                 {playerNo ?
                                     <GetDatesIntervals
                                         Player={parseInt(playerNo)}/>
                                     :
-                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
                             <div>
@@ -169,7 +183,9 @@ const Dashboard: FC = () => {
                                     <GetBetsWinRateTopWinners
                                         myTop={parseInt(myTop)}
                                     /> 
-                                    : <h4 className={st.errCont}>NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>}
+                                    : <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>}
                             </div>
                             <div>
                                 <GetOddsOutliers/>
@@ -179,7 +195,9 @@ const Dashboard: FC = () => {
                                     <GetCustomPlayerData 
                                         Player={parseInt(playerNo)}
                                     /> :
-                                    <h4 className={st.errCont}>NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    <h4 
+                                        className={st.errCont}
+                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
                         </>
