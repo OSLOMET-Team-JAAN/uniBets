@@ -39,8 +39,6 @@ const Navbar: FC = () => {
             <div className="container-fluid">
                 <Link to={"/home"} className="navbar-brand" style={{fontWeight: 'bold', color: 'white'}}>
                     <p> Game Fixing <img src={Logo} alt="Logo" className={styles.image}/></p>
-
-
                 </Link>
 
                 <div className="navbar-nav mx-auto" style={{fontWeight: 'bold', color: 'white'}}>
@@ -121,3 +119,4 @@ const Navbar: FC = () => {
 };
 
 export default Navbar;
+//https://www.bezkoder.com/react-typescript-authentication-example/
