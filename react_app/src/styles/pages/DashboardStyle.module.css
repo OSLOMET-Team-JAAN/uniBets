@@ -49,9 +49,4 @@ h3 {
     }
 }
 
-@media (max-width: 1024px ){
-    .bets {
-        grid-template-columns: 1fr 1fr;
-    }
-}
  
