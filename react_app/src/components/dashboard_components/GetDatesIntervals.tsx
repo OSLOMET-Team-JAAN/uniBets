@@ -54,7 +54,8 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
     }
     
     useMemo(() => {reformatPlayerData()},[Player])
-    
+
+    console.log(reformatPlayerData()[0].Time_Range)
     return (
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
@@ -80,8 +81,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
                 <div className={st.cont2}>
                     <h4 style={{color: "red"}}>NB! If no data - there is only 1 bet or all intervals are &rsaquo; 60 sec</h4>
                 </div>
-            }
-            
+            }            
         </>
     );
 };
