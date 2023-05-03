@@ -1,0 +1,19 @@
+
+.image {
+    float: left;
+    max-height: 75px;
+    width: auto;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    background: #0B5B7D;
+    padding: 15px;
+}
+.st2 {
+    color: white !important;
+    font-size: 22px;
+    font-weight:bold;
+    padding: 15px;
+    
+}

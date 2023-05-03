@@ -40,11 +40,24 @@ Link:hover {
     margin: 10px 0;
 }
 
+.navbar--sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 100;
+    transition: all 0.3s ease-in-out;
+}
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .navbar {
         height: auto;
         padding: 10px 15px;
+    }
+    .navbar--sidebar {
+        left: 0;
     }
 }
 
