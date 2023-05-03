@@ -5,12 +5,11 @@ import style from '../../styles/GetTopWinnerBetStatus.module.css';
 import {getResults} from "../../utils/assistFunctions";
 
 interface Props {
-    Player: number | string
+    Player: string | number
 }
 
 const GetWinRateTopWinner: FC<Props> = ({Player}) => {
     const {data}: any = useCSV();
-    
     const Results = useMemo(() => getResults(data, Player),[Player]);
     
     //---- Custom Label for Pie Chart ------

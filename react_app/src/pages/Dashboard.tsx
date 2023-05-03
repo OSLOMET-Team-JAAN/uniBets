@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
@@ -72,24 +72,24 @@ const Dashboard: FC = () => {
                 setMyError('Data Fetching is Failed');
             }
         }
-    }  
+    } 
     
-    function verifyPlayer(item: any){
-        if (localStorage.getItem('csv') === null){
-            return setPlayerNo(item.toString());
+    const verifyPlayer = (value: any) => {
+        if(localStorage.getItem('csv') === null){
+            return parseInt(value);
         }else {
-            return setPlayerNo(item.toString())
-        }        
-    }
-
-    function verifyMyTop(item: any){
-        if (localStorage.getItem('csv') === null){
-            return setMyTop((item));
-        }else {
-            return setMyTop(item)
+            return value;
         }
     }
 
+    const verifyMyTop = (value: any) => {
+        if(localStorage.getItem('csv') === null){
+            return parseInt(value);
+        }else {
+            return value;
+        }
+    }    
+    
     return (
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
@@ -120,18 +120,18 @@ const Dashboard: FC = () => {
                                     name="Player_no"
                                     placeholder="Enter Player_no here.."
                                     autoComplete="off"
-                                    onChange={(e) => verifyPlayer(e.target.value)}
+                                    onChange={(e) => setPlayerNo(e.target.value)}
                                 />
                                 <label 
                                     htmlFor="Top_element"
                                 >TOP customization: 
                                 </label>
                                 <MyInput
-                                    value={myTop}
+                                    value={verifyMyTop(myTop)}
                                     name="Top_element"
                                     placeholder="Enter Your TOP here.."
                                     autoComplete="off"
-                                    onChange={(e) => verifyMyTop(e.target.value)}
+                                    onChange={(e) => setMyTop(e.target.value)}
                                 />
                             </div>
                             <div 
@@ -153,7 +153,7 @@ const Dashboard: FC = () => {
                                 className={st.bets}>
                                 {playerNo ?
                                     <GetTopWinnerBetStatus 
-                                        Player={parseInt(playerNo)}/>
+                                        Player={verifyPlayer(playerNo)}/>
                                     : <h4 
                                         className={st.errCont}
                                     >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
@@ -161,7 +161,7 @@ const Dashboard: FC = () => {
 
                                 {playerNo ?
                                     <GetTopWinnerWinRate 
-                                        Player={parseInt(playerNo)}/>
+                                        Player={playerNo}/>
                                     :
                                     <h4 
                                         className={st.errCont}
@@ -214,3 +214,4 @@ export default Dashboard;
 
 //https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Login.js
 //https://ru.reactjs.org/docs/hooks-reference.html#useref
+// https://reacthustle.com/blog/speed-up-your-react-apps-by-using-debounce-with-typescript

@@ -1,20 +1,19 @@
-﻿import React, {FC, useMemo} from 'react';
+﻿import React, {FC, useEffect, useMemo, useState} from 'react';
 import {Cell, Label, Pie, PieChart} from "recharts";
 import useCSV from "../../hooks/useCSV";
 import style from '../../styles/GetTopWinnerWinRate.module.css';
 import {getResults, getWinRate} from "../../utils/assistFunctions";
 
 interface Props {
-    Player: number | string
+    Player: string | number;
 }
 
 const GetTopWinnerWinRate: FC<Props> = ({Player}) => {
     const {data}: any = useCSV();
-
+    
     const Results = useMemo(() => getResults(data, Player), [Player]);
     const WinRate = useMemo(() => getWinRate(data, Player),[Player]);
-    
-    
+
     //---- Custom Label for Pie Chart ------
     const CustomLabel = ({viewBox, betsWon = 0}: any) => {
         const {cx, cy} = viewBox;

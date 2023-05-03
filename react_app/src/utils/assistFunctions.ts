@@ -3,6 +3,7 @@
 */
 
 import {ICSVdata} from "../models/ICSVdata";
+import {useEffect, useState} from "react";
 
 export const getPageCount = (totalRows: number, limit: number) => {
     return Math.ceil(totalRows / limit)
@@ -183,6 +184,5 @@ export const getWinRate = (data: ICSVdata[], Player: number | string) => {
     ]
 }
 
-
 // https://bobbyhadz.com/blog/typescript-element-implicitly-has-any-type-expression
-
+// https://reacthustle.com/blog/speed-up-your-react-apps-by-using-debounce-with-typescript

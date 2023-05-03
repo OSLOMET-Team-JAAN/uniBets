@@ -54,8 +54,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
     }
     
     useMemo(() => {reformatPlayerData()},[Player])
-
-    console.log(reformatPlayerData()[0].Time_Range)
+    
     return (
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
