@@ -1,12 +1,12 @@
-import React, {FC, useEffect, useState } from 'react';
-import EventBus from "../../common/DocEventBus";
-import { FiMenu } from "react-icons/fi";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { getCurrentUser, logout } from "../../services/auth.service";
+import React, {FC, useEffect, useState} from 'react';
+import eventBus from "../../common/EventBus";
+import {FiMenu} from "react-icons/fi";
+import {AiOutlineCloseCircle} from "react-icons/ai";
+import {Link} from "react-router-dom";
+import {getCurrentUser, logout} from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import st from "../../styles/layout/Hamburger.module.css";
-
+import IUser from "../../models/IUser";
 
 
 const HamburgerBar: FC = () => {
@@ -14,7 +14,7 @@ const HamburgerBar: FC = () => {
     const [showContent, setShowContent] = useState(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
-
+    const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
    
     function handleClick() {
         setShowContent(!showContent);
@@ -24,14 +24,15 @@ const HamburgerBar: FC = () => {
     useEffect(() => {
         const auth = getCurrentUser();
         if (auth) {
+            setCurrentUser(auth)
             setShowUserBoard(auth.role === "USER");
             setShowAdminBoard(auth.role === "ADMIN");
         }
 
-        EventBus.on("logout", logOut);
+        eventBus.doc.on("logout", logOut);
 
         return () => {
-            EventBus.remove("logout", logOut);
+            eventBus.doc.off("logout", logOut);
         };
     }, []);
 
@@ -78,16 +79,26 @@ const HamburgerBar: FC = () => {
                         </li>
                         <li 
                             className="nav-item">
-                            <Link to={"/contact"} onClick={handleClick} className="nav-link" 
-                                  style={{ color: 'white' }}>
+                            <Link 
+                                to={"/contact"} 
+                                onClick={handleClick} 
+                                className="nav-link" 
+                                style={{ color: 'white' }}>
                                 Contact Us
                             </Link>
                         </li>
                     </div>
                     {showUserBoard && (
-                        <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
-                            <li className="nav-item">
-                                <Link to={"/user"} onClick={handleClick} className="nav-link" style={{ color: 'white' }}>
+                        <div 
+                            className="navbar-nav mx-auto" 
+                             style={{ fontWeight: 'bold', color: 'white' }}>
+                            <li 
+                                className="nav-item">
+                                <Link 
+                                    to={"/user"} 
+                                    onClick={handleClick} 
+                                    className="nav-link" 
+                                    style={{ color: 'white' }}>
                                     User Page
                                 </Link>
                             </li>
@@ -95,21 +106,83 @@ const HamburgerBar: FC = () => {
                     )}
 
                     {showAdminBoard && (
-                        <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
-                            <li className="nav-item">
-                                <Link to={"/dashboard"} onClick={handleClick} className="nav-link" style={{ color: 'white' }}>
+                        <div 
+                            className="navbar-nav mx-auto" 
+                            style={{ fontWeight: 'bold', color: 'white' }}>
+                            <li 
+                                className="nav-item">
+                                <Link 
+                                    to={"/dashboard"} 
+                                    onClick={handleClick} 
+                                    className="nav-link" 
+                                    style={{ color: 'white' }}>
                                     Dashboard
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to={"/admin"} onClick={handleClick} className="nav-link" style={{ color: 'white' }}>
+                            <li 
+                                className="nav-item">
+                                <Link 
+                                    to={"/admin"} 
+                                    onClick={handleClick} 
+                                    className="nav-link" 
+                                    style={{ color: 'white' }}>
                                     Admin Page
                                 </Link>
                             </li>
                         </div>
-
                     )}
-
+                    <div 
+                        className="navbar-nav ml-auto"
+                         style={{ fontWeight: 'bold', color: 'white' }}>
+                        {currentUser ? (
+                            <div
+                                className="navbar-nav">
+                                <li
+                                    className="nav-item">
+                                    <Link
+                                        to={"/profile"}
+                                        onClick={handleClick}
+                                        className="nav-link"
+                                        style={{ color: 'white' }}>
+                                        {currentUser.username}
+                                    </Link>
+                                </li>
+                                <li
+                                    className="nav-item">
+                                    <a
+                                        href="/login"
+                                        className="nav-link"
+                                        onClick={logOut}
+                                        style={{ color: 'white' }}>
+                                        LogOut
+                                    </a>
+                                </li>
+                            </div>
+                        ) : (
+                            <div
+                                className="navbar-nav">
+                                <li
+                                    className="nav-item">
+                                    <Link
+                                        to={"/login"}
+                                        className="nav-link"
+                                        onClick={handleClick}
+                                        style={{ color: 'white' }}>
+                                        Login
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        to={"/register"}
+                                        onClick={handleClick}
+                                        className="nav-link"
+                                        style={{ color: 'white' }}>
+                                        SignUp
+                                    </Link>
+                                </li>
+                            </div>
+                        )}
+                    </div>
                 </div>
             }
            

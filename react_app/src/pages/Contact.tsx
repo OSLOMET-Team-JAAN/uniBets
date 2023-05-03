@@ -1,9 +1,8 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { Button } from "@material-tailwind/react";
+import {FC, useEffect, useRef, useState} from "react";
 import styles from "../styles/pages/Contact.module.css";
-import EventBus from "../common/DocEventBus";
+import eventBus from "../common/EventBus";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import { ErrorBoundary } from "../errors/ErrorBoundary";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Contact: FC = () => {
@@ -28,7 +27,7 @@ const Contact: FC = () => {
         setMessage('');
     }
 
-    EventBus.dispatch('submit', handleSubmit);
+    eventBus.doc.dispatch('submit', handleSubmit);
 
     return (
         <>

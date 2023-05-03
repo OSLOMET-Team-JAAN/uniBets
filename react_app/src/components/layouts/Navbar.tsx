@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import IUser from "../../models/IUser";
-import EventBus from "../../common/DocEventBus";
-import { Link } from "react-router-dom";
-import { getCurrentUser, logout } from "../../services/auth.service";
+import eventBus from "../../common/EventBus";
+import {Link} from "react-router-dom";
+import {getCurrentUser, logout} from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import styles from "../../styles/layout/Navbar.module.css";
 
@@ -19,10 +19,10 @@ const Navbar: FC = () => {
             setShowAdminBoard(auth.role === "ADMIN");
         }
 
-        EventBus.on("logout", logOut);
+        eventBus.doc.on("logout", logOut);
 
         return () => {
-            EventBus.remove("logout", logOut);
+            eventBus.doc.off("logout", logOut);
         };
     }, []);
 
@@ -43,9 +43,13 @@ const Navbar: FC = () => {
                     to={"/home"} 
                     className="navbar-brand" 
                     style={{ fontWeight: 'bold', color: 'white' }}>
-                    <p> Game Fixing <img src={Logo} alt="Logo" className={styles.image} /></p>
+                    <p> Game Fixing 
+                        <img 
+                            src={Logo} 
+                            alt="Logo" 
+                            className={styles.image} />
+                    </p>
                 </Link>
-
                 <div 
                     className="navbar-nav mx-auto" 
                     style={{ fontWeight: 'bold', color: 'white' }}>
@@ -118,7 +122,6 @@ const Navbar: FC = () => {
                             </Link>
                         </li>
                     </div>
-
                 )}
             </div>
             <div 
