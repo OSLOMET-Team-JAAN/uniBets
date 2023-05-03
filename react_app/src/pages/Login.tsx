@@ -6,6 +6,7 @@ import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
+import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Login: FC = () => {
     const {auth, setAuth}: any = useAuth();
@@ -94,16 +95,18 @@ const Login: FC = () => {
                             required
                         />
                         <br/>
-                        <button
-                            className={st.button}>
-                            <span>Sign In</span>
-                        </button>
+                        <MyFormButton>
+                            Sign In
+                        </MyFormButton>
                     </form>
                     <p>
                         New User ? Need to Sign Up
                         <br/>
                         <span className={st.line}>
-                            <Link to="/register"> <span>Sign Up</span> </Link>
+                            <Link 
+                                to="/register"> 
+                                <span>Sign Up</span> 
+                            </Link>
                         </span>
                     </p>
                 </section>

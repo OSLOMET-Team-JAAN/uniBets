@@ -22,13 +22,6 @@ form {
     padding-bottom: 1rem;
 }
 
-/*
-     a, a:visited {
-    color: #fff;
-    }
- */
-
-
 input[type="text"],
 input[type="password"],
 .button,
@@ -67,55 +60,9 @@ label, .button {
     transition: 0.5s;
 }
 
-.button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.button:hover span {
-    padding-right: 25px;
-}
-
-.button:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-
-.instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #c4f1eb;
-    color: #000000;
-    padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
-}
-
-.instructions > svg {
-    margin-right: 0.25rem;
-}
-
 .offscreen {
     position: absolute;
     left: -9999px;
-}
-
-.hide {
-    display: none;
-}
-
-.valid {
-    color: limegreen;
-    margin-left: 0.25rem;
-}
-
-.invalid {
-    color: red;
-    margin-left: 0.25rem;
 }
 
 .errMsg {

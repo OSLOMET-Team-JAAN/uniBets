@@ -18,9 +18,12 @@ export default function Example() {
 
     return (
         <>
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
-            <section className={styles.section}>
-            <div className={styles["container"]}>
+            <ErrorBoundary 
+                FallbackComponent={ErrorBoundaryResponse}>
+            <section 
+                className={styles.section}>
+            <div 
+                className={styles["container"]}>
                 <div>
                     <h2>
                         Frequently Asked Questions
@@ -28,13 +31,20 @@ export default function Example() {
                 </div>
                 <br/>
                 <Fragment>
-                    <Accordion open={open === 1} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(1)} className={styles["accordion-header"]}>
+                    <Accordion 
+                        open={open === 1} 
+                        animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
+                            <AccordionHeader 
+                                onClick={() => handleOpen(1)} 
+                                className={styles["accordion-header"]}>
                                 What is Game fixing?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
-                                <p className="break-words">
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
+                                <p 
+                                    className="break-words">
                                     Game-fixing (known also as Match-fixing) is when someone directly
                                     involved in a sporting contest is able to change the results in
                                     order for a certain bet to win. That can involve asking a player to
@@ -55,13 +65,20 @@ export default function Example() {
                         </div>
                     </Accordion>
 
-                    <Accordion open={open === 2} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(2)} className={styles["accordion-header"]}>
+                    <Accordion 
+                        open={open === 2} 
+                        animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
+                            <AccordionHeader 
+                                onClick={() => handleOpen(2)} 
+                                className={styles["accordion-header"]}>
                                 What is the point of game fixing?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
-                                <p className="break-words">
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
+                                <p 
+                                    className="break-words">
                                     The main reason people get involved in
                                     game-fixing "match-fixing" and manipulating games is for personal or financial gain.
                                     It generally involves contacts between gamblers, players, team officials,
@@ -81,13 +98,19 @@ export default function Example() {
                     </Accordion>
 
 
-                    <Accordion open={open === 3} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(3)} className={styles["accordion-header"]}>
+                    <Accordion 
+                        open={open === 3} 
+                        animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
+                            <AccordionHeader 
+                                onClick={() => handleOpen(3)} className={styles["accordion-header"]}>
                                 Is game-fixing cheating?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
-                                <p className="break-words">
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
+                                <p 
+                                    className="break-words">
                                     Match-fixing in esports is the deliberate alteration
                                     of the outcome of a match by one or more players.It is considered a form of
                                     cheating,
@@ -107,13 +130,17 @@ export default function Example() {
                     </Accordion>
 
 
-                    <Accordion open={open === 4} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
+                    <Accordion 
+                        open={open === 4} animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
                             <AccordionHeader onClick={() => handleOpen(4)} className={styles["accordion-header"]}>
                                 What is the most famous game-fixing?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
-                                <p className="break-words">
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
+                                <p 
+                                    className="break-words">
                                     The most famous incident involved three Sheffield
                                     Wednesday players, including two England international players, who were
                                     subsequently banned from football for life and imprisoned after it was
@@ -132,13 +159,17 @@ export default function Example() {
                         </div>
                     </Accordion>
 
-
-                    <Accordion open={open === 5} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(5)} className={styles["accordion-header"]}>
+                    <Accordion 
+                        open={open === 5} 
+                        animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
+                            <AccordionHeader 
+                                onClick={() => handleOpen(5)} className={styles["accordion-header"]}>
                                 Who started game-fixing?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
                                 <p className="break-words">
                                     Azharuddin reportedly
                                     confessed that he had fixed three one-day matches; the first against South Africa
@@ -158,14 +189,20 @@ export default function Example() {
                         </div>
                     </Accordion>
 
-
-                    <Accordion open={open === 6} animate={customAnimation}>
-                        <div className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(6)} className={styles["accordion-header"]}>
+                    <Accordion 
+                        open={open === 6} 
+                        animate={customAnimation}>
+                        <div 
+                            className={styles["accordion-wrapper"]}>
+                            <AccordionHeader 
+                                onClick={() => handleOpen(6)} 
+                                className={styles["accordion-header"]}>
                                 How is game-fixing unethical?
                             </AccordionHeader>
-                            <AccordionBody className={styles["accordion-body"]}>
-                                <p className="break-words">
+                            <AccordionBody 
+                                className={styles["accordion-body"]}>
+                                <p 
+                                    className="break-words">
                                     This type of game-fixing is considered a sub-dimension
                                     of corruption in sports, which is "any illegal, immoral, or unethical activity that
                                     attempts

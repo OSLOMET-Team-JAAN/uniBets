@@ -5,6 +5,7 @@ import * as st from '../styles/tailwind/ProfileUser.style';
 import {Button, Card, CardBody, CardFooter, CardHeader, Typography} from "@material-tailwind/react";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from "../errors/ErrorBoundary";
+import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Profile: FC = () => {
     const currentUser = getCurrentUser();
@@ -20,8 +21,7 @@ const Profile: FC = () => {
                             className={st.Profile.imag}
                         />
     
-                    </CardHeader>
-    
+                    </CardHeader>    
                     <CardBody>
                         <div className="mb-3">
                             <Typography variant="h3" color="blue-gray">
@@ -41,9 +41,9 @@ const Profile: FC = () => {
                     </CardBody>
     
                     <CardFooter className="pt-3">
-                        <Button className="hover:scale-125">
+                        <MyFormButton>
                             <Link to="/home" className="text-white">Back to Home Page</Link>
-                        </Button>
+                        </MyFormButton>
                     </CardFooter>
                 </Card>
             </ErrorBoundary>
