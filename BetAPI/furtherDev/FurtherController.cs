@@ -5,13 +5,13 @@ namespace BetAPI.extra;
 
 [Route("api/[controller]")]
 [ApiController]
-public class StoredProcedureController : ControllerBase
+public class FurtherController : ControllerBase
 {
-    private readonly ILogger<StoredProcedureController> _logger;
+    private readonly ILogger<FurtherController> _logger;
 
-    private readonly IExtra _repository;
+    private readonly IFurtherDev _repository;
 
-    public StoredProcedureController(IExtra repository, ILogger<StoredProcedureController> logger)
+    public FurtherController(IFurtherDev repository, ILogger<FurtherController> logger)
     {
         _repository = repository;
         _logger = logger;
