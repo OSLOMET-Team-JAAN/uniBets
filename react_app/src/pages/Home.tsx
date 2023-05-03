@@ -6,6 +6,7 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from "../errors/ErrorBoundary";
 import { FC } from "react";
+import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Home: FC = () => {
 
@@ -14,20 +15,32 @@ const Home: FC = () => {
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <br />
                 <div>
-                    <div className={st.Home.typo}>
-                        <h1 className={st.Home.h1}>Welcome to Game-Fixing Website </h1>
+                    <div 
+                        className={st.Home.typo}>
+                        <h1 
+                            className={st.Home.h1}>Welcome to Game-Fixing Website 
+                        </h1>
                         <br />
-                        <p className={st.Home.p}>
+                        <p 
+                            className={st.Home.p}>
                             Here you can upload your CSV file to analyse the data and catch every suspicious transaction
-                            that could be due to fraud. </p>
+                            that could be due to fraud. 
+                        </p>
                     </div>
                     <br />
-                    <div className={st.Home.typo}>
-                        <h2 className={st.Home.h2}
-                        >What is Match Fixing ? </h2>
+                    <div 
+                        className={st.Home.typo}>
+                        <h2 
+                            className={st.Home.h2}
+                        >What is Match Fixing ? 
+                        </h2>
                         <br />
-                        <img src={Fraud} alt="fraud image" className={st.Home.img} />
-                        <p className={st.Home.p}>
+                        <img 
+                            src={Fraud} 
+                            alt="fraud image" 
+                            className={st.Home.img} />
+                        <p 
+                            className={st.Home.p}>
                             In organized sports, match fixing in the act of playing or officiating a match with the
                             intention of achieving a pre-determined result,
                             violating the rules of the game and often the law.
@@ -35,23 +48,30 @@ const Home: FC = () => {
                             including receiving bribes from bookmakers or sports bettors,
                             and blackmail. Competitors may also intentionally perform poorly to gain a future advantage,
                             such as a better draft pick or to face an easier opponent in a later round of competition. A
-                            player might also play poorly to rig a handicap system. </p>
-                        <span className={st.Home.span}>
+                            player might also play poorly to rig a handicap system. 
+                        </p>
+                        <span 
+                            className={st.Home.span}>
                             If you are interest to learn more about this subject please visit
                         </span>
-                        <a className={st.Home.ln} style={{ color: '#1e3a8a' }}
+                        <a 
+                            className={st.Home.ln} 
+                            style={{ color: '#1e3a8a' }}
                             href="https://en.wikipedia.org/wiki/Match_fixing">
                             This Link
                         </a>
 
                     </div>
                     <br />
-                    <div className={st.Home.typo}>
-                        <h2 className={st.Home.h2}>
+                    <div 
+                        className={st.Home.typo}>
+                        <h2 
+                            className={st.Home.h2}>
                             What can you do in this website ?
                         </h2>
                         <br />
-                        <p className={st.Home.p}>
+                        <p 
+                            className={st.Home.p}>
                             Here, you have the ability to analyse CSv file that include data about players
                             who placed bets and the games results.
                             Note that this is a private website which mean you have to login to be able to use i
@@ -65,11 +85,13 @@ const Home: FC = () => {
                         </p>
                     </div>
                     <br />
-                    <div className="flex justify-center">
-                        <Button className={st.Home.but}>
-                            <Link to="/login" className={st.Home.font}> Let's Get Started</Link>
-                            <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
-                        </Button>
+                    <div 
+                        className="flex justify-center">
+                        <MyFormButton>
+                            <Link 
+                                to="/login" 
+                                className={st.Home.font}> Let's Get Started</Link>
+                        </MyFormButton>
                     </div>
                 </div>
             </ErrorBoundary>
