@@ -8,7 +8,11 @@ interface Props {
     children?: ReactNode
 }
 
-export const DataProvider: FC<Props> = ({children}) => {
+
+
+
+export const DataProvider: FC<Props> = ({ children }) => {
+
 
     const [data, setData] = useState(getStoredData('csv') || []);
     const [headers, setHeaders] = useState(getStoredHeaders('headers') || []);

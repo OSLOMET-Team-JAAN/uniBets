@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import IUser from "../../models/IUser";
 import EventBus from "../../common/EventBus";
-import {Link} from "react-router-dom";
-import {getCurrentUser, logout} from "../../services/auth.service";
+import { Link } from "react-router-dom";
+import { getCurrentUser, logout } from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import styles from "../../styles/layout/Navbar.module.css";
 
@@ -10,7 +10,6 @@ const Navbar: FC = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
-
 
     useEffect(() => {
         const auth = getCurrentUser();
@@ -35,34 +34,34 @@ const Navbar: FC = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand " style={{backgroundColor: '#0B5B7D', width: "auto"}}>
+        <nav className="navbar navbar-expand " style={{ backgroundColor: '#0B5B7D', width: "auto" }}>
             <div className="container-fluid">
-                <Link to={"/home"} className="navbar-brand" style={{fontWeight: 'bold', color: 'white'}}>
-                    <p> Game Fixing <img src={Logo} alt="Logo" className={styles.image}/></p>
+                <Link to={"/home"} className="navbar-brand" style={{ fontWeight: 'bold', color: 'white' }}>
+                    <p> Game Fixing <img src={Logo} alt="Logo" className={styles.image} /></p>
                 </Link>
 
-                <div className="navbar-nav mx-auto" style={{fontWeight: 'bold', color: 'white'}}>
+                <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                     <li className="nav-item">
-                        <Link to={"/home"} className="nav-link" style={{color: 'white'}}>
+                        <Link to={"/home"} className="nav-link" style={{ color: 'white' }}>
                             Home
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/faq"} className="nav-link" style={{color: 'white'}}>
+                        <Link to={"/faq"} className="nav-link" style={{ color: 'white' }}>
                             FAQ
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/contact"} className="nav-link" style={{color: 'white'}}>
+                        <Link to={"/contact"} className="nav-link" style={{ color: 'white' }}>
                             Contact Us
                         </Link>
                     </li>
                 </div>
 
                 {showUserBoard && (
-                    <div className="navbar-nav mx-auto" style={{fontWeight: 'bold', color: 'white'}}>
+                    <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                         <li className="nav-item">
-                            <Link to={"/user"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/user"} className="nav-link" style={{ color: 'white' }}>
                                 User Page
                             </Link>
                         </li>
@@ -70,14 +69,14 @@ const Navbar: FC = () => {
                 )}
 
                 {showAdminBoard && (
-                    <div className="navbar-nav mx-auto" style={{fontWeight: 'bold', color: 'white'}}>
+                    <div className="navbar-nav mx-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                         <li className="nav-item">
-                            <Link to={"/dashboard"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/dashboard"} className="nav-link" style={{ color: 'white' }}>
                                 Dashboard
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={"/admin"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/admin"} className="nav-link" style={{ color: 'white' }}>
                                 Admin Page
                             </Link>
                         </li>
@@ -85,29 +84,29 @@ const Navbar: FC = () => {
 
                 )}
             </div>
-            <div className="navbar-nav ml-auto" style={{fontWeight: 'bold', color: 'white'}}>
+            <div className="navbar-nav ml-auto" style={{ fontWeight: 'bold', color: 'white' }}>
                 {currentUser ? (
                     <div className="navbar-nav">
                         <li className="nav-item">
-                            <Link to={"/profile"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/profile"} className="nav-link" style={{ color: 'white' }}>
                                 {currentUser.username}
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <a href="/login" className="nav-link" onClick={logOut} style={{color: 'white'}}>
+                            <a href="/login" className="nav-link" onClick={logOut} style={{ color: 'white' }}>
                                 LogOut
                             </a>
-                        </li>
+                        </li> 
                     </div>
                 ) : (
                     <div className="navbar-nav">
                         <li className="nav-item">
-                            <Link to={"/login"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/login"} className="nav-link" style={{ color: 'white' }}>
                                 Login
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={"/register"} className="nav-link" style={{color: 'white'}}>
+                            <Link to={"/register"} className="nav-link" style={{ color: 'white' }}>
                                 SignUp
                             </Link>
                         </li>

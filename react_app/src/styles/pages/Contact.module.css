@@ -19,7 +19,6 @@
     padding-right: 1rem;
     margin: 5px auto;
     max-width: 46rem;
-
 }
 
 .title {
@@ -66,10 +65,10 @@
     width: 100%;
 }
 
-.input::placeholder,
-.textarea::placeholder {
-    color: #a0aec0;
-}
+    .input::placeholder,
+    .textarea::placeholder {
+        color: #a0aec0;
+    }
 
 .fullWidth {
     grid-column: 1 / -1;
