@@ -1,4 +1,4 @@
-const eventBus = {
+const docEventBus = {
     on(event: string, callback: EventListener) {
         document.addEventListener(event, (e) => callback(e));
     },
@@ -10,7 +10,7 @@ const eventBus = {
     },
 };
 
-export default eventBus;
+export default docEventBus;
 
 //https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
 //https://www.bezkoder.com/react-typescript-authentication-example/

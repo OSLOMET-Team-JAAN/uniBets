@@ -161,7 +161,7 @@ const Dashboard: FC = () => {
 
                                 {playerNo ?
                                     <GetTopWinnerWinRate 
-                                        Player={playerNo}/>
+                                        Player={verifyPlayer(playerNo)}/>
                                     :
                                     <h4 
                                         className={st.errCont}
@@ -170,7 +170,7 @@ const Dashboard: FC = () => {
 
                                 {playerNo ?
                                     <GetDatesIntervals
-                                        Player={parseInt(playerNo)}/>
+                                        Player={verifyPlayer(playerNo)}/>
                                     :
                                     <h4 
                                         className={st.errCont}

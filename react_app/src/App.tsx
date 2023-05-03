@@ -6,23 +6,19 @@ import AppRouter from "./router/AppRouter";
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 import './App.css';
+import windowEventBus from "./common/WindowEventBus";
 
 
 function App() {
     const [screenSize, setScreenSize] = useState(window.innerWidth);
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleToggle = () => {
-        setIsOpen(!isOpen);
-    };
+       
      useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
-        window.addEventListener("resize", handleResize);
+        windowEventBus.on('resize', handleResize);
         return () => {
-            window.removeEventListener("resize", handleResize);
+            windowEventBus.remove('resize', handleResize)
         };
     }, []);
-
 
     return (
         <div>

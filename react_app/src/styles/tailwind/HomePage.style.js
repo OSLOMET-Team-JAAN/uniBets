@@ -7,7 +7,6 @@ export const Home = {
     font: "text-white",
     span: "flex justify-center italic lg:text-lg sm:px-16",
     ln: "flex justify-center italic underline text-Sky-900 hover:scale-125 active:text-red-400",
-    // but: "flex items-center gap-2 hover:scale-125 active:bg-red-900",
     typo: "mx-auto box-border border-6 h-50px w-1200px bg-white rounded-xl shadow-2xl md:max-w-2xl md:py-2  "
 
 }

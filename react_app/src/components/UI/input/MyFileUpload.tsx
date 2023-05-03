@@ -7,6 +7,7 @@ import {ICSVdata} from "../../../models/ICSVdata";
 import {getHeaders} from "../../../utils/assistFunctions";
 import ErrorBoundaryResponse from "../../../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../../../errors/ErrorBoundary";
+import InfoModal from "../modals/InfoModal";
 
 interface GET_DATA{
     setIsLoading: (b: boolean) => void,
@@ -15,6 +16,7 @@ interface GET_DATA{
     setHeaders: (headers: string[]) => void,
     setModalVisible: (b: boolean) => void,
     setInfoModalVisible: (b: boolean) => void,
+    isInfoModalVisible: boolean,
     setInfoMessage: (dataFetchedFromDatabaseSuccessfully: string) => void,
     setShowContent: (b: boolean) => void,
     setShowButton: (b: boolean) => void,
@@ -29,7 +31,8 @@ const MyFileUpload: FC<GET_DATA> = ({
                                         setData, 
                                         setHeaders, 
                                         setModalVisible, 
-                                        setInfoModalVisible, 
+                                        setInfoModalVisible,
+                                        isInfoModalVisible,
                                         setInfoMessage, 
                                         setShowContent, 
                                         setFile, 
@@ -81,15 +84,28 @@ const MyFileUpload: FC<GET_DATA> = ({
                     setShowContent(true);
                     setShowButton(true);
                 }
-            );
+            ).finally(() => 
+                <InfoModal
+                visible={isInfoModalVisible}
+                setVisible={setInfoModalVisible} >
+                <div style={{color: "red"}}>
+                    <p>{isInfoModalVisible}</p>
+                </div>
+                <MyButton onClick={() => {
+                    setInfoModalVisible(false);
+                }}>Close</MyButton>
+            </InfoModal>);
             setIsLoading(true)
         } catch (err: any) {
             if (!err.response) {
-                setMyError("");
+                setMyError(err.response);
+                setModalVisible(true);
             } else if (err.response?.status === 401) {
-                setMyError("");
+                setMyError('Unauthorized');
+                setModalVisible(true);
             } else {
-                setMyError("");
+                setMyError('Fetching of data from database failed');
+                setModalVisible(true);
             }
         }
     }

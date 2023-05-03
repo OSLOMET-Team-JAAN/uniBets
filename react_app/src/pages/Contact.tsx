@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Button } from "@material-tailwind/react";
 import styles from "../styles/pages/Contact.module.css";
-import EventBus from "../common/EventBus";
+import EventBus from "../common/DocEventBus";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";

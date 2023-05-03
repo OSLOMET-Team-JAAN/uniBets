@@ -105,29 +105,33 @@ const AdminPage: FC = () => {
                         return await upload(array).then()
                     });
                     Promise.allSettled(promises)
-                        .then((response) => {
-                            console.log(JSON.stringify(response))
+                        .then(() => {
+                            setInfoModalVisible(true);
+                            setInfoMessage('Data saved to database successfully!');
                         })
-                        .catch((error) => setMyError(error))
                         .finally(() =>
-                            <InfoModal visible={isInfoModalVisible} setVisible={setInfoModalVisible} >
+                            <InfoModal
+                                visible={isInfoModalVisible}
+                                setVisible={setInfoModalVisible} >
                                 <div style={{color: "red"}}>
-                                    <p>Data is saved successfully to database!</p>
+                                    <p>{isInfoModalVisible}</p>
                                 </div>
                                 <MyButton onClick={() => {
                                     setInfoModalVisible(false);
                                 }}>Close</MyButton>
-                            </InfoModal>
-                        )
+                            </InfoModal>)
                 }
-                setIsLoading(false)
+                setIsLoading(false);                
             } catch (err: any) {
                 if (!err?.response) {
                     setMyError(err?.response);
+                    setModalVisible(true);
                 } else if (err.response?.status === 401) {
                     setMyError('Unauthorized');
+                    setModalVisible(true);
                 } else {
                     setMyError('Upload data Failed');
+                    setModalVisible(true);
                 }
             }
         }
@@ -163,7 +167,8 @@ const AdminPage: FC = () => {
                                 setData={setData} 
                                 setHeaders={setHeaders} 
                                 setModalVisible={setModalVisible} 
-                                setInfoModalVisible={setInfoModalVisible} 
+                                setInfoModalVisible={setInfoModalVisible}
+                                isInfoModalVisible={isInfoModalVisible}
                                 setInfoMessage={setInfoMessage} 
                                 setShowContent={setShowContent} 
                                 setShowButton={setShowButton} 
