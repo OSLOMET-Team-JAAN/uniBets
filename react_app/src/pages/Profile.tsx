@@ -2,9 +2,9 @@ import React, {FC} from "react";
 import {getCurrentUser} from "../services/auth.service";
 import {Link} from "react-router-dom";
 import * as st from '../styles/tailwind/ProfileUser.style';
-import {Button, Card, CardBody, CardFooter, CardHeader, Typography} from "@material-tailwind/react";
+import {Card, CardBody, CardFooter, CardHeader, Typography} from "@material-tailwind/react";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import { ErrorBoundary } from "../errors/ErrorBoundary";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Profile: FC = () => {
@@ -52,3 +52,4 @@ const Profile: FC = () => {
 }
 
 export default Profile;
+

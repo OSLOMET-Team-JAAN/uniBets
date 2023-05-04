@@ -273,4 +273,4 @@ export default RegistrationPage;
 //https://developer-mozilla-org.translate.goog/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label
-//https://ru.reactjs.org/docs/hooks-reference.html#useref
+//https://react.dev/reference/react
