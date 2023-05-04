@@ -2,7 +2,7 @@
 
 namespace BetAPI.extra;
 
-public interface IExtra
+public interface IFurtherDev
 {
     List<BetEntity> GetAll_July_4();
     List<BetEntity> GetAll_July_11();

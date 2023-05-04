@@ -5,12 +5,12 @@ using Microsoft.Data.SqlClient;
 
 namespace BetAPI.extra;
 
-public class ExtreaRepo : IExtra
+public class FurtherDev : IFurtherDev
 {
     private readonly IConfiguration _configuration;
     private readonly Context _db;
 
-    public ExtreaRepo(IConfiguration configuration, Context db)
+    public FurtherDev(IConfiguration configuration, Context db)
     {
         _configuration = configuration;
         _db = db;
