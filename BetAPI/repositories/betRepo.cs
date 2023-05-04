@@ -134,3 +134,45 @@ public class BetRepo : IRepo
         return null;
     }
 }
+
+
+/*
+ * public async Task SaveTable(List<BetEntity> betList)
+{
+    if (betList == null) return;
+
+   
+    foreach (var item in betList)
+    {
+        var existingBet = await _db.BetEntities
+            .FirstOrDefaultAsync(b => b.Player_no == item.Player_no &&
+                                       b.PLAYER_BET_NUMBER == item.PLAYER_BET_NUMBER &&
+                                       b.BET_PLACED_DATE == item.BET_PLACED_DATE &&
+                                       b.OVER_1000_SEK == item.OVER_1000_SEK &&
+                                       b.EVENT_NAME == item.EVENT_NAME &&
+                                       b.LEAGUE == item.LEAGUE &&
+                                       b.BET_OFFER_TYPE == item.BET_OFFER_TYPE &&
+                                       b.CRITERIA_NAME == item.CRITERIA_NAME &&
+                                       b.IS_LIVE == item.IS_LIVE &&
+                                       b.BET_LABEL == item.BET_LABEL &&
+                                       b.BET_OUTCOME == item.BET_OUTCOME);
+        if (existingBet == null)
+        {
+           _db.BetEntities.Add(item);
+        }
+    }
+
+    await _db.SaveChangesAsync();
+}
+
+
+public List<BetEntity> GetAll()
+{
+
+    var list = _db.BetEntities.ToList();
+
+    return list;
+}
+ */
+
+
