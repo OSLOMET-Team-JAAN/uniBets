@@ -201,7 +201,6 @@ const MyTable: FC<Props> = ({columns, rows}) => {
                     )}
                     </tbody>
                 </table>
-                {/*<div ref={lastElement.current} style={{height: 20, background: 'red'}}></div>*/}
                 {!calculatedRows.length &&
                     <h1 style={{textAlign: "center"}}>NO DATA FOUND!</h1>}
                 <Pagination

@@ -114,7 +114,6 @@ const Pagination: FC<Props> = ({currentPage, totalPages, handlePagination,}) => 
                         Next
                     </button>
                 )}
-                Rows
             </div>
         </>
 

@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import st from '../styles/pages/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
-import MyButton from "../components/UI/buttons/DangerButton";
+import MyDangerButton from "../components/UI/buttons/DangerButton";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from "../errors/ErrorBoundary";
 
@@ -107,10 +107,10 @@ const RegistrationPage: FC = () => {
                 <section>
                     <h1>Registered successfully!</h1>
                     <p>
-                        <MyButton
+                        <MyDangerButton
                             onClick={redirect}
                         >Login
-                        </MyButton>
+                        </MyDangerButton>
                     </p>
                 </section>
             ) : (

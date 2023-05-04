@@ -12,7 +12,7 @@ interface Props {
     disabled?: boolean
 }
 
-const MyButton: FC<Props> = ({children, addStyles, ...props}) => {
+const MyFormButton: FC<Props> = ({children, addStyles, ...props}) => {
     return (
         <button
             {...props}
@@ -23,7 +23,7 @@ const MyButton: FC<Props> = ({children, addStyles, ...props}) => {
     );
 }
 
-export default MyButton;
+export default MyFormButton;
 
 
 // In typeScript we get an error TS7031: Binding element 'children' implicitly has an 'any' type. To reduce amount of type "any" usage

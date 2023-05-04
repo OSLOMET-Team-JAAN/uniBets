@@ -110,3 +110,5 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
 };
 
 export default MyDragDropArea;
+
+// https://www.youtube.com/watch?v=SmIRn6uVVVI
