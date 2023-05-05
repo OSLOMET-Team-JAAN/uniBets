@@ -1,6 +1,5 @@
 section {
     margin: auto;
-    max-width: 60%;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -16,12 +15,6 @@ form {
     flex-grow: 1;
     padding-bottom: 1rem;
 }
-
-/*
-    a, a:visited {
-    color: #fff;
-}
-*/
 
 .success {
     display: block;

@@ -66,7 +66,7 @@ export function convertType(value: any) {
     return value
 }
 
-export function filterRows(rows: Array<ICSVdata>, filters: any) {
+export function filterRows(rows: Array<any>, filters: any) {
     if (isEmpty(filters)) return rows
 
     return rows.filter((row: any) => {

@@ -68,7 +68,7 @@ const Login: FC = () => {
 
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
-                <section>
+                <section className={st.section}>
                     <p
                         ref={errRef}
                         className={errMsg ? st.errMsg : st.offscreen}

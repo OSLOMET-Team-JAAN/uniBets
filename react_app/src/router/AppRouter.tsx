@@ -13,6 +13,7 @@ import Dashboard from "../pages/Dashboard";
 import AuthIsRequire from "../services/AuthIsRequire";
 import Contact from "../pages/Contact";
 import Faq from "../pages/Faq";
+import Inbox from "../pages/Inbox";
 
 const ROLES = {
     'User': 'USER',
@@ -44,7 +45,7 @@ const AppRouter: FC = () => {
                 {/* Administrator */}
                 <Route element={<AuthIsRequire allowedRoles={[ROLES.Admin]}/>}>
                     <Route path="/admin" element={<AdminPage/>}/>
-                    <Route path="/user" element={<UserPage/>}/>
+                    <Route path="/inbox" element={<Inbox/>}/>
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                 </Route>

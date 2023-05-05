@@ -1,0 +1,102 @@
+﻿.TableContainer {
+    text-align: center;
+    display: block;
+    padding: 24px;
+    margin: 8px;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+
+table thead tr {
+    color: #ffffff;
+    font-size: inherit;
+    background: teal;
+}
+
+table thead tr td {
+    border: 1px solid #014141;
+}
+
+th {
+    padding: 1px;
+    text-transform: capitalize;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+td {
+    /*word-wrap: break-word;*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all .2s linear;
+}
+
+.tooltip:focus,
+.tooltip:hover {
+    color: transparent;
+}
+
+.tooltip:focus:after,
+.tooltip:hover:after {
+    content: attr(abbr);
+    overflow: visible;
+    text-overflow: inherit;
+    background: #012823;
+    position: absolute;
+    left: auto;
+    top: auto;
+    width: auto;
+    max-width: 20rem;
+    border: 1px solid #eaebec;
+    padding: 0.1rem 1rem;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .28);
+    white-space: normal;
+    word-wrap: break-word;
+    display: block;
+    color: #daf6f2;
+    margin-top: -1.25rem;
+}
+
+table tbody tr:nth-child(2n) {
+    background: #edf6f6;
+}
+
+table tbody tr:hover {
+    background: #9bd4f8;
+}
+
+.pagination-component {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sort-button {
+    background-color: lightgrey;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    color: black;
+    cursor: pointer;
+}
+
+span:hover {
+    cursor: pointer;
+}
+
+.rowsPerPage {
+    max-width: 40px;
+}
+
+/*
+https://www.w3schools.com/css/css_tooltip.asp
+*/

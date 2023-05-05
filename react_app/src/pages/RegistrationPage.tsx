@@ -104,7 +104,7 @@ const RegistrationPage: FC = () => {
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             {success ? (
-                <section>
+                <section className={st.section}>
                     <h1>Registered successfully!</h1>
                     <p>
                         <img
