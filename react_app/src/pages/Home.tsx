@@ -1,11 +1,9 @@
 import * as st from "../styles/tailwind/HomePage.style";
 import Fraud from "../styles/images/image1.jpg"
-import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
-import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import {Link} from "react-router-dom";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import { ErrorBoundary } from "../errors/ErrorBoundary";
-import { FC } from "react";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {FC} from "react";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Home: FC = () => {

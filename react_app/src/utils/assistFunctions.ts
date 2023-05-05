@@ -3,7 +3,6 @@
 */
 
 import {ICSVdata} from "../models/ICSVdata";
-import {useEffect, useState} from "react";
 
 export const getPageCount = (totalRows: number, limit: number) => {
     return Math.ceil(totalRows / limit)
