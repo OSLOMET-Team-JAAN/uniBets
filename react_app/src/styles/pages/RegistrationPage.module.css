@@ -1,7 +1,6 @@
 section {
     margin: auto;
-    width: 100%;
-    max-width: 420px;
+    max-width: 60%;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -24,6 +23,14 @@ form {
 }
 */
 
+.success {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
 
 input[type="text"],
 input[type="password"],

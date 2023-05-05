@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link, useNavigate} from "react-router-dom";
@@ -107,6 +107,10 @@ const RegistrationPage: FC = () => {
                 <section>
                     <h1>Registered successfully!</h1>
                     <p>
+                        <img
+                            className={st.success}
+                            alt="success"
+                            src={require('../../src/styles/images/_success.jpg')}/>
                         <MyDangerButton
                             onClick={redirect}
                         >Login
