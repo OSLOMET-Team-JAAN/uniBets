@@ -3,7 +3,6 @@
 */
 
 import {ICSVdata} from "../models/ICSVdata";
-import {useEffect, useState} from "react";
 
 export const getPageCount = (totalRows: number, limit: number) => {
     return Math.ceil(totalRows / limit)
@@ -67,7 +66,7 @@ export function convertType(value: any) {
     return value
 }
 
-export function filterRows(rows: Array<ICSVdata>, filters: any) {
+export function filterRows(rows: Array<any>, filters: any) {
     if (isEmpty(filters)) return rows
 
     return rows.filter((row: any) => {

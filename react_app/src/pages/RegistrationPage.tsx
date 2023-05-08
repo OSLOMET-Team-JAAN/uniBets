@@ -1,11 +1,11 @@
-import {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link, useNavigate} from "react-router-dom";
 import st from '../styles/pages/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
-import MyButton from "../components/UI/buttons/DangerButton";
+import MyDangerButton from "../components/UI/buttons/DangerButton";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import { ErrorBoundary } from "../errors/ErrorBoundary";
 
@@ -104,13 +104,17 @@ const RegistrationPage: FC = () => {
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             {success ? (
-                <section>
+                <section className={st.section}>
                     <h1>Registered successfully!</h1>
                     <p>
-                        <MyButton
+                        <img
+                            className={st.success}
+                            alt="success"
+                            src={require('../../src/styles/images/_success.jpg')}/>
+                        <MyDangerButton
                             onClick={redirect}
                         >Login
-                        </MyButton>
+                        </MyDangerButton>
                     </p>
                 </section>
             ) : (
@@ -273,4 +277,4 @@ export default RegistrationPage;
 //https://developer-mozilla-org.translate.goog/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label
-//https://ru.reactjs.org/docs/hooks-reference.html#useref
+//https://react.dev/reference/react

@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-/*#root {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*}*/
-
 html, body {
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     text-align: center;

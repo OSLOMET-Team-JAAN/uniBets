@@ -12,4 +12,5 @@ public sealed class Context : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<BetEntity> BetEntity { get; set; }
+    public DbSet<Contact> messages { get; set; }
 }

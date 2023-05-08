@@ -10,7 +10,7 @@ interface Props {
     abbr?: string
 }
 
-const MyButton: FC<Props> = ({children, ...props}) => {
+const MyDangerButton: FC<Props> = ({children, ...props}) => {
     return (
         <>
             <button className={st.myDangerBtn} {...props}>
@@ -21,20 +21,8 @@ const MyButton: FC<Props> = ({children, ...props}) => {
     );
 }
 
-export default MyButton;
+export default MyDangerButton;
 
-
-// In typeScript we get an error TS7031: Binding element 'children' implicitly has an 'any' type. To reduce amount of type "any" usage
-// We decided do not use code below and in that case interface will be implemented
-// const MyButton = ({children, ...props}) => {
-//     return (
-//         <buttons
-//             className={classes.myBtn}
-//         >
-//             {children}
-//         </buttons>
-//     );
-// }
 
 // How to build custom buttons component
 // https://www.twilio.com/blog/intro-custom-button-component-typescript-react

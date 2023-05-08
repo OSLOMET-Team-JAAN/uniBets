@@ -2,6 +2,8 @@ import axios from "../common/axiosAPI";
 import {ICSVdata} from "../models/ICSVdata";
 
 const TABLE_URL = "/Bets"
+
+// Saving data to database
 export const upload = (data: Array<ICSVdata>) => {
     const userStr = localStorage.getItem("user");
     let user = null;
@@ -18,6 +20,7 @@ export const upload = (data: Array<ICSVdata>) => {
     );
 };
 
+// Fetching data from database
 export const getAll = () => {
     const userStr = localStorage.getItem("user");
     let user = null;
@@ -31,6 +34,28 @@ export const getAll = () => {
             'Accept': '*/*'
         }
     });
+};
+
+// REQUESTS FOR FEEDBACK SENDING AND RECEIVING
+export const submit = (email: string, subject: string, message: string) => {
+    return axios.post('/submit', {email, subject, message},
+    );
+};
+
+export const getInbox = () => {
+    const userStr = localStorage.getItem("user");
+    let user = null;
+    if (userStr)
+        user = JSON.parse(userStr);
+    return axios.get('/get_inbox', {
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Authorization': `Bearer ${user?.token}`,
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
+            }
+        },
+    );
 };
 
 //HERE WAS THE TEST TO MAKE PERSIST DATA

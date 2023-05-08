@@ -102,6 +102,15 @@ const Navbar: FC = () => {
                     <div 
                         className="navbar-nav mx-auto" 
                         style={{ fontWeight: 'bold', color: 'white' }}>
+                        <li
+                            className="nav-item">
+                            <Link
+                                to={"/inbox"}
+                                className="nav-link"
+                                style={{ color: 'white' }}>
+                                Inbox
+                            </Link>
+                        </li>
                         <li 
                             className="nav-item">
                             <Link 

@@ -35,17 +35,5 @@ const MyInput: FC<Props> =
 
 export default MyInput;
 
-// In typeScript we get an error TS7031: Binding element 'children' implicitly has an 'any' type. To reduce amount of type "any" usage
-// We decided do not use code below and in that case interface will be implemented
-// const MyInput = ({children, ...props}) => {
-//     return (
-//         <input
-//             className={classes.myBtn}
-//         >
-//             {children}
-//         </input>
-//     );
-// }
-
 // How to build custom buttons component
 // https://www.twilio.com/blog/intro-custom-button-component-typescript-react

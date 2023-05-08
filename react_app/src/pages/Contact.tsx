@@ -1,40 +1,95 @@
-import {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import styles from "../styles/pages/Contact.module.css";
-import eventBus from "../common/EventBus";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
+import {submit} from "../services/data.service";
+import InfoModal from "../components/UI/modals/InfoModal";
+import MyButton from "../components/UI/buttons/MyButton";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+
+const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
 
 const Contact: FC = () => {
     const userRef = useRef<HTMLInputElement>(null);
-
+    const errRef = useRef<HTMLParagraphElement>(null);
+    
     const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
+    
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
 
+    // Testing values with REGEX
+    const verified = EMAIL_REGEX.test(email);
+    
     useEffect(() => {
         userRef.current?.focus();
-    }, [])
+    }, []);
 
-    function handleSubmit() {
-        alert(`Your message was sent successfully. Thank you!\n
-            Email: ${email},\n
-            Subject: ${subject},\n
-            Message: ${message}
-        `);
-        setEmail('');
-        setSubject('');
-        setMessage('');
+    useEffect(() => {
+        setValidEmail(verified);
+    }, [verified])
+    
+    useEffect(() => {
+        setErrMsg('');
+    }, [email]);
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        // validation
+        if (!verified) {
+            setErrMsg("Invalid Entry");
+            return;
+        }
+        try {
+            await submit(email, subject, message).then(
+                () => {
+                    setSuccess(true);
+                    //clear state and controlled inputs
+                    setEmail('');
+                    setSubject('');
+                    setMessage('');
+                }
+            )
+        } catch (err: any) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Submitting Failed');
+            }
+            errRef.current?.focus();
+        }
     }
-
-    eventBus.doc.dispatch('submit', handleSubmit);
 
     return (
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
-                <br/>
+                {success ? (
+                    <InfoModal
+                        visible={success}
+                        setVisible={setSuccess} >
+                        <div style={{color: "red"}}>
+                            <p>Your message was sent successfully!</p>
+                        </div>
+                        <MyButton 
+                            onClick={() => {
+                            setSuccess(false);
+                        }}>Close</MyButton>
+                    </InfoModal>
+                ) : (
                 <section className={styles.section}>
                     <div className={styles.container}>
+                        <p ref={errRef}
+                           className={errMsg ? styles.errMsg : styles.offscreen}
+                           aria-live="assertive">{errMsg}</p>
                         <h2 className={styles.title}>Contact Us</h2>
                         <p className={styles.subtitle}>
                             Got a question? Want to send feedback about game-fixing? Let us know.
@@ -44,7 +99,13 @@ const Contact: FC = () => {
                         >
                             <div className={styles.formGroup}>
                                 <label htmlFor="email" className={styles.label}>
-                                    Your email
+                                    Your email:
+                                    <FontAwesomeIcon
+                                        icon={faCheck}
+                                        className={validEmail ? styles.valid : styles.hide}/>
+                                    <FontAwesomeIcon
+                                        icon={faTimes}
+                                        className={validEmail || !email ? styles.hide : styles.invalid}/>
                                 </label>
                                 <input
                                     type="email"
@@ -56,10 +117,13 @@ const Contact: FC = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                />
+                                    aria-invalid={validEmail ? "false" : "true"}
+                                />                                
                             </div>
                             <div className={styles.formGroup}>
-                                <label htmlFor="subject" className={styles.label}>
+                                <label 
+                                    htmlFor="subject" 
+                                    className={styles.label}>
                                     Subject
                                 </label>
                                 <input
@@ -94,6 +158,7 @@ const Contact: FC = () => {
                         </form>
                     </div>
                 </section>
+                )}
             </ ErrorBoundary>
         </>
     );

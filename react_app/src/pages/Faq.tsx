@@ -4,7 +4,7 @@ import styles from "../styles/pages/Faq.module.css";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
-export default function Example() {
+export default function Faq() {
     const [open, setOpen] = useState<number>(0);
 
     const handleOpen = (value: number) => {

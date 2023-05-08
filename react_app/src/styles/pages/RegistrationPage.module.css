@@ -1,7 +1,5 @@
 section {
     margin: auto;
-    width: 100%;
-    max-width: 420px;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -18,12 +16,14 @@ form {
     padding-bottom: 1rem;
 }
 
-/*
-    a, a:visited {
-    color: #fff;
+.success {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
 }
-*/
-
 
 input[type="text"],
 input[type="password"],

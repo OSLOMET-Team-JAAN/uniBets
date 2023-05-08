@@ -14,7 +14,10 @@ root.render(
         <AuthProvider>
             <DataProvider>
                 <Routes>
-                    <Route path="/*" element={<App/>}/>
+                    <Route 
+                        path="/*" 
+                        element={<App/>}
+                    />
                 </Routes>
             </DataProvider>
         </AuthProvider>

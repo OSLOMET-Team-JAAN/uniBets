@@ -1,25 +1,25 @@
-import React, {FC, useMemo, useState} from 'react';
-import IPlayer from "../../models/IPlayer";
-import {filterRows, getPageCount, paginateTable, reformatColumnTitles, sortRows,} from "../../utils/assistFunctions";
+﻿import React, {FC, useMemo, useState} from 'react';
+import {filterRows, getPageCount, paginateTable, sortRows,} from "../../utils/assistFunctions";
+import { saveAs } from 'file-saver';
 import Pagination from "./Pagination";
 import MySearch from "../UI/search/MySearch";
 import MyButton from "../UI/buttons/MyButton";
-import styles from '../../styles/Mytable.module.css';
+import styles from '../../styles/DataTable.module.css';
 import MyDropDown from "../UI/select/MyDropDown";
-import {ICSVdata} from "../../models/ICSVdata";
+import IContact from "../../models/IContact";
 
 
 type Props = {
     columns: Array<string>,
-    rows: Array<ICSVdata>
+    rows: Array<IContact>
 }
 
-const MyTable: FC<Props> = ({columns, rows}) => {
+const DataTable: FC<Props> = ({columns, rows}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({});
 
-    const [sortSettings, setSortSettings] = useState({order: 'asc', orderBy: 'BET_PLACED_DATE'}); // asc desc default
+    const [sortSettings, setSortSettings] = useState({order: 'asc', orderBy: 'id'});
     const [rowsPerPage, setRowsPerPage] = useState(20);
     //---------------------------------------------------------------------
 
@@ -82,6 +82,19 @@ const MyTable: FC<Props> = ({columns, rows}) => {
     }
 
 
+    const saveTableData = (tableData: IContact[]) => {
+        const headerRow = Object.keys(tableData[0]).join(',');
+        const csvData = [headerRow];
+        tableData.forEach((row) => {
+            const rowData = Object.values(row).join(',');
+            csvData.push(rowData);
+        });
+
+        const csvBlob = new Blob([csvData.join('\n')], { type: 'text/csv;charset=utf-8' });
+        saveAs(csvBlob, 'data_from_inbox.csv');
+    };
+
+
     return (
         <>
             <div className={styles.TableContainer}>
@@ -105,16 +118,25 @@ const MyTable: FC<Props> = ({columns, rows}) => {
                         value={rowsPerPage}
                         onChange={setRowsPerPage}
                     />
+                    <MyButton 
+                        onClick={() => saveTableData(rows)}
+                    >Export to CSV
+                    </MyButton>
 
                 </div>
                 <table>
+                    <colgroup>
+                        <col style={{ width: "15%" }} />
+                        <col style={{ width: "20%" }} />
+                        <col style={{ width: "20%" }} />
+                        <col style={{ width: "45%" }} />
+                    </colgroup>
                     <thead>
                     <tr>
                         {columns.map((column: any, index: number) => {
                             return (
                                 <th key={index}>
-                                    <>{reformatColumnTitles(column)}</>
-                                    {" "}
+                                    {column}
                                 </th>
                             )
                         })}
@@ -122,8 +144,8 @@ const MyTable: FC<Props> = ({columns, rows}) => {
                     <tr>
                         {columns.map((column: any, index: number) => {
                             return (
-                                <th 
-                                    key={index} 
+                                <th
+                                    key={index}
                                     className={styles.sortButton}
                                     onClick={() => handleSort(column)}
                                 >{sortButton(column)}
@@ -134,8 +156,8 @@ const MyTable: FC<Props> = ({columns, rows}) => {
                     <tr>
                         {columns.map((column, index: number) => {
                             return (
-                                <th 
-                                    key={`${column}-search`} 
+                                <th
+                                    key={`${column}-search`}
                                     style={{color: "black"}}>
                                     <MySearch
                                         key={`${index}-search`}
@@ -150,53 +172,27 @@ const MyTable: FC<Props> = ({columns, rows}) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {calculatedRows.map((row: IPlayer, index: number) =>
+                    {calculatedRows.map((row: IContact, index: number) =>
                         <tr key={index}>
-                            <td key={crypto.randomUUID()}>{row.Player_no}</td>
-                            <td key={crypto.randomUUID()}>{row.PLAYER_BET_NUMBER}</td>
-                            <td
+                            <td 
+                                key={crypto.randomUUID()}
+                            >{row.id}</td>
+                            <td 
                                 key={crypto.randomUUID()}
                                 className={styles.tooltip}
-                                abbr={`${row.BET_PLACED_DATE}`}>{row.BET_PLACED_DATE}</td>
-                            <td
+                                abbr={`${row.email}`}
+                            >{row.email}</td>
+                            <td 
                                 key={crypto.randomUUID()}
-                                abbr={`${row.OVER_1000_SEK}`}
                                 className={styles.tooltip}
-                            >{row.OVER_1000_SEK}</td>
-                            <td
+                                abbr={`${row.subject}`}
+                            >{row.subject}</td>
+                            <td 
                                 key={crypto.randomUUID()}
-                                abbr={`${row.EVENT_NAME}`}
                                 className={styles.tooltip}
-                            >{row.EVENT_NAME}</td>
-                            <td
-                                key={crypto.randomUUID()}
-                                abbr={`${row.LEAGUE}`}
-                                className={styles.tooltip}
-                            >{row.LEAGUE}</td>
-                            <td
-                                key={crypto.randomUUID()}
-                                abbr={`${row.BET_OFFER_TYPE}`}
-                                className={styles.tooltip}
-                            >{row.BET_OFFER_TYPE}</td>
-                            <td
-                                key={crypto.randomUUID()}
-                                abbr={`${row.CRITERIA_NAME}`}
-                                className={styles.tooltip}
-                            >{row.CRITERIA_NAME}</td>
-                            <td
-                                key={crypto.randomUUID()}>{row.IS_LIVE}</td>
-                            <td
-                                key={crypto.randomUUID()}
-                                abbr={`${row.BET_LABEL}`}
-                                className={styles.tooltip}
-                            >{row.BET_LABEL}</td>
-                            <td
-                                key={crypto.randomUUID()}>{row.ODDS}</td>
-                            <td
-                                key={crypto.randomUUID()}
-                                abbr={`${row.BET_OUTCOME}`}
-                                className={styles.tooltip}
-                            >{row.BET_OUTCOME}</td>
+                                style={{textAlign: "left"}}
+                                abbr={`${row.message}`}
+                            >{row.message}</td>          
                         </tr>
                     )}
                     </tbody>
@@ -212,7 +208,7 @@ const MyTable: FC<Props> = ({columns, rows}) => {
     )
 }
 
-export default MyTable;
+export default DataTable;
 
 // https://www.taniarascia.com/front-end-tables-sort-filter-paginate/
 // https://www.youtube.com/watch?v=EaxC_kOG03E

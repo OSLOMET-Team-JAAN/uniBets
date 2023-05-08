@@ -68,7 +68,7 @@ const Login: FC = () => {
 
         <>
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
-                <section>
+                <section className={st.section}>
                     <p
                         ref={errRef}
                         className={errMsg ? st.errMsg : st.offscreen}
@@ -116,3 +116,5 @@ const Login: FC = () => {
 }
 
 export default Login;
+
+// https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Login.js
