@@ -19,30 +19,58 @@ namespace BetAPI.Controllers
             _logger = logger;
         }
 
+        /* [HttpPost("sendMessage")]
+         public IActionResult SendMessage(Contact request)
+         {
+             try
+             {
+
+                 var result = _meesage.SendMessage(request);
+                 if (result == null)
+                 {
+                     _logger.LogError("the POST call to /api/sendMessage failed");
+                     return NotFound();
+                 }
+
+                 _logger.LogInformation("POST: api/message");
+                 return Ok("saved");
+             }
+             catch (Exception ex)
+             {
+                 _logger.LogError(ex, "the POST call to /api/sendMessage failed");
+                 return StatusCode(StatusCodes.Status500InternalServerError,
+                     "Error sending a message"
+                 );
+             }
+         }
+
+         */
+
+
         [HttpPost("sendMessage")]
-        public IActionResult SendMessage(Contact request)
+        public async Task<IActionResult> SendMessage(Contact request)
         {
             try
             {
-
-                var result = _meesage.SendMessage(request);
-                if (result == null)
+                var result = await _meesage.SendMessage(request);
+                if (result == "the mail was not sent")
                 {
-                    _logger.LogError("the POST call to /api/sendMessage failed");
-                    return NotFound();
+                    _logger.LogError("Failed to send email");
+                    return BadRequest("Failed to send email");
                 }
 
                 _logger.LogInformation("POST: api/message");
-                return Ok("saved");
+                return Ok("Saved");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "the POST call to /api/sendMessage failed");
+                _logger.LogError(ex, "Error sending message");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error sending a message"
                 );
             }
         }
+
 
 
         [HttpGet ("messages")]

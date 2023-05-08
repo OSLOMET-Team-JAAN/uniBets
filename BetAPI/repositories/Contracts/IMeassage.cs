@@ -4,7 +4,7 @@ namespace BetAPI.repositories.Contracts
 {
     public interface IMeassage
     {
-        Task SendMessage(Contact contact);
+        Task<string> SendMessage(Contact contact);
         List<Contact> GetMessages();
     }
 }
