@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetAPI", "BetAPI\BetAPI.csp
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "react_app", "react_app\react_app.esproj", "{2F61B03D-8146-4B0D-887C-CA94973A57DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{D55F597F-805A-4074-B79B-8BDB780E95C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{2F61B03D-8146-4B0D-887C-CA94973A57DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F61B03D-8146-4B0D-887C-CA94973A57DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F61B03D-8146-4B0D-887C-CA94973A57DA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D55F597F-805A-4074-B79B-8BDB780E95C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55F597F-805A-4074-B79B-8BDB780E95C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55F597F-805A-4074-B79B-8BDB780E95C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55F597F-805A-4074-B79B-8BDB780E95C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

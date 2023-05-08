@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NuGet.Common;
+
 
 namespace BetAPI.Controllers;
 
@@ -17,11 +17,11 @@ namespace BetAPI.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly IConfiguration _conf;
-    private readonly Context _context;
+   // private readonly Context _context;
 
-    public AuthenticationController(Context context, IConfiguration conf)
+    public AuthenticationController( IConfiguration conf)
     {
-        _context = context;
+       
         _conf = conf;
     }
 
@@ -40,14 +40,17 @@ public class AuthenticationController : ControllerBase
                 var sql = "SELECT * FROM Users WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@Username", request.Username);
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return BadRequest("Username already exists");
-                        }
-                    }
+                    
+                     cmd.Parameters.AddWithValue("@Username", request.Username);
+                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                     {
+                         if (reader.HasRows)
+                         {
+                             return BadRequest("Username already exists");
+                         }
+                     }
+
+                  
                 }
 
                 request.Password = tools.PasswordHashing(request.Password);
