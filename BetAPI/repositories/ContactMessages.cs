@@ -32,11 +32,11 @@ namespace BetAPI.repositories
         {
             try
             {
-             
+
 
 
                 //creating APIKey
-                var apiKey = "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"
+                var apiKey = "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";
 
 
                 var client = new SendGridClient(apiKey);

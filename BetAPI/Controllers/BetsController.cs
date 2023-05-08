@@ -26,6 +26,7 @@ public class BetsController : ControllerBase
     [Authorize(Policy = "ADMIN")]
     public ActionResult SaveTable(List<BetEntity> betList)
     {
+    
         try
         {
             var result = _repository.SaveTable(betList);
@@ -41,6 +42,7 @@ public class BetsController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "the POST call to /api/saveTable failed");
+
             return StatusCode(StatusCodes.Status500InternalServerError,
                 "Error getting data from the database"
             );
