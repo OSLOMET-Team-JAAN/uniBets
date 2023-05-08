@@ -27,6 +27,7 @@ builder.Services.AddCors(c =>
 });
 
 builder.Services.AddScoped<IRepo, BetRepo>();
+builder.Services.AddScoped<IMeassage, ContactMessages>();
 
 //Authentication
 //adding the configuration and authentication and JWTBearer
@@ -61,6 +62,8 @@ builder.Services.AddAuthorization(opts =>
         .RequireAuthenticatedUser()
         .Build();
 });
+
+
 
 
 var app = builder.Build();
