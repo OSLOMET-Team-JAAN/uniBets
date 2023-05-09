@@ -17,6 +17,8 @@ public class BetRepo : IRepo
         _db = db;
     }
 
+   
+
 
     //just for the admin
     public async Task SaveTable(List<BetEntity> betList)
