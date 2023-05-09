@@ -33,7 +33,8 @@ namespace BetAPI.repositories
             try
             {
 
-
+                await _db.messages.AddAsync(contact);
+                await _db.SaveChangesAsync();
 
                 //creating APIKey
                 var apiKey = "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";
@@ -61,8 +62,7 @@ namespace BetAPI.repositories
                     return "the mail was sent";
                 }
 
-                await _db.messages.AddAsync(contact);
-                await _db.SaveChangesAsync();
+               
                 return "the mail was not sent";
             }
             catch (Exception ex)
