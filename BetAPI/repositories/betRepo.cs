@@ -3,7 +3,6 @@ using BetAPI.Data;
 using BetAPI.repositories.Contracts;
 using Domain;
 using Microsoft.Data.SqlClient;
-
 namespace BetAPI.repositories;
 
 public class BetRepo : IRepo

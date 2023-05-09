@@ -36,6 +36,7 @@ namespace BetAPI.repositories
                 await _db.messages.AddAsync(contact);
                 await _db.SaveChangesAsync();
 
+
                 //creating APIKey
                 var apiKey = "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";
 
