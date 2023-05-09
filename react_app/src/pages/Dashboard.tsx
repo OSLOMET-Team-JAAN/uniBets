@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import GetTopWinners from "../components/dashboard_components/GetTopWinners";
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
@@ -91,7 +91,7 @@ const Dashboard: FC = () => {
     }    
     
     return (
-        <>
+        <div data-testid="dashboardPage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
                     ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
@@ -108,7 +108,7 @@ const Dashboard: FC = () => {
                                     }}>Close</MyButton>
                                 </InfoModal> 
                         :
-                        <>
+                        <div data-testid="dashboardTest">
                             <h3>Welcome To ADMIN Dashboard</h3>
                             <br/>
                             <div className={st.cont}>
@@ -200,13 +200,13 @@ const Dashboard: FC = () => {
                                     >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
                                 }
                             </div>
-                        </>
+                        </div>
                     }                        
                         </>
                     
                 }
             </ErrorBoundary>
-        </>
+        </div>
     );
 };
 

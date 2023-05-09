@@ -140,7 +140,7 @@ const AdminPage: FC = () => {
 //-------------------------------------------------------------------------
 
         return (
-            <>
+            <div data-testid="adminPage">
                 <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                     <div className={styles.cont}>
                         <h2 className={styles.csvImport}> Import of CSV file</h2>
@@ -251,7 +251,7 @@ const AdminPage: FC = () => {
                         }
                     </div>
                 </ErrorBoundary>
-            </>
+            </div>
         );
 
     }

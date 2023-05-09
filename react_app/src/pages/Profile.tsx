@@ -9,9 +9,12 @@ import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Profile: FC = () => {
     const currentUser = getCurrentUser();
+    if (!currentUser) {
+        return <div >No user data found.</div>;
+    }
 
     return (
-        <>
+        <div data-testid="profilePage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <Card className={st.Profile.card}>
                     <CardHeader floated={false} className={st.Profile.header}>
@@ -25,7 +28,7 @@ const Profile: FC = () => {
                     <CardBody>
                         <div className="mb-3">
                             <Typography variant="h3" color="blue-gray">
-                                Welcome <strong>{currentUser.username}</strong>
+                                Welcome <strong>{currentUser ? currentUser.username : ""}</strong>
                             </Typography>
     
                         </div>
@@ -47,7 +50,7 @@ const Profile: FC = () => {
                     </CardFooter>
                 </Card>
             </ErrorBoundary>
-        </>
+        </div>
     );
 }
 

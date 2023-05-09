@@ -70,7 +70,7 @@ const Contact: FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="contactPage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 {success ? (
                     <InfoModal
@@ -160,7 +160,7 @@ const Contact: FC = () => {
                 </section>
                 )}
             </ ErrorBoundary>
-        </>
+        </div>
     );
 }
 

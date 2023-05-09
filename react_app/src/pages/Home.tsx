@@ -9,7 +9,7 @@ import MyFormButton from "../components/UI/buttons/MyFormButton";
 const Home: FC = () => {
 
     return (
-        <>
+        <div data-testid="homePage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <br />
                 <div>
@@ -93,7 +93,7 @@ const Home: FC = () => {
                     </div>
                 </div>
             </ErrorBoundary>
-        </>
+        </div>
     )
 }
 export default Home;

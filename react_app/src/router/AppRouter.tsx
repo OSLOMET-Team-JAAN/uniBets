@@ -26,32 +26,32 @@ const AppRouter: FC = () => {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 {/* public routes */}
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/home" element={<Home/>}/>
-                <Route path="/faq" element={<Faq/>}/>
-                <Route path="/contact" element={<Contact/>}/>
-                <Route path="/register" element={<RegistrationPage/>}/>
-                <Route path="/unauthorized" element={<Unauthorized/>}/>
+                <Route path="login" element={<Login/>}/>
+                <Route path="home" element={<Home/>}/>
+                <Route path="faq" element={<Faq/>}/>
+                <Route path="contact" element={<Contact/>}/>
+                <Route path="register" element={<RegistrationPage/>}/>
+                <Route path="unauthorized" element={<Unauthorized/>}/>
 
                 {/*    Protected routes */}
                 {/* Registered User */}
 
                 <Route element={<AuthIsRequire allowedRoles={[ROLES.User, ROLES.Admin]}/>}>
-                    <Route path="/user" element={<UserPage/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="user" element={<UserPage/>}/>
+                    <Route path="profile" element={<Profile/>}/>
                 </Route>
 
 
                 {/* Administrator */}
                 <Route element={<AuthIsRequire allowedRoles={[ROLES.Admin]}/>}>
-                    <Route path="/admin" element={<AdminPage/>}/>
-                    <Route path="/inbox" element={<Inbox/>}/>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="admin" element={<AdminPage/>}/>
+                    <Route path="inbox" element={<Inbox/>}/>
+                    <Route path="dashboard" element={<Dashboard/>}/>
+                    <Route path="profile" element={<Profile/>}/>
                 </Route>
 
                 {/* catch all routes */}
-                <Route path="/*" element={<NotFound/>}/>
+                <Route path="*" element={<NotFound/>}/>
             </Route>
         </Routes>
     );

@@ -44,7 +44,9 @@ const HamburgerBar: FC = () => {
     };
 
     return (
-        <div className={st.cont} >
+        <div className={st.cont}
+             data-testid="hamburgerBar"
+        >
             <button 
                 onClick={handleClick} > 
                 <FiMenu 
