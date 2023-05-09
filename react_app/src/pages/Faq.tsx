@@ -17,7 +17,7 @@ export default function Faq() {
     };
 
     return (
-        <>
+        <div data-testid="faqPage">
             <ErrorBoundary 
                 FallbackComponent={ErrorBoundaryResponse}>
             <section 
@@ -225,7 +225,7 @@ export default function Faq() {
             </div>
         </section>
             </ErrorBoundary>
-        </>
+        </div>
     );
 
 }

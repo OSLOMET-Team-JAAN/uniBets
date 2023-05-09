@@ -45,7 +45,7 @@ const UserPage: FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="userPage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <h2>WELCOME TO USER PAGE</h2>
                 <br/>
@@ -68,7 +68,7 @@ const UserPage: FC = () => {
                     }
                 </div>
             </ErrorBoundary>
-        </>
+        </div>
     );
 };
 

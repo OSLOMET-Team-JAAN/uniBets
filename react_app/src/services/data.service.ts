@@ -38,7 +38,19 @@ export const getAll = () => {
 
 // REQUESTS FOR FEEDBACK SENDING AND RECEIVING
 export const submit = (email: string, subject: string, message: string) => {
+    const userStr = localStorage.getItem("user");
+    let user = null;
+    if (userStr)
+        user = JSON.parse(userStr);
     return axios.post('/submit', {email, subject, message},
+        {
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Authorization': `Bearer ${user?.token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
     );
 };
 

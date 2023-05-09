@@ -101,7 +101,7 @@ const RegistrationPage: FC = () => {
     }
 
     return (
-        <>
+        <div data-testid="registrationPage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
             {success ? (
                 <section className={st.section}>
@@ -266,7 +266,7 @@ const RegistrationPage: FC = () => {
                 </section>
             )}
             </ErrorBoundary>
-        </>
+        </div>
     )
 }
 

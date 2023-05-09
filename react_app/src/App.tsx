@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import HamburgerBar from "./components/layouts/HamburgerBar";
 import AppRouter from "./router/AppRouter";
-import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 import './App.css';
 import eventBus from "./common/EventBus";
+import Navbar from "./components/layouts/Navbar";
 
 
 function App() {

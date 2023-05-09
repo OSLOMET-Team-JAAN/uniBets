@@ -9,7 +9,7 @@ import {ErrorBoundary} from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Login: FC = () => {
-    const {auth, setAuth}: any = useAuth();
+    const {setAuth}: any = useAuth();
 
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
@@ -66,7 +66,7 @@ const Login: FC = () => {
 
     return (
 
-        <>
+        <div data-testid="loginPage">
             <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
                 <section className={st.section}>
                     <p
@@ -111,7 +111,7 @@ const Login: FC = () => {
                     </p>
                 </section>
             </ErrorBoundary>
-            </>
+            </div>
     )
 }
 
