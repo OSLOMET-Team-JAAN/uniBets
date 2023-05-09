@@ -43,13 +43,14 @@ namespace BetAPI.repositories
                 
                 var from = new EmailAddress(contact.Email);
                 
-                var to = new EmailAddress("s351892@oslomet.no");
+                var to = new EmailAddress("solin.h96@hotmail.com");
                
                 var subject = contact.Subject;
 
                 //plain text of the email message
                 var plainTextContent = contact.message;
                
+                //text designing
                 var htmlContent = contact.message;
               
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);

@@ -47,7 +47,7 @@ namespace BetAPI.Controllers
          */
 
 
-        [HttpPost("sendMessage")]
+        [HttpPost("submit")]
         public async Task<IActionResult> SendMessage(Contact request)
         {
             try
@@ -73,7 +73,7 @@ namespace BetAPI.Controllers
 
 
 
-        [HttpGet ("messages")]
+        [HttpGet ("get_inbox")]
         public ActionResult<List<Contact>> GetAll()
         {
             try
