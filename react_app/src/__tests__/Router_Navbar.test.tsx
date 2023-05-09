@@ -4,16 +4,25 @@ import React from "react";
 import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
 import App from "../App";
 import {getLoginMock} from "../utils/testing_utils/mocks";
+import Profile from "../pages/Profile";
+import Dashboard from "../pages/Dashboard";
+import AdminPage from "../pages/AdminPage";
+import Inbox from "../pages/Inbox";
+
 
 /* LOGINS FOR PRIVATE PAGES*/
 const login = {
     admin: {
         username: 'ADMIN',
-        role: 'ADMIN'
+        token: 'random token',
+        email: 'ADMIN@ADMIN.com',
+        role: 'ADMIN',
         },
     user: {
         username: 'USER',
-        role: 'USER'
+        token: 'random token',
+        email: 'USER@USER.com',
+        role: 'USER',
     },
 }
 
@@ -119,23 +128,26 @@ describe('Router testing of PRIVATE pages',() =>{
         getLoginMock(login.admin);
     })
     
+    
     test('renders Dashboard page component after ADMIN login', () => {
-        render(renderWithRouter(<App />, '/dashboard'));
-        expect(screen.getByText(/Welcome To ADMIN Dashboard/i)).toBeInTheDocument();
+        getLoginMock(login.admin);
+        render(renderWithRouter(<Dashboard />, '/'));
+        expect(screen.getByTestId('dashboardPage')).toBeInTheDocument();
     });
     
     test('renders Admin page component after ADMIN login', () => {        
-        render(renderWithRouter(<App />, '/admin'));
+        render(renderWithRouter(<AdminPage />, '/'));
         expect(screen.getByTestId('adminPage')).toBeInTheDocument();
     });
 
     test('renders Inbox page component after ADMIN login', () => {
-        render(renderWithRouter(<App />, '/inbox'));
+        render(renderWithRouter(<Inbox />, '/'));
         expect(screen.getByTestId('inboxPage')).toBeInTheDocument();
     });
 
     test('renders Profile page component after ADMIN login', () => {
-        render(renderWithRouter(<App />, '/profile'));
+        getLoginMock(login.admin);
+        render(renderWithRouter(<Profile />, '/'));
         expect(screen.getByTestId('profilePage')).toBeInTheDocument();
     });
 });

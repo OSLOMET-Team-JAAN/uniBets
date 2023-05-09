@@ -17,7 +17,7 @@ const GetTopWinner: FC = () => {
             <br/>
             <br/>
             <div className={style.box}>
-                {topWinner.map((key: any, i: number) =>
+                {topWinner?.map((key: any, i: number) =>
                     <div key={i}
                     >
                         {key.Player_no}

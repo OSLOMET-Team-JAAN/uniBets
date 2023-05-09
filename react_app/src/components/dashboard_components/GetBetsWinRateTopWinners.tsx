@@ -50,7 +50,7 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
         }
     }, [data]);
 
-    const array = useMemo(() => data.map((obj: any) => getWinnerData(obj.Player_no)), [data, getWinnerData])
+    const array = useMemo(() => data?.map((obj: any) => getWinnerData(obj.Player_no)), [data, getWinnerData])
 
     const results: Player[] = useMemo(() => array.filter((obj: any, index: number, self: any) =>
             index === self.findIndex((obj2: any) => (
