@@ -66,13 +66,13 @@ namespace BetAPI.repositories
                
                 return "the mail was not sent";
             }
+            
             catch (Exception ex)
             {
-
                 _logger.LogError(ex, "Error sending message");
-                throw; // re-throw the exception to be handled by the calling method
+                throw;
             }
-            
+
 
         }
     }

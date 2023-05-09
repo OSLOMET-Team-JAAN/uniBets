@@ -19,32 +19,7 @@ namespace BetAPI.Controllers
             _logger = logger;
         }
 
-        /* [HttpPost("sendMessage")]
-         public IActionResult SendMessage(Contact request)
-         {
-             try
-             {
-
-                 var result = _meesage.SendMessage(request);
-                 if (result == null)
-                 {
-                     _logger.LogError("the POST call to /api/sendMessage failed");
-                     return NotFound();
-                 }
-
-                 _logger.LogInformation("POST: api/message");
-                 return Ok("saved");
-             }
-             catch (Exception ex)
-             {
-                 _logger.LogError(ex, "the POST call to /api/sendMessage failed");
-                 return StatusCode(StatusCodes.Status500InternalServerError,
-                     "Error sending a message"
-                 );
-             }
-         }
-
-         */
+        
 
 
         [HttpPost("submit")]

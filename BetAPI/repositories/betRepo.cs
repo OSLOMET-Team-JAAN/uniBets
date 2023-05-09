@@ -111,7 +111,7 @@ public class BetRepo : IRepo
 
         //create a list of data from the table
         var list = new List<BetEntity>();
-        if (dt.Rows.Count <= 0) return null;
+       // if (dt.Rows.Count <= 0) return null;
         for (var i = 0; i < dt.Rows.Count; i++)
         {
             var bet = new BetEntity();
@@ -130,9 +130,9 @@ public class BetRepo : IRepo
 
             list.Add(bet);
         }
-
-        if (list.Count > 0) return list;
-        return null;
+        return list;
+        //  if (list.Count > 0) return list;
+        //  return null;
     }
 }
 

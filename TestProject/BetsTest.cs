@@ -210,6 +210,122 @@ namespace TestProject
 
             using var context = new Context(optionsBuilder.Options);
             context.BetEntity.AddRange(new List<BetEntity>()
+          {
+         new BetEntity()
+           {
+            Player_no = 1,
+            PLAYER_BET_NUMBER = 1,
+            BET_PLACED_DATE = "2022-05-09",
+            OVER_1000_SEK = "Yes",
+            EVENT_NAME = "Event 1",
+            LEAGUE = "League 1",
+            BET_OFFER_TYPE = "Offer Type 1",
+            CRITERIA_NAME = "Criteria 1",
+            IS_LIVE = "No",
+            BET_LABEL = "Label 1",
+            ODDS = 1.5M,
+            BET_OUTCOME = "Win"
+         },
+          new BetEntity()
+          {
+            Player_no = 2,
+            PLAYER_BET_NUMBER = 2,
+            BET_PLACED_DATE = "2022-05-10",
+            OVER_1000_SEK = "No",
+            EVENT_NAME = "Event 2",
+            LEAGUE = "League 2",
+            BET_OFFER_TYPE = "Offer Type 2",
+            CRITERIA_NAME = "Criteria 2",
+            IS_LIVE = "Yes",
+            BET_LABEL = "Label 2",
+            ODDS = 2.5M,
+            BET_OUTCOME = "Lose"
+        }
+       });
+            context.SaveChanges();
+
+            var configuration = new ConfigurationBuilder()
+       .AddInMemoryCollection(new List<KeyValuePair<string, string>>
+       {
+        new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+       })
+         .Build();
+
+            var repository = new BetRepo(configuration,context);
+
+            // Act
+            var bets = repository.GetAll();
+
+            // Assert
+            Assert.NotNull(bets);
+            Assert.All(bets, bet =>
+            {
+                Assert.NotNull(bet);
+                Assert.NotEqual(0, bet.Player_no);
+                Assert.NotEqual(0, bet.PLAYER_BET_NUMBER);
+            });
+        }
+
+
+
+        /*  [Fact]
+          public void GetAll_ReturnsEmptyList_WhenNoBetsExist()
+          {
+              // Arrange
+              var optionsBuilder = new DbContextOptionsBuilder<Context>();
+              optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+
+              using var context = new Context(optionsBuilder.Options);
+              var configuration = new ConfigurationBuilder()
+                  .AddInMemoryCollection(new List<KeyValuePair<string, string>>
+                  {
+              new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+                  })
+                  .Build();
+
+              var repository = new BetRepo(configuration, context);
+
+              // Act
+              var bets = repository.GetAll();
+
+              // Assert
+              Assert.Empty(bets);
+          }
+        */
+        [Fact]
+        public void GetAll_ReturnsEmptyList_WhenNoBetsExist()
+        {
+            // Arrange
+            var optionsBuilder = new DbContextOptionsBuilder<Context>();
+            optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+
+            using var context = new Context(optionsBuilder.Options);
+            var configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(new List<KeyValuePair<string, string>>
+                {
+            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+                })
+                .Build();
+
+            var repository = new BetRepo(configuration, context);
+
+            // Act
+            var bets = repository.GetAll();
+
+            // Assert
+            Assert.NotNull(bets);
+            
+        }
+
+        [Fact]
+        public void GetAll_ReturnsAllBetsInDatabase_WhenBetsExist()
+        {
+            // Arrange
+            var optionsBuilder = new DbContextOptionsBuilder<Context>();
+            optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+
+            using var context = new Context(optionsBuilder.Options);
+            context.BetEntity.AddRange(new List<BetEntity>()
     {
         new BetEntity()
         {
@@ -245,27 +361,20 @@ namespace TestProject
             context.SaveChanges();
 
             var configuration = new ConfigurationBuilder()
-    .AddInMemoryCollection(new List<KeyValuePair<string, string>>
-    {
-        new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
-    })
-    .Build();
+                .AddInMemoryCollection(new List<KeyValuePair<string, string>>
+                {
+            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+                })
+                .Build();
 
-            var repository = new BetRepo(configuration,context);
+            var repository = new BetRepo(configuration, context);
 
             // Act
             var bets = repository.GetAll();
 
             // Assert
             Assert.NotNull(bets);
-           // Assert.Equal(2, bets.Count);
-            Assert.All(bets, bet =>
-            {
-                Assert.NotNull(bet);
-                Assert.NotEqual(0, bet.Player_no);
-                Assert.NotEqual(0, bet.PLAYER_BET_NUMBER);
-            });
+           
         }
-
     }
 }
