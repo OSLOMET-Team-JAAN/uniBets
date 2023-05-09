@@ -69,7 +69,7 @@ export function convertType(value: any) {
 export function filterRows(rows: Array<any>, filters: any) {
     if (isEmpty(filters)) return rows
 
-    return rows.filter((row: any) => {
+    return rows?.filter((row: any) => {
         return Object.keys(filters).every((key) => {
             let value: { [key: string | number]: any } = row[key]
             const searchQuery = filters[key]
@@ -88,7 +88,7 @@ export function filterRows(rows: Array<any>, filters: any) {
 }
 
 export function sortRows(rows: Array<ICSVdata>, sort: { order: string; orderBy: string }) {
-    return rows.sort((a, b) => {
+    return rows?.sort((a, b) => {
         const {order, orderBy} = sort
         //-- Checking for undefined and null
         //--We used a type assertion to indicate to TypeScript that the string variable is a
@@ -124,14 +124,14 @@ export function paginateTable(sortedRows: any, currentPage: number, rowsPerPage:
 //------ DASH BOARD FUNCTIONS -------------------
 // Get only Won bets rows
 export function getBetWon(data: any): ICSVdata[] {
-    return data.filter((rows: any) =>
+    return data?.filter((rows: any) =>
         rows.BET_OUTCOME === 'Bet Won'
     )
 }
 
 // Get Top data
 export function getTop(data: any, top: number | string): ICSVdata[] {
-    return data.slice(0, top).map((item: any) =>
+    return data?.slice(0, top)?.map((item: any) =>
         item
     )
 }

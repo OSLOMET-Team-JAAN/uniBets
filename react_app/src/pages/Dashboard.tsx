@@ -38,13 +38,13 @@ const Dashboard: FC = () => {
         sortRows(getBetWon(data), sortSettings), [data, sortSettings]);
     
     useEffect(() => {
-        if ( Object.keys(data).length === 0){
+        if (data && Object.keys(data).length === 0){
             handleGetData().then()            
         }        
     },[]);
 
     useEffect(() => {
-        getTop(sortedData, 1).map((key: any) => {
+        getTop(sortedData, 1)?.map((key: any) => {
             return setPlayerNo(key["Player_no"]);
         })
     }, [sortedData]);
@@ -193,7 +193,7 @@ const Dashboard: FC = () => {
                             <div>
                                 {playerNo ?
                                     <GetCustomPlayerData 
-                                        Player={parseInt(playerNo)}
+                                        Player={verifyPlayer(playerNo)}
                                     /> :
                                     <h4 
                                         className={st.errCont}

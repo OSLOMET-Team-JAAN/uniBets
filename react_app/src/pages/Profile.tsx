@@ -23,14 +23,14 @@ const Profile: FC = () => {
                             alt="avatar"
                             className={st.Profile.imag}
                         />
-    
+                
                     </CardHeader>    
                     <CardBody>
                         <div className="mb-3">
                             <Typography variant="h3" color="blue-gray">
                                 Welcome <strong>{currentUser ? currentUser.username : ""}</strong>
                             </Typography>
-    
+                
                         </div>
                         <div color="gray">
                             <p>
@@ -42,7 +42,7 @@ const Profile: FC = () => {
                             <strong>Authorities: &nbsp;</strong>{currentUser.role}
                         </div>
                     </CardBody>
-    
+                
                     <CardFooter className="pt-3">
                         <MyFormButton>
                             <Link to="/home" className="text-white">Back to Home Page</Link>
