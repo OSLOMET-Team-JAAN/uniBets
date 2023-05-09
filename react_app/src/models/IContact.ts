@@ -1,6 +1,6 @@
 ﻿export default interface IContact {
-    id: number,
-    email: string,
-    subject: string,
+    Id: number,
+    Email: string,
+    Subject: string,
     message: string
 }

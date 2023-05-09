@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230508113146_messages")]
-    partial class messages
+    [Migration("20230509100524_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -176,17 +176,17 @@ const DataTable: FC<Props> = ({columns, rows}) => {
                         <tr key={index}>
                             <td 
                                 key={crypto.randomUUID()}
-                            >{row.id}</td>
+                            >{row.Id}</td>
                             <td 
                                 key={crypto.randomUUID()}
                                 className={styles.tooltip}
-                                abbr={`${row.email}`}
-                            >{row.email}</td>
+                                abbr={`${row.Email}`}
+                            >{row.Email}</td>
                             <td 
                                 key={crypto.randomUUID()}
                                 className={styles.tooltip}
-                                abbr={`${row.subject}`}
-                            >{row.subject}</td>
+                                abbr={`${row.Subject}`}
+                            >{row.Subject}</td>
                             <td 
                                 key={crypto.randomUUID()}
                                 className={styles.tooltip}
