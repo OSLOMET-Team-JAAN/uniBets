@@ -42,7 +42,7 @@ export const submit = (email: string, subject: string, message: string) => {
     let user = null;
     if (userStr)
         user = JSON.parse(userStr);
-    return axios.post('/submit', {email, subject, message},
+    return axios.post('/message/submit', {email, subject, message},
         {
             headers: {
                 // Overwrite Axios's automatically set Content-Type
@@ -59,7 +59,7 @@ export const getInbox = () => {
     let user = null;
     if (userStr)
         user = JSON.parse(userStr);
-    return axios.get('/get_inbox', {
+    return axios.get('/message/get_inbox', {
             headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Authorization': `Bearer ${user?.token}`,

@@ -4,7 +4,7 @@
 
 namespace BetAPI.Migrations
 {
-    public partial class messages : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
