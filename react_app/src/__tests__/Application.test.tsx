@@ -1,6 +1,5 @@
 ﻿import React from 'react';
-import { render } from '@testing-library/react';
-import App from '../App';
+import {render} from '@testing-library/react';
 import {MemoryRouter} from "react-router-dom";
 import Navbar from "../components/layouts/Navbar";
 import HamburgerBar from "../components/layouts/HamburgerBar";
