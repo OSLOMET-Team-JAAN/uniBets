@@ -9,27 +9,6 @@ import st from "../styles/pages/Inbox.module.css";
 import Loader from "../components/UI/loader/Loader";
 import DataTable from "../components/table/DataTable";
 
-// const _mockData = [
-//     {
-//         id: 1,
-//         email: "user@gmail.com",
-//         subject: "feedback",
-//         message: "You have made very interesting application. There some small interface problems: blab-la"
-//     },
-//     {
-//         id: 2,
-//         email: "user1@gmail.com",
-//         subject: "feedback1",
-//         message: "asdasdansd,absdkjabsdkjabsdkjhalsdhlasdn,asbdmansbd"
-//     },
-//     {
-//         id: 3,
-//         email: "user2@gmail.com",
-//         subject: "feedback2",
-//         message: "asdasdoiowerteoity,mmn,mbnc,mvblsøfipowuejlrnskdnfs,nd,f"
-//     },
-// ]
-
 const Inbox = () => {
     const [data, setData] = useState<Array<IContact>>([]);
     const [headers, setHeaders] = useState<Array<string>>([]);
@@ -39,11 +18,6 @@ const Inbox = () => {
     //State 10_ to show fetching data process
     const [isLoading, setIsLoading] = useState(false);
     
-
-    // useEffect(() => {
-    //     setData(_mockData)        
-    // }, [])
-
     useEffect(() => {
         handleGetData().then()
     }, [])
