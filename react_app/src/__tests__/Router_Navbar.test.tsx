@@ -1,4 +1,4 @@
-﻿import {render, screen} from '@testing-library/react';
+﻿import {render, screen, waitFor} from '@testing-library/react';
 import Navbar from '../components/layouts/Navbar';
 import React from "react";
 import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
@@ -8,7 +8,13 @@ import Profile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
 import AdminPage from "../pages/AdminPage";
 import Inbox from "../pages/Inbox";
-
+import 'resize-observer-polyfill';
+/* 
+Error: Uncaught [TypeError: window.ResizeObserver is not a constructor]
+This error can occur if you're running the tests in an environment that does not support the ResizeObserver API, such 
+as a headless browser or a Node.js environment without the necessary polyfills.
+was installed npm install resize-observer-polyfill --save-dev and import 'resize-observer-polyfill';
+*/
 
 /* LOGINS FOR PRIVATE PAGES*/
 const login = {
@@ -85,7 +91,8 @@ test('Navbar component shows login and registration links when not logged in', (
 
 /*  ---- TESTING ROUTER ---------------*/
 describe('Router tests', () => {
-    test('renders not found page', () => {       render(renderWithRouter(<App />, '/notExistPage'));
+    test('renders not found page', () => {       
+        render(renderWithRouter(<App />, '/notExistPage'));
         const notFoundPages = screen.queryByTestId('notFoundPage');
         expect(notFoundPages).toBeInTheDocument();
     });
@@ -129,25 +136,33 @@ describe('Router testing of PRIVATE pages',() =>{
     })
     
     
-    test('renders Dashboard page component after ADMIN login', () => {
+    test('renders Dashboard page component after ADMIN login', async () => {
         getLoginMock(login.admin);
-        render(renderWithRouter(<Dashboard />, '/'));
-        expect(screen.getByTestId('dashboardPage')).toBeInTheDocument();
+        render(renderWithRouter(<Dashboard />));
+        await waitFor(() => {
+            expect(screen.getByTestId('dashboardPage')).toBeInTheDocument();
+        })
     });
     
-    test('renders Admin page component after ADMIN login', () => {        
-        render(renderWithRouter(<AdminPage />, '/'));
-        expect(screen.getByTestId('adminPage')).toBeInTheDocument();
+    test('renders Admin page component after ADMIN login', async () => {        
+        render(renderWithRouter(<AdminPage />));
+        await waitFor(() => {
+            expect(screen.getByTestId('adminPage')).toBeInTheDocument();
+        })
     });
 
-    test('renders Inbox page component after ADMIN login', () => {
-        render(renderWithRouter(<Inbox />, '/'));
-        expect(screen.getByTestId('inboxPage')).toBeInTheDocument();
+    test('renders Inbox page component after ADMIN login', async () => {
+        render(renderWithRouter(<Inbox />));
+        await waitFor(() => {
+            expect(screen.getByTestId('inboxPage')).toBeInTheDocument();
+        })
     });
 
-    test('renders Profile page component after ADMIN login', () => {
+    test('renders Profile page component after ADMIN login', async () => {
         getLoginMock(login.admin);
-        render(renderWithRouter(<Profile />, '/'));
-        expect(screen.getByTestId('profilePage')).toBeInTheDocument();
+        render(renderWithRouter(<Profile />));
+        await waitFor(() => {
+            expect(screen.getByTestId('profilePage')).toBeInTheDocument();
+        })
     });
 });

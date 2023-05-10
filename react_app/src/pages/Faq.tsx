@@ -5,12 +5,13 @@ import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 export default function Faq() {
+    
     const [open, setOpen] = useState<number>(0);
-
+    
     const handleOpen = (value: number) => {
-        setOpen(open === value ? 0 : value);
+        setOpen(value === open ? 0 : value);
     };
-
+    
     const customAnimation = {
         mount: {scale: 1},
         unmount: {scale: 0.9},
@@ -32,16 +33,21 @@ export default function Faq() {
                 <br/>
                 <Fragment>
                     <Accordion 
-                        open={open === 1} 
+                        open={open === 1}
+                        data-testid="acc-1"
                         animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
                             <AccordionHeader 
+                                role="button"
+                                data-testid="accHeader-1"
                                 onClick={() => handleOpen(1)} 
                                 className={styles["accordion-header"]}>
                                 What is Game fixing?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-1"
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
@@ -66,16 +72,21 @@ export default function Faq() {
                     </Accordion>
 
                     <Accordion 
-                        open={open === 2} 
+                        open={open === 2}
+                        data-testid="acc-2"
                         animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
                             <AccordionHeader 
+                                role="button"
+                                data-testid="accHeader-2"
                                 onClick={() => handleOpen(2)} 
                                 className={styles["accordion-header"]}>
                                 What is the point of game fixing?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-2"
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
@@ -99,15 +110,21 @@ export default function Faq() {
 
 
                     <Accordion 
-                        open={open === 3} 
+                        open={open === 3}
+                        data-testid="acc-3"
                         animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
                             <AccordionHeader 
-                                onClick={() => handleOpen(3)} className={styles["accordion-header"]}>
+                                role="button"
+                                data-testid="accHeader-3"
+                                onClick={() => handleOpen(3)} 
+                                className={styles["accordion-header"]}>
                                 Is game-fixing cheating?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-3"
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
@@ -131,13 +148,21 @@ export default function Faq() {
 
 
                     <Accordion 
-                        open={open === 4} animate={customAnimation}>
+                        open={open === 4}
+                        data-testid="acc-4"
+                        animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
-                            <AccordionHeader onClick={() => handleOpen(4)} className={styles["accordion-header"]}>
+                            <AccordionHeader
+                                role="button"
+                                data-testid="accHeader-4"
+                                onClick={() => handleOpen(4)} 
+                                className={styles["accordion-header"]}>
                                 What is the most famous game-fixing?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-4"
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
@@ -160,15 +185,20 @@ export default function Faq() {
                     </Accordion>
 
                     <Accordion 
-                        open={open === 5} 
+                        open={open === 5}
+                        data-testid="acc-4"
                         animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
-                            <AccordionHeader 
+                            <AccordionHeader
+                                role="button"
+                                data-testid="accHeader-5"
                                 onClick={() => handleOpen(5)} className={styles["accordion-header"]}>
                                 Who started game-fixing?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-5"
                                 className={styles["accordion-body"]}>
                                 <p className="break-words">
                                     Azharuddin reportedly
@@ -190,16 +220,21 @@ export default function Faq() {
                     </Accordion>
 
                     <Accordion 
-                        open={open === 6} 
+                        open={open === 6}
+                        data-testid="acc-6"
                         animate={customAnimation}>
                         <div 
                             className={styles["accordion-wrapper"]}>
-                            <AccordionHeader 
+                            <AccordionHeader
+                                role="button"
+                                data-testid="accHeader-6"
                                 onClick={() => handleOpen(6)} 
                                 className={styles["accordion-header"]}>
                                 How is game-fixing unethical?
                             </AccordionHeader>
-                            <AccordionBody 
+                            <AccordionBody
+                                role="region"
+                                data-testid="accBody-6"
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">

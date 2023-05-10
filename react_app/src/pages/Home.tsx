@@ -85,8 +85,11 @@ const Home: FC = () => {
                     <br />
                     <div 
                         className="flex justify-center">
-                        <MyFormButton>
-                            <Link 
+                        <MyFormButton
+                            data-testid="letsGetStartedButton"
+                        >
+                            <Link
+                                data-testid="link-LetsStarted"
                                 to="/login" 
                                 className={st.Home.font}> Let's Get Started</Link>
                         </MyFormButton>

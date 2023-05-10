@@ -1,21 +1,24 @@
 ﻿import {getCurrentUser} from "../services/auth.service";
+import {getLoginMock} from "../utils/testing_utils/mocks";
+import 'resize-observer-polyfill';
+
+
+
+const currentUser = {
+    username: 'USER',
+    token: 'randomtoken',
+    email: 'USER@USER.com',
+    role: 'USER',
+};
 
 describe('Profile component', () => {   
     test('getCurrentUser function returns user from localStorage', () => {
-        const currentUser = {
-            username: 'USER',
-            token: 'randomtoken',
-            email: 'USER@USER.com',
-            role: 'USER',
-        };
-        jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValueOnce(JSON.stringify(currentUser));
-
+        getLoginMock(currentUser)
         expect(getCurrentUser()).toEqual(currentUser);
     });
 
     test('getCurrentUser function returns null if no user found in localStorage', () => {
-        jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValueOnce(null);
-
+        getLoginMock(null)
         expect(getCurrentUser()).toBeNull();
     });
 });
