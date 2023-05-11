@@ -81,6 +81,7 @@ const Login: FC = () => {
                             id="username"
                             ref={userRef}
                             autoComplete="off"
+                            placeholder="Enter username here.."
                             onChange={(e) => setUsername(e.target.value)}
                             value={username}
                             required
@@ -90,6 +91,7 @@ const Login: FC = () => {
                         <input
                             type="password"
                             id="password"
+                            placeholder="Enter password here.."
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
