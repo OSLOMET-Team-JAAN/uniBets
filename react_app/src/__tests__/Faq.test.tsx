@@ -1,10 +1,12 @@
 ﻿import '@testing-library/jest-dom/extend-expect';
 import Faq from '../pages/Faq';
 import {render, screen} from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-import 'resize-observer-polyfill';
 import {MemoryRouter} from "react-router-dom";
 import React from "react";
+import ResizeObserver from '../utils/testing_utils/resizeObserverMock';
+
+// Assign the ResizeObserver mock to the global ResizeObserver variable
+global.ResizeObserver = ResizeObserver;
 
 
 describe('Faq component testing', () => {

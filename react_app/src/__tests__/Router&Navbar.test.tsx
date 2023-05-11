@@ -8,7 +8,6 @@ import Profile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
 import AdminPage from "../pages/AdminPage";
 import Inbox from "../pages/Inbox";
-import 'resize-observer-polyfill';
 import {MemoryRouter} from "react-router-dom";
 import Faq from "../pages/Faq";
 import Home from "../pages/Home";
@@ -16,6 +15,10 @@ import Contact from "../pages/Contact";
 import RegistrationPage from "../pages/RegistrationPage";
 import Login from "../pages/Login";
 import UserPage from "../pages/UserPage";
+import ResizeObserver from '../utils/testing_utils/resizeObserverMock';
+
+// Assign the ResizeObserver mock to the global ResizeObserver variable
+global.ResizeObserver = ResizeObserver;
 /* 
 Error: Uncaught [TypeError: window.ResizeObserver is not a constructor]
 This error can occur if you're running the tests in an environment that does not support the ResizeObserver API, such 
@@ -145,7 +148,7 @@ describe('Router testing of PRIVATE pages',() =>{
     
     test('renders Dashboard page component after ADMIN login', async () => {
         getLoginMock(login.admin);
-        render(<Dashboard />, {wrapper: MemoryRouter})
+        render(withRouter(<Dashboard />, '/'))
         await waitFor(() => {
             expect(screen.getByTestId('dashboardPage')).toBeInTheDocument();
         })

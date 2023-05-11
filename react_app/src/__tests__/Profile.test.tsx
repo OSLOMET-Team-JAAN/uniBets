@@ -1,6 +1,9 @@
 ﻿import {getCurrentUser} from "../services/auth.service";
 import {getLoginMock} from "../utils/testing_utils/mocks";
-import 'resize-observer-polyfill';
+import ResizeObserver from '../utils/testing_utils/resizeObserverMock';
+
+// Assign the ResizeObserver mock to the global ResizeObserver variable
+global.ResizeObserver = ResizeObserver;
 
 
 

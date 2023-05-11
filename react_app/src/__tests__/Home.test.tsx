@@ -2,9 +2,11 @@
 import {render, screen, waitFor} from '@testing-library/react';
 import Home from '../pages/Home';
 import userEvent from "@testing-library/user-event";
-import 'resize-observer-polyfill';
 import {MemoryRouter} from "react-router-dom";
+import ResizeObserver from '../utils/testing_utils/resizeObserverMock';
 
+// Assign the ResizeObserver mock to the global ResizeObserver variable
+global.ResizeObserver = ResizeObserver;
 
 describe('Home page testing', () => {
     test('renders the home page with elements', () => {

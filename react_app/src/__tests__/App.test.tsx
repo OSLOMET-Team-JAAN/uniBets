@@ -2,8 +2,11 @@
 import {render, screen} from '@testing-library/react';
 import Navbar from "../components/layouts/Navbar";
 import HamburgerBar from "../components/layouts/HamburgerBar";
-import 'resize-observer-polyfill';
 import {MemoryRouter} from "react-router-dom";
+import ResizeObserver from '../utils/testing_utils/resizeObserverMock';
+
+// Assign the ResizeObserver mock to the global ResizeObserver variable
+global.ResizeObserver = ResizeObserver;
 
 describe('App component', () => {
     beforeEach(() => {
