@@ -1,4 +1,4 @@
-﻿export const getLoginMock = (data: any) => {
+﻿export const getLoginMock = (data: {}) => {
     return jest.spyOn(
         Object.getPrototypeOf(window.localStorage), 
         'getItem'

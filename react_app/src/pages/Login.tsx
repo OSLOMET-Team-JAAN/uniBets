@@ -9,7 +9,7 @@ import {ErrorBoundary} from "../errors/ErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Login: FC = () => {
-    const {setAuth}: any = useAuth();
+    const {auth, setAuth}: any = useAuth();
 
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
