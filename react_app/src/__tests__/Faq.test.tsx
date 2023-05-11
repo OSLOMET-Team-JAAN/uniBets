@@ -2,15 +2,15 @@
 import Faq from '../pages/Faq';
 import {render, screen} from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
 import 'resize-observer-polyfill';
-
+import {MemoryRouter} from "react-router-dom";
+import React from "react";
 
 
 describe('Faq component testing', () => {
 
     test('defaults to a closed state', () => {
-        render(renderWithRouter(<Faq />));
+        render(<Faq />, {wrapper: MemoryRouter})
         const accordion1 = screen.getByTestId('acc-1');
         expect(accordion1.hasAttribute('open')).toEqual(false);
         const accordion2 = screen.getByTestId('acc-2');
@@ -41,3 +41,5 @@ describe('Faq component testing', () => {
     //     expect(accordion1.hasAttribute('open')).toEqual(false);
     // });
 });
+
+//https://testing-library.com/docs/example-react-router/

@@ -2,8 +2,8 @@
 import {render, screen} from '@testing-library/react';
 import Navbar from "../components/layouts/Navbar";
 import HamburgerBar from "../components/layouts/HamburgerBar";
-import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
 import 'resize-observer-polyfill';
+import {MemoryRouter} from "react-router-dom";
 
 describe('App component', () => {
     beforeEach(() => {
@@ -21,7 +21,7 @@ describe('App component', () => {
     });
 
     test('renders Navbar', () => {
-       render(renderWithRouter(<Navbar />))
+        render(<Navbar />, {wrapper: MemoryRouter});
         expect(screen.getByTestId('navbar')).toBeInTheDocument();
     });
 
@@ -30,7 +30,9 @@ describe('App component', () => {
             writable: true,
             value: 500
         });
-        render(renderWithRouter(<HamburgerBar />))
+        render(<HamburgerBar />, {wrapper: MemoryRouter})
         expect(screen.getByTestId('hamburgerBar')).toBeInTheDocument();
     });
 });
+
+// https://testing-library.com/docs/example-react-router/

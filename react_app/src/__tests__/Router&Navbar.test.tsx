@@ -1,7 +1,7 @@
 ﻿import {render, screen, waitFor} from '@testing-library/react';
 import Navbar from '../components/layouts/Navbar';
 import React from "react";
-import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
+import {withRouter} from "../utils/testing_utils/withRouter";
 import App from "../App";
 import {getLoginMock} from "../utils/testing_utils/mocks";
 import Profile from "../pages/Profile";
@@ -9,6 +9,13 @@ import Dashboard from "../pages/Dashboard";
 import AdminPage from "../pages/AdminPage";
 import Inbox from "../pages/Inbox";
 import 'resize-observer-polyfill';
+import {MemoryRouter} from "react-router-dom";
+import Faq from "../pages/Faq";
+import Home from "../pages/Home";
+import Contact from "../pages/Contact";
+import RegistrationPage from "../pages/RegistrationPage";
+import Login from "../pages/Login";
+import UserPage from "../pages/UserPage";
 /* 
 Error: Uncaught [TypeError: window.ResizeObserver is not a constructor]
 This error can occur if you're running the tests in an environment that does not support the ResizeObserver API, such 
@@ -34,7 +41,7 @@ const login = {
 
 // This test checks that the component renders without errors and that all the links in the navbar are present.
 test('Navbar component renders', () => {
-    render(renderWithRouter(<Navbar />, '/'));
+    render(withRouter(<Navbar />, '/'));
     const homeLink = screen.getByTestId('homePage-link');
     const faqLink = screen.getByTestId('faqPage-link');
     const contactLink = screen.getByTestId('contactPage-link');
@@ -51,7 +58,7 @@ test('Navbar component renders', () => {
 test('UserBoard appears after USER login', () => {
     // Simulate logged in user
     getLoginMock(login.user);
-    render(renderWithRouter(<Navbar />, '/'));
+    render(<Navbar />, {wrapper: MemoryRouter})
     const userPageLink = screen.getByTestId('userPage-link');
     expect(userPageLink).toBeInTheDocument();
 });
@@ -60,7 +67,7 @@ test('UserBoard appears after USER login', () => {
 test('AdminBoard appears after ADMIN login', () => {
     // Simulate logged in admin
     getLoginMock(login.admin);
-    render(renderWithRouter(<Navbar />, '/'));
+    render(<Navbar />, {wrapper: MemoryRouter})
     const inboxLink = screen.getByTestId('inboxPage-link');
     const dashboardLink = screen.getByTestId('dashboardPage-link');
     const adminPageLink = screen.getByTestId('adminPage-link');
@@ -73,7 +80,7 @@ test('AdminBoard appears after ADMIN login', () => {
 test('Navbar component shows profile and logout links when logged in', () => {
     // Simulate logged in user
     getLoginMock(login.user);
-    render(renderWithRouter(<Navbar />, '/'));
+    render(<Navbar />, {wrapper: MemoryRouter})
     const profilePageLink = screen.getByTestId('profilePage-link');
     const logoutLink = screen.getByText('LogOut');
     expect(profilePageLink).toBeInTheDocument();
@@ -82,7 +89,7 @@ test('Navbar component shows profile and logout links when logged in', () => {
 
 // This test checks that the "Login" and "SignUp" links are present when the user is not logged in.
 test('Navbar component shows login and registration links when not logged in', () => {
-    render(renderWithRouter(<Navbar />, '/'));
+    render(<Navbar />, {wrapper: MemoryRouter})
     const loginPageLink = screen.getByTestId('loginPage-link');
     const registrationPageLink = screen.getByTestId('registrationPage-link');
     expect(loginPageLink).toBeInTheDocument();
@@ -92,33 +99,33 @@ test('Navbar component shows login and registration links when not logged in', (
 /*  ---- TESTING ROUTER ---------------*/
 describe('Router tests', () => {
     test('renders not found page', () => {       
-        render(renderWithRouter(<App />, '/notExistPage'));
+        render(withRouter(<App />, '/notExistPage'));
         const notFoundPages = screen.queryByTestId('notFoundPage');
         expect(notFoundPages).toBeInTheDocument();
     });
 
     test('renders Contact page', () => {
-        render(renderWithRouter(<App />, '/contact'));
+        render(<Contact />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('contactPage')).toBeInTheDocument();
     });
 
     test('renders Home page', () => {
-        render(renderWithRouter(<App />, '/home'));
+        render(<Home />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('homePage')).toBeInTheDocument();
     });
 
     test('renders FAQ page', () => {
-        render(renderWithRouter(<App />, '/faq'));
+        render(<Faq />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('faqPage')).toBeInTheDocument();
     });
 
     test('renders Registration page', () => {
-        render(renderWithRouter(<App />, '/register'));
+        render(<RegistrationPage />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('registrationPage')).toBeInTheDocument();
     });
 
     test('renders Login page', () => {
-        render(renderWithRouter(<App />, '/login'));
+        render(<Login />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('loginPage')).toBeInTheDocument();
     }); 
 });
@@ -126,7 +133,7 @@ describe('Router tests', () => {
 describe('Router testing of PRIVATE pages',() =>{
     getLoginMock(login.user);
     test('renders User page', () => {
-        render(renderWithRouter(<App />, '/user'));
+        render(<UserPage />, {wrapper: MemoryRouter})
         expect(screen.queryByTestId('userPage')).toBeInTheDocument();
     });
     
@@ -138,21 +145,21 @@ describe('Router testing of PRIVATE pages',() =>{
     
     test('renders Dashboard page component after ADMIN login', async () => {
         getLoginMock(login.admin);
-        render(renderWithRouter(<Dashboard />));
+        render(<Dashboard />, {wrapper: MemoryRouter})
         await waitFor(() => {
             expect(screen.getByTestId('dashboardPage')).toBeInTheDocument();
         })
     });
     
-    test('renders Admin page component after ADMIN login', async () => {        
-        render(renderWithRouter(<AdminPage />));
+    test('renders Admin page component after ADMIN login', async () => {
+        render(<AdminPage />, {wrapper: MemoryRouter})
         await waitFor(() => {
             expect(screen.getByTestId('adminPage')).toBeInTheDocument();
         })
     });
 
     test('renders Inbox page component after ADMIN login', async () => {
-        render(renderWithRouter(<Inbox />));
+        render(<Inbox />, {wrapper: MemoryRouter})
         await waitFor(() => {
             expect(screen.getByTestId('inboxPage')).toBeInTheDocument();
         })
@@ -160,9 +167,12 @@ describe('Router testing of PRIVATE pages',() =>{
 
     test('renders Profile page component after ADMIN login', async () => {
         getLoginMock(login.admin);
-        render(renderWithRouter(<Profile />));
+        render(<Profile />, {wrapper: MemoryRouter})
         await waitFor(() => {
             expect(screen.getByTestId('profilePage')).toBeInTheDocument();
         })
     });
 });
+
+
+// https://testing-library.com/docs/example-react-router/

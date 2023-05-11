@@ -1,15 +1,14 @@
 ﻿import React from 'react';
 import {render, screen, waitFor} from '@testing-library/react';
 import Home from '../pages/Home';
-import {renderWithRouter} from "../utils/testing_utils/renderWithRouter";
 import userEvent from "@testing-library/user-event";
 import 'resize-observer-polyfill';
-
+import {MemoryRouter} from "react-router-dom";
 
 
 describe('Home page testing', () => {
     test('renders the home page with elements', () => {
-        render(renderWithRouter(<Home />))
+        render(<Home />, {wrapper: MemoryRouter})
 
         const welcomeHeading = screen.getByText('Welcome to Game-Fixing Website');
         expect(welcomeHeading).toBeInTheDocument();
@@ -32,7 +31,7 @@ describe('Home page testing', () => {
     // but test fails and reason is unclear
     // left for further experience
     test("navigates to login page when clicked", () => {
-        render(renderWithRouter(<Home />));
+        render(<Home />, {wrapper: MemoryRouter})
         const button = screen.getByTestId("letsGetStartedButton");
         expect(screen.getByText(/Let's Get Started/i)).toBeInTheDocument();
         userEvent.click(button);
