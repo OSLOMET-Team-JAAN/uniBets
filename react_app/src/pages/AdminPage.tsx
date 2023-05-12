@@ -36,8 +36,6 @@ const AdminPage: FC = () => {
         const [myError, setMyError] = useState("");
         //State 4_ This state will store the file uploaded by the user
         const [file, setFile] = useState<File | string>("");
-        // //State _ This state will store file names to represent the list of uploaded files
-        // const [fileName, setFileName] = useState([]);
         //State 5_ This state will show / hide results
         const [showContent, setShowContent] = useState(false);
         //State 6_ To avoid typescript complains about ref usage in <input> we'll create our own which will return a reference.
@@ -52,6 +50,8 @@ const AdminPage: FC = () => {
         const [isInfoModalVisible, setInfoModalVisible] = useState(false);
         //State 11_ stores messages for Info modal window
         const [infoMessage, setInfoMessage] = useState('');
+        //State 12_ updates Loader's text
+        const [loaderMsg, setLoaderMesg] = useState('Loading..');
         
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
@@ -64,11 +64,10 @@ const AdminPage: FC = () => {
             setModalVisible(true)
             setInfoModalVisible(false);
             setInfoMessage('');
+            setLoaderMesg('Loading..');
         }
 
-
-//-------------------------------------------------------------------------
-
+        // Handle uploaded file by store data in localStorage and allowed to be visible if needed
         const handleUploadedFile = () => {
             ClearContext()
             setIsLoading(true);
@@ -92,12 +91,14 @@ const AdminPage: FC = () => {
                     setMyError("");
                 }
             });
-            setIsLoading(false)
+            setIsLoading(false);
         };
 
+        // Handling saving to dataBase
         const handleUpload = async () => {
             try {
-                setIsLoading(true)
+                setIsLoading(true);
+                setLoaderMesg('Saving to database..');
                 if (data.length !== 0) {
                     const promises = data.map(async (obj: ICSVdata) => {
                         const array: Array<ICSVdata> = [];
@@ -109,25 +110,13 @@ const AdminPage: FC = () => {
                             setInfoModalVisible(true);
                             setInfoMessage('Data saved to database successfully!');
                         })
-                        .finally(() =>
-                            <InfoModal
-                                visible={isInfoModalVisible}
-                                setVisible={setInfoModalVisible} >
-                                <div style={{color: "red"}}>
-                                    <p>{isInfoModalVisible}</p>
-                                </div>
-                                <MyButton onClick={() => {
-                                    setInfoModalVisible(false);
-                                }}>Close</MyButton>
-                            </InfoModal>)
-                }
-                setIsLoading(false);                
+                }               
             } catch (err: any) {
                 if (!err?.response) {
                     setMyError(err?.response);
                     setModalVisible(true);
                 } else if (err.response?.status === 401) {
-                    setMyError('Unauthorized');
+                    setMyError('Unauthorized action');
                     setModalVisible(true);
                 } else {
                     setMyError('Upload data Failed');
@@ -207,10 +196,12 @@ const AdminPage: FC = () => {
                                 visible={modalVisible}
                                 setVisible={setModalVisible}
                             >
-                                <div style={{color: "red"}}>
+                                <div 
+                                    style={{color: "red"}}>
                                     {myError}
                                 </div>
-                                <MyButton onClick={() => {
+                                <MyButton 
+                                    onClick={() => {
                                     setModalVisible(false)
                                 }}>Close</MyButton>
                             </ErrorModal>
@@ -219,9 +210,9 @@ const AdminPage: FC = () => {
                     </div>
                     <div>
                         {isLoading && !myError && !isInfoModalVisible
-                            ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
+                            ? <Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>
                             : 
-                            <>{isInfoModalVisible &&
+                            <div>{isInfoModalVisible &&
                                     <InfoModal
                                         visible={isInfoModalVisible}
                                         setVisible={setInfoModalVisible} >
@@ -233,7 +224,7 @@ const AdminPage: FC = () => {
                                             setIsLoading(false);
                                         }}>Close</MyButton>
                                     </InfoModal>
-                                }</> 
+                                }</div> 
                         }
                         {!isInfoModalVisible && !myError && showContent
                             ?
