@@ -2,7 +2,7 @@ import * as st from "../styles/tailwind/HomePage.style";
 import Fraud from "../styles/images/image1.jpg"
 import {Link} from "react-router-dom";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import {FC} from "react";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
@@ -10,7 +10,8 @@ const Home: FC = () => {
 
     return (
         <div data-testid="homePage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
                 <br />
                 <div>
                     <div 
@@ -95,7 +96,7 @@ const Home: FC = () => {
                         </MyFormButton>
                     </div>
                 </div>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     )
 }

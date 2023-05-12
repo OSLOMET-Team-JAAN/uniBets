@@ -7,7 +7,7 @@ import {getHeaders} from "../utils/assistFunctions";
 import Loader from "../components/UI/loader/Loader";
 import st from '../styles/pages/UserPageStyle.module.css';
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 
 const UserPage: FC = () => {
     const [data, setData] = useState<Array<ICSVdata>>([]);
@@ -46,7 +46,7 @@ const UserPage: FC = () => {
 
     return (
         <div data-testid="userPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <h2>WELCOME TO USER PAGE</h2>
                 <br/>
                 <div className={st.cont}>
@@ -67,7 +67,7 @@ const UserPage: FC = () => {
                         </>
                     }
                 </div>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     );
 };

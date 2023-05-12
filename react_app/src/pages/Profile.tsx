@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import * as st from '../styles/tailwind/ProfileUser.style';
 import {Card, CardBody, CardFooter, CardHeader, Typography} from "@material-tailwind/react";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Profile: FC = () => {
@@ -15,7 +15,7 @@ const Profile: FC = () => {
 
     return (
         <div data-testid="profilePage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <Card className={st.Profile.card}>
                     <CardHeader floated={false} className={st.Profile.header}>
                         <img
@@ -49,7 +49,7 @@ const Profile: FC = () => {
                         </MyFormButton>
                     </CardFooter>
                 </Card>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     );
 }

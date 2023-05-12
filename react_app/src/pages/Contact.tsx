@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from "react";
 import styles from "../styles/pages/Contact.module.css";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 import {submit} from "../services/data.service";
 import InfoModal from "../components/UI/modals/InfoModal";
@@ -20,7 +20,7 @@ const Contact: FC = () => {
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     
-    const [errMsg, setErrMsg] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
     // Testing values with REGEX
@@ -35,14 +35,14 @@ const Contact: FC = () => {
     }, [verified])
     
     useEffect(() => {
-        setErrMsg('');
+        setErrorMessage('');
     }, [email]);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         // validation
         if (!verified) {
-            setErrMsg("Invalid Entry");
+            setErrorMessage("Invalid Entry");
             return;
         }
         try {
@@ -57,13 +57,13 @@ const Contact: FC = () => {
             )
         } catch (err: any) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrorMessage('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrorMessage('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrorMessage('Unauthorized');
             } else {
-                setErrMsg('Submitting Failed');
+                setErrorMessage('Submitting Failed');
             }
             errRef.current?.focus();
         }
@@ -71,7 +71,8 @@ const Contact: FC = () => {
 
     return (
         <div data-testid="contactPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
                 {success ? (
                     <InfoModal
                         visible={success}
@@ -88,8 +89,8 @@ const Contact: FC = () => {
                 <section className={styles.section}>
                     <div className={styles.container}>
                         <p ref={errRef}
-                           className={errMsg ? styles.errMsg : styles.offscreen}
-                           aria-live="assertive">{errMsg}</p>
+                           className={errorMessage ? styles.errorMessage : styles.srOnly}
+                           aria-live="assertive">{errorMessage}</p>
                         <h2 className={styles.title}>Contact Us</h2>
                         <p className={styles.subtitle}>
                             Got a question? Want to send feedback about game-fixing? Let us know.
@@ -102,10 +103,10 @@ const Contact: FC = () => {
                                     Your email:
                                     <FontAwesomeIcon
                                         icon={faCheck}
-                                        className={validEmail ? styles.valid : styles.hide}/>
+                                        className={validEmail ? styles.validInput : styles.hidden}/>
                                     <FontAwesomeIcon
                                         icon={faTimes}
-                                        className={validEmail || !email ? styles.hide : styles.invalid}/>
+                                        className={validEmail || !email ? styles.hidden : styles.invalidInput}/>
                                 </label>
                                 <input
                                     type="email"
@@ -159,7 +160,7 @@ const Contact: FC = () => {
                     </div>
                 </section>
                 )}
-            </ ErrorBoundary>
+            </ CustomErrorBoundary>
         </div>
     );
 }

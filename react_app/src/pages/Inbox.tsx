@@ -3,7 +3,7 @@ import {getInbox} from "../services/data.service";
 import axios, {AxiosResponse} from "axios";
 import {getHeaders} from "../utils/assistFunctions";
 import IContact from "../models/IContact";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import st from "../styles/pages/Inbox.module.css";
 import Loader from "../components/UI/loader/Loader";
@@ -47,7 +47,7 @@ const Inbox = () => {
     
     return (
         <div data-testid="inboxPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <h2>Welcome to Inbox Page</h2>
                 <br/>
                 <div className={st.cont}>
@@ -68,7 +68,7 @@ const Inbox = () => {
                         </>
                     }
                 </div>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     );
 };

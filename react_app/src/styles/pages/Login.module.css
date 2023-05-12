@@ -60,12 +60,12 @@ label, .button {
     transition: 0.5s;
 }
 
-.offscreen {
+.srOnly {
     position: absolute;
     left: -9999px;
 }
 
-.errMsg {
+.errorMessage {
     background-color: lightpink;
     color: firebrick;
     font-weight: bold;
@@ -78,7 +78,7 @@ label, .button {
     color: #1e3a8a;
 }
 
-.flexGrow {
+.flexGrowContainer {
     flex-grow: 1;
     display: flex;
     justify-content: flex-start;

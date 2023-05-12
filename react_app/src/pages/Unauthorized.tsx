@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 import MyButton from "../components/UI/buttons/MyButton";
-import { ErrorBoundary } from '../errors/ErrorBoundary';
+import { CustomErrorBoundary } from '../errors/CustomErrorBoundary';
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import styles from "../styles/pages/NotFound.module.css";
 
@@ -12,12 +12,12 @@ const Unauthorized: FC = () => {
     const goBack = () => navigate(-1);
     return (
         <>
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <section style={{background: "#2444"}}>
                     <h1>Unauthorized</h1>
                     <br/>
                     <h4 style={{color: "red"}}>You do not have access to the requested page !</h4>
-                    <div className="flexGrow">
+                    <div className="flexGrowContainer">
                         <img 
                             className={styles.notFound} 
                             alt="unauthorized" 
@@ -25,7 +25,7 @@ const Unauthorized: FC = () => {
                         <MyButton onClick={goBack}>Go Back</MyButton>
                     </div>
                 </section>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </>
     );
 };

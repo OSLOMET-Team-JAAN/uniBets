@@ -16,7 +16,7 @@ form {
     padding-bottom: 1rem;
 }
 
-.success {
+.accessGranted {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -27,7 +27,7 @@ form {
 
 input[type="text"],
 input[type="password"],
-.buttonReg,
+.regButton,
 textarea {
     font-family: 'Nunito', sans-serif;
     font-size: 15px;
@@ -37,12 +37,12 @@ textarea {
 }
 
 label,
-.buttonReg {
+.regButton {
     margin-top: 1rem;
 
 }
 
-.buttonReg {
+.regButton {
     display: inline-block;
     font-family: 'Nunito', sans-serif;
     font-size: 22px;
@@ -58,14 +58,14 @@ label,
     margin: 5px;
 }
 
-.buttonReg span {
+.regButton span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-.buttonReg span:after {
+.regButton span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -74,62 +74,63 @@ label,
     transition: 0.5s;
 }
 
-.buttonReg:hover span {
+.regButton:hover span {
     padding-right: 25px;
 }
 
-.buttonReg:hover span:after {
+.regButton:hover span:after {
     opacity: 1;
     right: 0;
 }
 
-.instructions {
+.validationMessage {
     font-size: 0.75rem;
     border-radius: 0.5rem;
-    background: #c4f1eb;
+    background: #c7eaf3;
     color: #000000;
     padding: 0.25rem;
     position: relative;
     bottom: -10px;
 }
 
-.instructions > svg {
+.validationMessage > svg {
     margin-right: 0.25rem;
 }
 
-.offscreen {
+/* hide content visually but keep it accessible for screen readers. */
+.srOnly {
     position: absolute;
     left: -9999px;
 }
 
-.hide {
+.hidden {
     display: none;
 }
 
-.valid {
+.validInput {
     color: limegreen;
     margin-left: 0.25rem;
 }
 
-.invalid {
+.invalidInput {
     color: red;
     margin-left: 0.25rem;
 }
 
-.errMsg {
-    background-color: lightpink;
-    color: firebrick;
+.errorMessage {
+    background-color: #ffbcb6;
+    color: #b22e22;
     font-weight: bold;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-.line {
+.loginLink {
     display: inline-block;
     color: #1e3a8a;
 }
 
-.flexGrow {
+.flexGrowContainer {
     flex-grow: 1;
     display: flex;
     justify-content: flex-start;

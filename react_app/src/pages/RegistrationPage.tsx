@@ -2,15 +2,15 @@ import React, {FC, useEffect, useRef, useState} from "react";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link, useNavigate} from "react-router-dom";
-import st from '../styles/pages/RegistrationPage.module.css';
+import style from '../styles/pages/RegistrationPage.module.css';
 import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import MyDangerButton from "../components/UI/buttons/DangerButton";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import { ErrorBoundary } from "../errors/ErrorBoundary";
+import { CustomErrorBoundary } from "../errors/CustomErrorBoundary";
 
 const usernameREGEX = /^[A-z][A-z0-9-_]{4,20}$/;
-const emailREGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
+const emailREGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const passwordREGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,16}$/;
 
 const RegistrationPage: FC = () => {
@@ -38,27 +38,22 @@ const RegistrationPage: FC = () => {
 
     const navigate: NavigateFunction = useNavigate()
 
-    // Testing values with REGEX
-    const username_Valid = usernameREGEX.test(username);
-    const email_Valid = emailREGEX.test(email);
-    const password_Valid = passwordREGEX.test(password);
-
     useEffect(() => {
         userRef.current?.focus();
     }, [])
 
     useEffect(() => {
-        setIsValidUsername(username_Valid);
-    }, [username_Valid])
+        setIsValidUsername(usernameREGEX.test(username));
+    }, [username])
 
     useEffect(() => {
-        setIsValidEmail(email_Valid);
-    }, [email_Valid])
+        setIsValidEmail(emailREGEX.test(email));
+    }, [email])
 
     useEffect(() => {
-        setIsValidPassword(password_Valid);
+        setIsValidPassword(passwordREGEX.test(password));
         setIsValidMatchPassword(password === matchPassword);
-    }, [password_Valid, password, matchPassword])
+    }, [password, matchPassword])
 
     useEffect(() => {
         setErrorMessage('');
@@ -67,34 +62,32 @@ const RegistrationPage: FC = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         // validation
-        if (!username_Valid || !email_Valid || !password_Valid) {
-            setErrorMessage("Invalid Entry");
+        if (!isValidUsername || !isValidEmail || !isValidPassword) {
+            setErrorMessage("Invalid input. Please check the provided information.");
             return;
         }
-        try {
-            await register(username, email, password).then(
-                () => {
-                    setAccessGranted(true);
-                    //clear state and controlled inputs
-                    setUsername('');
-                    setPassword('');
-                    setMatchPassword('');
-                }
-            );
 
+        try {
+            await register(username, email, password);
+            setAccessGranted(true);
+            //clear state and controlled inputs
+            setUsername('');
+            setPassword('');
+            setMatchPassword('');
         } catch (err: any) {
             if (!err?.response) {
-                setErrorMessage('No Server Response');
+                setErrorMessage('No server response. Please try again later.');
             } else if (err.response?.status === 400) {
-                setErrorMessage('Missing Username or Password');
+                setErrorMessage('Missing username or password. Please provide all required information.');
             } else if (err.response?.status === 401) {
-                setErrorMessage('Unauthorized');
+                setErrorMessage('Unauthorized access. Please check your credentials.');
             } else {
-                setErrorMessage('Login Failed');
+                setErrorMessage('Registration failed. Please try again later.');
             }
             errRef.current?.focus();
         }
     }
+
 
     function redirect() {
         navigate("/login");
@@ -102,13 +95,14 @@ const RegistrationPage: FC = () => {
 
     return (
         <div data-testid="registrationPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
             {accessGranted ? (
-                <section className={st.section}>
-                    <h1>Registered successfully!</h1>
+                <section className={style.section}>
+                    <h1>Registration completed successfully!</h1>
                     <p>
                         <img
-                            className={st.success}
+                            className={style.accessGranted}
                             alt="accessGranted"
                             src={require('../../src/styles/images/_success.jpg')}/>
                         <MyDangerButton
@@ -122,7 +116,7 @@ const RegistrationPage: FC = () => {
                     {/* -- ALERT paragraph with "assertive" ARIA - Indicates that updates to the region have the 
                     highest priority and should be presented to the user immediately. ----*/}
                     <p ref={errRef} 
-                       className={errorMessage ? st.errMsg : st.offscreen} 
+                       className={errorMessage ? style.errorMessage : style.srOnly} 
                        aria-live="assertive">{errorMessage}</p>
                     <h2>Create an Account</h2>
                     <form onSubmit={handleSubmit}>
@@ -131,10 +125,10 @@ const RegistrationPage: FC = () => {
                             Username:
                             <FontAwesomeIcon 
                                 icon={faCheck} 
-                                className={isValidUsername ? st.valid : st.hide}/>
+                                className={isValidUsername ? style.validInput : style.hidden}/>
                             <FontAwesomeIcon 
                                 icon={faTimes} 
-                                className={isValidUsername || !username ? st.hide : st.invalid}/>
+                                className={isValidUsername || !username ? style.hidden : style.invalidInput}/>
                         </label>
                         <input
                             type="text"
@@ -150,23 +144,27 @@ const RegistrationPage: FC = () => {
                             onFocus={() => setFocusUserName(true)}
                             onBlur={() => setFocusUserName(false)}
                         />
-                        <p id="username_label"
-                           className={focusUserName && username && !isValidUsername ? st.instructions : st.offscreen}>
+                        <div id="username_label"
+                           className={focusUserName && username && !isValidUsername ? style.validationMessage : style.srOnly}>
                             <FontAwesomeIcon 
                                 icon={faInfoCircle}/>
-                            4 to 20 characters.<br/>
-                            Must begin with a letter.<br/>
-                            Letters, numbers, underscores, hyphens allowed.
-                        </p>
+                            <span style={{fontWeight: "bolder"}}>Username requirements:</span> <br/>
+                            <p style={{textAlign: "left"}}>
+                                - Begin with a letter.<br/>
+                                - Use from 4 upto 20 characters.<br/>
+                                - Allowed: letters, numbers, underscores and hyphens.<br/>
+                            </p>
+                            
+                        </div>
                         {/* -- EMAIL FORM FILED ----------------------------------------*/}
                         <label htmlFor="email">
                             Email:
                             <FontAwesomeIcon 
                                 icon={faCheck} 
-                                className={isValidEmail ? st.valid : st.hide}/>
+                                className={isValidEmail ? style.validInput : style.hidden}/>
                             <FontAwesomeIcon 
                                 icon={faTimes} 
-                                className={isValidEmail || !email ? st.hide : st.invalid}/>
+                                className={isValidEmail || !email ? style.hidden : style.invalidInput}/>
                         </label>
                         <input
                             type="text"
@@ -181,22 +179,26 @@ const RegistrationPage: FC = () => {
                             onFocus={() => setFocusEmail(true)}
                             onBlur={() => setFocusEmail(false)}
                         />
-                        <p id="email_label" 
-                           className={focusEmail && email && !isValidEmail ? st.instructions : st.offscreen}>
+                        <div id="email_label" 
+                           className={focusEmail && email && !isValidEmail ? style.validationMessage : style.srOnly}>
                             <FontAwesomeIcon 
                                 icon={faInfoCircle}/>
-                            Please enter valid email.<br/>.
-                        </p>
+                            <span style={{fontWeight: "bolder"}}> Email requirements: <br /></span>
+                           <p style={{textAlign: "left"}}>
+                               - The email address "{email}" is not valid.<br />
+                               - To ensure successful registration, please make sure your email address follows the correct format: "username@gmail.com". </p>
+                            
+                        </div>
                         
                         {/* -- PASSWORD FORM FILED ---------------------------------*/}
                         <label htmlFor="password">
                             Password:
                             <FontAwesomeIcon 
                                 icon={faCheck} 
-                                className={isValidPassword ? st.valid : st.hide}/>
+                                className={isValidPassword ? style.validInput : style.hidden}/>
                             <FontAwesomeIcon 
                                 icon={faTimes} 
-                                className={isValidPassword || !password ? st.hide : st.invalid}/>
+                                className={isValidPassword || !password ? style.hidden : style.invalidInput}/>
                         </label>
                         <input
                             type="password"
@@ -206,66 +208,70 @@ const RegistrationPage: FC = () => {
                             value={password}
                             required
                             aria-invalid={isValidPassword ? "false" : "true"}
-                            aria-describedby="pwd_label"
+                            aria-describedby="password_label"
                             onFocus={() => setFocusPassword(true)}
                             onBlur={() => setFocusPassword(false)}
                         />
-                        <p id="pwd_label" 
-                           className={focusPassword && !isValidPassword ? st.instructions : st.offscreen}>
+                        <div id="password_label" 
+                           className={focusPassword && !isValidPassword ? style.validationMessage : style.srOnly}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
-                            8 to 16 characters.<br/>
-                            Must include uppercase and lowercase letters, a number and a special character.<br/>
-                            Allowed special characters: 
-                            <span aria-label="exclamation mark">!</span> 
-                            <span aria-label="at symbol">@</span> 
-                            <span aria-label="hashtag">#</span> 
-                            <span aria-label="dollar sign">$</span> 
-                            <span aria-label="percent">%</span>
-                        </p>
+                            <span style={{fontWeight: "bolder"}}>Password requirements:</span> <br/>                           
+                                <p style={{textAlign: "left"}}>
+                                    - Use 8 to 16 characters in length<br/>
+                                    - Must include both uppercase and lowercase letters<br/>
+                                    - Must contain at least one number<br/>
+                                    - Must contain at least one special character<br/>
+                                    - Allowed special characters: !, @, #, $, %<br/>
+                                </p>
+                        </div>
 
-                        <label htmlFor="confirm_pwd">
+                        <label htmlFor="confirm_password">
                             Confirm Password:
                             <FontAwesomeIcon 
                                 icon={faCheck} 
-                                className={isValidMatchPassword && matchPassword ? st.valid : st.hide}/>
+                                className={isValidMatchPassword && matchPassword ? style.validInput : style.hidden}/>
                             <FontAwesomeIcon 
                                 icon={faTimes} 
-                                className={isValidMatchPassword || !matchPassword ? st.hide : st.invalid}/>
+                                className={isValidMatchPassword || !matchPassword ? style.hidden : style.invalidInput}/>
                         </label>
                         <input
                             type="password"
-                            id="confirm_pwd"
+                            id="confirm_password"
                             onChange={(e) => setMatchPassword(e.target.value)}
                             value={matchPassword}
                             required
                             aria-invalid={isValidMatchPassword ? "false" : "true"}
-                            aria-describedby="confirm_pwd_label"
+                            aria-describedby="confirm_password_label"
                             onFocus={() => setFocusMatchPassword(true)}
                             onBlur={() => setFocusMatchPassword(false)}
                         />
-                        <p id="confirm_pwd_label" 
-                           className={focusMatchPassword && !isValidMatchPassword ? st.instructions : st.offscreen}>
+                        <div id="confirm_password_label" 
+                           className={focusMatchPassword && !isValidMatchPassword ? style.validationMessage : style.srOnly}>
                             <FontAwesomeIcon 
                                 icon={faInfoCircle}/>
-                            Must match the first password input field.
-                        </p>
+                            <span style={{fontWeight: "bolder"}}>Password confirmation requirements:</span> <br/>
+                            <p style={{textAlign: "left"}}>
+                                - Please ensure that this field matches the password entered in the first input field.<br/>
+                            </p>
+                            
+                        </div>
                         <br/>
 
                         <button
-                            className={st.buttonReg}
+                            className={style.regButton}
                             disabled={!isValidUsername || !isValidPassword || !isValidMatchPassword}>
                             <span>Register</span>
                         </button>
                     </form>
-                    <p>
+                    <div>
                         Already registered?<br/>
-                        <span className={st.line}>
+                        <span className={style.loginLink}>
                             <Link to="/login">Sign In</Link>
                         </span>
-                    </p>
+                    </div>
                 </section>
             )}
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     )
 }

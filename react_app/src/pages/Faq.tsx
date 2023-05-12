@@ -2,7 +2,7 @@ import {Fragment, useState} from "react";
 import {Accordion, AccordionBody, AccordionHeader,} from "@material-tailwind/react";
 import styles from "../styles/pages/Faq.module.css";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 
 export default function Faq() {
     
@@ -19,8 +19,8 @@ export default function Faq() {
 
     return (
         <div data-testid="faqPage">
-            <ErrorBoundary 
-                FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
             <section 
                 className={styles.section}>
             <div 
@@ -259,7 +259,7 @@ export default function Faq() {
                 </Fragment>
             </div>
         </section>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     );
 

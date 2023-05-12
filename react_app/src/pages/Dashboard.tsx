@@ -8,7 +8,7 @@ import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinner
 import GetCustomPlayerData from "../components/dashboard_components/GetCustomPlayerData";
 import MyInput from "../components/UI/input/MyInput";
 import GetDatesIntervals from "../components/dashboard_components/GetDatesIntervals";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useCSV from "../hooks/useCSV";
 import st from '../styles/pages/DashboardStyle.module.css';
@@ -92,7 +92,8 @@ const Dashboard: FC = () => {
     
     return (
         <div data-testid="dashboardPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
                     ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
                     : <> {isVisible ?
@@ -205,7 +206,7 @@ const Dashboard: FC = () => {
                         </>
                     
                 }
-            </ErrorBoundary>
+            </CustomErrorBoundary>
         </div>
     );
 };

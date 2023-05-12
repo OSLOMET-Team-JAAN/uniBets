@@ -20,7 +20,7 @@ import {getHeaders} from "../utils/assistFunctions";
 import useCSV from "../hooks/useCSV";
 import InfoModal from "../components/UI/modals/InfoModal";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from '../errors/ErrorBoundary';
+import {CustomErrorBoundary} from '../errors/CustomErrorBoundary';
 import MyFileUpload from "../components/UI/input/MyFileUpload";
 import MyDragDropArea from "../components/UI/input/MyDragDropArea";
 
@@ -141,7 +141,8 @@ const AdminPage: FC = () => {
 
         return (
             <div data-testid="adminPage">
-                <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+                <CustomErrorBoundary 
+                    ResponseComponent={ErrorBoundaryResponse}>
                     <div className={styles.cont}>
                         <h2 className={styles.csvImport}> Import of CSV file</h2>
                         <MyDragDropArea 
@@ -250,7 +251,7 @@ const AdminPage: FC = () => {
                             </div>
                         }
                     </div>
-                </ErrorBoundary>
+                </CustomErrorBoundary>
             </div>
         );
 

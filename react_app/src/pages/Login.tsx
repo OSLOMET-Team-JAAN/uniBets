@@ -5,7 +5,7 @@ import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 
 const Login: FC = () => {
@@ -66,7 +66,8 @@ const Login: FC = () => {
     return (
 
         <div data-testid="loginPage">
-            <ErrorBoundary FallbackComponent={ErrorBoundaryResponse}>
+            <CustomErrorBoundary 
+                ResponseComponent={ErrorBoundaryResponse}>
                 <section className={st.section}>
                     <p
                         ref={errRef}
@@ -111,7 +112,7 @@ const Login: FC = () => {
                         </span>
                     </p>
                 </section>
-            </ErrorBoundary>
+            </CustomErrorBoundary>
             </div>
     )
 }
