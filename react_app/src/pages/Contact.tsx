@@ -131,7 +131,7 @@ const Contact: FC = () => {
                                     type="text"
                                     id="subject"
                                     className={styles.input}
-                                    placeholder="Let us know how we can help you"
+                                    placeholder="How we can help you?"
                                     value={subject}
                                     onChange={(e) => setSubject(e.target.value)}
                                     required

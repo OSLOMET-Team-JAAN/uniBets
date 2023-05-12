@@ -64,7 +64,9 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
     const sortPlayers = (property: keyof Player) => {
         const sorted = [...sortedPlayers].sort((a, b) =>
             b[property] > a[property] ? 1 : a[property] > b[property] ? -1 : 0
-            //returns 1 if the value of b[property] is greater than that of a[property], -1 if the value of a[property] is greater than that of b[property], and 0 if the values are equal.
+            //returns 1 if the value of b[property] is greater than that of a[property], 
+            // returns -1 if the value of a[property] is greater than that of b[property], 
+            // returns 0 if the values are equal.
         );
         setSortedPlayers(sorted);
     };

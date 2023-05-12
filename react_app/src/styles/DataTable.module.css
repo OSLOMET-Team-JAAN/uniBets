@@ -58,7 +58,7 @@ td {
     max-width: 20rem;
     border: 1px solid #eaebec;
     padding: 0.1rem 1rem;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .28);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
     white-space: normal;
     word-wrap: break-word;
     display: block;

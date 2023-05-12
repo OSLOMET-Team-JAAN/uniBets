@@ -22,14 +22,11 @@ function App() {
 
     return (
         <div>
-            {screenSize > 768 ? (
-                <Navbar />
-            ) : (
-                <HamburgerBar />
-            )}
-            <br/>
+            {screenSize > 768 
+                ? <Navbar />
+                : <HamburgerBar /> 
+            }
             <AppRouter/>
-            <br/>
             <Footer/>
         </div>
     )
