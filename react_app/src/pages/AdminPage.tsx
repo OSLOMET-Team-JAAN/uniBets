@@ -51,7 +51,7 @@ const AdminPage: FC = () => {
         //State 11_ stores messages for Info modal window
         const [infoMessage, setInfoMessage] = useState('');
         //State 12_ updates Loader's text
-        const [loaderMsg, setLoaderMesg] = useState('Loading..');
+        const [loaderMsg, setLoaderMsg] = useState('Loading..');
         
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
@@ -64,7 +64,7 @@ const AdminPage: FC = () => {
             setModalVisible(true)
             setInfoModalVisible(false);
             setInfoMessage('');
-            setLoaderMesg('Loading..');
+            setLoaderMsg('Loading..');
         }
 
         // Handle uploaded file by store data in localStorage and allowed to be visible if needed
@@ -98,7 +98,7 @@ const AdminPage: FC = () => {
         const handleUpload = async () => {
             try {
                 setIsLoading(true);
-                setLoaderMesg('Saving to database..');
+                setLoaderMsg('Saving to database..');
                 if (data.length !== 0) {
                     const promises = data.map(async (obj: ICSVdata) => {
                         const array: Array<ICSVdata> = [];
