@@ -20,14 +20,14 @@ const Login: FC = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errMsg, setErrMsg] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         userRef.current?.focus();
     }, [])
 
     useEffect(() => {
-        setErrMsg('');
+        setErrorMessage('');
     }, [username, password])
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -51,14 +51,14 @@ const Login: FC = () => {
             );
         } catch (err: any) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrorMessage('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrorMessage('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrorMessage('Unauthorized');
                 navigate("/unauthorized");
             } else {
-                setErrMsg('Login Failed');
+                setErrorMessage('Login Failed');
             }
             errRef.current?.focus();
         }
@@ -71,8 +71,8 @@ const Login: FC = () => {
                 <section className={st.section}>
                     <p
                         ref={errRef}
-                        className={errMsg ? st.errMsg : st.offscreen}
-                        aria-live="assertive">{errMsg}</p>
+                        className={errorMessage ? st.errMsg : st.offscreen}
+                        aria-live="assertive">{errorMessage}</p>
                     <h2>Please Login</h2>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">Username:</label>
