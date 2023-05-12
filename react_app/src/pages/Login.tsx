@@ -46,7 +46,6 @@ const Login: FC = () => {
             }).then(
                 () => {
                     navigate("/profile");
-                    window.location.reload();
                 }
             );
         } catch (err: any) {

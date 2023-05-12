@@ -1,12 +1,13 @@
 ﻿import React, {FC, useEffect, useState} from 'react';
 import IUser from "../../models/IUser";
 import eventBus from "../../common/EventBus";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {getCurrentUser, logout} from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import styles from "../../styles/layout/Navbar.module.css";
 
 const Navbar: FC = () => {
+    const location = useLocation();
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
@@ -24,7 +25,7 @@ const Navbar: FC = () => {
         return () => {
             eventBus.doc.off("logout", logOut);
         };
-    }, []);
+    }, [location]);
 
     const logOut = () => {
         logout();

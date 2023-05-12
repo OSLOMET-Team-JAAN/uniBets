@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import eventBus from "../../common/EventBus";
 import {FiMenu} from "react-icons/fi";
 import {AiOutlineCloseCircle} from "react-icons/ai";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {getCurrentUser, logout} from "../../services/auth.service";
 import Logo from "../../styles/images/logo.png";
 import st from "../../styles/layout/Hamburger.module.css";
@@ -11,6 +11,7 @@ import IUser from "../../models/IUser";
 
 const HamburgerBar: FC = () => {
 
+    const location = useLocation();
     const [showContent, setShowContent] = useState(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
@@ -34,7 +35,7 @@ const HamburgerBar: FC = () => {
         return () => {
             eventBus.doc.off("logout", logOut);
         };
-    }, []);
+    }, [location]);
 
     const logOut = () => {
         logout();
