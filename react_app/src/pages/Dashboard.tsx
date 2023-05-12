@@ -30,7 +30,8 @@ const Dashboard: FC = () => {
     const [myTop, setMyTop] = useState<string>('10');
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [myError, setMyError] = useState("");    
+    const [myError, setMyError] = useState("");
+    const [loaderMsg, setLoaderMsg] = useState('Loading..');
     
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
@@ -61,7 +62,7 @@ const Dashboard: FC = () => {
                     setHeaders(headers);
                     setIsVisible(true);
                 }
-            );
+            ).catch((error) => setMyError(error));
             setIsLoading(false)
         } catch (err: any) {
             if (!err.response) {
@@ -95,19 +96,20 @@ const Dashboard: FC = () => {
             <CustomErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
-                    ? <Loader><h2 style={{color: "red"}}>o</h2></Loader>
-                    : <> {isVisible ?
-                                <InfoModal
-                                    visible={isVisible}
-                                    setVisible={setIsVisible}
-                                >
-                                    <div style={{color: "red"}}>
-                                        <p>Not found data from CSV file! Data is fetched from database successfully</p>
-                                    </div>
-                                    <MyButton onClick={() => {
-                                        setIsVisible(false)
-                                    }}>Close</MyButton>
-                                </InfoModal> 
+                    ? <Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>
+                    : <> {isVisible
+                        ?
+                            <InfoModal
+                                visible={isVisible}
+                                setVisible={setIsVisible}
+                            >
+                                <div style={{color: "red"}}>
+                                    <p>Not found data from CSV file! Data is fetched from database successfully</p>
+                                </div>
+                                <MyButton onClick={() => {
+                                    setIsVisible(false)
+                                }}>Close</MyButton>
+                            </InfoModal>
                         :
                         <div data-testid="dashboardTest">
                             <h3>Welcome To ADMIN Dashboard</h3>
