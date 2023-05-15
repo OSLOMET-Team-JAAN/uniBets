@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 import MyButton from "../components/UI/buttons/MyButton";
-import { CustomErrorBoundary } from '../errors/CustomErrorBoundary';
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import styles from "../styles/pages/NotFound.module.css";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 
 const Unauthorized: FC = () => {
@@ -12,7 +12,7 @@ const Unauthorized: FC = () => {
     const goBack = () => navigate(-1);
     return (
         <>
-            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
+            <ErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <section style={{background: "#2444"}}>
                     <h1>Unauthorized</h1>
                     <br/>
@@ -25,7 +25,7 @@ const Unauthorized: FC = () => {
                         <MyButton onClick={goBack}>Go Back</MyButton>
                     </div>
                 </section>
-            </CustomErrorBoundary>
+            </ErrorBoundary>
         </>
     );
 };

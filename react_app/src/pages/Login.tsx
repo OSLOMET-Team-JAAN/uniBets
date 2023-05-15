@@ -5,8 +5,8 @@ import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Login: FC = () => {
     const {setAuth}: any = useAuth();
@@ -66,7 +66,7 @@ const Login: FC = () => {
     return (
 
         <div data-testid="loginPage">
-            <CustomErrorBoundary 
+            <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 <section className={st.section}>
                     <p
@@ -112,7 +112,7 @@ const Login: FC = () => {
                         </span>
                     </p>
                 </section>
-            </CustomErrorBoundary>
+            </ErrorBoundary>
             </div>
     )
 }

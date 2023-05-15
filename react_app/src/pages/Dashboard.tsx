@@ -8,7 +8,6 @@ import GetTopWinnerWinRate from "../components/dashboard_components/GetTopWinner
 import GetCustomPlayerData from "../components/dashboard_components/GetCustomPlayerData";
 import MyInput from "../components/UI/input/MyInput";
 import GetDatesIntervals from "../components/dashboard_components/GetDatesIntervals";
-import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useCSV from "../hooks/useCSV";
 import st from '../styles/pages/DashboardStyle.module.css';
@@ -19,6 +18,7 @@ import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
 import InfoModal from "../components/UI/modals/InfoModal";
 import MyButton from "../components/UI/buttons/MyButton";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 
 const Dashboard: FC = () => {
@@ -31,7 +31,7 @@ const Dashboard: FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [myError, setMyError] = useState("");
-    const [loaderMsg, setLoaderMsg] = useState('Loading..');
+    const [loaderMsg] = useState('Loading..');
     
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
@@ -93,7 +93,7 @@ const Dashboard: FC = () => {
     
     return (
         <div data-testid="dashboardPage">
-            <CustomErrorBoundary 
+            <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
                     ? <Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>
@@ -208,7 +208,7 @@ const Dashboard: FC = () => {
                         </>
                     
                 }
-            </CustomErrorBoundary>
+            </ErrorBoundary>
         </div>
     );
 };

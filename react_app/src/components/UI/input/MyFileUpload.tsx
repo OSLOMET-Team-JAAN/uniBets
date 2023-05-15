@@ -6,7 +6,7 @@ import {AxiosResponse} from "axios";
 import {ICSVdata} from "../../../models/ICSVdata";
 import {getHeaders} from "../../../utils/assistFunctions";
 import ErrorBoundaryResponse from "../../../errors/ErrorBoundaryResponse";
-import {CustomErrorBoundary} from "../../../errors/CustomErrorBoundary";
+import {ErrorBoundary} from "../../../errors/ErrorBoundary";
 import InfoModal from "../modals/InfoModal";
 
 interface GET_DATA{
@@ -113,7 +113,7 @@ const MyFileUpload: FC<GET_DATA> = ({
     
     return (
         <div>
-            <CustomErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
+            <ErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
                 <label 
                     htmlFor="fileUpload" 
                     style={{display: "block"}} 
@@ -137,7 +137,7 @@ const MyFileUpload: FC<GET_DATA> = ({
                 >
                     {children}
                 </MyButton>
-            </CustomErrorBoundary>
+            </ErrorBoundary>
         </div>
     );
 };

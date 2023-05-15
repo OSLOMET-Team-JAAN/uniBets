@@ -7,7 +7,7 @@ import {register} from "../services/auth.service";
 import {NavigateFunction} from "react-router";
 import MyDangerButton from "../components/UI/buttons/DangerButton";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import { CustomErrorBoundary } from "../errors/CustomErrorBoundary";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const usernameREGEX = /^[A-z][A-z0-9-_]{4,20}$/;
 const emailREGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -95,7 +95,7 @@ const RegistrationPage: FC = () => {
 
     return (
         <div data-testid="registrationPage">
-            <CustomErrorBoundary 
+            <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
             {accessGranted ? (
                 <section className={style.section}>
@@ -271,7 +271,7 @@ const RegistrationPage: FC = () => {
                     </div>
                 </section>
             )}
-            </CustomErrorBoundary>
+            </ErrorBoundary>
         </div>
     )
 }

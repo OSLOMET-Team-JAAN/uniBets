@@ -1,13 +1,13 @@
 import React, {FC, useEffect, useRef, useState} from "react";
 import styles from "../styles/pages/Contact.module.css";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import {CustomErrorBoundary} from "../errors/CustomErrorBoundary";
 import MyFormButton from "../components/UI/buttons/MyFormButton";
 import {submit} from "../services/data.service";
 import InfoModal from "../components/UI/modals/InfoModal";
 import MyButton from "../components/UI/buttons/MyButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
 
@@ -71,7 +71,7 @@ const Contact: FC = () => {
 
     return (
         <div data-testid="contactPage">
-            <CustomErrorBoundary 
+            <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 {success ? (
                     <InfoModal
@@ -160,7 +160,7 @@ const Contact: FC = () => {
                     </div>
                 </section>
                 )}
-            </ CustomErrorBoundary>
+            </ ErrorBoundary>
         </div>
     );
 }
