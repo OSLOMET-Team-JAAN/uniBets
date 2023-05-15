@@ -38,5 +38,10 @@
     <ItemGroup>
         <SourceGeneratorInput Remove="Data\seed.cs" />
     </ItemGroup>
+	
+	<Target Name="CopyAppHost" AfterTargets="Publish">
+		<Copy SourceFiles="$(PublishDir)\apphost" DestinationFolder="$(PublishDir)\BetAPI" />
+	</Target>
+	
 
 </Project>

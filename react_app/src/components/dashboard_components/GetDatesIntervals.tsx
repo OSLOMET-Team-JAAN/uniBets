@@ -1,8 +1,8 @@
-﻿import React, {FC, useMemo} from 'react';
+﻿import React, {FC, ReactNode, useMemo} from 'react';
 import useCSV from "../../hooks/useCSV";
 import {Pie, PieChart,} from 'recharts';
 import st from '../../styles/GetDatesIntervals.module.css';
-
+import TipButton from "../UI/buttons/TipButton";
 
 interface Props {
     Player: number | string
@@ -18,6 +18,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
             if (obj.Player_no === Player) {
                 return obj.Player_no
             }
+            return;
         });
         
         const getBetPlacedDates = getPlayerData.map((obj: any) => {
@@ -32,7 +33,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
             return getBetPlacedDates.slice(1).map((date: any, index: number) => {
                 const seconds = (Date.parse(date) - Date.parse(getBetPlacedDates[index]))/1000;
                 if(seconds > 20){
-                    return
+                    return;
                 }
                 return seconds;
             }).filter(Number).sort().map((key: number) => {
@@ -53,13 +54,13 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
         ]
     }
     
-    useMemo(() => {reformatPlayerData()},[Player])
+    useMemo(() => {reformatPlayerData()},[Player]);
     
     return (
         <>
             {reformatPlayerData()[0].Time_Range != 0 ? 
                 <div className={st.cont}>
-                    <h4>PLAYER <strong>{Player}</strong> BET SETTING TIME INTERVALS &lsaquo; 20 sec (sec)</h4>
+                    <h4>PLAYER <strong>{Player}</strong> TIME INTERVALS BETWEEN BET PLACEMENTS &lsaquo; 20 sec (sec)</h4>
                     <PieChart
                         width={300}
                         height={300}>
@@ -75,6 +76,13 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
                             label
                         />
                     </PieChart>
+                        <TipButton title="Time intervals between bet placements">
+                            <p style={{textAlign: "left"}}>
+                                - The following widget is displaying the time intervals between bet placements (in seconds) for a specific player.<br/>
+                                - There were used intervals less than 20 seconds only. <br/>
+                                - If the widget displays these time intervals, it can be inferred with a high degree of probability that bot or other external means were utilized. <br/>
+                            </p>
+                        </TipButton>
                 </div>
                 :
                 <div className={st.cont2}>

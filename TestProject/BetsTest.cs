@@ -206,7 +206,7 @@ namespace TestProject
 
             // Arrange
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
 
             using var context = new Context(optionsBuilder.Options);
             context.BetEntity.AddRange(new List<BetEntity>()
@@ -247,7 +247,7 @@ namespace TestProject
             var configuration = new ConfigurationBuilder()
        .AddInMemoryCollection(new List<KeyValuePair<string, string>>
        {
-        new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+        new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
        })
          .Build();
 
@@ -297,13 +297,13 @@ namespace TestProject
         {
             // Arrange
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
 
             using var context = new Context(optionsBuilder.Options);
             var configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(new List<KeyValuePair<string, string>>
                 {
-            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
                 })
                 .Build();
 
@@ -322,7 +322,7 @@ namespace TestProject
         {
             // Arrange
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            optionsBuilder.UseSqlServer("Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True");
 
             using var context = new Context(optionsBuilder.Options);
             context.BetEntity.AddRange(new List<BetEntity>()
@@ -363,7 +363,7 @@ namespace TestProject
             var configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(new List<KeyValuePair<string, string>>
                 {
-            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=LAPTOP-JLAA7SHR\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
+            new KeyValuePair<string, string>("ConnectionStrings:ConnectionAPIConnectionString",  "Server=MSI\\SQLEXPRESS; Database=BachelorProject;Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True")
                 })
                 .Build();
 
