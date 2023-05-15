@@ -60,7 +60,7 @@ const GetTopWinners: FC<Props> = ({sortedData, myTop}) => {
     return (
         <>
             <div className={ Number.isNaN(myTop) ? st.errCont : st.cont}>
-                <h4>TOP <strong>{myTop}</strong> WINNERS</h4>
+                <h4>TOP <strong>{myTop}</strong> WINNERS BY HIGHEST ODDS</h4>
                 <ResponsiveContainer
                     height={300}
                     minWidth={300}

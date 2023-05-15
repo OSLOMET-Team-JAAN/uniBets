@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useMemo, useState} from 'react';
-import GetTopWinners from "../components/dashboard_components/GetTopWinners";
+import GetTopWinners from '../components/dashboard_components/GetTopWinners'
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
 import {getBetWon, getHeaders, getTop, sortRows} from "../utils/assistFunctions";

@@ -80,7 +80,7 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
                             <p style={{textAlign: "left"}}>
                                 - The following widget is displaying the time intervals between bet placements (in seconds) for a specific player.<br/>
                                 - There were used intervals less than 20 seconds only. <br/>
-                                - If the widget displays these time intervals, it can be inferred with a high degree of probability that bot or other external means were utilized. <br/>
+                                - If the widget displays these time intervals with amount of more than 3 bets, it can be inferred with a high degree of probability that bot or other external means were utilized. <br/>
                             </p>
                         </TipButton>
                 </div>
