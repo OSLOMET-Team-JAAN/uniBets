@@ -30,11 +30,11 @@ const Unauthorized: FC = () => {
     return (
         <>
             <ErrorBoundary ResponseComponent={ErrorBoundaryResponse}>
+                <br/>
                 <section style={{background: "whitesmoke"}}>
-                    <h1 style={{color: "red"}}>Unauthorized</h1>
-                    <h4>No authorization found.</h4>
-                    <p>This page is not publicaly availabale!</p>
-                    <h3>Please login first!</h3>
+                    <h1 style={{color: "red"}}>Unauthorized.</h1>
+                    <p>This page is not publicaly available!</p>
+                    <h2>Please login first!</h2>
                     <div className="flexGrowContainer">
                         <img 
                             className={styles.notFound} 
