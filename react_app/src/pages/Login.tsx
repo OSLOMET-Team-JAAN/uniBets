@@ -68,6 +68,7 @@ const Login: FC = () => {
         <div data-testid="loginPage">
             <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
+                <br/>
                 <section className={st.section}>
                     <p
                         ref={errRef}

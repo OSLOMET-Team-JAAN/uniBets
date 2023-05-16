@@ -97,7 +97,8 @@ const RegistrationPage: FC = () => {
         <div data-testid="registrationPage">
             <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
-            {accessGranted ? (
+            <br/>
+                {accessGranted ? (
                 <section className={style.section}>
                     <h1>Registration completed successfully!</h1>
                     <p>
