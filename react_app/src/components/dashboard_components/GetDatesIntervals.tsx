@@ -1,4 +1,4 @@
-﻿import React, {FC, ReactNode, useMemo} from 'react';
+﻿import React, {FC, useMemo} from 'react';
 import useCSV from "../../hooks/useCSV";
 import {Pie, PieChart,} from 'recharts';
 import st from '../../styles/GetDatesIntervals.module.css';

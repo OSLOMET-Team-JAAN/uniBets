@@ -116,7 +116,7 @@ const AdminPage: FC = () => {
                     setMyError(err?.response);
                     setModalVisible(true);
                 } else if (err.response?.status === 401) {
-                    setMyError('Unauthorized action');
+                    setMyError('No authorization found. Please login');
                     setModalVisible(true);
                 } else {
                     setMyError('Upload data Failed');
@@ -180,7 +180,7 @@ const AdminPage: FC = () => {
                             <div>
                                 <MyInput
                                     type="submit"
-                                    value="Show file content"
+                                    value="Explore"
                                     onClick={() => {
                                         handleUploadedFile()
                                     }}
@@ -210,36 +210,43 @@ const AdminPage: FC = () => {
                     </div>
                     <div>
                         {isLoading && !myError && !isInfoModalVisible
-                            ? <Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>
-                            : 
-                            <div>{isInfoModalVisible &&
-                                    <InfoModal
-                                        visible={isInfoModalVisible}
-                                        setVisible={setInfoModalVisible} >
-                                        <div style={{color: "red"}}>
-                                            <p>{infoMessage}</p>
-                                        </div>
-                                        <MyButton onClick={() => {
-                                            setInfoModalVisible(false);
-                                            setIsLoading(false);
-                                        }}>Close</MyButton>
-                                    </InfoModal>
-                                }</div> 
+                            ? (<Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>)
+                            :
+                                (
+                                    <div>{isInfoModalVisible &&
+                                        <InfoModal
+                                            visible={isInfoModalVisible}
+                                            setVisible={setInfoModalVisible} >
+                                            <div style={{color: "red"}}>
+                                                <p>{infoMessage}</p>
+                                            </div>
+                                            <MyButton onClick={() => {
+                                                setInfoModalVisible(false);
+                                                setIsLoading(false);
+                                            }}>Close</MyButton>
+                                        </InfoModal>
+                                    }
+                                    </div>
+                                )
                         }
                         {!isInfoModalVisible && !myError && showContent
                             ?
-                            <div>
-                                <MyTable
-                                    columns={headers}
-                                    rows={data}
-                                />
-                            </div>
+                            (
+                                <div>
+                                    <MyTable
+                                        columns={headers}
+                                        rows={data}
+                                    />
+                                </div>
+                            )
                             :
-                            <div>
-                                <h1 style={{textAlign: "center", color: "#686767"}}>
-                                    No data!
-                                </h1>
-                            </div>
+                            (
+                                <div>
+                                    <h1 style={{textAlign: "center", color: "#686767"}}>
+                                        No data!
+                                    </h1>
+                                </div>
+                            )
                         }
                     </div>
                 </ErrorBoundary>

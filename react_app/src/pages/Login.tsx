@@ -35,12 +35,12 @@ const Login: FC = () => {
         try {
             await login(username, password).then((response) => {
                 const _token = response?.token;
-                const _email = response?.token;
-                const _role = response?.role;
+                // const _email = response?.token;
+                // const _role = response?.role;
                 if (_token) {
-                    setAuth({username, _role, _email, password, _token});
-                    setUsername('');
-                    setPassword('');
+                    // setAuth({username, _role, _email, password, _token});
+                    // setUsername('');
+                    // setPassword('');
                     navigate(from, {replace: true});
                 }
             }).then(
@@ -54,7 +54,7 @@ const Login: FC = () => {
             } else if (err.response?.status === 400) {
                 setErrorMessage('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrorMessage('Unauthorized');
+                setErrorMessage('No authorization found');
                 navigate("/unauthorized");
             } else {
                 setErrorMessage('Login Failed');

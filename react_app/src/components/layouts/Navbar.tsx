@@ -168,13 +168,13 @@ const Navbar: FC = () => {
                         </li>
                         <li
                             className="nav-item">
-                            <a
-                                href="/login"
+                            <Link
+                                to={"/login"}
                                 className="nav-link"
                                 onClick={logOut}
                                 style={{ color: 'white' }}>
                                 LogOut
-                            </a>
+                            </Link>
                         </li>
                     </div>
                 ) : (

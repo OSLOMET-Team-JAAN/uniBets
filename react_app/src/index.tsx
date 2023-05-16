@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <BrowserRouter>
-        <AuthProvider>
+        {/*<AuthProvider>*/}
             <DataProvider>
                 <Routes>
                     <Route 
@@ -20,6 +20,6 @@ root.render(
                     />
                 </Routes>
             </DataProvider>
-        </AuthProvider>
+        {/*</AuthProvider>*/}
     </BrowserRouter>
 );

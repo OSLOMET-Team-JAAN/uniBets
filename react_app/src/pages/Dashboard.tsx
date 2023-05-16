@@ -96,9 +96,10 @@ const Dashboard: FC = () => {
             <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
-                    ? <Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>
+                    ? (<Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>)
                     : <> {isVisible
                         ?
+                        (
                             <InfoModal
                                 visible={isVisible}
                                 setVisible={setIsVisible}
@@ -110,100 +111,103 @@ const Dashboard: FC = () => {
                                     setIsVisible(false)
                                 }}>Close</MyButton>
                             </InfoModal>
+                        )
                         :
-                        <div data-testid="dashboardTest">
-                            <h3>Welcome To ADMIN Dashboard</h3>
-                            <br/>
-                            <div className={st.cont}>
-                                <label 
-                                    htmlFor="Player_no"
-                                >Player no: </label>
-                                <MyInput
-                                    value={playerNo}
-                                    name="Player_no"
-                                    placeholder="Enter Player_no here.."
-                                    autoComplete="off"
-                                    onChange={(e) => setPlayerNo(e.target.value)}
-                                />
-                                <label 
-                                    htmlFor="Top_element"
-                                >TOP customization: 
-                                </label>
-                                <MyInput
-                                    value={verifyMyTop(myTop)}
-                                    name="Top_element"
-                                    placeholder="Enter Your TOP here.."
-                                    autoComplete="off"
-                                    onChange={(e) => setMyTop(e.target.value)}
-                                />
-                            </div>
-                            <div 
-                                className={st.cont}>
-                                <GetTopWinner/>
-                            </div>
-                            <div>
-                                {myTop ?
-                                    <GetTopWinners
-                                    sortedData={sortedData}
-                                    myTop={parseInt(myTop)}
-                                />
-                                : <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>
-                                }
-                            </div>
-                            <div 
-                                className={st.bets}>
-                                {playerNo ?
-                                    <GetTopWinnerBetStatus 
-                                        Player={verifyPlayer(playerNo)}/>
-                                    : <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
-                                }
+                        (
+                            <div data-testid="dashboardTest">
+                                <h3>Welcome To ADMIN Dashboard</h3>
+                                <br/>
+                                <div className={st.cont}>
+                                    <label
+                                        htmlFor="Player_no"
+                                    >Player no: </label>
+                                    <MyInput
+                                        value={playerNo}
+                                        name="Player_no"
+                                        placeholder="Enter Player_no here.."
+                                        autoComplete="off"
+                                        onChange={(e) => setPlayerNo(e.target.value)}
+                                    />
+                                    <label
+                                        htmlFor="Top_element"
+                                    >TOP customization:
+                                    </label>
+                                    <MyInput
+                                        value={verifyMyTop(myTop)}
+                                        name="Top_element"
+                                        placeholder="Enter Your TOP here.."
+                                        autoComplete="off"
+                                        onChange={(e) => setMyTop(e.target.value)}
+                                    />
+                                </div>
+                                <div
+                                    className={st.cont}>
+                                    <GetTopWinner/>
+                                </div>
+                                <div>
+                                    {myTop ?
+                                        <GetTopWinners
+                                            sortedData={sortedData}
+                                            myTop={parseInt(myTop)}
+                                        />
+                                        : <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>
+                                    }
+                                </div>
+                                <div
+                                    className={st.bets}>
+                                    {playerNo ?
+                                        <GetTopWinnerBetStatus
+                                            Player={verifyPlayer(playerNo)}/>
+                                        : <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    }
 
-                                {playerNo ?
-                                    <GetTopWinnerWinRate 
-                                        Player={verifyPlayer(playerNo)}/>
-                                    :
-                                    <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
-                                }
+                                    {playerNo ?
+                                        <GetTopWinnerWinRate
+                                            Player={verifyPlayer(playerNo)}/>
+                                        :
+                                        <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    }
 
-                                {playerNo ?
-                                    <GetDatesIntervals
-                                        Player={verifyPlayer(playerNo)}/>
-                                    :
-                                    <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
-                                }
+                                    {playerNo ?
+                                        <GetDatesIntervals
+                                            Player={verifyPlayer(playerNo)}/>
+                                        :
+                                        <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    }
+                                </div>
+                                <div>
+                                    {myTop
+                                        ?
+                                        <GetBetsWinRateTopWinners
+                                            myTop={parseInt(myTop)}
+                                        />
+                                        : <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>}
+                                </div>
+                                <div>
+                                    <GetOddsOutliers/>
+                                </div>
+                                <div>
+                                    {playerNo ?
+                                        <GetCustomPlayerData
+                                            Player={verifyPlayer(playerNo)}
+                                        /> :
+                                        <h4
+                                            className={st.errCont}
+                                        >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
+                                    }
+                                </div>
                             </div>
-                            <div>
-                                {myTop 
-                                    ?
-                                    <GetBetsWinRateTopWinners
-                                        myTop={parseInt(myTop)}
-                                    /> 
-                                    : <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE CUSTOMIZE YOUR TOP</h4>}
-                            </div>
-                            <div>
-                                <GetOddsOutliers/>
-                            </div>
-                            <div>
-                                {playerNo ?
-                                    <GetCustomPlayerData 
-                                        Player={verifyPlayer(playerNo)}
-                                    /> :
-                                    <h4 
-                                        className={st.errCont}
-                                    >NO DATA FOUND! PLEASE ENTER PLAYER NUMBER</h4>
-                                }
-                            </div>
-                        </div>
+                        )
                     }                        
                         </>
                     

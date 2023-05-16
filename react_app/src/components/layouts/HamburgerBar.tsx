@@ -21,7 +21,6 @@ const HamburgerBar: FC = () => {
         setShowContent(!showContent);
     }
 
-
     useEffect(() => {
         const auth = getCurrentUser();
         if (auth) {
@@ -42,10 +41,11 @@ const HamburgerBar: FC = () => {
         setShowUserBoard(false);
         setShowAdminBoard(false);
         setShowContent(false);
+        setCurrentUser(undefined);
     };
-
+    
     return (
-        <div className={st.cont}
+        <nav className={st.cont}
              data-testid="hamburgerBar"
         >
             <button 
@@ -156,19 +156,20 @@ const HamburgerBar: FC = () => {
                                         to={"/profile"}
                                         onClick={handleClick}
                                         className="nav-link"
-                                        style={{ color: 'white' }}>
+                                        style={{ color: 'white' }}
+                                    >
                                         {currentUser.username}
                                     </Link>
                                 </li>
                                 <li
                                     className="nav-item">
-                                    <a
-                                        href="/login"
+                                    <Link
+                                        to={"/login"}
                                         className="nav-link"
                                         onClick={logOut}
                                         style={{ color: 'white' }}>
                                         LogOut
-                                    </a>
+                                    </Link>
                                 </li>
                             </div>
                         ) : (
@@ -199,26 +200,53 @@ const HamburgerBar: FC = () => {
                 </div>
             }
            
-            <Link 
-                to={"/home"} 
-                className="navbar-brand" 
-                style={{ fontWeight: 'bold', color: 'white' }}>
-                 <img 
-                     src={Logo} 
-                     alt="Logo" 
-                     className={st.image} />
-            </Link>
-       
-             <Link 
-                 to={"/login"} 
-                 className={st.st2}
-                 onClick={logOut}
-                 style={{ color: 'white' }}
-             >
-                 LogOut
-            </Link>
+            {currentUser 
+                ?
+                (
+                    <>
+                        <Link
+                            to={"/home"}
+                            className="navbar-brand"
+                            style={{ fontWeight: 'bold', color: 'white' }}>
+                            <img
+                                src={Logo}
+                                alt="Logo"
+                                className={st.image} />
+                        </Link>
+                        <Link
+                            to={"/login"}
+                            className={st.st2}
+                            onClick={logOut}
+                            style={{ color: 'white' }}
+                        >
+                            LogOut
+                        </Link>
+                    </>
+                ) 
+                :
+                (
+                    <>
+                        <Link
+                            to={"/home"}
+                            className="navbar-brand"
+                            style={{ fontWeight: 'bold', color: 'white' }}>
+                            <img
+                                src={Logo}
+                                alt="Logo"
+                                className={st.image} />
+                        </Link>
+                        <Link
+                            to={"/login"}
+                            className={st.st2}
+                            style={{ color: 'white' }}
+                        >
+                            Login
+                        </Link>
+                    </>
+                )
+            }
 
-        </div>
+        </nav>
     );
 };
 

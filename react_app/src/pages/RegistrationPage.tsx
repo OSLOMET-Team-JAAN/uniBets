@@ -36,7 +36,7 @@ const RegistrationPage: FC = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [accessGranted, setAccessGranted] = useState(false);
 
-    const navigate: NavigateFunction = useNavigate()
+    const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
         userRef.current?.focus();

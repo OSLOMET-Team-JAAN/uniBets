@@ -8,6 +8,8 @@ import st from "../styles/pages/Inbox.module.css";
 import Loader from "../components/UI/loader/Loader";
 import DataTable from "../components/table/DataTable";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
+import {NavigateFunction} from "react-router";
+import {useNavigate} from "react-router-dom";
 
 const Inbox = () => {
     const [data, setData] = useState<Array<IContact>>([]);
@@ -17,6 +19,8 @@ const Inbox = () => {
     const [myError, setMyError] = useState("");
     //State 10_ to show fetching data process
     const [isLoading, setIsLoading] = useState(false);
+    
+    const navigate: NavigateFunction = useNavigate();
     
     useEffect(() => {
         handleGetData().then()
@@ -38,7 +42,8 @@ const Inbox = () => {
             if (!err.response) {
                 setMyError(err.response);
             } else if (err.response?.status === 401) {
-                setMyError('Unauthorized');
+                setMyError('No authorization found');
+                navigate("/unauthorized")
             } else {
                 setMyError('Data Fetching is Failed');
             }

@@ -102,3 +102,5 @@ export const ClearContext = () => {
     localStorage.removeItem('csv');
     localStorage.removeItem('headers');
 }
+
+export const clearLocStorage = () => localStorage.clear();

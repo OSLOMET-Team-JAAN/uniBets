@@ -1,11 +1,11 @@
 .cont {
-    border-radius: 21px 50px 0px 50px / 0px 25px 0px 25px;
+    border-radius: 21px 50px 0 50px / 0 25px 0 25px;
     display: block;
     padding: 25px;
     margin: 8px auto 8px auto;
     width: 900px;
-    height: 400px;
-    box-shadow: -4px 8px 5px 0px rgba(137, 137, 137, 0.34);
+    height: 420px;
+    box-shadow: -4px 8px 5px 0 rgba(137, 137, 137, 0.34);
     background: white;
 }
 
@@ -70,20 +70,17 @@
 @media (max-width: 900px) {
     .cont {
         width: 700px;
-        height: 400px;
     }
 }
 
 @media (max-width: 700px) {
     .cont {
         width: 500px;
-        height: 400px;
     }
 }
 
 @media (max-width: 500px) {
     .cont {
         width: 450px;
-        height: 400px;
     }
 }
