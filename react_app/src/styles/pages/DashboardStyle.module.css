@@ -35,6 +35,10 @@ h3 {
     margin: 15px auto;
 }
 
+.dataSource {
+    font-style: italic;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .bets {
         grid-template-columns: 1fr 1fr;

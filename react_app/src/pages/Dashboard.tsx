@@ -9,7 +9,7 @@ import GetCustomPlayerData from "../components/dashboard_components/GetCustomPla
 import MyInput from "../components/UI/input/MyInput";
 import GetDatesIntervals from "../components/dashboard_components/GetDatesIntervals";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
-import useCSV from "../hooks/useCSV";
+import useData from "../hooks/useData";
 import st from '../styles/pages/DashboardStyle.module.css';
 import GetBetsWinRateTopWinners from "../components/dashboard_components/GetBetsWinRateTopWinners";
 import {ClearContext, getAll} from "../services/data.service";
@@ -20,10 +20,9 @@ import InfoModal from "../components/UI/modals/InfoModal";
 import MyButton from "../components/UI/buttons/MyButton";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
-
-const Dashboard: FC = () => {
+const Dashboard = () => {
     //using data from context
-    const {data, setData, setHeaders}: any = useCSV();
+    const {data, setData, setHeaders, dataSource, setDataSource, fileName}: any = useData();
     //This state is to store player_no, we have player_no fetched from
     //database as number and from localStorage as string - we need state for both <number | string>
     const [playerNo, setPlayerNo] = useState<string>( '');
@@ -40,7 +39,7 @@ const Dashboard: FC = () => {
     
     useEffect(() => {
         if (data && Object.keys(data).length === 0){
-            handleGetData().then()            
+            handleGetData().then(() => setDataSource('Data was fetched from the data base.'));            
         }        
     },[]);
 
@@ -89,7 +88,7 @@ const Dashboard: FC = () => {
         }else {
             return value;
         }
-    }    
+    }
     
     return (
         <div data-testid="dashboardPage">
@@ -117,6 +116,8 @@ const Dashboard: FC = () => {
                             <div data-testid="dashboardTest">
                                 <h3>Welcome To ADMIN Dashboard</h3>
                                 <br/>
+                                <p className={st.dataSource}
+                                >{dataSource}</p>
                                 <div className={st.cont}>
                                     <label
                                         htmlFor="Player_no"

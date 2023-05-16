@@ -1,5 +1,5 @@
 ﻿import React, {FC, useMemo} from 'react';
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import {Pie, PieChart,} from 'recharts';
 import st from '../../styles/GetDatesIntervals.module.css';
 import TipButton from "../UI/buttons/TipButton";

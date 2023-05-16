@@ -1,7 +1,7 @@
 import React, {FC, useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
 import {Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import st from '../../styles/GetOddsOutliers.module.css';
 
 const GetOddsOutliers: FC = () => {

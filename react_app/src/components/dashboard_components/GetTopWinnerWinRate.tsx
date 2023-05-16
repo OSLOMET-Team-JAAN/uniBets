@@ -1,6 +1,6 @@
 ﻿import React, {FC, useEffect, useMemo, useState} from 'react';
 import {Cell, Label, Pie, PieChart} from "recharts";
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import style from '../../styles/GetTopWinnerWinRate.module.css';
 import {getResults, getWinRate} from "../../utils/assistFunctions";
 

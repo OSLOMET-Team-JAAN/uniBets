@@ -1,7 +1,7 @@
 ﻿import React, {FC, useMemo, useState} from 'react';
 import {Bar, BarChart, Label, LabelList, ResponsiveContainer, Tooltip, TooltipProps, XAxis} from "recharts";
 import st from "../../styles/GetBetsWinRateTopWinners.module.css";
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import {getTop} from "../../utils/assistFunctions";
 import MyDropDown from "../UI/select/MyDropDown";
 

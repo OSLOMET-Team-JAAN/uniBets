@@ -1,6 +1,6 @@
 ﻿import React, {FC} from 'react';
 import MyTable from "../table/MyTable";
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import st from '../../styles/GetCustomPlayerData.module.css';
 
 

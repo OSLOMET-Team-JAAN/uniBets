@@ -42,16 +42,16 @@ const Navbar: FC = () => {
         >
             <div
                 className="container-fluid">
+                <img
+                    src={Logo}
+                    alt="Logo"
+                    className={styles.image} />
                 <Link
                     to={"/home"}
                     className="navbar-brand"
-                    style={{ fontWeight: 'bold', color: 'white' }}>
-                    <p> Game Fixing
-                        <img
-                            src={Logo}
-                            alt="Logo"
-                            className={styles.image} />
-                    </p>
+                    style={{ fontWeight: 'bold', color: 'white'}}
+                >
+                    Game Fixing
                 </Link>
                 <div
                     className="navbar-nav mx-auto"

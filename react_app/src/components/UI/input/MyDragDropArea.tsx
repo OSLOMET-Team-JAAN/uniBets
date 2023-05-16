@@ -9,6 +9,7 @@ import {
 } from "../../../services/data.service";
 import Papa from "papaparse";
 import {getHeaders} from "../../../utils/assistFunctions";
+import useData from "../../../hooks/useData";
 
 interface DRAG_DROP{
     indicator: boolean,
@@ -63,7 +64,7 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
                     // Check if user has entered the file
                     if (event.dataTransfer.files.length) {
                         const uploadedFile = event.dataTransfer.files && event.dataTransfer.files[0];
-                        setFile(uploadedFile)
+                        setFile(uploadedFile);
                         // Checking file's extension and throwing error if incorrect
                         const extension = uploadedFile?.type.split("/")[1].toString();
                         if (!allowedFileTypes.includes(extension)) {
@@ -100,7 +101,7 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
                     setIsLoading(false);
                     setModalVisible(true);
                     setInfoModalVisible(true);
-                    setInfoMessage("CSV file was uploaded successfully! Please, press 'Show file content' button!");
+                    setInfoMessage("CSV file was uploaded successfully! Please, press <<EXPLORE>> button!");
                     setIndicator(false);
                 }}
             >

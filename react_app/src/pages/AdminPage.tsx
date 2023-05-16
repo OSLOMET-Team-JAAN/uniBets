@@ -17,7 +17,7 @@ import {
 } from "../services/data.service";
 import {ICSVdata} from "../models/ICSVdata";
 import {getHeaders} from "../utils/assistFunctions";
-import useCSV from "../hooks/useCSV";
+import useData from "../hooks/useData";
 import InfoModal from "../components/UI/modals/InfoModal";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import MyFileUpload from "../components/UI/input/MyFileUpload";
@@ -31,11 +31,11 @@ const AdminPage: FC = () => {
         //State 1_ This state to represent style change of drag area
         const [indicator, setIndicator] = useState(false);
         //State 2_ Used context to store the parsed data.
-        const {data, setData, headers, setHeaders}: any = useCSV();
+        const {data, setData, headers, setHeaders, setDataSource}: any = useData();
         //State 3_ This state will store error messages
         const [myError, setMyError] = useState("");
         //State 4_ This state will store the file uploaded by the user
-        const [file, setFile] = useState<File | string>("");
+        const [file, setFile] = useState<File | null>(null);
         //State 5_ This state will show / hide results
         const [showContent, setShowContent] = useState(false);
         //State 6_ To avoid typescript complains about ref usage in <input> we'll create our own which will return a reference.
@@ -57,7 +57,7 @@ const AdminPage: FC = () => {
         //This function below will reset all functions and states to their defaults
         const resetAll = () => {
             ClearContext();
-            setFile("")
+            setFile(null)
             setShowContent(false)
             setShowButton(false)
             setMyError("No data found. Please upload the file or fetch data from database.")
@@ -89,6 +89,7 @@ const AdminPage: FC = () => {
                     setHeaders(getStoredHeaders('headers'))
                     setShowContent(true)
                     setMyError("");
+                    setDataSource(`Data was used from uploaded CSV file ${file.name}`);
                 }
             });
             setIsLoading(false);

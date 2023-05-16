@@ -1,6 +1,6 @@
 import React, {FC, useMemo, useState} from 'react';
 import {getBetWon, getTop, sortRows} from "../../utils/assistFunctions";
-import useCSV from "../../hooks/useCSV";
+import useCSV from "../../hooks/useData";
 import style from '../../styles/layout/TopWinner.module.css';
 
 const GetTopWinner: FC = () => {

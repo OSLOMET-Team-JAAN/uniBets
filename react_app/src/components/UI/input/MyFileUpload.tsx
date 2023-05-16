@@ -8,6 +8,7 @@ import {getHeaders} from "../../../utils/assistFunctions";
 import ErrorBoundaryResponse from "../../../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../../../errors/ErrorBoundary";
 import InfoModal from "../modals/InfoModal";
+import useData from "../../../hooks/useData";
 
 interface GET_DATA{
     setIsLoading: (b: boolean) => void,
@@ -40,6 +41,7 @@ const MyFileUpload: FC<GET_DATA> = ({
                                         children, 
                                         aRef }) => {
     const allowedFileTypes: string = "text/csv";
+    const {setDataSource}: any = useData();
 
     //This function will be called when file will be uploaded by input from user
     const handleFiles = (e: any) => {
@@ -60,8 +62,8 @@ const MyFileUpload: FC<GET_DATA> = ({
                 }
                 // If input type is correct set the state
                 setFile(uploadedFiles);
-                setShowButton(true)
-                setIsLoading(true)
+                setShowButton(true);
+                setIsLoading(true);
             }
         } catch (error: any) {
             throw new Error(error)
@@ -80,6 +82,7 @@ const MyFileUpload: FC<GET_DATA> = ({
                     setHeaders(headers);
                     setIsLoading(true)
                     setInfoModalVisible(true);
+                    setDataSource('Data was fetched from data base.')
                     setInfoMessage('Data fetched from database successfully!');
                     setShowContent(true);
                     setShowButton(true);
