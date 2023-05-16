@@ -115,8 +115,8 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
                     ? <h4>PLEASE CUSTOMIZE YOUR TOP</h4>
                     : 
                     <>
-                        <div className={st.h4} style={{display: "flex", justifyContent: "center", textAlign: "center", justifyItems: "center"}}>
-                            <h4 style={{marginTop: 6}}>TOP <strong>{myTop}</strong> WINNERS BY {
+                        <div className={st.title}>
+                            <h4>TOP <strong>{myTop}</strong> WINNERS BY {
                                 orderBy !== "TOTAL_BETS" ? "TOTAL BETS &" : null
                             } </h4>
                             <MyDropDown
