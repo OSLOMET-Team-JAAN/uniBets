@@ -43,7 +43,7 @@ export default function Faq() {
                                 data-testid="accHeader-1"
                                 onClick={() => handleOpen(1)} 
                                 className={styles["accordion-header"]}>
-                                What is Game fixing?
+                                How can i upload a CSV file?
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
@@ -51,21 +51,13 @@ export default function Faq() {
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
-                                    Game-fixing (known also as Match-fixing) is when someone directly
-                                    involved in a sporting contest is able to change the results in
-                                    order for a certain bet to win. That can involve asking a player to
-                                    purposefully miss a shot, telling a referee to call more fouls
-                                    against a certain team, or asking a coach to bench a specific
-                                    player.
+                                            First you need to login as Administrator to have this type of privilage.
+                                            then you can go to Admin Page, there you can either drop the file from you file location
+                                            into the block, or you can click on Choose file and from there you can redirect to your file source
+                                    on your desktop and then click ok and the file will be uploaded.
                                     <br/>
                                     <br/>
-                                    Read more about Game-fixing in{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://www.olbg.com/us/blogs/match-fixing-scandals
-                                    </a>
+                                           
                                 </p>
                             </AccordionBody>
                         </div>
@@ -82,7 +74,7 @@ export default function Faq() {
                                 data-testid="accHeader-2"
                                 onClick={() => handleOpen(2)} 
                                 className={styles["accordion-header"]}>
-                                What is the point of game fixing?
+                                How can i see the file content ? 
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
@@ -90,19 +82,13 @@ export default function Faq() {
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
-                                    The main reason people get involved in
-                                    game-fixing "match-fixing" and manipulating games is for personal or financial gain.
-                                    It generally involves contacts between gamblers, players, team officials,
-                                    and/or referees, and has serious implications for sport at all levels.
+                                            After uploading the file you can click on Explore button in blue and then a 
+                                            table with the file content will appear on the same page. 
+                                            the table have filter ability, which mean you can manipulate the data in the file 
+                                    before heading to Dashboard page if you want.
                                     <br/>
                                     <br/>
-                                    Read more about Game-fixing in{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://sportnz.org.nz/resources/match-fixing-and-gambling-in-sport/
-                                    </a>
+                                           
                                 </p>
                             </AccordionBody>
                         </div>
@@ -120,7 +106,7 @@ export default function Faq() {
                                 data-testid="accHeader-3"
                                 onClick={() => handleOpen(3)} 
                                 className={styles["accordion-header"]}>
-                                Is game-fixing cheating?
+                            What are those data that are in the Dashboard ?
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
@@ -128,19 +114,12 @@ export default function Faq() {
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
-                                    Match-fixing in esports is the deliberate alteration
-                                    of the outcome of a match by one or more players.It is considered a form of
-                                    cheating,
-                                    and is often punishable by disqualification from the event.
+                                            If you did not upload any file, you will still see information in the Dashboard page. 
+                                            This information is fetched from data base, and it's about the last uploaded file and fetched to database.
+                                            this wil happen automatically if you loged in as an Admin.
+                                   
                                     <br/>
                                     <br/>
-                                    Read more at{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://liquidsky.com/match-fixing-in-csgo-cheating-for-gambling-or-personal-gain/
-                                    </a>
                                 </p>
                             </AccordionBody>
                         </div>
@@ -158,7 +137,7 @@ export default function Faq() {
                                 data-testid="accHeader-4"
                                 onClick={() => handleOpen(4)} 
                                 className={styles["accordion-header"]}>
-                                What is the most famous game-fixing?
+                                Can i get info about exact player?
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
@@ -166,19 +145,12 @@ export default function Faq() {
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
-                                    The most famous incident involved three Sheffield
-                                    Wednesday players, including two England international players, who were
-                                    subsequently banned from football for life and imprisoned after it was
-                                    discovered they had bet on their team losing a match against Ipswich Town.
+                                            Yes, this you can do. after uploading the file you can head to Dashoard page. 
+                                            in the top you can see two oinput feild, there you can type in the plyaer number and choose the
+                                            top  customization as well. Pay intention that the player number should be known from the uploaded file.
                                     <br/>
                                     <br/>
-                                    Read more at{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://en.wikipedia.org/wiki/List_of_match-fixing_incidents
-                                    </a>
+                                 
                                 </p>
                             </AccordionBody>
                         </div>
@@ -194,26 +166,25 @@ export default function Faq() {
                                 role="button"
                                 data-testid="accHeader-5"
                                 onClick={() => handleOpen(5)} className={styles["accordion-header"]}>
-                                Who started game-fixing?
+                                What i can do in Dashboard page ?
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
                                 data-testid="accBody-5"
                                 className={styles["accordion-body"]}>
                                 <p className="break-words">
-                                    Azharuddin reportedly
-                                    confessed that he had fixed three one-day matches; the first against South Africa
-                                    at Rajkot in 1996,
-                                    then Pepsi Cup matches in Sri Lanka in 1997 and Pakistan in 1999.
+                                            In Dashboard page, you can see analysation about uploaded file data.
+                                            This analysation will be in form of tables an charts, in some of the charts you can manipulate the
+                                            results. For eksample you can choose the Top 10 winners By total bets and win rates.
+                                            You can also analyse the data about exact player by typing his number in the input feild at the top.
+                                            There is several gadget that show the date, win and Bets rate.
+                                            You will have table in the bottom that contain informaton about the uploaded file, this table has filter which allow you to
+                                            filter the data to get the best wanted result. 
+                                            
+
                                     <br/>
                                     <br/>
-                                    Read more at{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://www.espncricinfo.com/ci/content/story/144219.html
-                                    </a>
+                                          
                                 </p>
                             </AccordionBody>
                         </div>
@@ -230,7 +201,7 @@ export default function Faq() {
                                 data-testid="accHeader-6"
                                 onClick={() => handleOpen(6)} 
                                 className={styles["accordion-header"]}>
-                                How is game-fixing unethical?
+                                Can i upload pdf file instead ? 
                             </AccordionHeader>
                             <AccordionBody
                                 role="region"
@@ -238,20 +209,11 @@ export default function Faq() {
                                 className={styles["accordion-body"]}>
                                 <p 
                                     className="break-words">
-                                    This type of game-fixing is considered a sub-dimension
-                                    of corruption in sports, which is "any illegal, immoral, or unethical activity that
-                                    attempts
-                                    to deliberately distort the result of a sporting contest for the
-                                    personal material gain of one or more parties involved in that activity"
+                                            Unfortunally No, this you cannot do cause this web application is designed to
+                                            read data from file with CSV format only.
+
                                     <br/>
                                     <br/>
-                                    Read more at{" "}
-                                    <a
-                                        href="#"
-                                        className={styles["accordion-body-link"]}
-                                    >
-                                        https://core.ac.uk/download/pdf/237010431.pdf
-                                    </a>
                                 </p>
                             </AccordionBody>
                         </div>
