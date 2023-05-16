@@ -11,7 +11,7 @@ const Navbar: FC = () => {
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
-
+    
     useEffect(() => {
         const auth = getCurrentUser();
         if (auth) {

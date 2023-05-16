@@ -12,7 +12,7 @@ import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useData from "../hooks/useData";
 import st from '../styles/pages/DashboardStyle.module.css';
 import GetBetsWinRateTopWinners from "../components/dashboard_components/GetBetsWinRateTopWinners";
-import {ClearContext, getAll} from "../services/data.service";
+import {ClearContext, getAll, getStoredData} from "../services/data.service";
 import Loader from "../components/UI/loader/Loader";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
@@ -22,14 +22,14 @@ import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Dashboard = () => {
     //using data from context
-    const {data, setData, setHeaders, dataSource, setDataSource, fileName}: any = useData();
+    const {data, setData, setHeaders, dataSource, setDataSource}: any = useData();
     //This state is to store player_no, we have player_no fetched from
     //database as number and from localStorage as string - we need state for both <number | string>
     const [playerNo, setPlayerNo] = useState<string>( '');
     const [myTop, setMyTop] = useState<string>('10');
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [myError, setMyError] = useState("");
+    const [myError, setMyError] = useState("");    
     
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
@@ -39,15 +39,21 @@ const Dashboard = () => {
     useEffect(() => {
         if (data && Object.keys(data).length === 0){
             handleGetData().then(() => setDataSource('Data was fetched from the data base.'));            
-        }        
+        }
     },[]);
+    
+    useEffect(() => {
+        if(getStoredData('source') === null){
+            setDataSource(dataSource);
+        }
+    }, [])
 
     useEffect(() => {
         getTop(sortedData, 1)?.map((key: any) => {
             return setPlayerNo(key["Player_no"]);
         })
     }, [sortedData]);
-
+    
     const handleGetData = async () => {
         try {
             ClearContext();
@@ -89,7 +95,6 @@ const Dashboard = () => {
         }
     }
 
-    console.log(dataSource)
     return (
         <div data-testid="dashboardPage">
             <ErrorBoundary 

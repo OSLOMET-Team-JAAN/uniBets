@@ -70,7 +70,7 @@ export const getInbox = () => {
     );
 };
 
-//HERE WAS THE TEST TO MAKE PERSIST DATA
+//THIS IS TO MAKE PERSIST DATA
 export const setDataToStore = (key: string, data: any) => {
     if (localStorage.getItem(key) === null) {
         let storedData = JSON.stringify(data)

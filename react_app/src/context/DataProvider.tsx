@@ -16,15 +16,15 @@ export const DataProvider: FC<Props> = ({ children }) => {
 
     const [data, setData] = useState(getStoredData('csv') || []);
     const [headers, setHeaders] = useState(getStoredHeaders('headers') || []);
-    const [dataSource, setDataSource] = useState('');
+    const [dataSource, setDataSource] = useState(getStoredData('source') || [])
     const value = useMemo(() => (
         {
             data,
             setData,
             headers,
             setHeaders,
-            dataSource, 
-            setDataSource,
+            dataSource,
+            setDataSource
         }
     ), [data, headers, dataSource])
 

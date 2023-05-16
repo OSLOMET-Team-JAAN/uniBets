@@ -89,7 +89,8 @@ const AdminPage: FC = () => {
                     setHeaders(getStoredHeaders('headers'))
                     setShowContent(true)
                     setMyError("");
-                    setDataSource(`Data was used from uploaded CSV file ${file.name}`);
+                    setDataToStore('source', `Data was used from uploaded CSV file ${file.name}`);
+                    setDataSource(`Data was used from uploaded CSV file ${file.name}`)
                 }
             });
             setIsLoading(false);
