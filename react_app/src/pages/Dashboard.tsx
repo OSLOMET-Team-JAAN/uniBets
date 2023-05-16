@@ -30,7 +30,6 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [myError, setMyError] = useState("");
-    const [loaderMsg] = useState('Loading..');
     
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
@@ -89,13 +88,14 @@ const Dashboard = () => {
             return value;
         }
     }
-    
+
+    console.log(dataSource)
     return (
         <div data-testid="dashboardPage">
             <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
                 {isLoading && !myError
-                    ? (<Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>)
+                    ? <Loader />
                     : <> {isVisible
                         ?
                         (

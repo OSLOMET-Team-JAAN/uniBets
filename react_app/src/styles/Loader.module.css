@@ -1,16 +1,21 @@
 .wrapper {
     display: flex;
-    text-align-all: center;
+    text-align: center;
     justify-content: center;
-    margin-top: 50px;
+    margin: 20px;
 }
 
 .myLoader {
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    border: 3px dotted teal;
+    text-align: center;
+    justify-content: center;
     animation: rotate 4s infinite linear;
+}
+
+.ball {
+    width: 60px;
+    height: 60px;
 }
 
 @keyframes rotate {

@@ -211,7 +211,7 @@ const AdminPage: FC = () => {
                     </div>
                     <div>
                         {isLoading && !myError && !isInfoModalVisible
-                            ? (<Loader process={loaderMsg}><h2 style={{color: "red"}}>o</h2></Loader>)
+                            ? (<Loader />)
                             :
                                 (
                                     <div>{isInfoModalVisible &&

@@ -53,7 +53,7 @@ const UserPage: FC = () => {
                     <br/>
                     {myError && <h5 style={{color: "red"}}>{myError}</h5>}
                     {isLoading && !myError
-                        ? <Loader><h4 style={{color: "red"}}>o</h4></Loader>
+                        ? <Loader />
                         : <>
                             {data
                                 ? <MyTable
