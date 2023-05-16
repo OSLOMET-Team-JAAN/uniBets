@@ -26,6 +26,7 @@ function App() {
                 ? <Navbar />
                 : <HamburgerBar /> 
             }
+            <br />
             <AppRouter/>
             <Footer/>
         </div>
