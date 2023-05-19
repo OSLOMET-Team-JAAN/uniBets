@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import GetTopWinners from '../components/dashboard_components/GetTopWinners'
 import GetTopWinner from "../components/dashboard_components/GetTopWinner";
 import GetOddsOutliers from "../components/dashboard_components/GetOddsOutliers";
@@ -26,39 +26,50 @@ const Dashboard = () => {
     //This state is to store player_no, we have player_no fetched from
     //database as number and from localStorage as string - we need state for both <number | string>
     const [playerNo, setPlayerNo] = useState<string>( '');
+    //State to store customized TOP
     const [myTop, setMyTop] = useState<string>('10');
+    //Loader activator
     const [isLoading, setIsLoading] = useState(false);
+    //Modal visibility
     const [isVisible, setIsVisible] = useState(false);
+    //Holds errors
     const [myError, setMyError] = useState("");    
     
+    
+    //Data sorting preliminary
     const [sortSettings] =
         useState({order: 'desc', orderBy: 'ODDS'});
+    //Data change control
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings]);
     
+    //If nothing in LocalStorage fetching from database
     useEffect(() => {
         if (data && Object.keys(data).length === 0){
             handleGetData().then(() => setDataSource('Data was fetched from the data base.'));            
         }
     },[]);
     
+    //Check localstorage for dataSource data
     useEffect(() => {
         if(getStoredData('source') === null){
             setDataSource(dataSource);
         }
     }, [])
 
+    //Get top winner number
     useEffect(() => {
         getTop(sortedData, 1)?.map((key: any) => {
             return setPlayerNo(key["Player_no"]);
-        })
+        });
     }, [sortedData]);
     
+    //Fetching data from DB
     const handleGetData = async () => {
         try {
             clearStorage();
-            setIsLoading(true)
-            setMyError('')
+            setIsLoading(true);
+            setMyError('');
             await getAll().then(
                 (response: AxiosResponse<Array<ICSVdata>>) => {
                     setData(response?.data);
@@ -77,8 +88,8 @@ const Dashboard = () => {
                 setMyError('Data Fetching is Failed');
             }
         }
-    } 
-    
+    }
+
     const verifyPlayer = (value: any) => {
         if(localStorage.getItem('csv') === null){
             return parseInt(value);
@@ -88,7 +99,7 @@ const Dashboard = () => {
     }
 
     const verifyMyTop = (value: any) => {
-        if(localStorage.getItem('csv') === null){
+        if(localStorage.getItem('csv')){
             return parseInt(value);
         }else {
             return value;
@@ -139,7 +150,7 @@ const Dashboard = () => {
                                     >TOP customization:
                                     </label>
                                     <MyInput
-                                        value={verifyMyTop(myTop)}
+                                        value={myTop}
                                         name="Top_element"
                                         placeholder="Enter Your TOP here.."
                                         autoComplete="off"
@@ -193,7 +204,7 @@ const Dashboard = () => {
                                     {myTop
                                         ?
                                         <GetBetsWinRateTopWinners
-                                            myTop={parseInt(myTop)}
+                                            myTop={verifyMyTop(myTop)}
                                         />
                                         : <h4
                                             className={st.errCont}

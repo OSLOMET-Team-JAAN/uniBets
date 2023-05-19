@@ -8,6 +8,9 @@
     border-radius: 0.25em;
     cursor: pointer;
 }
+.myInput::placeholder {
+    color: wheat;
+}
 
 @media (max-width: 700px) {
     .myInput {
