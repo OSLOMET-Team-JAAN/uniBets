@@ -51,6 +51,7 @@ export const submit = (email: string, subject: string, message: string) => {
     );
 };
 
+//AXIOS GET request for inbox messages
 export const getInbox = () => {
     const userStr = localStorage.getItem("user");
     let user = null;
@@ -68,6 +69,7 @@ export const getInbox = () => {
 };
 
 //THIS IS TO MAKE PERSIST DATA
+//Store data to localStorage
 export const setDataToStore = (key: string, data: any) => {
     if (localStorage.getItem(key) === null) {
         let storedData = JSON.stringify(data)
@@ -75,6 +77,7 @@ export const setDataToStore = (key: string, data: any) => {
     }
 };
 
+//This function will help get item from Local Storage
 export const getStoredData = (key: string): any => {
     let storedData = localStorage.getItem(key) || JSON.stringify([])
     if (storedData) {
@@ -82,6 +85,7 @@ export const getStoredData = (key: string): any => {
     }
 };
 
+// Helps to store only headers for Local Storage
 export const setHeadersToStore = (key: string, data: any) => {
     if (localStorage.getItem(key) === null) {
         let storedData = JSON.stringify(data)
@@ -89,15 +93,21 @@ export const setHeadersToStore = (key: string, data: any) => {
     }
 };
 
+//Extract headers from local storage
 export const getStoredHeaders = (key: string) => {
     const storedHeaders = localStorage.getItem(key);
     if (storedHeaders) return JSON.parse(storedHeaders);
     return null;
 };
 
-export const ClearContext = () => {
+//Removing items from local Storage, can accept item: string as prop or be without any props
+export const clearStorage = (item?: string | null) => {
     localStorage.removeItem('csv');
     localStorage.removeItem('headers');
+    if(typeof item === 'string'){
+        localStorage.removeItem(item);
+    }
 }
 
+//Clear whole local storage
 export const clearLocStorage = () => localStorage.clear();

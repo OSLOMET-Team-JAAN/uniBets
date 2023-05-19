@@ -1,7 +1,7 @@
 ﻿import React, {FC, ReactNode} from 'react';
 import styles from "../../../styles/pages/AdminPage.module.css";
 import MyButton from "../buttons/MyButton";
-import {ClearContext, getAll} from "../../../services/data.service";
+import {clearStorage, getAll} from "../../../services/data.service";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../../../models/ICSVdata";
 import {getHeaders} from "../../../utils/assistFunctions";
@@ -72,7 +72,7 @@ const MyFileUpload: FC<GET_DATA> = ({
     
     const handleGetData = async () => {
         try {
-            ClearContext();
+            clearStorage();
             setIsLoading(true)
             setMyError("")
             await getAll().then(

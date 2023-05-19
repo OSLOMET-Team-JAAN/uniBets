@@ -12,7 +12,7 @@ import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import useData from "../hooks/useData";
 import st from '../styles/pages/DashboardStyle.module.css';
 import GetBetsWinRateTopWinners from "../components/dashboard_components/GetBetsWinRateTopWinners";
-import {ClearContext, getAll, getStoredData} from "../services/data.service";
+import {clearStorage, getAll, getStoredData} from "../services/data.service";
 import Loader from "../components/UI/loader/Loader";
 import {AxiosResponse} from "axios";
 import {ICSVdata} from "../models/ICSVdata";
@@ -56,7 +56,7 @@ const Dashboard = () => {
     
     const handleGetData = async () => {
         try {
-            ClearContext();
+            clearStorage();
             setIsLoading(true)
             setMyError('')
             await getAll().then(

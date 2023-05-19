@@ -1,7 +1,7 @@
 ﻿import React, {FC, ReactNode} from 'react';
 import styles from "../../../styles/pages/AdminPage.module.css";
 import {
-    ClearContext,
+    clearStorage,
     getStoredData,
     getStoredHeaders,
     setDataToStore,
@@ -72,7 +72,7 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
                             return;
                         }
                         setMyError("")
-                        ClearContext();
+                        clearStorage();
                     }
     
                     //Creating an array of files which will hold all csv files uploaded

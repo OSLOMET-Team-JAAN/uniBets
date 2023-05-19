@@ -11,15 +11,19 @@ import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i;
 
+//Contact page component
 const Contact: FC = () => {
+    // Mutable ref objects that can be used to reference an HTML elements
     const userRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLParagraphElement>(null);
     
+    //States for the form
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     
+    //State for error and successful submit
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -38,6 +42,7 @@ const Contact: FC = () => {
         setErrorMessage('');
     }, [email]);
 
+    //Handling submit function
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         // validation

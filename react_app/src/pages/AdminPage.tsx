@@ -8,7 +8,7 @@ import Loader from "../components/UI/loader/Loader";
 import styles from "../styles/pages/AdminPage.module.css";
 import DangerButton from "../components/UI/buttons/DangerButton";
 import {
-    ClearContext,
+    clearStorage,
     getStoredData,
     getStoredHeaders,
     setDataToStore,
@@ -54,7 +54,7 @@ const AdminPage: FC = () => {
     //-----------------------------------------------------------------
     //This function below will reset all functions and states to their defaults
     const resetAll = () => {
-        ClearContext();
+        clearStorage();
         setFile(null)
         setShowContent(false)
         setShowButton(false)
@@ -66,7 +66,7 @@ const AdminPage: FC = () => {
 
     // Handle uploaded file by store data in localStorage and allowed to be visible if needed
     const handleUploadedFile = () => {
-        ClearContext()
+        clearStorage()
         setIsLoading(true);
         //Show error if buttons "Show content" pressed without file been uploaded
         if (!file) {
