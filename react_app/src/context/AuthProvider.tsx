@@ -1,4 +1,6 @@
 import {createContext, FC, ReactNode, useState} from "react";
+import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
+import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const AuthContext = createContext({});
 
@@ -10,9 +12,12 @@ export const AuthProvider: FC<Props> = ({children}) => {
     const [auth, setAuth] = useState({});
 
     return (
-        <AuthContext.Provider value={{auth, setAuth}}>
-            {children}
-        </AuthContext.Provider>
+        <ErrorBoundary
+            ResponseComponent={ErrorBoundaryResponse}>
+            <AuthContext.Provider value={{auth, setAuth}}>
+                {children}
+            </AuthContext.Provider>
+        </ErrorBoundary>
     )
 }
 
