@@ -52,15 +52,17 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
 
     const array = useMemo(() => data?.map((obj: any) => getWinnerData(obj.Player_no)), [data, getWinnerData])
 
-    const results: Player[] = useMemo(() => array.filter((obj: any, index: number, self: any) =>
+    const results: Player[] = useMemo(() => array.filter((obj: any, index: number, self: []) =>
             index === self.findIndex((obj2: any) => (
                 obj2.Player === obj.Player
             ))
     ), [array]);
 
     const [sortedPlayers, setSortedPlayers] = useState<Player[]>(results);
+    //We can control the sorting
     const [orderBy, setOrderBy] = useState<keyof Player>('TOTAL_BETS');
 
+    //Second sorting
     const sortPlayers = (property: keyof Player) => {
         const sorted = [...sortedPlayers].sort((a, b) =>
             b[property] > a[property] ? 1 : a[property] > b[property] ? -1 : 0
@@ -71,6 +73,7 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
         setSortedPlayers(sorted);
     };
 
+    //Updates sortPlayers when order is changed
     useMemo(() => sortPlayers(orderBy), [orderBy]);
     
     const getTopData = getTop(sortedPlayers, myTop);

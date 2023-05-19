@@ -89,7 +89,7 @@ const Dashboard = () => {
             }
         }
     }
-
+    
     const verifyPlayer = (value: any) => {
         if(localStorage.getItem('csv') === null){
             return parseInt(value);
