@@ -36,7 +36,7 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
                             setFile, 
                             setMyError, 
                             setData, 
-                            setHeaders, 
+                            setHeaders,
                             setShowButton, 
                             setShowContent, 
                             setInfoMessage, 
@@ -86,10 +86,14 @@ const MyDragDropArea: FC<DRAG_DROP> = ({
                             delimiter: ',',
                             header: true,
                             //dynamicTyping: true, //numbers, boolean will not become strings
-                            complete: function (csvData) {
-                                setDataToStore('csv', csvData.data);
+                            complete: function (csvData: any) {
+                                // Remove the last object if any of its properties are empty
+                                const filteredData = csvData.data.filter((obj: { [key: string]: any }) =>
+                                    Object.values(obj).every(value => value !== '')
+                                );
+                                setDataToStore('csv', filteredData);
                                 // Extracting headers from all objects in a List and
-                                const headers = getHeaders(csvData.data);
+                                const headers = getHeaders(filteredData);
                                 setHeadersToStore('headers', headers);
                                 setData(getStoredData('csv'));
                                 setHeaders(getStoredHeaders('headers'));
