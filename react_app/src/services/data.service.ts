@@ -5,19 +5,17 @@ const TABLE_URL = "/Bets"
 
 // Saving data to database
 export const upload = (data: Array<ICSVdata>) => {
-    const userStr = localStorage.getItem("user");
+    const userStr = localStorage.getItem('user');
     let user = null;
-    if (userStr)
+    if (userStr) {
         user = JSON.parse(userStr);
-    return axios.post(TABLE_URL + '/saveTable', data, {
-            headers: {
-                // Overwrite Axios's automatically set Content-Type
-                'Authorization': `Bearer ${user?.token}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }
-    );
+    }
+    return axios.post(`${TABLE_URL}/saveTable`, data, {
+        headers: {
+            Authorization: `Bearer ${user?.token}`,
+            'Content-Type': 'application/json',
+        },
+    });
 };
 
 // Fetching data from database
@@ -26,7 +24,7 @@ export const getAll = () => {
     let user = null;
     if (userStr)
         user = JSON.parse(userStr);
-    return axios.get(TABLE_URL + '/getAll', {
+    return axios.get(`${TABLE_URL}/getAll`, {
         headers: {
             // Overwrite Axios's automatically set Content-Type
             'Authorization': `Bearer ${user?.token}`,
@@ -48,7 +46,6 @@ export const submit = (email: string, subject: string, message: string) => {
                 // Overwrite Axios's automatically set Content-Type
                 'Authorization': `Bearer ${user?.token}`,
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
             }
         }
     );

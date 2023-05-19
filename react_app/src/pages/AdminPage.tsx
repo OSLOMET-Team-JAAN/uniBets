@@ -50,8 +50,6 @@ const AdminPage: FC = () => {
         const [isInfoModalVisible, setInfoModalVisible] = useState(false);
         //State 11_ stores messages for Info modal window
         const [infoMessage, setInfoMessage] = useState('');
-        //State 12_ updates Loader's text
-        const [loaderMsg, setLoaderMsg] = useState('Loading..');
         
         //-------------------------------------------------------------------------
         //This function below will reset all functions and states to their defaults
@@ -64,7 +62,6 @@ const AdminPage: FC = () => {
             setModalVisible(true)
             setInfoModalVisible(false);
             setInfoMessage('');
-            setLoaderMsg('Loading..');
         }
 
         // Handle uploaded file by store data in localStorage and allowed to be visible if needed
@@ -100,19 +97,17 @@ const AdminPage: FC = () => {
         const handleUpload = async () => {
             try {
                 setIsLoading(true);
-                setLoaderMsg('Saving to database..');
                 if (data.length !== 0) {
                     const promises = data.map(async (obj: ICSVdata) => {
-                        const array: Array<ICSVdata> = [];
-                        array.push(obj)
-                        return await upload(array).then()
+                        return await upload([obj]);
                     });
+
                     Promise.allSettled(promises)
                         .then(() => {
                             setInfoModalVisible(true);
                             setInfoMessage('Data saved to database successfully!');
-                        })
-                }               
+                        });
+                }              
             } catch (err: any) {
                 if (!err?.response) {
                     setMyError(err?.response);
@@ -212,7 +207,7 @@ const AdminPage: FC = () => {
                     </div>
                     <div>
                         {isLoading && !myError && !isInfoModalVisible
-                            ? (<Loader />)
+                            ? <Loader />
                             :
                                 (
                                     <div>{isInfoModalVisible &&
