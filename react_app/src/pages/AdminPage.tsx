@@ -77,9 +77,10 @@ const AdminPage: FC = () => {
         Papa.parse(file, {
             delimiter: ',',
             header: true,
-            //dynamicTyping: true, //numbers, boolean will not become strings
+            //dynamicTyping: true, 
+            //numbers, boolean will not become strings
             complete: function (results: any) {
-                // Remove the last object if any of its properties are empty
+                // Remove objects that have empty string values
                 const filteredData = results.data.filter((obj: { [key: string]: any }) =>
                     Object.values(obj).every(value => value !== '')
                 );

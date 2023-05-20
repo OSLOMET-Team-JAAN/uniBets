@@ -11,6 +11,7 @@ interface Props {
 const GetTopWinnerWinRate: FC<Props> = ({Player}) => {
     const {data}: any = useCSV();
     
+    //Customizing data based on given from context
     const Results = useMemo(() => getResults(data, Player), [Player]);
     const WinRate = useMemo(() => getWinRate(data, Player),[Player]);
 

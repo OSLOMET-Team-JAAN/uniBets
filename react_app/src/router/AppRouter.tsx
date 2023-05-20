@@ -36,14 +36,16 @@ const AppRouter: FC = () => {
                 {/*    Protected routes */}
                 {/* Registered User */}
 
-                <Route element={<AuthIsRequire allowedRoles={[ROLES.User, ROLES.Admin]}/>}>
+                <Route element={<AuthIsRequire 
+                    allowedRoles={[ROLES.User, ROLES.Admin]}/>}>
                     <Route path="user" element={<UserPage/>}/>
                     <Route path="profile" element={<Profile/>}/>
                 </Route>
 
 
                 {/* Administrator */}
-                <Route element={<AuthIsRequire allowedRoles={[ROLES.Admin]}/>}>
+                <Route element={<AuthIsRequire 
+                    allowedRoles={[ROLES.Admin]}/>}>
                     <Route path="admin" element={<AdminPage/>}/>
                     <Route path="inbox" element={<Inbox/>}/>
                     <Route path="dashboard" element={<Dashboard/>}/>

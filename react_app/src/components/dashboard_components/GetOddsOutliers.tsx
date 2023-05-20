@@ -7,12 +7,17 @@ import st from '../../styles/GetOddsOutliers.module.css';
 const GetOddsOutliers: FC = () => {
     const {data}: any = useCSV();
 
+    //Sorting order
     const [sortSettings] =
-        useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
+        useState({order: 'desc', orderBy: 'ODDS'});
+    //Sorting data as per sorting order
     const sortedData = useMemo(() =>
         sortRows(getBetWon(data), sortSettings), [data, sortSettings])
 
-    const isGreaterThreshold = (array: any, value: number) => array.filter((v: any) => v.ODDS > value)
+    //Filtering data as per threshold settings
+    const isGreaterThreshold = (array: any, value: number) => 
+        array.filter((v: any) => v.ODDS > value)
+    //Collecting all outliers which are greater than threshold
     const getOutliers = isGreaterThreshold(sortedData, 2);
     //-- Find max ODDS value for property domain of LineChart (to change default high limit)
     const getTopValue = () => {

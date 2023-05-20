@@ -10,6 +10,7 @@ interface Props {
 
 const GetWinRateTopWinner: FC<Props> = ({Player}) => {
     const {data}: any = useCSV();
+    //Collecting player's data and re-formatting data
     const Results = useMemo(() => getResults(data, Player),[Player]);
     
     //---- Custom Label for Pie Chart ------

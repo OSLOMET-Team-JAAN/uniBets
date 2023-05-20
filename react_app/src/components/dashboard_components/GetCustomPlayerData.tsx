@@ -11,6 +11,7 @@ interface Props{
 const GetCustomPlayerData: FC<Props> = ({Player}) => {
     const {data, headers}:any = useCSV();
 
+    //Collecting all data for particular player
     const getTopWinnerData = data.filter((obj: any) => {
         if(obj.Player_no === Player){
             return obj

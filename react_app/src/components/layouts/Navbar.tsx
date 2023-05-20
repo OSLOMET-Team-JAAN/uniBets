@@ -8,10 +8,12 @@ import styles from "../../styles/layout/Navbar.module.css";
 
 const Navbar: FC = () => {
     const location = useLocation();
+    //States for boards visibility
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
     
+    //Get user after mounting
     useEffect(() => {
         const auth = getCurrentUser();
         if (auth) {
@@ -27,6 +29,7 @@ const Navbar: FC = () => {
         };
     }, [location]);
 
+    //Setting states to their defaults after logout
     const logOut = () => {
         logout();
         setShowUserBoard(false)

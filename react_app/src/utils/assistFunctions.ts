@@ -117,8 +117,11 @@ export const reformatColumnTitles = (columnTitle: string) => {
             .replace(/^\w/, c => c.toUpperCase());
 }
 
+//Display a subset of the sorted rows based on the current page
 export function paginateTable(sortedRows: any, currentPage: number, rowsPerPage: number) {
-    return [...sortedRows].slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
+    const startingIndex = (currentPage - 1) * rowsPerPage;
+    const endingIndex = currentPage * rowsPerPage;
+    return [...sortedRows].slice(startingIndex, endingIndex);
 }
 
 //------ DASH BOARD FUNCTIONS -------------------

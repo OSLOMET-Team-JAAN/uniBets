@@ -16,10 +16,14 @@ type Props = {
 
 const DataTable: FC<Props> = ({columns, rows}) => {
 
+    //Holds current page
     const [currentPage, setCurrentPage] = useState(1);
+    //State to hold filters
     const [filters, setFilters] = useState({});
 
+    //Sorting settings
     const [sortSettings, setSortSettings] = useState({order: 'asc', orderBy: 'id'});
+    //State to hold amount of table's rows per page
     const [rowsPerPage, setRowsPerPage] = useState(20);
     //---------------------------------------------------------------------
 
@@ -27,13 +31,15 @@ const DataTable: FC<Props> = ({columns, rows}) => {
         filterRows(rows, filters), [rows, filters])
     const sortedRows = useMemo(() =>
         sortRows(filteredRows, sortSettings), [filteredRows, sortSettings])
+    
+    //Pagination
     const calculatedRows =
         paginateTable(sortedRows, currentPage, rowsPerPage);
-
     const filteredRowsNumber = filteredRows.length;
     const totalPages = getPageCount(filteredRowsNumber, rowsPerPage);
     const handlePages = (page: number) => setCurrentPage(page)
 
+    //Search handle in table
     const handleSearch = (value: string, accessor: string) => {
         setCurrentPage(1)
 
@@ -52,6 +58,7 @@ const DataTable: FC<Props> = ({columns, rows}) => {
         }
     }
 
+    //Sorting by columns
     const handleSort = (accessor: string) => {
         setCurrentPage(1)
         setSortSettings((existingSort) => ({
@@ -62,7 +69,7 @@ const DataTable: FC<Props> = ({columns, rows}) => {
             orderBy: accessor,
         }))
     }
-
+    
     function sortButton(searchQuery: string) {
         if (searchQuery === sortSettings.orderBy) {
             if (sortSettings.order === 'asc') {
@@ -74,6 +81,7 @@ const DataTable: FC<Props> = ({columns, rows}) => {
         }
     }
 
+    //Setting states to their defaults
     const resetSortsAndFilters = () => {
         setSortSettings({order: 'asc', orderBy: 'BET_PLACED_DATE'});
         setCurrentPage(1);
@@ -81,7 +89,7 @@ const DataTable: FC<Props> = ({columns, rows}) => {
         setRowsPerPage(20)
     }
 
-
+    //Saving inbox data to CSV file
     const saveTableData = (tableData: IContact[]) => {
         const headerRow = Object.keys(tableData[0]).join(',');
         const csvData = [headerRow];

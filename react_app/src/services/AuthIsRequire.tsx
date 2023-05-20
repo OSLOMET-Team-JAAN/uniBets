@@ -1,7 +1,6 @@
 ﻿import React, {FC} from 'react';
 import {Navigate, Outlet, useLocation} from "react-router-dom";
 import {getCurrentUser} from "./auth.service";
-import useAuth from "../hooks/useAuth";
 
 interface Roles {
     allowedRoles: Array<string>
@@ -20,7 +19,7 @@ const AuthIsRequire: FC<Roles> = ({allowedRoles}) => {
                     state={{from: location}} 
                     replace/>
                 : <Navigate 
-                    to="/unauthorized" 
+                    to="/login" 
                     state={{from: location}} 
                     replace/>
     );

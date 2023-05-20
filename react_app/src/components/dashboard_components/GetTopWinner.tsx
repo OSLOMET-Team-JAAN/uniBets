@@ -5,10 +5,14 @@ import style from '../../styles/layout/TopWinner.module.css';
 
 const GetTopWinner: FC = () => {
     const {data}: any = useCSV();
+    
+    //Sorting order
     const [sortSettings] =
-        useState({order: 'desc', orderBy: 'ODDS'}); // asc desc default
+        useState({order: 'desc', orderBy: 'ODDS'});
+    //Sorting data as per sorting order
     const sortedData = useMemo(() =>
-        sortRows(getBetWon(data), sortSettings), [data, sortSettings])
+        sortRows(getBetWon(data), sortSettings), [data, sortSettings]);
+    //Getting TOP winner
     const topWinner = getTop(sortedData, 1)
 
     return (

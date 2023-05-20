@@ -22,6 +22,7 @@ type Player = {
 const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
     const {data}: any = useCSV();
 
+    //Collecting particular data for given player and creating new object
     const getWinnerData = useMemo(() => (Player: number) => {
         let bet_total = 0;
         let bet_won = 0;
@@ -50,8 +51,10 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
         }
     }, [data]);
 
+    //Storing all players
     const array = useMemo(() => data?.map((obj: any) => getWinnerData(obj.Player_no)), [data, getWinnerData])
 
+    //Removing duplicates
     const results: Player[] = useMemo(() => array.filter((obj: any, index: number, self: []) =>
             index === self.findIndex((obj2: any) => (
                 obj2.Player === obj.Player
@@ -59,7 +62,7 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
     ), [array]);
 
     const [sortedPlayers, setSortedPlayers] = useState<Player[]>(results);
-    //We can control the sorting
+    //New Sorting order TOTAL_BETS
     const [orderBy, setOrderBy] = useState<keyof Player>('TOTAL_BETS');
 
     //Second sorting
@@ -76,6 +79,7 @@ const GetBetsWinRateTopWinners: FC<Props> = ({ myTop}) => {
     //Updates sortPlayers when order is changed
     useMemo(() => sortPlayers(orderBy), [orderBy]);
     
+    //TOP creation
     const getTopData = getTop(sortedPlayers, myTop);
     
     

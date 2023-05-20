@@ -10,17 +10,24 @@ import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const UserPage: FC = () => {
+    //Data storing
     const [data, setData] = useState<Array<ICSVdata>>([]);
+    //Headers for table
     const [headers, setHeaders] = useState<Array<string>>([]);
-    //This state will control errors
+    //This state holds errors
     const [myError, setMyError] = useState("");
-    //State 10_ to show fetching data process
+    //Show / hide loader
     const [isLoading, setIsLoading] = useState(false);
 
+    //Fetching data after mounting
     useEffect(() => {
-        handleGetData().then()
+        handleGetData()
+            .catch((error) => {
+            setMyError(`An error occurred while fetching data. ${error}`);
+        })
     }, [])
 
+    //Data fetching from DB
     const handleGetData = async () => {
         try {
             setIsLoading(true)

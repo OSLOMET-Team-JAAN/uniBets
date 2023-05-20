@@ -12,20 +12,25 @@ import {NavigateFunction} from "react-router";
 import {useNavigate} from "react-router-dom";
 
 const Inbox = () => {
+    //Stores inbox data
     const [data, setData] = useState<Array<IContact>>([]);
+    //Stores headers for table
     const [headers, setHeaders] = useState<Array<string>>([]);
-    // const keys = Object.keys(_mockData[0]);
     //This state will control errors
     const [myError, setMyError] = useState("");
-    //State 10_ to show fetching data process
+    //State to show / hide loader
     const [isLoading, setIsLoading] = useState(false);
-    
+    //redirection 
     const navigate: NavigateFunction = useNavigate();
     
     useEffect(() => {
-        handleGetData().then()
+        handleGetData()
+            .catch((error) => {
+                setMyError(`An error occurred while fetching data. ${error}`);
+            });
     }, [])
 
+    //Fetching inbox data from DB
     const handleGetData = async () => {
         try {
             setIsLoading(true)

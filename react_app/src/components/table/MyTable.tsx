@@ -27,9 +27,10 @@ const MyTable: FC<Props> = ({columns, rows}) => {
         filterRows(rows, filters), [rows, filters])
     const sortedRows = useMemo(() =>
         sortRows(filteredRows, sortSettings), [filteredRows, sortSettings])
+    
+    //Pagination for table
     const calculatedRows =
         paginateTable(sortedRows, currentPage, rowsPerPage);
-
     const filteredRowsNumber = filteredRows.length;
     const totalPages = getPageCount(filteredRowsNumber, rowsPerPage);
     const handlePages = (page: number) => setCurrentPage(page)
@@ -74,6 +75,7 @@ const MyTable: FC<Props> = ({columns, rows}) => {
         }
     }
 
+    //Setting states to their defaults
     const resetSortsAndFilters = () => {
         setSortSettings({order: 'asc', orderBy: 'BET_PLACED_DATE'});
         setCurrentPage(1);

@@ -8,6 +8,7 @@ import MyFormButton from "../components/UI/buttons/MyFormButton";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Profile: FC = () => {
+    //Get user from Local Storage
     const currentUser = getCurrentUser();
     if (!currentUser) {
         return <div >No user data found.</div>;

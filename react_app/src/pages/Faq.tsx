@@ -5,9 +5,10 @@ import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 export default function Faq() {
-    
+    //Store accordion's number opening/closing condition
     const [open, setOpen] = useState<number>(0);
     
+    //Handle opening / closing
     const handleOpen = (value: number) => {
         setOpen(value === open ? 0 : value);
     };

@@ -10,8 +10,10 @@ type Props = {
 }
 
 const GetTopWinners: FC<Props> = ({sortedData, myTop}) => {
+    //Customized top
     const getTopData = getTop(sortedData, myTop)
-
+    
+    //Customizing tooltips for chart
     const CustomTooltip = ({
                                active,
                                payload,

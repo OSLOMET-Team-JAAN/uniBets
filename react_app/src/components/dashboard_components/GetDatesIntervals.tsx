@@ -29,9 +29,11 @@ const GetDatesIntervals: FC<Props> = ({Player}) => {
             return obj.EVENT_NAME;
         });
         
+        //Get time between bets placement in seconds
         const getSeconds = () => {
             return getBetPlacedDates.slice(1).map((date: any, index: number) => {
                 const seconds = (Date.parse(date) - Date.parse(getBetPlacedDates[index]))/1000;
+                //Taking only > 20 sec
                 if(seconds > 20){
                     return;
                 }

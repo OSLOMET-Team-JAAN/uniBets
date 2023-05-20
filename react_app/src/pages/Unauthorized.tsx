@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 import MyButton from "../components/UI/buttons/MyButton";
 import ErrorBoundaryResponse from "../errors/ErrorBoundaryResponse";
@@ -9,23 +9,20 @@ import {clearLocStorage} from "../services/data.service";
 
 
 const Unauthorized: FC = () => {
-    useEffect(() => {
-        if(localStorage.getItem("user") != null){
-            clearLocStorage();
-        }
-    },[])
+    
+    //Redirection
     const navigate: NavigateFunction = useNavigate();
+    
     const goBack = () => {
         navigate(-1);
-        if(localStorage.getItem("user") != null){
-            clearLocStorage();
-        }
     };
+    
     const goToLogin = () => {
         navigate("/login");
+        //Remove auth if goes to login
         if(localStorage.getItem("user") != null){
-            clearLocStorage();
-        }
+                    clearLocStorage();
+                }
     };
     return (
         <>
@@ -33,8 +30,8 @@ const Unauthorized: FC = () => {
                 <br/>
                 <section style={{background: "whitesmoke"}}>
                     <h1 style={{color: "red"}}>Unauthorized.</h1>
-                    <p>This page is not publicaly available!</p>
-                    <h2>Please login first!</h2>
+                    <p>You are not authorized to see that page!</p>
+                    <h2>Please go back or login!</h2>
                     <div className="flexGrowContainer">
                         <img 
                             className={styles.notFound} 

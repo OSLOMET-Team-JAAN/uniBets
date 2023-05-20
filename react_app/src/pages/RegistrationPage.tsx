@@ -118,11 +118,15 @@ const RegistrationPage: FC = () => {
                     highest priority and should be presented to the user immediately. ----*/}
                     <p ref={errRef} 
                        className={errorMessage ? style.errorMessage : style.srOnly} 
-                       aria-live="assertive">{errorMessage}</p>
+                       aria-live="assertive"
+                    >{errorMessage}
+                    </p>
                     <h2>Create an Account</h2>
                     <form onSubmit={handleSubmit}>
                         {/* -- USERNAME FORM FILED ----------------------------------*/}
-                        <label htmlFor="username">
+                        <label 
+                            htmlFor="username"
+                        >
                             Username:
                             <FontAwesomeIcon 
                                 icon={faCheck} 
@@ -250,7 +254,10 @@ const RegistrationPage: FC = () => {
                            className={focusMatchPassword && !isValidMatchPassword ? style.validationMessage : style.srOnly}>
                             <FontAwesomeIcon 
                                 icon={faInfoCircle}/>
-                            <span style={{fontWeight: "bolder"}}>Password confirmation requirements:</span> <br/>
+                            <span style={{fontWeight: "bolder"}}
+                            >Password confirmation requirements:
+                            </span> 
+                            <br/>
                             <p style={{textAlign: "left"}}>
                                 - Please ensure that this field matches the password entered in the first input field.<br/>
                             </p>
@@ -279,6 +286,7 @@ const RegistrationPage: FC = () => {
 
 export default RegistrationPage;
 
+// inspired by Dave Gray
 //https://github.com/gitdagray/react_protected_routes/blob/main/src/components/Register.js
 //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions (aria-live="assertive")
 //https://developer-mozilla-org.translate.goog/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US

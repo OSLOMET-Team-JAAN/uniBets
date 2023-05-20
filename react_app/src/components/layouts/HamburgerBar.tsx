@@ -12,6 +12,8 @@ import IUser from "../../models/IUser";
 const HamburgerBar: FC = () => {
 
     const location = useLocation();
+    
+    //States to control boards and show content
     const [showContent, setShowContent] = useState(false);
     const [showUserBoard, setShowUserBoard] = useState<boolean>(false);
     const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
@@ -21,21 +23,23 @@ const HamburgerBar: FC = () => {
         setShowContent(!showContent);
     }
 
+    //Get user after mounting
     useEffect(() => {
         const auth = getCurrentUser();
         if (auth) {
-            setCurrentUser(auth)
+            setCurrentUser(auth);
             setShowUserBoard(auth.role === "USER");
             setShowAdminBoard(auth.role === "ADMIN");
         }
 
         eventBus.doc.on("logout", logOut);
-
+        
         return () => {
             eventBus.doc.off("logout", logOut);
         };
     }, [location]);
 
+    //Setting states back to their defaults after logout
     const logOut = () => {
         logout();
         setShowUserBoard(false);

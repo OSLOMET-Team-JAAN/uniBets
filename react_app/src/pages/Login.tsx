@@ -1,5 +1,4 @@
 import {FC, FormEvent, useEffect, useRef, useState} from 'react';
-import useAuth from '../hooks/useAuth';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import st from '../styles/pages/Login.module.css';
 import {login} from "../services/auth.service";
@@ -9,27 +8,33 @@ import MyFormButton from "../components/UI/buttons/MyFormButton";
 import {ErrorBoundary} from "../errors/ErrorBoundary";
 
 const Login: FC = () => {
-    const {setAuth}: any = useAuth();
-
+    //const {setAuth}: any = useAuth();
+    
+    //Redirection and navigation
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
+    //Reference objects (accessing and manipulating DOM elements)
     const userRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLParagraphElement>(null);
 
+    //States for the form
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    //Focus username field after mounting
     useEffect(() => {
         userRef.current?.focus();
     }, [])
 
+    //Setting errorMessage to default value after username or password changes
     useEffect(() => {
         setErrorMessage('');
     }, [username, password])
 
+    //Form submission handling
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -37,17 +42,17 @@ const Login: FC = () => {
                 const _token = response?.token;
                 // const _email = response?.token;
                 // const _role = response?.role;
+                // commented due to useAuth usage been suspended
                 if (_token) {
                     // setAuth({username, _role, _email, password, _token});
                     // setUsername('');
                     // setPassword('');
                     navigate(from, {replace: true});
                 }
-            }).then(
-                () => {
-                    navigate("/profile");
-                }
-            );
+            }).then(() => navigate("/profile"))
+                .catch((error) => {
+                    setErrorMessage(`An error occurred during login. ${error}`);
+            });
         } catch (err: any) {
             if (!err?.response) {
                 setErrorMessage('No Server Response');
@@ -64,7 +69,6 @@ const Login: FC = () => {
     }
 
     return (
-
         <div data-testid="loginPage">
             <ErrorBoundary 
                 ResponseComponent={ErrorBoundaryResponse}>
