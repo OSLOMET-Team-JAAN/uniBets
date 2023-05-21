@@ -3,8 +3,10 @@ import styles from '../../../styles/Loader.module.css';
 
 const Loader: FC = () => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.myLoader}>
+        <div 
+            className={styles.wrapper}>
+            <div 
+                className={styles.myLoader}>
                 <img
                     className={styles.ball}
                     alt="ball"

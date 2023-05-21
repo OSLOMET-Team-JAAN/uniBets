@@ -9,7 +9,6 @@ import {
 } from "../../../services/data.service";
 import Papa from "papaparse";
 import {getHeaders} from "../../../utils/assistFunctions";
-import useData from "../../../hooks/useData";
 
 interface DRAG_DROP{
     indicator: boolean,

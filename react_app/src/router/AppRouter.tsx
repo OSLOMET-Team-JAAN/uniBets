@@ -10,7 +10,7 @@ import UserPage from "../pages/UserPage";
 import Profile from "../pages/Profile";
 import AdminPage from "../pages/AdminPage";
 import Dashboard from "../pages/Dashboard";
-import AuthIsRequire from "../services/AuthIsRequire";
+import AuthIsRequired from "../services/AuthIsRequired";
 import Contact from "../pages/Contact";
 import Faq from "../pages/Faq";
 import Inbox from "../pages/Inbox";
@@ -36,15 +36,15 @@ const AppRouter: FC = () => {
                 {/*    Protected routes */}
                 {/* Registered User */}
 
-                <Route element={<AuthIsRequire 
-                    allowedRoles={[ROLES.User, ROLES.Admin]}/>}>
+                <Route 
+                    element={<AuthIsRequired allowedRoles={[ROLES.User, ROLES.Admin]}/>}>
                     <Route path="user" element={<UserPage/>}/>
                     <Route path="profile" element={<Profile/>}/>
                 </Route>
 
 
                 {/* Administrator */}
-                <Route element={<AuthIsRequire 
+                <Route element={<AuthIsRequired 
                     allowedRoles={[ROLES.Admin]}/>}>
                     <Route path="admin" element={<AdminPage/>}/>
                     <Route path="inbox" element={<Inbox/>}/>

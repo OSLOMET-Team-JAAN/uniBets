@@ -2,11 +2,11 @@
 import {Navigate, Outlet, useLocation} from "react-router-dom";
 import {getCurrentUser} from "./auth.service";
 
-interface Roles {
+interface IRoles {
     allowedRoles: Array<string>
 }
 
-const AuthIsRequire: FC<Roles> = ({allowedRoles}) => {
+const AuthIsRequired: FC<IRoles> = ({allowedRoles}) => {
     const location = useLocation();
     const user = getCurrentUser();
 
@@ -25,7 +25,7 @@ const AuthIsRequire: FC<Roles> = ({allowedRoles}) => {
     );
 };
 
-export default AuthIsRequire;
+export default AuthIsRequired;
 
 // https://reactrouter.com/en/main/components/navigate
 //https://reactrouter.com/en/main/hooks/use-navigate
