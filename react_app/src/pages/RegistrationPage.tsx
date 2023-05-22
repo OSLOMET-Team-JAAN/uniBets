@@ -116,9 +116,10 @@ const RegistrationPage: FC = () => {
                 <section>
                     {/* -- ALERT paragraph with "assertive" ARIA - Indicates that updates to the region have the 
                     highest priority and should be presented to the user immediately. ----*/}
-                    <p ref={errRef} 
-                       className={errorMessage ? style.errorMessage : style.srOnly} 
-                       aria-live="assertive"
+                    <p 
+                        ref={errRef} 
+                        className={errorMessage ? style.errorMessage : style.srOnly} 
+                        aria-live="assertive"
                     >{errorMessage}
                     </p>
                     <h2>Create an Account</h2>
