@@ -49,15 +49,12 @@ const Login: FC = () => {
                     // setPassword('');
                     navigate(from, {replace: true});
                 }
-            }).then(() => navigate("/profile"))
-                .catch((error) => {
-                    setErrorMessage(`An error occurred during login. ${error}`);
-            });
+            }).then(() => navigate("/profile"));
         } catch (err: any) {
             if (!err?.response) {
                 setErrorMessage('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrorMessage('Missing Username or Password');
+                setErrorMessage('Invalid username or password');
             } else if (err.response?.status === 401) {
                 setErrorMessage('No authorization found');
                 navigate("/unauthorized");
@@ -76,7 +73,7 @@ const Login: FC = () => {
                 <section className={st.section}>
                     <p
                         ref={errRef}
-                        className={errorMessage ? st.errMsg : st.offscreen}
+                        className={errorMessage ? st.errorMessage : st.srOnly}
                         aria-live="assertive">{errorMessage}</p>
                     <h2>Please Login</h2>
                     <form onSubmit={handleSubmit}>
