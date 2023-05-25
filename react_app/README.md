@@ -57,8 +57,8 @@ The system requires login to grants full access to an ADMIN and limited access t
 ```
    npm install
 ```
-2. Before start Backend (**BetApi**) it is required to connect to database, we have used Microsoft SQL Server Management Studio (SSMS) you can install t by following this Link:
-[sqlexpress](https://aka.ms/ssmsfullsetup ) 
+2. Before start Backend (**BetApi**) it is required to connect to database, we have used Microsoft SQL Server Management Studio (SSMS) you can install it by following this Link:
+[SSMS](https://aka.ms/ssmsfullsetup ) 
 3. Connect to database:
 ```
 Open SSMS and then a window will pop up with the server name to your computer you need to copy the server 
