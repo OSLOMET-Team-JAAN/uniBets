@@ -61,7 +61,8 @@ The system requires login to grants full access to an ADMIN and limited access t
 [sqlexpress](https://aka.ms/ssmsfullsetup ) 
 3. Connect to database:
 ```
-Open SSMS and then a window will pop up with the server name to your computer you need to copy the server name. Then you will pate it into `Visual studio` à BetAPi à appseting.json and need to insert your server's name into "ConnectionAPIConncetionString"
+Open SSMS and then a window will pop up with the server name to your computer you need to copy the server name. 
+Then you will pate it into `Visual studio` à BetAPi à appseting.json and need to insert your server's name into "ConnectionAPIConncetionString"
 ```
 4. Start backend `BetApi`:
 ```
@@ -76,7 +77,9 @@ npm start
 
 7. Upload CSV files via `Admin page`:
 ```
-Inside Admin page click on Choose file then choose the file you want to analyze from your computer. We will provide you with an example file in case you don’t have any. Then click on Explore to see the content of the file Figure 6.1, otherwise only football loader will appear.
+Inside Admin page click on Choose file then choose the file you want to analyze from your computer. 
+We will provide you with an example file in case you don’t have any. 
+Then click on Explore to see the content of the file Figure 6.1, otherwise only football loader will appear.
 ```
 8. To run frontend tests:
 ```
