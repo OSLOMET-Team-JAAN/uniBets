@@ -62,7 +62,8 @@ The system requires login to grants full access to an ADMIN and limited access t
 3. Connect to database:
 ```
 Open SSMS and then a window will pop up with the server name to your computer you need to copy the server name. 
-Then you will pate it into `Visual studio` à BetAPi à appseting.json and need to insert your server's name into "ConnectionAPIConncetionString"
+Then you will pate it into `Visual studio` à BetAPi à appseting.json and need to insert your server's name into 
+"ConnectionAPIConncetionString"
 ```
 4. Start backend `BetApi`:
 ```
