@@ -163,7 +163,7 @@ public class AuthenticationController : ControllerBase
         var token = new JwtSecurityToken(
             _conf["JWT:ValidIssuer"],
             _conf["JWT:ValidAudience"],
-            expires: DateTime.Now.AddMinutes(1),
+            expires: DateTime.Now.AddMinutes(30),
             claims: authClaim,
             signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
         );
