@@ -1,6 +1,6 @@
 # GAME-FIXING
 <picture>
-  <img alt="logo" width=120 src="../react_app/src/styles/images/logo.png">
+  <img alt="logo" width=120 src="../../react_app/src/styles/images/logo.png">
 </picture>
 
 ### Table of Content
