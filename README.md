@@ -23,7 +23,7 @@ This is a bachelor’s thesis in the Departments of Computer Science and Informa
 ## Description
 The final project of this thesis is a React web-based application that helps "**Forzasys**" AS to analyse data collected from daily placed bets in tables and charts and to determine if any act of intentionally manipulating the outcome or in other word (fraud) has occurred. To put it simply, this application permits the system administrator to input the data via a CSV file. Then, the application will analyse the file, and the result will be presented on the Dashboard page, where the admin can catch any suspicious actions from the players.
 
-An example CSV files can be found inside the project.
+An example CSV files can be found under react_app folder, they called Unibet DB.
 
 ## System Architecture
 
